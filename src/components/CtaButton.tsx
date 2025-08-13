@@ -1,13 +1,14 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import React from 'react';
+import { motion, MotionProps } from 'framer-motion';
+import React, { ButtonHTMLAttributes } from 'react';
 
-interface CtaButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+// Omit the conflicting 'onDrag' from standard button attributes, then merge with MotionProps
+type CtaButtonProps = Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onDrag'> & MotionProps & {
   children: React.ReactNode;
-}
+};
 
-const CtaButton: React.FC<CtaButtonProps> = ({ children, ...props }) => {
+const CtaButton: React.FC<CtaButtonProps> = ({ children, className, ...props }) => {
   return (
     <motion.button
       whileHover={{
@@ -15,7 +16,7 @@ const CtaButton: React.FC<CtaButtonProps> = ({ children, ...props }) => {
         color: '#ffffff',
         transition: { duration: 0.3 }
       }}
-      className="bg-white text-main-green-dark font-bold py-3 px-8 rounded-lg shadow-lg"
+      className={`bg-white text-main-green-dark font-bold py-3 px-8 rounded-lg shadow-lg ${className || ''}`}
       {...props}
     >
       {children}
