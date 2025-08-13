@@ -39,6 +39,11 @@ const config: Config = {
         highlight: '#bb5555', // 新しいハイライトカラー
         footerHighlight: '#008877', // フッターのハイライトカラー
         border: "var(--border)",
+        'main-green': '#008877',
+        'main-red': '#bb5555',
+        'dark-charcoal': '#101820',
+        'main-green-dark': '#006655',
+        'main-red-dark': '#a04040',
       },
       fontFamily: {
         sans: ["var(--font-noto-sans-jp)"],

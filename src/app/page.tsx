@@ -1,10 +1,12 @@
 'use client';
 
-import WorksScroll from "@/components/WorksScroll";
-
 import Image from "next/image";
-import { useEffect, useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef } from 'react';
+import { motion } from 'framer-motion';
+import CtaButton from '@/components/CtaButton';
+import SectionWrapper from '@/components/SectionWrapper';
+import DigitalCard from '@/components/DigitalCard';
+import useIsMobile from '@/hooks/useIsMobile';
 
 const interests = {
   spaceAndCreation: [
@@ -78,304 +80,218 @@ const works = [
   }
 ];
 
-const interestColors = [
-  { bg: 'bg-white', text: 'text-[#232024]' }, // White, Dark charcoal gray
-  { bg: 'bg-gray-50', text: 'text-[#232024]' }, // Light gray, Dark charcoal gray
-  { bg: 'bg-gray-100', text: 'text-[#232024]' }, // Gray, Dark charcoal gray
-  { bg: 'bg-white', text: 'text-[#232024]' }, // White, Dark charcoal gray
-];
-
 export default function Home() {
-  const { scrollYProgress } = useScroll();
-
-  // Parallax for hero section background
-  const yBg = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-  // Parallax for hero section text
-  const yText = useTransform(scrollYProgress, [0, 1], ["0%", "200%"]);
-  const opacityText = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-
-  const sectionRefs = useRef<HTMLDivElement[]>([]); // To store refs of all interest item sections
-
-  let globalIndex = 0; // To keep track of the overall index for color cycling
+  const isMobile = useIsMobile();
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section with Japanese Aesthetic */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+      {/* New Hero Section */}
+      <section className="relative h-screen flex items-center justify-center overflow-hidden bg-main-green text-white">
         <motion.div
-          style={{ y: yBg }}
-          className="absolute inset-0 z-0"
-        >
-          <Image
-            src="/images/mv_gomoku_1.jpg"
-            alt="Gomoku Rice"
-            fill
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-black/40" />
-        </motion.div>
+          className="absolute inset-0 bg-main-green z-0"
+          initial={{ clipPath: 'polygon(0 0, 100% 0, 100% 0, 0 0)' }}
+          animate={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)' }}
+          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+        />
         
         <motion.div
-          style={{ y: yText, opacity: opacityText }}
-          className="relative z-10 text-center px-8 max-w-6xl mx-auto"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+          className="relative z-10 text-center px-8"
         >
-          {/* Main Catchphrase - Simple and Clean */}
-          <div className="flex justify-center items-center">
-            <h1 className="text-white text-4xl md:text-6xl font-light tracking-wider" style={{ fontFamily: '"Shippori Mincho", serif' }}>
-              ぼくは、五目飯。
-            </h1>
-          </div>
+          <h1 className="text-5xl md:text-7xl font-bold mb-4">
+            ブランドメッセージ
+          </h1>
+          <p className="text-lg md:text-xl max-w-2xl mx-auto mb-8">
+            サブコピーをここに配置します。最大2行までの簡潔な説明です。
+          </p>
+          <CtaButton>
+            お問い合わせ
+          </CtaButton>
         </motion.div>
       </section>
 
-      {/* About Section with Japanese Aesthetic */}
-      <section className="py-20 px-8 bg-gray-50">
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="mb-12"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ fontFamily: '"Shippori Mincho", serif' }}>
-              空間と創造の探求者
-            </h2>
-            <div className="w-24 h-px bg-[#232024] mx-auto mb-8"></div>
-            <p className="text-lg leading-relaxed max-w-3xl mx-auto" style={{ fontFamily: '"Shippori Mincho", serif' }}>
-              建築の美しさと技術の可能性を融合させ、新しい価値を創造することを目指しています。
-              伝統的な和の精神と現代的な技術を組み合わせ、人々の暮らしを豊かにする空間を設計します。
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Extended Interests and Works Section */}
-      <section className="py-20 px-8 bg-white">
+      <SectionWrapper
+        clipPath="diagonal-top"
+        className="bg-main-red-dark text-white py-20 px-8"
+      >
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl font-bold mb-4" style={{ fontFamily: '"Shippori Mincho", serif' }}>
-              興味・関心と作品
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              空間と創造
             </h2>
-            <div className="w-24 h-px bg-[#232024] mx-auto"></div>
+            <div className="w-24 h-px bg-white mx-auto"></div>
           </motion.div>
           
-          {/* Space and Creation */}
-          <div className="mb-32">
-            <h3 className="text-2xl font-semibold mb-8 text-center" style={{ fontFamily: '"Shippori Mincho", serif' }}>
-              空間と創造
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-              {interests.spaceAndCreation.map((interest, index) => (
-                <motion.div
-                  key={interest.title}
-                  ref={(el) => {
-                    if (el) sectionRefs.current[globalIndex] = el;
-                  }}
-                  data-index={globalIndex++}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="group cursor-pointer"
-                >
-                  <div className="relative h-64 mb-4 overflow-hidden rounded-lg border border-gray-200">
-                    <Image
-                      src={interest.imageUrl}
-                      alt={interest.title}
-                      fill
-                      className="object-cover transition-transform duration-300 group-hover:scale-110"
-                    />
-                  </div>
-                  <h4 className="text-lg font-semibold mb-2" style={{ fontFamily: '"Shippori Mincho", serif' }}>
-                    {interest.title}
-                  </h4>
-                  <p className="text-sm opacity-80 leading-relaxed" style={{ fontFamily: '"Shippori Mincho", serif' }}>
-                    {interest.description}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-            
-            {/* Related Works */}
-            <div className="mt-16">
-              <h4 className="text-xl font-semibold mb-8 text-center" style={{ fontFamily: '"Shippori Mincho", serif' }}>
-                関連作品
-              </h4>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {works.filter(work => ['建築', 'デザイン'].includes(work.category)).map((work, index) => (
-                  <motion.div
-                    key={work.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="group cursor-pointer"
-                  >
-                    <div className="relative h-48 mb-4 overflow-hidden rounded-lg border border-gray-200">
-                      <Image
-                        src={work.imageUrl}
-                        alt={work.title}
-                        fill
-                        className="object-cover transition-transform duration-300 group-hover:scale-110"
-                      />
-                    </div>
-                    <h5 className="text-lg font-semibold mb-2" style={{ fontFamily: '"Shippori Mincho", serif' }}>
-                      {work.title}
-                    </h5>
-                    <p className="text-sm opacity-80 leading-relaxed" style={{ fontFamily: '"Shippori Mincho", serif' }}>
-                      {work.description}
-                    </p>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+            {interests.spaceAndCreation.map((interest, index) => (
+              <motion.div
+                key={interest.title}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="group cursor-pointer"
+              >
+                <div className="relative h-80 mb-4 overflow-hidden rounded-lg">
+                  <Image
+                    src={interest.imageUrl}
+                    alt={interest.title}
+                    fill
+                    className="object-cover"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-main-green/70 group-hover:opacity-0 transition-opacity duration-300" />
+                </div>
+                <h3 className="text-2xl font-bold mb-2">
+                  {interest.title}
+                </h3>
+                <p className="text-base opacity-90 leading-relaxed">
+                  {interest.description}
+                </p>
+              </motion.div>
+            ))}
           </div>
 
-          {/* Culture and Exploration */}
-          <div className="mb-32">
-            <h3 className="text-2xl font-semibold mb-8 text-center" style={{ fontFamily: '"Shippori Mincho", serif' }}>
-              文化と探求
+          {/* Restyled Related Works */}
+          <div className="mt-24">
+            <h3 className="text-3xl font-bold mb-12 text-center">
+              関連作品
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-16">
-              {interests.cultureAndExploration.map((interest, index) => (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {works.filter(work => ['建築', 'デザイン'].includes(work.category)).map((work, index) => (
                 <motion.div
-                  key={interest.title}
-                  ref={(el) => {
-                    if (el) sectionRefs.current[globalIndex] = el;
-                  }}
-                  data-index={globalIndex++}
-                  initial={{ opacity: 0, y: 20 }}
+                  key={work.id}
+                  initial={{ opacity: 0, y: 50 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="group cursor-pointer"
+                  viewport={{ once: true }}
+                  className="group cursor-pointer bg-white/10 p-6 rounded-lg"
                 >
-                  <div className="relative h-48 mb-4 overflow-hidden rounded-lg border border-gray-200">
+                  <div className="relative h-56 mb-4 overflow-hidden rounded-lg">
                     <Image
-                      src={interest.imageUrl}
-                      alt={interest.title}
+                      src={work.imageUrl}
+                      alt={work.title}
                       fill
                       className="object-cover transition-transform duration-300 group-hover:scale-110"
+                      loading="lazy"
                     />
                   </div>
-                  <h4 className="text-lg font-semibold mb-2" style={{ fontFamily: '"Shippori Mincho", serif' }}>
-                    {interest.title}
+                  <h4 className="text-xl font-bold mb-2">
+                    {work.title}
                   </h4>
-                  <p className="text-sm opacity-80 leading-relaxed" style={{ fontFamily: '"Shippori Mincho", serif' }}>
-                    {interest.description}
+                  <p className="text-sm opacity-80 leading-relaxed">
+                    {work.description}
                   </p>
                 </motion.div>
               ))}
-            </div>
-            
-            {/* Related Works */}
-            <div className="mt-16">
-              <h4 className="text-xl font-semibold mb-8 text-center" style={{ fontFamily: '"Shippori Mincho", serif' }}>
-                関連作品
-              </h4>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {works.filter(work => ['アート', '写真'].includes(work.category)).map((work, index) => (
-                  <motion.div
-                    key={work.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="group cursor-pointer"
-                  >
-                    <div className="relative h-48 mb-4 overflow-hidden rounded-lg border border-gray-200">
-                      <Image
-                        src={work.imageUrl}
-                        alt={work.title}
-                        fill
-                        className="object-cover transition-transform duration-300 group-hover:scale-110"
-                      />
-                    </div>
-                    <h5 className="text-lg font-semibold mb-2" style={{ fontFamily: '"Shippori Mincho", serif' }}>
-                      {work.title}
-                    </h5>
-                    <p className="text-sm opacity-80 leading-relaxed" style={{ fontFamily: '"Shippori Mincho", serif' }}>
-                      {work.description}
-                    </p>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Digital */}
-          <div className="mb-32">
-            <h3 className="text-2xl font-semibold mb-8 text-center" style={{ fontFamily: '"Shippori Mincho", serif' }}>
-              でじたる
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-              {interests.digital.map((interest, index) => (
-                <motion.div
-                  key={interest.title}
-                  ref={(el) => {
-                    if (el) sectionRefs.current[globalIndex] = el;
-                  }}
-                  data-index={globalIndex++}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="group cursor-pointer"
-                >
-                  <div className="relative h-48 mb-4 overflow-hidden rounded-lg border border-gray-200">
-                    <Image
-                      src={interest.imageUrl}
-                      alt={interest.title}
-                      fill
-                      className="object-cover transition-transform duration-300 group-hover:scale-110"
-                    />
-                  </div>
-                  <h4 className="text-lg font-semibold mb-2" style={{ fontFamily: '"Shippori Mincho", serif' }}>
-                    {interest.title}
-                  </h4>
-                  <p className="text-sm opacity-80 leading-relaxed" style={{ fontFamily: '"Shippori Mincho", serif' }}>
-                    {interest.description}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-            
-            {/* Related Works */}
-            <div className="mt-16">
-              <h4 className="text-xl font-semibold mb-8 text-center" style={{ fontFamily: '"Shippori Mincho", serif' }}>
-                関連作品
-              </h4>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {works.filter(work => ['プログラミング'].includes(work.category)).map((work, index) => (
-                  <motion.div
-                    key={work.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="group cursor-pointer"
-                  >
-                    <div className="relative h-48 mb-4 overflow-hidden rounded-lg border border-gray-200">
-                      <Image
-                        src={work.imageUrl}
-                        alt={work.title}
-                        fill
-                        className="object-cover transition-transform duration-300 group-hover:scale-110"
-                      />
-                    </div>
-                    <h5 className="text-lg font-semibold mb-2" style={{ fontFamily: '"Shippori Mincho", serif' }}>
-                      {work.title}
-                    </h5>
-                    <p className="text-sm opacity-80 leading-relaxed" style={{ fontFamily: '"Shippori Mincho", serif' }}>
-                      {work.description}
-                    </p>
-                  </motion.div>
-                ))}
-              </div>
             </div>
           </div>
         </div>
-      </section>
+      </SectionWrapper>
+
+      <SectionWrapper
+        clipPath="diagonal-top"
+        className="bg-main-red-dark text-white py-20 px-8 relative"
+        style={{
+          backgroundImage: `url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22100%22%20height%3D%22115.47%22%20viewBox%3D%220%200%20100%20115.47%22%3E%3Cpath%20fill%3D%22none%22%20stroke%3D%22rgba(255,255,255,0.05)%22%20stroke-width%3D%222%22%20d%3D%22M50%200v115.47M0%2028.87h100M0%2086.6h100M50%200L0%2028.87%200%2086.6l50%2028.87%2050-28.87V28.87L50%200zm0%2057.73L0%2086.6M50%2057.73l50%2028.87%22/%3E%3C/svg%3E')`,
+          backgroundSize: '100px',
+        }}
+      >
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              文化と探求
+            </h2>
+            <div className="w-24 h-px bg-white mx-auto"></div>
+          </motion.div>
+
+          <div className="flex flex-col items-center gap-16">
+            {interests.cultureAndExploration.map((interest, index) => (
+              <motion.div
+                key={interest.title}
+                initial={isMobile ? { opacity: 0, y: 50 } : { opacity: 0, x: index % 2 === 0 ? -100 : 100 }}
+                whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, ease: 'easeOut' }}
+                viewport={{ once: true }}
+                className="group w-full max-w-4xl"
+              >
+                <div className="flex flex-col md:flex-row items-center gap-8 bg-white/10 p-8 rounded-lg shadow-lg backdrop-blur-sm">
+                  <div className="relative w-full md:w-1/2 h-80 rounded-lg overflow-hidden">
+                    <Image
+                      src={interest.imageUrl}
+                      alt={interest.title}
+                      fill
+                      className="object-cover transition-all duration-500 filter grayscale group-hover:grayscale-0"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="flex-1 flex items-center justify-center">
+                    <div className="writing-vertical-rl text-right h-64">
+                      <h3 className="text-3xl font-bold mb-4">
+                        {interest.title}
+                      </h3>
+                      <p className="text-lg opacity-90">
+                        {interest.description}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </SectionWrapper>
+
+      <SectionWrapper
+        clipPath="diagonal-top"
+        className="bg-main-green-dark text-white py-20 px-8"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A//www.w3.org/2000/svg'%20width%3D'20'%20height%3D'20'%3E%3Cpath%20d%3D'M10%200V20M0%2010H20'%20stroke%3D'rgba(255,255,255,0.05)'%20stroke-width%3D'1'/%3E%3C/svg%3E")`,
+          backgroundSize: '20px',
+        }}
+      >
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              デジタル・開発
+            </h2>
+            <div className="w-24 h-px bg-white mx-auto"></div>
+          </motion.div>
+
+          <div className="flex flex-col items-center gap-8">
+            {interests.digital.map((interest, index) => (
+              <DigitalCard
+                key={interest.title}
+                iconUrl={interest.imageUrl} // The component uses a generic icon for now
+                title={interest.title}
+                description={interest.description}
+                index={index}
+                isMobile={isMobile}
+              />
+            ))}
+          </div>
+        </div>
+      </SectionWrapper>
     </div>
   );
 }
