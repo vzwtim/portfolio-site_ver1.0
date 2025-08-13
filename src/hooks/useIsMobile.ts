@@ -2,19 +2,21 @@
 
 import { useState, useEffect } from 'react';
 
-const useIsMobile = (breakpoint = 768) => {
-  // Initialize state to false to avoid flash of mobile content on desktop
-  const [isMobile, setIsMobile] = useState(false);
+// This hook returns undefined on the server and on the initial client render,
+// then returns the boolean value once the component has mounted.
+// This prevents hydration mismatch errors in Next.js.
+const useIsMobile = (breakpoint = 768): boolean | undefined => {
+  const [isMobile, setIsMobile] = useState<boolean | undefined>(undefined);
 
   useEffect(() => {
-    // useEffect only runs on the client, so window is available.
     const checkScreenSize = () => {
       setIsMobile(window.innerWidth < breakpoint);
     };
 
+    // Set the value on the client
     checkScreenSize();
-    window.addEventListener('resize', checkScreenSize);
 
+    window.addEventListener('resize', checkScreenSize);
     return () => window.removeEventListener('resize', checkScreenSize);
   }, [breakpoint]);
 
