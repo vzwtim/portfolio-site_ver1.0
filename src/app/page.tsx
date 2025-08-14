@@ -1,12 +1,8 @@
 'use client';
 
-import Image from "next/image";
-import { useRef } from 'react';
 import { motion } from 'framer-motion';
 import CtaButton from '@/components/CtaButton';
-import SectionWrapper from '@/components/SectionWrapper';
-import DigitalCard from '@/components/DigitalCard';
-import useIsMobile from '@/hooks/useIsMobile';
+import InteractiveInterests from '@/components/InteractiveInterests';
 
 const interests = {
   spaceAndCreation: [
@@ -81,8 +77,6 @@ const works = [
 ];
 
 export default function Home() {
-  const isMobile = useIsMobile();
-
   return (
     <div className="min-h-screen">
       {/* New Hero Section */}
@@ -112,186 +106,7 @@ export default function Home() {
         </motion.div>
       </section>
 
-      <SectionWrapper
-        clipPath="diagonal-top"
-        className="bg-main-red-dark text-white py-20 px-8"
-      >
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              空間と創造
-            </h2>
-            <div className="w-24 h-px bg-white mx-auto"></div>
-          </motion.div>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-            {interests.spaceAndCreation.map((interest, index) => (
-              <motion.div
-                key={interest.title}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="group cursor-pointer"
-              >
-                <div className="relative h-80 mb-4 overflow-hidden rounded-lg">
-                  <Image
-                    src={interest.imageUrl}
-                    alt={interest.title}
-                    fill
-                    className="object-cover"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-main-green/70 group-hover:opacity-0 transition-opacity duration-300" />
-                </div>
-                <h3 className="text-2xl font-bold mb-2">
-                  {interest.title}
-                </h3>
-                <p className="text-base opacity-90 leading-relaxed">
-                  {interest.description}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Restyled Related Works */}
-          <div className="mt-24">
-            <h3 className="text-3xl font-bold mb-12 text-center">
-              関連作品
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {works.filter(work => ['建築', 'デザイン'].includes(work.category)).map((work, index) => (
-                <motion.div
-                  key={work.id}
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="group cursor-pointer bg-white/10 p-6 rounded-lg"
-                >
-                  <div className="relative h-56 mb-4 overflow-hidden rounded-lg">
-                    <Image
-                      src={work.imageUrl}
-                      alt={work.title}
-                      fill
-                      className="object-cover transition-transform duration-300 group-hover:scale-110"
-                      loading="lazy"
-                    />
-                  </div>
-                  <h4 className="text-xl font-bold mb-2">
-                    {work.title}
-                  </h4>
-                  <p className="text-sm opacity-80 leading-relaxed">
-                    {work.description}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </SectionWrapper>
-
-      <SectionWrapper
-        clipPath="diagonal-top"
-        className="bg-main-red-dark text-white py-20 px-8 relative"
-        style={{
-          backgroundImage: `url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22100%22%20height%3D%22115.47%22%20viewBox%3D%220%200%20100%20115.47%22%3E%3Cpath%20fill%3D%22none%22%20stroke%3D%22rgba(255,255,255,0.05)%22%20stroke-width%3D%222%22%20d%3D%22M50%200v115.47M0%2028.87h100M0%2086.6h100M50%200L0%2028.87%200%2086.6l50%2028.87%2050-28.87V28.87L50%200zm0%2057.73L0%2086.6M50%2057.73l50%2028.87%22/%3E%3C/svg%3E')`,
-          backgroundSize: '100px',
-        }}
-      >
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              文化と探求
-            </h2>
-            <div className="w-24 h-px bg-white mx-auto"></div>
-          </motion.div>
-
-          <div className="flex flex-col items-center gap-16">
-            {interests.cultureAndExploration.map((interest, index) => (
-              <motion.div
-                key={interest.title}
-                initial={isMobile ? { opacity: 0, y: 50 } : { opacity: 0, x: index % 2 === 0 ? -100 : 100 }}
-                whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, ease: 'easeOut' }}
-                viewport={{ once: true }}
-                className="group w-full max-w-4xl"
-              >
-                <div className="flex flex-col md:flex-row items-center gap-8 bg-white/10 p-8 rounded-lg shadow-lg backdrop-blur-sm">
-                  <div className="relative w-full md:w-1/2 h-80 rounded-lg overflow-hidden">
-                    <Image
-                      src={interest.imageUrl}
-                      alt={interest.title}
-                      fill
-                      className="object-cover transition-all duration-500 filter grayscale group-hover:grayscale-0"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div className="flex-1 flex items-center justify-center">
-                    <div className="writing-vertical-rl text-right h-64">
-                      <h3 className="text-3xl font-bold mb-4">
-                        {interest.title}
-                      </h3>
-                      <p className="text-lg opacity-90">
-                        {interest.description}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </SectionWrapper>
-
-      <SectionWrapper
-        clipPath="diagonal-top"
-        className="bg-main-green-dark text-white py-20 px-8"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A//www.w3.org/2000/svg'%20width%3D'20'%20height%3D'20'%3E%3Cpath%20d%3D'M10%200V20M0%2010H20'%20stroke%3D'rgba(255,255,255,0.05)'%20stroke-width%3D'1'/%3E%3C/svg%3E")`,
-          backgroundSize: '20px',
-        }}
-      >
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              デジタル・開発
-            </h2>
-            <div className="w-24 h-px bg-white mx-auto"></div>
-          </motion.div>
-
-          <div className="flex flex-col items-center gap-8">
-            {interests.digital.map((interest, index) => (
-              <DigitalCard
-                key={interest.title}
-                iconUrl={interest.imageUrl} // The component uses a generic icon for now
-                title={interest.title}
-                description={interest.description}
-                index={index}
-                isMobile={isMobile}
-              />
-            ))}
-          </div>
-        </div>
-      </SectionWrapper>
+      <InteractiveInterests interests={interests} works={works} />
     </div>
   );
 }
