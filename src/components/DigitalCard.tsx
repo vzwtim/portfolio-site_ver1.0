@@ -9,7 +9,7 @@ interface DigitalCardProps {
   title: string;
   description: string;
   index: number;
-  isMobile: boolean;
+  isMobile: boolean | undefined;
 }
 
 const DigitalCard: React.FC<DigitalCardProps> = ({ iconUrl, title, description, index, isMobile }) => {
