@@ -52,7 +52,7 @@ export default function WorksPage() {
             <Link key={index} href={work.href}>
               <div className="border border-gray-200/80 rounded-sm overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 bg-white/50">
                 <div className="relative w-full h-60">
-                  <Image src={work.image} alt={work.title} layout="fill" objectFit="cover" />
+                  <Image src={work.image} alt={work.title} fill className="object-cover" />
         </div>
                 <div className="p-6">
                   <h2 className="text-xl font-bold mb-2" style={{ fontFamily: '"Shippori Mincho", serif' }}>{work.title}</h2>
