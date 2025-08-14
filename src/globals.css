@@ -119,6 +119,8 @@ body {
   --accent-red: 179 57 83;
   --accent-green: 1 123 99;
   --border: 229 231 235;
+  --font-shippori-mincho: 'Shippori Mincho', serif;
+  --font-noto-sans-jp: 'Noto Sans JP', sans-serif;
 }
 
 body {

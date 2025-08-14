@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, type Variants } from 'framer-motion';
 import { useCursor } from '@/context/CursorContext';
 
 const CustomCursor = () => {
@@ -20,12 +20,12 @@ const CustomCursor = () => {
     };
   }, []);
 
-  const variants = {
+  const variants: Variants = {
     default: {
       x: mousePosition.x - 16,
       y: mousePosition.y - 16,
       backgroundColor: "#b33953", // Accent color
-      mixBlendMode: "difference",
+      mixBlendMode: "difference" as any,
     },
     text: {
       x: mousePosition.x - 75,
@@ -33,7 +33,7 @@ const CustomCursor = () => {
       height: 150,
       width: 150,
       backgroundColor: "#b33953",
-      mixBlendMode: "difference",
+      mixBlendMode: "difference" as any,
     },
   };
 

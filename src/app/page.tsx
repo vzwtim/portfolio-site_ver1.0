@@ -1,11 +1,11 @@
 'use client';
 
-
-
 import Image from "next/image";
-import { useEffect, useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import InterestHero from "../components/InterestHero";
+import { useRef } from 'react';
+import { motion } from 'framer-motion';
+import dynamic from 'next/dynamic';
+
+const InterestHero = dynamic(() => import("../components/InterestHero"), { ssr: false });
 
 const interests = {
   spaceAndCreation: [
@@ -38,14 +38,6 @@ const interestColors = [
 ];
 
 export default function Home() {
-  const { scrollYProgress } = useScroll();
-
-  // Parallax for hero section background
-  const yBg = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-  // Parallax for hero section text
-  const yText = useTransform(scrollYProgress, [0, 1], ["0%", "200%"]);
-  const opacityText = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-
   const sectionRefs = useRef<HTMLDivElement[]>([]); // To store refs of all interest item sections
 
   let globalIndex = 0; // To keep track of the overall index for color cycling
@@ -55,7 +47,6 @@ export default function Home() {
       {/* Hero Section with Japanese Aesthetic */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <motion.div
-          style={{ y: yBg }}
           className="absolute inset-0 z-0"
         >
           <Image
@@ -68,11 +59,7 @@ export default function Home() {
           />
           <div className="absolute inset-0 bg-black/40" />
         </motion.div>
-        
-        <motion.div
-          style={{ y: yText, opacity: opacityText }}
-          className="relative z-10 text-center px-8 max-w-6xl mx-auto"
-        >
+        <motion.div className="relative z-10 text-center px-8 max-w-6xl mx-auto">
           {/* Main Catchphrase - Simple and Clean */}
           <div className="flex justify-center items-center">
             <h1 className="text-white text-4xl md:text-6xl font-light tracking-wider" style={{ fontFamily: '"Shippori Mincho", serif' }}>
