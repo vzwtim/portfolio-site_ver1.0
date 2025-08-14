@@ -2,7 +2,12 @@
 
 import { motion } from 'framer-motion';
 import CtaButton from '@/components/CtaButton';
-import InteractiveInterests from '@/components/InteractiveInterests';
+import dynamic from 'next/dynamic';
+
+const InteractiveInterests = dynamic(() => import('@/components/InteractiveInterests'), {
+  ssr: false,
+  loading: () => <div className="h-screen bg-dark-charcoal" />, // Prevent layout shift
+});
 
 const interests = {
   spaceAndCreation: [
