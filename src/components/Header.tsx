@@ -38,7 +38,7 @@ export default function Header({ textColor }: HeaderProps) {
           <li>
               <Link href="/works">
                 <span
-                  className={`text-sm md:text-base font-light ${hoverTextColorClass} transition-colors duration-300 cursor-pointer tracking-wide`}
+                  className={`text-sm md:text-base font-bold ${hoverTextColorClass} transition-colors duration-300 cursor-pointer tracking-wide`}
                   style={{ fontFamily: '"Shippori Mincho", serif' }}
                   onMouseEnter={textEnter}
                   onMouseLeave={textLeave}
@@ -50,7 +50,7 @@ export default function Header({ textColor }: HeaderProps) {
           <li>
               <Link href="/about">
                 <span
-                  className={`text-sm md:text-base font-light ${hoverTextColorClass} transition-colors duration-300 cursor-pointer tracking-wide`}
+                  className={`text-sm md:text-base font-bold ${hoverTextColorClass} transition-colors duration-300 cursor-pointer tracking-wide`}
                   style={{ fontFamily: '"Shippori Mincho", serif' }}
                   onMouseEnter={textEnter}
                   onMouseLeave={textLeave}
@@ -62,7 +62,7 @@ export default function Header({ textColor }: HeaderProps) {
           <li>
               <Link href="/contact">
                 <span
-                  className={`text-sm md:text-base font-light ${hoverTextColorClass} transition-colors duration-300 cursor-pointer tracking-wide`}
+                  className={`text-sm md:text-base font-bold ${hoverTextColorClass} transition-colors duration-300 cursor-pointer tracking-wide`}
                   style={{ fontFamily: '"Shippori Mincho", serif' }}
                   onMouseEnter={textEnter}
                   onMouseLeave={textLeave}
@@ -74,7 +74,7 @@ export default function Header({ textColor }: HeaderProps) {
           <li>
               <Link href="/photos">
                 <span
-                  className={`text-sm md:text-base font-light ${hoverTextColorClass} transition-colors duration-300 cursor-pointer tracking-wide`}
+                  className={`text-sm md:text-base font-bold ${hoverTextColorClass} transition-colors duration-300 cursor-pointer tracking-wide`}
                   style={{ fontFamily: '"Shippori Mincho", serif' }}
                   onMouseEnter={textEnter}
                   onMouseLeave={textLeave}

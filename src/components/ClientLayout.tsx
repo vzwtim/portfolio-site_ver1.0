@@ -22,7 +22,7 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
 
   // 色の状態管理を ClientLayout に移動
   const [bgColor, setBgColor] = useState('bg-white');
-  const [textColor, setTextColor] = useState('text-[#232024]');
+  const [textColor, setTextColor] = useState('text-[#008877]');
 
   // page.tsx から色の変更を受け取るためのコールバック関数
   const handleColorChange = (newBgColor: string, newTextColor: string) => {
@@ -53,22 +53,15 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.3 }}
-              style={{ paddingBottom: isHomePage ? '320px' : '0' }}
               className={textColor} // textColor を main にも適用
             >
-              {isHomePage ? children : children}
+              {children}
             </motion.main>
           </AnimatePresence>
           
-          {isHomePage ? (
-            <div className="fixed bottom-0 left-0 right-0 z-10">
-              <ShadowAnimation>
-                <Footer />
-              </ShadowAnimation>
-            </div>
-          ) : (
+          <ShadowAnimation>
             <Footer />
-          )}
+          </ShadowAnimation>
         </CursorProvider>
       </ScrollbarWidthProvider> {/* Close ScrollbarWidthProvider */}
     </div>
