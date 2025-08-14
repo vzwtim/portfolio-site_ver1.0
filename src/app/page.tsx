@@ -102,7 +102,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Extended Interests and Works Section */}
+      {/* Extended Interests and Works Section */} 
       <section className="py-20 px-8 bg-white text-[#232024]">
         <div className="max-w-7xl mx-auto">
           <motion.div
@@ -117,7 +117,7 @@ export default function Home() {
             <div className="w-24 h-px bg-[#232024] mx-auto"></div>
           </motion.div>
           
-          {/* Space and Creation */}
+          {/* Space and Creation */} 
           <div className="mb-32">
             <h3 className="text-2xl font-semibold mb-8 text-center" style={{ fontFamily: '"Shippori Mincho", serif' }}>
               空間と創造
@@ -141,6 +141,7 @@ export default function Home() {
                       alt={interest.title}
                       fill
                       className="object-cover transition-transform duration-300 group-hover:scale-110"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
                     />
                   </div>
                   <h4 className="text-lg font-semibold mb-2" style={{ fontFamily: '"Shippori Mincho", serif' }}>
@@ -156,7 +157,7 @@ export default function Home() {
             
           </div>
 
-          {/* Culture and Exploration */}
+          {/* Culture and Exploration */} 
           <div className="mb-32">
             <h3 className="text-2xl font-semibold mb-8 text-center" style={{ fontFamily: '"Shippori Mincho", serif' }}>
               文化と探求
@@ -180,6 +181,7 @@ export default function Home() {
                       alt={interest.title}
                       fill
                       className="object-cover transition-transform duration-300 group-hover:scale-110"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 20vw"
                     />
                   </div>
                   <h4 className="text-lg font-semibold mb-2" style={{ fontFamily: '"Shippori Mincho", serif' }}>
@@ -195,7 +197,7 @@ export default function Home() {
             
           </div>
 
-          {/* Digital */}
+          {/* Digital */} 
           <div className="mb-32">
             <h3 className="text-2xl font-semibold mb-8 text-center" style={{ fontFamily: '"Shippori Mincho", serif' }}>
               でじたる
@@ -219,6 +221,7 @@ export default function Home() {
                       alt={interest.title}
                       fill
                       className="object-cover transition-transform duration-300 group-hover:scale-110"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
                   </div>
                   <h4 className="text-lg font-semibold mb-2" style={{ fontFamily: '"Shippori Mincho", serif' }}>

@@ -43,6 +43,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ isLoading }) => {
             <Image src="/images/sakura_white.svg" alt="Sakura" width={20} height={20} className="absolute bottom-[3%] left-[70%]" />
             <Image src="/images/sakura_white.svg" alt="Sakura" width={42} height={42} className="absolute bottom-[10%] left-[48%]" />
             <Image src="/images/sakura_white.svg" alt="Sakura" width={70} height={70} className="absolute bottom-[30%] left-[15%]" />
+            
             <Image src="/images/sakura_white.svg" alt="Sakura" width={65} height={65} className="absolute bottom-[40%] left-[80%]" />
             <Image src="/images/sakura_white.svg" alt="Sakura" width={30} height={30} className="absolute bottom-[55%] left-[60%]" />
             <Image src="/images/sakura_white.svg" alt="Sakura" width={48} height={48} className="absolute bottom-[20%] left-[95%]" />

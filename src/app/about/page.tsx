@@ -14,8 +14,9 @@ export default function About() {
             <Image
               src="/images/mv_gomoku_2.jpg" // プロフィール画像のパス
               alt="YUDAI Profile"
-              layout="fill"
-              objectFit="cover"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 48px, 64px"
             />
           </div>
           <div className="flex-1">

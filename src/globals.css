@@ -21,22 +21,20 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Custom scrollbar */
+/* WebKit系ブラウザ (Chrome, Safariなど) */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 0;
+  height: 0;
 }
 
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
+/* Firefox */
+html {
+  scrollbar-width: none; /* スクロールバーを非表示にする */
 }
 
-::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
+/* IE/Edge */
+body {
+  -ms-overflow-style: none; /* IE/Edge でスクロールバーを非表示にする */
 }
 
 @layer utilities {

@@ -25,7 +25,7 @@ const SakuraPetal: React.FC<{ startDelay?: number }> = ({ startDelay }) => {
     // 花びらの色をランダムに決定
     const rand = Math.random();
     if (rand < 0.01) { // 1% (1/100) の確率で008877
-      setPetalSrc('/sakura_008877.svg');
+      setPetalSrc('/images/sakura_008877.svg');
     } else if (rand < 0.1) { // 10% (1/10) の確率でbb5555 (0.01から0.1の範囲)
       setPetalSrc('/images/sakura_bb5555.svg');
     } else {
@@ -101,8 +101,8 @@ const SakuraPetal: React.FC<{ startDelay?: number }> = ({ startDelay }) => {
       <Image
       src={petalSrc}
       alt="Sakura Petal"
-      layout="fill"
-      objectFit="contain"
+      fill
+      className="object-contain"
     />
     </motion.div>
   );

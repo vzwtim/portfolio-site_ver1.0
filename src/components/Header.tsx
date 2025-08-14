@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image'; // Image コンポーネントをインポート
 import { useCursor } from '@/context/CursorContext';
+import { useScrollbarWidth } from '@/context/ScrollbarWidthContext';
 
 // textColor prop を受け取る
 interface HeaderProps {
@@ -9,11 +10,13 @@ interface HeaderProps {
 
 export default function Header({ textColor }: HeaderProps) {
   const { textEnter, textLeave } = useCursor();
+  const { scrollbarWidth } = useScrollbarWidth();
 
   const hoverTextColorClass = 'hover:text-highlight';
 
   return (
-    <header className={`fixed top-0 left-0 w-full z-50 p-6 md:p-8 transition-colors duration-300 ${textColor}`}>
+    <header className={`fixed top-0 left-0 z-50 p-6 md:p-8 transition-colors duration-300 ${textColor}`}
+      style={{ width: '100vw', paddingRight: `${scrollbarWidth}px` }}>
       <div className="flex justify-between items-center max-w-7xl mx-auto">
         {/* Left side - Logo */}
         <Link href="/">
