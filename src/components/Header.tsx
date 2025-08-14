@@ -38,19 +38,7 @@ export default function Header({ textColor }: HeaderProps) {
         {/* Right side - Navigation */}
         <nav>
           <ul className="flex flex-row items-center space-x-6 md:space-x-8">
-          <li>
-              <Link href="/works">
-                <span
-                  className={`text-sm md:text-base font-bold ${hoverTextColorClass} transition-colors duration-300 cursor-pointer tracking-wide`}
-                  style={{ fontFamily: '"Shippori Mincho", serif' }}
-                  onMouseEnter={textEnter}
-                  onMouseLeave={textLeave}
-                >
-                  作品
-                </span>
-            </Link>
-          </li>
-          <li>
+            <li>
               <Link href="/about">
                 <span
                   className={`text-sm md:text-base font-bold ${hoverTextColorClass} transition-colors duration-300 cursor-pointer tracking-wide`}
@@ -58,23 +46,11 @@ export default function Header({ textColor }: HeaderProps) {
                   onMouseEnter={textEnter}
                   onMouseLeave={textLeave}
                 >
-                  私について
+                  about
                 </span>
-            </Link>
-          </li>
-          <li>
-              <Link href="/contact">
-                <span
-                  className={`text-sm md:text-base font-bold ${hoverTextColorClass} transition-colors duration-300 cursor-pointer tracking-wide`}
-                  style={{ fontFamily: '"Shippori Mincho", serif' }}
-                  onMouseEnter={textEnter}
-                  onMouseLeave={textLeave}
-                >
-                  連絡先
-                </span>
-            </Link>
-          </li>
-          <li>
+              </Link>
+            </li>
+            <li>
               <Link href="/photos">
                 <span
                   className={`text-sm md:text-base font-bold ${hoverTextColorClass} transition-colors duration-300 cursor-pointer tracking-wide`}
@@ -82,11 +58,35 @@ export default function Header({ textColor }: HeaderProps) {
                   onMouseEnter={textEnter}
                   onMouseLeave={textLeave}
                 >
-                  写真
+                  gallery
                 </span>
-            </Link>
-          </li>
-        </ul>
+              </Link>
+            </li>
+            <li>
+              <Link href="/works">
+                <span
+                  className={`text-sm md:text-base font-bold ${hoverTextColorClass} transition-colors duration-300 cursor-pointer tracking-wide`}
+                  style={{ fontFamily: '"Shippori Mincho", serif' }}
+                  onMouseEnter={textEnter}
+                  onMouseLeave={textLeave}
+                >
+                  works
+                </span>
+              </Link>
+            </li>
+            <li>
+              <Link href="/contact">
+                <span
+                  className={`text-sm md:text-base font-bold ${hoverTextColorClass} transition-colors duration-300 cursor-pointer tracking-wide`}
+                  style={{ fontFamily: '"Shippori Mincho", serif' }}
+                  onMouseEnter={textEnter}
+                  onMouseLeave={textLeave}
+                >
+                  contact
+                </span>
+              </Link>
+            </li>
+          </ul>
       </nav>
       </div>
     </header>
