@@ -41,8 +41,8 @@ const config: Config = {
         border: "var(--border)",
       },
       fontFamily: {
-        sans: ["var(--font-noto-sans-jp)"],
-        serif: ["var(--font-shippori-mincho)"],
+        sans: ["ui-sans-serif", "system-ui", "sans-serif"],
+        serif: ["serif"],
       },
     },
   },
