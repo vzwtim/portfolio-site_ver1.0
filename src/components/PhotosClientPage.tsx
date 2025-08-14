@@ -1,83 +1,150 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useScrollbarWidth } from '@/context/ScrollbarWidthContext';
 
 interface Photo {
   src: string;
   alt: string;
-  filled: boolean;
-  hovering?: boolean; // Add hovering state
-  hoverTimeout?: NodeJS.Timeout; // Add hoverTimeout property
+  dominantBgColor: string; // Background color for modal
 }
 
 const initialPhotos: Photo[] = [
-  { src: '/images/image_ginza_1.png', alt: 'Ginza 1', filled: false, hovering: false },
-  { src: '/images/image_ginza_2.png', alt: 'Ginza 2', filled: false, hovering: false },
-  { src: '/images/image_ginza_3.png', alt: 'Ginza 3', filled: false, hovering: false },
-  { src: '/images/image_ginza_4.png', alt: 'Ginza 4', filled: false, hovering: false },
-  { src: '/images/image_nishiogi.png', alt: 'Nishiogi', filled: false, hovering: false },
-  { src: '/images/image_odo_1.jpeg', alt: 'Odo 1', filled: false, hovering: false },
-  { src: '/images/image_odo_2.JPG', alt: 'Odo 2', filled: false, hovering: false },
-  { src: '/images/image_odo_3.jpg', alt: 'Odo 3', filled: false, hovering: false },
-  { src: '/images/image_odo_4.jpg', alt: 'Odo 4', filled: false, hovering: false },
-  { src: '/images/image_sanriku_1.png', alt: 'Sanriku 1', filled: false, hovering: false },
-  { src: '/images/image_sanriku_2.png', alt: 'Sanriku 2', filled: false, hovering: false },
-  { src: '/images/image_sanriku_3.png', alt: 'Sanriku 3', filled: false, hovering: false },
-  { src: '/images/image_sanriku_4.png', alt: 'Sanriku 4', filled: false, hovering: false },
-  { src: '/images/image_sanriku_5.png', alt: 'Sanriku 5', filled: false, hovering: false },
-  { src: '/images/image_sanriku_6.png', alt: 'Sanriku 6', filled: false, hovering: false },
-  { src: '/images/image_sanriku_7.png', alt: 'Sanriku 7', filled: false, hovering: false },
+  { src: '/images/trip_eu_1.jpg', alt: 'Europe Trip 1', dominantBgColor: '#232024' },
+  { src: '/images/trip_eu_2.jpg', alt: 'Europe Trip 2', dominantBgColor: '#232024' },
+  { src: '/images/trip_eu_3.jpg', alt: 'Europe Trip 3', dominantBgColor: '#232024' },
+  { src: '/images/trip_eu_4.jpg', alt: 'Europe Trip 4', dominantBgColor: '#232024' },
+  { src: '/images/trip_eu_5.jpg', alt: 'Europe Trip 5', dominantBgColor: '#232024' },
+  { src: '/images/trip_japan_1.jpg', alt: 'Japan Trip 1', dominantBgColor: '#232024' },
+  { src: '/images/trip_japan_10.jpg', alt: 'Japan Trip 10', dominantBgColor: '#232024' },
+  { src: '/images/trip_kumano_1.jpg', alt: 'Kumano Trip 1', dominantBgColor: '#232024' },
+  { src: '/images/trip_kumano_2.jpg', alt: 'Kumano Trip 2', dominantBgColor: '#232024' },
+  { src: '/images/trip_kumano_3.jpg', alt: 'Kumano Trip 3', dominantBgColor: '#232024' },
+  { src: '/images/trip_kumano_4.jpg', alt: 'Kumano Trip 4', dominantBgColor: '#232024' },
+  { src: '/images/trip_kumano_5.jpg', alt: 'Kumano Trip 5', dominantBgColor: '#232024' },
+  { src: '/images/trip_kumano_6.jpg', alt: 'Kumano Trip 6', dominantBgColor: '#232024' },
+  { src: '/images/trip_kyoto.JPG', alt: 'Kyoto Trip', dominantBgColor: '#232024' },
+  { src: '/images/trip_snow.jpg', alt: 'Snowy Trip', dominantBgColor: '#232024' },
+  { src: '/images/trip_tokaido_1.jpg', alt: 'Tokaido Trip 1', dominantBgColor: '#232024' },
+  { src: '/images/trip_tokaido_2.jpg', alt: 'Tokaido Trip 2', dominantBgColor: '#232024' },
+  { src: '/images/trip_tokaido_3.jpg', alt: 'Tokaido Trip 3', dominantBgColor: '#232024' },
+  { src: '/images/trip_tokaido_4.jpg', alt: 'Tokaido Trip 4', dominantBgColor: '#232024' },
+  { src: '/images/trip_tokaido_5.jpg', alt: 'Tokaido Trip 5', dominantBgColor: '#232024' },
+  { src: '/images/trip_usa_1.jpg', alt: 'USA Trip 1', dominantBgColor: '#232024' },
+  { src: '/images/trip_usa_2.jpg', alt: 'USA Trip 2', dominantBgColor: '#232024' },
+  { src: '/images/trip_usa_3.jpg', alt: 'USA Trip 3', dominantBgColor: '#232024' },
+  { src: '/images/trip_usa_4.jpg', alt: 'USA Trip 4', dominantBgColor: '#232024' },
+  { src: '/images/trip_usa_5.jpg', alt: 'USA Trip 5', dominantBgColor: '#232024' },
+  { src: '/images/trip_usa_6.jpg', alt: 'USA Trip 6', dominantBgColor: '#232024' },
+  { src: '/images/trip_usa_7.jpg', alt: 'USA Trip 7', dominantBgColor: '#232024' },
+  { src: '/images/trip_usa_8.jpg', alt: 'USA Trip 8', dominantBgColor: '#232024' },
+  { src: '/images/film_bw_1.jpg', alt: 'B&W Film 1', dominantBgColor: '#232024' },
+  { src: '/images/film_bw_2.jpg', alt: 'B&W Film 2', dominantBgColor: '#232024' },
+  { src: '/images/film_bw_3.jpg', alt: 'B&W Film 3', dominantBgColor: '#232024' },
+  { src: '/images/film_bw_4.jpg', alt: 'B&W Film 4', dominantBgColor: '#232024' },
+  { src: '/images/film_bw_5.jpg', alt: 'B&W Film 5', dominantBgColor: '#232024' },
+  { src: '/images/film_bw_6.jpg', alt: 'B&W Film 6', dominantBgColor: '#232024' },
+  { src: '/images/film_bw_7.jpg', alt: 'B&W Film 7', dominantBgColor: '#232024' },
+  { src: '/images/film_bw_8.jpg', alt: 'B&W Film 8', dominantBgColor: '#232024' },
+  { src: '/images/film_bw_9.jpg', alt: 'B&W Film 9', dominantBgColor: '#232024' },
+  { src: '/images/film_bw_10.jpg', alt: 'B&W Film 10', dominantBgColor: '#232024' },
+  { src: '/images/film_bw_11.jpg', alt: 'B&W Film 11', dominantBgColor: '#232024' },
+  { src: '/images/film_color_1.jpg', alt: 'Color Film 1', dominantBgColor: '#232024' },
+  { src: '/images/film_color_2.jpg', alt: 'Color Film 2', dominantBgColor: '#232024' },
+  { src: '/images/film_color_3.jpg', alt: 'Color Film 3', dominantBgColor: '#232024' },
+  { src: '/images/film_color_4.jpg', alt: 'Color Film 4', dominantBgColor: '#232024' },
+  { src: '/images/film_color_5.jpg', alt: 'Color Film 5', dominantBgColor: '#232024' },
+  { src: '/images/film_color_6.jpg', alt: 'Color Film 6', dominantBgColor: '#232024' },
+  { src: '/images/film_color_7.jpg', alt: 'Color Film 7', dominantBgColor: '#232024' },
+  { src: '/images/film_color_8.jpg', alt: 'Color Film 8', dominantBgColor: '#232024' },
+  { src: '/images/film_color_9.jpg', alt: 'Color Film 9', dominantBgColor: '#232024' },
+  { src: '/images/film_color_10.jpg', alt: 'Color Film 10', dominantBgColor: '#232024' },
+  { src: '/images/film_color_11.jpg', alt: 'Color Film 11', dominantBgColor: '#232024' },
+  { src: '/images/film_color_12.jpg', alt: 'Color Film 12', dominantBgColor: '#232024' },
+  { src: '/images/film_color_13.jpg', alt: 'Color Film 13', dominantBgColor: '#232024' },
+  { src: '/images/film_color_14.jpg', alt: 'Color Film 14', dominantBgColor: '#232024' },
+  { src: '/images/film_color_15.jpg', alt: 'Color Film 15', dominantBgColor: '#232024' },
 ];
 
 export default function PhotosClientPage() {
-  const [photos, setPhotos] = useState(initialPhotos);
-  const imageRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const { scrollbarWidth } = useScrollbarWidth();
+  const [selectedPhotoIndex, setSelectedPhotoIndex] = useState<number | null>(null);
+  const sliderContainerRef = useRef<HTMLDivElement>(null);
+  const [sliderWidth, setSliderWidth] = useState(0);
 
-  const handleMouseEnter = (index: number, e: React.MouseEvent<HTMLDivElement>) => {
-    setPhotos(currentPhotos => {
-      const newPhotos = [...currentPhotos];
-      newPhotos[index].hovering = true; // Set hovering to true
-
-      // Calculate cursor position relative to the image
-      const rect = imageRefs.current[index]?.getBoundingClientRect();
-      if (rect) {
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        // Store cursor position for clipPath origin
-        // This would require adding x and y to the Photo interface
-        // For now, we'll just use it to trigger the animation
+  useEffect(() => {
+    const updateSliderWidth = () => {
+      if (sliderContainerRef.current) {
+        setSliderWidth(sliderContainerRef.current.offsetWidth);
       }
+    };
 
-      if (!newPhotos[index].filled) {
-        // Clear any existing timeout for this image
-        if (newPhotos[index].hoverTimeout) {
-          clearTimeout(newPhotos[index].hoverTimeout);
-        }
-        // Set a new timeout to mark as filled after 1 second
-        newPhotos[index].hoverTimeout = setTimeout(() => {
-          newPhotos[index].filled = true;
-          newPhotos[index].hoverTimeout = undefined; // Clear timeout ID after it fires
-          setPhotos([...newPhotos]); // Force re-render to update filled state
-        }, 500);
-      }
-      return newPhotos;
-    });
+    updateSliderWidth();
+
+    window.addEventListener('resize', updateSliderWidth);
+
+    return () => {
+      window.removeEventListener('resize', updateSliderWidth);
+    };
+  }, [selectedPhotoIndex]);
+
+
+  const openModal = (index: number) => {
+    setSelectedPhotoIndex(index);
   };
 
-  const handleMouseLeave = (index: number) => {
-    setPhotos(currentPhotos => {
-      const newPhotos = [...currentPhotos];
-      newPhotos[index].hovering = false; // Set hovering to false
-      // If the image is not yet filled, clear the timeout and revert to monochrome
-      if (!newPhotos[index].filled && newPhotos[index].hoverTimeout) {
-        clearTimeout(newPhotos[index].hoverTimeout);
-        newPhotos[index].hoverTimeout = undefined; // Clear timeout ID
-      }
-      return newPhotos;
-    });
+  const closeModal = () => {
+    setSelectedPhotoIndex(null);
   };
+
+  const goToNextPhoto = useCallback(() => {
+    if (selectedPhotoIndex !== null) {
+      setSelectedPhotoIndex((prevIndex) => (prevIndex + 1) % initialPhotos.length);
+    }
+  }, [selectedPhotoIndex]);
+
+  const goToPrevPhoto = useCallback(() => {
+    if (selectedPhotoIndex !== null) {
+      setSelectedPhotoIndex((prevIndex) =>
+        prevIndex === 0 ? initialPhotos.length - 1 : prevIndex - 1
+      );
+    }
+  }, [selectedPhotoIndex]);
+
+  const handleKeyDown = useCallback((event: KeyboardEvent) => {
+    if (selectedPhotoIndex !== null) {
+      if (event.key === 'ArrowRight') {
+        goToNextPhoto();
+      } else if (event.key === 'ArrowLeft') {
+        goToPrevPhoto();
+      } else if (event.key === 'Escape') {
+        closeModal();
+      }
+    }
+  }, [selectedPhotoIndex, goToNextPhoto, goToPrevPhoto, closeModal]);
+
+  useEffect(() => {
+    if (selectedPhotoIndex !== null) {
+      document.body.style.overflow = 'hidden';
+      document.body.style.paddingRight = `${scrollbarWidth}px`;
+      window.addEventListener('keydown', handleKeyDown);
+    } else {
+      document.body.style.overflow = 'unset';
+      document.body.style.paddingRight = '0px';
+      window.removeEventListener('keydown', handleKeyDown);
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+      document.body.style.paddingRight = '0px';
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [selectedPhotoIndex, scrollbarWidth, handleKeyDown]);
+
+  const currentPhoto = selectedPhotoIndex !== null ? initialPhotos[selectedPhotoIndex] : null;
+  const slideWidth = sliderWidth * 0.8;
+  const gap = sliderWidth * 0.1;
 
   return (
     <main className="bg-[#f7f7f7] text-[#232024] py-20 px-4 md:px-8 lg:px-16 min-h-screen">
@@ -86,42 +153,73 @@ export default function PhotosClientPage() {
           Photos
         </h1>
         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 2xl:grid-cols-8 gap-px">
-          {photos.map((photo, index) => (
+          {initialPhotos.map((photo, index) => (
             <div
               key={index}
-              ref={el => { imageRefs.current[index] = el; }}
-              className="relative aspect-square overflow-hidden"
-              onMouseEnter={(e) => handleMouseEnter(index, e)}
-              onMouseLeave={() => handleMouseLeave(index)}
+              className="relative aspect-square overflow-hidden cursor-pointer"
+              onClick={() => openModal(index)}
             >
               <Image
                 src={photo.src}
                 alt={photo.alt}
                 layout="fill"
                 objectFit="cover"
-                className="grayscale"
+                quality={50}
+                priority={index < 16}
+                className="filter transition-all duration-300 hover:invert"
               />
-              <motion.div
-                className="absolute inset-0"
-                initial={{ clipPath: 'circle(0% at 50% 50%)' }}
-                animate={{
-                  clipPath: photo.filled || photo.hovering
-                    ? 'circle(100% at 50% 50%)'
-                    : 'circle(0% at 50% 50%)',
-                }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
-              >
-                <Image
-                  src={photo.src}
-                  alt={photo.alt}
-                  layout="fill"
-                  objectFit="cover"
-                />
-              </motion.div>
             </div>
           ))}
         </div>
       </div>
+
+      <AnimatePresence>
+        {selectedPhotoIndex !== null && currentPhoto && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[1000] bg-black bg-opacity-80"
+            onClick={closeModal}
+          >
+            <div
+              ref={sliderContainerRef}
+              className="relative w-full h-full overflow-visible"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <motion.div
+                className="flex h-full items-center"
+                animate={{ x: -(selectedPhotoIndex * (slideWidth + gap)) + (sliderWidth - slideWidth) / 2 }}
+                transition={{ type: 'tween', duration: 0.5 }}
+              >
+                {initialPhotos.map((photo, index) => (
+                  <div
+                    key={index}
+                    className="flex-shrink-0 flex items-center justify-center transition-all duration-500"
+                    style={{
+                      width: slideWidth,
+                      marginRight: gap,
+                      opacity: index === selectedPhotoIndex ? 1 : 0.3,
+                      transform: `scale(${index === selectedPhotoIndex ? 1 : 0.8})`,
+                    }}
+                  >
+                    <div className="relative w-auto h-[80vh] rounded-lg shadow-xl overflow-hidden flex items-center justify-center" style={{ backgroundColor: photo.dominantBgColor }}>
+                      <img
+                        src={photo.src}
+                        alt={photo.alt}
+                        className="h-full w-auto object-contain"
+                      />
+                      <div className="absolute bottom-0 left-0 p-4" style={{ color: '#232024' }}>
+                        <h2 className="text-xl font-semibold" style={{ fontFamily: '"Shippori Mincho", serif' }}>{photo.alt}</h2>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </motion.div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </main>
   );
 }

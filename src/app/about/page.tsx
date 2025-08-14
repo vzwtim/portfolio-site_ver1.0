@@ -25,7 +25,7 @@ export default function About() {
             <p className="text-lg leading-relaxed mb-4" style={{ fontFamily: '"Shippori Mincho", serif' }}>
               東京大学建築学科を卒業後、不良住宅の研究に没頭。物理的な空間とデジタルな体験の融合を追求する建築家兼ソフトウェアエンジニア。
               一級建築士資格取得を目指しつつ、建築、都市、構造、材料への深い関心を持つ。
-            </p>
+        </p>
             <p className="text-lg leading-relaxed" style={{ fontFamily: '"Shippori Mincho", serif' }}>
               MBTIはENTP-A（自己主張型の討論者）。和室でのミニマルな暮らしを愛し、将来的な起業も視野に入れている。
             </p>
@@ -53,10 +53,10 @@ export default function About() {
               </ul>
             </div>
           </div>
-        </section>
+      </section>
 
         {/* Skills Section */}
-        <section>
+      <section>
           <h2 className="text-3xl font-medium mb-8 text-center" style={{ fontFamily: '"Shippori Mincho", serif' }}>
             スキルセット
           </h2>
@@ -84,11 +84,11 @@ export default function About() {
                 <li>Adobe Creative Suite</li>
                 <li>Git / GitHub</li>
                 <li>(その他、必要に応じて追加)</li>
-              </ul>
+        </ul>
             </div>
           </div>
-        </section>
-      </div>
+      </section>
+    </div>
     </main>
   );
 }

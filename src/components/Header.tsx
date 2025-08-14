@@ -35,7 +35,7 @@ export default function Header({ textColor }: HeaderProps) {
         {/* Right side - Navigation */}
         <nav>
           <ul className="flex flex-row items-center space-x-6 md:space-x-8">
-            <li>
+          <li>
               <Link href="/works">
                 <span
                   className={`text-sm md:text-base font-light ${hoverTextColorClass} transition-colors duration-300 cursor-pointer tracking-wide`}
@@ -45,9 +45,9 @@ export default function Header({ textColor }: HeaderProps) {
                 >
                   作品
                 </span>
-              </Link>
-            </li>
-            <li>
+            </Link>
+          </li>
+          <li>
               <Link href="/about">
                 <span
                   className={`text-sm md:text-base font-light ${hoverTextColorClass} transition-colors duration-300 cursor-pointer tracking-wide`}
@@ -57,9 +57,9 @@ export default function Header({ textColor }: HeaderProps) {
                 >
                   私について
                 </span>
-              </Link>
-            </li>
-            <li>
+            </Link>
+          </li>
+          <li>
               <Link href="/contact">
                 <span
                   className={`text-sm md:text-base font-light ${hoverTextColorClass} transition-colors duration-300 cursor-pointer tracking-wide`}
@@ -69,9 +69,9 @@ export default function Header({ textColor }: HeaderProps) {
                 >
                   連絡先
                 </span>
-              </Link>
-            </li>
-            <li>
+            </Link>
+          </li>
+          <li>
               <Link href="/photos">
                 <span
                   className={`text-sm md:text-base font-light ${hoverTextColorClass} transition-colors duration-300 cursor-pointer tracking-wide`}
@@ -81,10 +81,10 @@ export default function Header({ textColor }: HeaderProps) {
                 >
                   写真
                 </span>
-              </Link>
-            </li>
-          </ul>
-        </nav>
+            </Link>
+          </li>
+        </ul>
+      </nav>
       </div>
     </header>
   );

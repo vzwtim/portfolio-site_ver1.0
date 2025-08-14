@@ -17,15 +17,15 @@ export default function Contact() {
             <div className="mb-6">
               <label htmlFor="name" className="block text-lg font-medium mb-2" style={{ fontFamily: '"Shippori Mincho", serif' }}>氏名</label>
               <input type="text" id="name" className="w-full p-3 border border-gray-300 rounded-sm focus:outline-none focus:border-[#b33953] transition-colors" />
-            </div>
+        </div>
             <div className="mb-6">
               <label htmlFor="email" className="block text-lg font-medium mb-2" style={{ fontFamily: '"Shippori Mincho", serif' }}>メールアドレス</label>
               <input type="email" id="email" className="w-full p-3 border border-gray-300 rounded-sm focus:outline-none focus:border-[#b33953] transition-colors" />
-            </div>
-            <div className="mb-6">
+        </div>
+        <div className="mb-6">
               <label htmlFor="subject" className="block text-lg font-medium mb-2" style={{ fontFamily: '"Shippori Mincho", serif' }}>件名</label>
               <input type="text" id="subject" className="w-full p-3 border border-gray-300 rounded-sm focus:outline-none focus:border-[#b33953] transition-colors" />
-            </div>
+        </div>
             <div className="mb-8">
               <label htmlFor="message" className="block text-lg font-medium mb-2" style={{ fontFamily: '"Shippori Mincho", serif' }}>メッセージ</label>
               <textarea id="message" rows={7} className="w-full p-3 border border-gray-300 rounded-sm focus:outline-none focus:border-[#b33953] transition-colors"></textarea>
@@ -35,7 +35,7 @@ export default function Contact() {
                 送信
               </button>
             </div>
-          </form>
+      </form>
         </section>
 
         {/* Social Media Links Section */}
