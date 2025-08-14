@@ -119,8 +119,8 @@ body {
   --accent-red: 179 57 83;
   --accent-green: 1 123 99;
   --border: 229 231 235;
-  --font-shippori-mincho: 'Shippori Mincho', serif;
-  --font-noto-sans-jp: 'Noto Sans JP', sans-serif;
+  --font-shippori-mincho: serif;
+  --font-noto-sans-jp: sans-serif;
 }
 
 body {
@@ -130,7 +130,7 @@ body {
     linear-gradient(0deg, transparent 24%, rgba(0,0,0,.1) 25%, rgba(0,0,0,.1) 26%, transparent 27%, transparent 74%, rgba(0,0,0,.1) 75%, rgba(0,0,0,.1) 76%, transparent 77%, transparent),
     linear-gradient(90deg, transparent 24%, rgba(0,0,0,.1) 25%, rgba(0,0,0,.1) 26%, transparent 27%, transparent 74%, rgba(0,0,0,.1) 75%, rgba(0,0,0,.1) 76%, transparent 77%, transparent);
   background-size: 50px 50px; /* Adjust grid size as needed */
-  font-family: var(--font-shippori-mincho), serif;
+  font-family: var(--font-shippori-mincho);
   font-size: 0.95rem; /* 基本の文字サイズを少し小さくする */
   line-height: 1.8; /* 行間を広げる */
 }
