@@ -5,6 +5,7 @@
 import Image from "next/image";
 import { useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import InterestHero from "../components/InterestHero";
 
 const interests = {
   spaceAndCreation: [
@@ -102,22 +103,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Extended Interests and Works Section */} 
-      <section className="py-20 px-8 bg-white text-[#232024]">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold mb-4" style={{ fontFamily: '"Shippori Mincho", serif' }}>
-              興味・関心と作品
-            </h2>
-            <div className="w-24 h-px bg-[#232024] mx-auto"></div>
-          </motion.div>
-          
-          {/* Space and Creation */} 
+      {/* Interests Section with interactive hero */}
+      <section className="bg-white text-[#232024]">
+        <InterestHero />
+        <div className="py-20 px-8 max-w-7xl mx-auto">
+          {/* Space and Creation */}
           <div className="mb-32">
             <h3 className="text-2xl font-semibold mb-8 text-center" style={{ fontFamily: '"Shippori Mincho", serif' }}>
               空間と創造
@@ -157,7 +147,7 @@ export default function Home() {
             
           </div>
 
-          {/* Culture and Exploration */} 
+          {/* Culture and Exploration */}
           <div className="mb-32">
             <h3 className="text-2xl font-semibold mb-8 text-center" style={{ fontFamily: '"Shippori Mincho", serif' }}>
               文化と探求
@@ -197,7 +187,7 @@ export default function Home() {
             
           </div>
 
-          {/* Digital */} 
+          {/* Digital */}
           <div className="mb-32">
             <h3 className="text-2xl font-semibold mb-8 text-center" style={{ fontFamily: '"Shippori Mincho", serif' }}>
               でじたる
