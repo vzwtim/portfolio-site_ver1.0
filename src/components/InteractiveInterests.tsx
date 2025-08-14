@@ -45,7 +45,7 @@ const InteractiveInterests: React.FC<InteractiveInterestsProps> = ({ interests, 
 
   const setup = (p: p5, canvasParentRef: Element) => {
     p.createCanvas(p.windowWidth, p.windowHeight, p.WEBGL).parent(canvasParentRef);
-    p.noiseDetail(1);
+    p.noiseDetail(1, 0.5);
     const cols = Math.floor(p.width / 20);
     const rows = Math.floor(p.height / 20);
     flowfield = new Array(cols * rows);
