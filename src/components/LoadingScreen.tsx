@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, Variants } from 'framer-motion';
 import React from 'react';
 import Image from 'next/image';
 
@@ -8,13 +8,13 @@ interface LoadingScreenProps {
   isLoading: boolean;
 }
 
-const panelVariants = {
+const panelVariants: Variants = {
   initial: {
     x: '0%',
   },
   exit: (direction: 'left' | 'right') => ({
     x: direction === 'left' ? '-100%' : '100%',
-    transition: { duration: 0.8, ease: [0.87, 0, 0.13, 1] },
+    transition: { duration: 0.8, ease: "easeInOut" },
   }),
 };
 

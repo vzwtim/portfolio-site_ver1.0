@@ -95,21 +95,25 @@ export default function PhotosClientPage() {
     setSelectedPhotoIndex(index);
   };
 
-  const closeModal = () => {
+  const closeModal = useCallback(() => {
     setSelectedPhotoIndex(null);
-  };
+  }, []);
 
   const goToNextPhoto = useCallback(() => {
     if (selectedPhotoIndex !== null) {
-      setSelectedPhotoIndex((prevIndex) => (prevIndex + 1) % initialPhotos.length);
+      setSelectedPhotoIndex((prevIndex) => {
+        if (prevIndex === null) return 0; // If somehow null, go to first photo
+        return (prevIndex + 1) % initialPhotos.length;
+      });
     }
   }, [selectedPhotoIndex]);
 
   const goToPrevPhoto = useCallback(() => {
     if (selectedPhotoIndex !== null) {
-      setSelectedPhotoIndex((prevIndex) =>
-        prevIndex === 0 ? initialPhotos.length - 1 : prevIndex - 1
-      );
+      setSelectedPhotoIndex((prevIndex) => {
+        if (prevIndex === null) return initialPhotos.length - 1; // If somehow null, go to last photo
+        return prevIndex === 0 ? initialPhotos.length - 1 : prevIndex - 1;
+      });
     }
   }, [selectedPhotoIndex]);
 
@@ -204,10 +208,12 @@ export default function PhotosClientPage() {
                     }}
                   >
                     <div className="relative w-auto h-[80vh] rounded-lg shadow-xl overflow-hidden flex items-center justify-center" style={{ backgroundColor: photo.dominantBgColor }}>
-                      <img
+                      <Image
                         src={photo.src}
                         alt={photo.alt}
-                        className="h-full w-auto object-contain"
+                        layout="fill"
+                        objectFit="contain"
+                        className="h-full w-auto"
                       />
                       <div className="absolute bottom-0 left-0 p-4" style={{ color: '#232024' }}>
                         <h2 className="text-xl font-semibold" style={{ fontFamily: '"Shippori Mincho", serif' }}>{photo.alt}</h2>

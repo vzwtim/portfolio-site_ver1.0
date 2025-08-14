@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 // import useRepelEffect from '@/hooks/useRepelEffect'; // useRepelEffect を削除
 
 // 各花びらのアニメーションのプロパティをランダム化するためのヘルパー関数
@@ -97,7 +98,12 @@ const SakuraPetal: React.FC<{ startDelay?: number }> = ({ startDelay }) => {
         
       }}
     >
-      <img src={petalSrc} alt="Sakura Petal" style={{ width: '100%', height: '100%' }} />
+      <Image
+      src={petalSrc}
+      alt="Sakura Petal"
+      layout="fill"
+      objectFit="contain"
+    />
     </motion.div>
   );
 };
