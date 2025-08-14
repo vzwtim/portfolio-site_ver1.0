@@ -10,7 +10,7 @@ const ShadowAnimation: React.FC<{ children?: React.ReactNode }> = ({ children })
   const numberOfPetals = 20;
 
   // useRepelEffect の呼び出しと関連する定義をすべて削除
-  // const { elementRef: dear1Ref, springX: dear1SpringX, springY: dear1SpringY } = useRepelEffect(11, 57);
+  // const { elementRef: deer1Ref, springX: deer1SpringX, springY: deer1SpringY } = useRepelEffect(11, 57);
   // ... (他の動物たちの useRepelEffect の呼び出しも削除)
 
   return (
@@ -28,16 +28,16 @@ const ShadowAnimation: React.FC<{ children?: React.ReactNode }> = ({ children })
       ))}
 
       {/* 配置するSVGファイル */}
-      {/* 鹿 (dear_1.svg) */}
+      {/* 鹿 (deer_1.svg) */}
       <motion.img
-        // ref={dear1Ref} // ref を削除
-        src="/images/dear_1.svg"
+        // ref={deer1Ref} // ref を削除
+        src="/images/deer_1.svg"
         alt="Deer Silhouette"
         className="absolute"
         style={{
           top: '57%', left: '11%', width: '8.33%', height: '15%',
-          // x: dear1SpringX, // x, y を削除
-          // y: dear1SpringY,
+          // x: deer1SpringX, // x, y を削除
+          // y: deer1SpringY,
         }}
         whileHover={{ scale: 1.1, y: -5 }}
         transition={{ type: 'spring', stiffness: 300 }}
@@ -86,16 +86,16 @@ const ShadowAnimation: React.FC<{ children?: React.ReactNode }> = ({ children })
       />
 
       {/* 残りのSVGファイルも配置 */}
-      {/* 鹿 (dear_3.svg) */}
+      {/* 鹿 (deer_3.svg) */}
       <motion.img
-        // ref={dear3Ref}
-        src="/images/dear_3.svg"
+        // ref={deer3Ref}
+        src="/images/deer_3.svg"
         alt="Deer Silhouette 2"
         className="absolute"
         style={{
           top: '60%', left: '80%', width: '7%', height: '25%',
-          // x: dear3SpringX,
-          // y: dear3SpringY,
+          // x: deer3SpringX,
+          // y: deer3SpringY,
         }}
         whileHover={{ scale: 1.1, y: -5 }}
         transition={{ type: 'spring', stiffness: 300 }}
