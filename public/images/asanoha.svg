@@ -1,7 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
-  <g fill="none" stroke="#bb5555" stroke-width="1.5">
-    <polygon points="20,0 30,10 30,30 20,40 10,30 10,10"/>
-    <polygon points="20,0 30,30 10,30"/>
-    <polygon points="30,10 20,40 10,10"/>
+  <g fill="none" stroke="#bb5555" stroke-width="1">
+    <!-- central diamond -->
+    <path d="M20 0L30 20L20 40L10 20Z" />
+    <!-- grid lines -->
+    <path d="M0 10H40M0 30H40M10 0V40M30 0V40" />
+    <!-- diagonals -->
+    <path d="M0 0L20 20L40 0M0 40L20 20L40 40" />
   </g>
 </svg>
