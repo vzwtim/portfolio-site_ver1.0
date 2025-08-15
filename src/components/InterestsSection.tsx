@@ -48,7 +48,16 @@ const themes: Record<ThemeKey, { className: string; style?: React.CSSProperties 
     style: {
       backgroundColor: '#ffe4e6',
       backgroundImage:
-        'repeating-linear-gradient(45deg,#ffffff 0,#ffffff 25px,#fecaca 25px,#fecaca 50px)',
+        `
+        linear-gradient(30deg, #bb5555 12%, transparent 12.5%, transparent 87%, #bb5555 87.5%),
+        linear-gradient(150deg, #bb5555 12%, transparent 12.5%, transparent 87%, #bb5555 87.5%),
+        linear-gradient(30deg, #bb5555 12%, transparent 12.5%, transparent 87%, #bb5555 87.5%),
+        linear-gradient(150deg, #bb5555 12%, transparent 12.5%, transparent 87%, #bb5555 87.5%),
+        linear-gradient(60deg, #bb5555 25%, transparent 25.5%, transparent 75%, #bb5555 75.5%),
+        linear-gradient(120deg, #bb5555 25%, transparent 25.5%, transparent 75%, #bb5555 75.5%)
+        `,
+      backgroundSize: '40px 70px',
+      backgroundPosition: '0 0,0 0,20px 35px,20px 35px,0 0,0 0',
     },
   },
   digital: {
@@ -153,6 +162,38 @@ export default function InterestsSection() {
     </div>
   );
 
+  const renderScatteredCards = (items: typeof interests.spaceAndCreation) => (
+    <div className="flex flex-wrap justify-center gap-10 md:gap-16">
+      {items.map((interest, index) => (
+        <motion.div
+          key={interest.title}
+          className={`w-64 md:w-56 group cursor-pointer ${index % 2 === 1 ? 'md:mt-16' : ''}`}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          whileHover={{ scale: 1.05 }}
+        >
+          <div className="relative h-64 mb-4 overflow-hidden rounded-lg">
+            <Image
+              src={interest.imageUrl}
+              alt={interest.title}
+              fill
+              className="object-cover transition-transform duration-500 group-hover:scale-110"
+              sizes="(max-width:768px)100vw,(max-width:1024px)50vw,25vw"
+            />
+          </div>
+          <h4 className="text-lg font-semibold mb-2" style={{ fontFamily: '"Shippori Mincho", serif' }}>
+            {interest.title}
+          </h4>
+          <p className="text-sm opacity-80 leading-relaxed" style={{ fontFamily: '"Shippori Mincho", serif' }}>
+            {interest.description}
+          </p>
+        </motion.div>
+      ))}
+    </div>
+  );
+
   return (
     <div
       ref={containerRef}
@@ -200,7 +241,7 @@ export default function InterestsSection() {
         >
           文化と探求
         </motion.h3>
-        {renderGridCards(interests.cultureAndExploration)}
+        {renderScatteredCards(interests.cultureAndExploration)}
       </section>
 
       {/* Digital */}
