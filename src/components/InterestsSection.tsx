@@ -47,7 +47,7 @@ const themes: Record<ThemeKey, { className: string; style?: React.CSSProperties 
     className: 'text-red-900',
     style: {
       backgroundColor: '#ffffff',
-      backgroundImage: 'url("/patterns/asanoha-red.svg")',
+      backgroundImage: 'url("/images/asanoha.svg")',
       backgroundSize: '40px 40px',
       backgroundRepeat: 'repeat',
     },
