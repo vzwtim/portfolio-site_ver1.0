@@ -44,7 +44,7 @@ export default function Header({ textColor }: HeaderProps) {
               <Link href="/about">
                 <span
                   className={`text-sm md:text-base font-bold ${hoverTextColorClass} transition-colors duration-300 cursor-pointer tracking-wide`}
-                  style={{ fontFamily: '"Shippori Mincho", serif' }}
+                  style={{ fontFamily: '"Montserrat ExtraBold", sans-serif' }}
                   onMouseEnter={textEnter}
                   onMouseLeave={textLeave}
                 >
@@ -56,7 +56,7 @@ export default function Header({ textColor }: HeaderProps) {
               <Link href="/photos">
                 <span
                   className={`text-sm md:text-base font-bold ${hoverTextColorClass} transition-colors duration-300 cursor-pointer tracking-wide`}
-                  style={{ fontFamily: '"Shippori Mincho", serif' }}
+                  style={{ fontFamily: '"Montserrat ExtraBold", sans-serif' }}
                   onMouseEnter={textEnter}
                   onMouseLeave={textLeave}
                 >
@@ -68,7 +68,7 @@ export default function Header({ textColor }: HeaderProps) {
               <Link href="/works">
                 <span
                   className={`text-sm md:text-base font-bold ${hoverTextColorClass} transition-colors duration-300 cursor-pointer tracking-wide`}
-                  style={{ fontFamily: '"Shippori Mincho", serif' }}
+                  style={{ fontFamily: '"Montserrat ExtraBold", sans-serif' }}
                   onMouseEnter={textEnter}
                   onMouseLeave={textLeave}
                 >
@@ -80,7 +80,7 @@ export default function Header({ textColor }: HeaderProps) {
               <Link href="/contact">
                 <span
                   className={`text-sm md:text-base font-bold ${hoverTextColorClass} transition-colors duration-300 cursor-pointer tracking-wide`}
-                  style={{ fontFamily: '"Shippori Mincho", serif' }}
+                  style={{ fontFamily: '"Montserrat ExtraBold", sans-serif' }}
                   onMouseEnter={textEnter}
                   onMouseLeave={textLeave}
                 >

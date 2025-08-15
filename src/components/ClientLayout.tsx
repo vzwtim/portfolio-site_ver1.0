@@ -5,11 +5,13 @@ import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import CustomCursor from "@/components/CustomCursor";
-import LoadingScreen from '@/components/LoadingScreen';
+import dynamic from 'next/dynamic';
 import { CursorProvider } from '@/context/CursorContext';
 import { ScrollbarWidthProvider } from '@/context/ScrollbarWidthContext';
-import ShadowAnimation from './ShadowAnimation';
+
+const CustomCursor = dynamic(() => import("@/components/CustomCursor"), { ssr: false });
+const LoadingScreen = dynamic(() => import('@/components/LoadingScreen'), { ssr: false });
+const ShadowAnimation = dynamic(() => import('./ShadowAnimation'), { ssr: false });
 
 interface ClientLayoutProps {
   children: React.ReactNode;

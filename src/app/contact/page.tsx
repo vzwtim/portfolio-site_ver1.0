@@ -2,9 +2,12 @@ import Link from 'next/link';
 
 export default function Contact() {
   return (
-    <main className="bg-[#f7f7f7] text-[#232024] py-20 px-8 md:px-16 lg:px-32 min-h-screen">
+    <main className="bg-[#ffffff] text-[#232024] py-20 px-8 md:px-16 lg:px-32 min-h-screen">
       <div className="max-w-3xl mx-auto">
-        <h1 className="text-4xl font-medium mb-16 text-center" style={{ fontFamily: '"Shippori Mincho", serif' }}>
+        <h1
+          className="text-4xl font-medium mb-24 text-center mt-24"
+          style={{ fontFamily: '"Shippori Mincho", serif' }}
+        >
           お問い合わせ
         </h1>
 
@@ -17,15 +20,15 @@ export default function Contact() {
             <div className="mb-6">
               <label htmlFor="name" className="block text-lg font-medium mb-2" style={{ fontFamily: '"Shippori Mincho", serif' }}>氏名</label>
               <input type="text" id="name" className="w-full p-3 border border-gray-300 rounded-sm focus:outline-none focus:border-[#b33953] transition-colors" />
-        </div>
+            </div>
             <div className="mb-6">
               <label htmlFor="email" className="block text-lg font-medium mb-2" style={{ fontFamily: '"Shippori Mincho", serif' }}>メールアドレス</label>
               <input type="email" id="email" className="w-full p-3 border border-gray-300 rounded-sm focus:outline-none focus:border-[#b33953] transition-colors" />
-        </div>
-        <div className="mb-6">
+            </div>
+            <div className="mb-6">
               <label htmlFor="subject" className="block text-lg font-medium mb-2" style={{ fontFamily: '"Shippori Mincho", serif' }}>件名</label>
               <input type="text" id="subject" className="w-full p-3 border border-gray-300 rounded-sm focus:outline-none focus:border-[#b33953] transition-colors" />
-        </div>
+            </div>
             <div className="mb-8">
               <label htmlFor="message" className="block text-lg font-medium mb-2" style={{ fontFamily: '"Shippori Mincho", serif' }}>メッセージ</label>
               <textarea id="message" rows={7} className="w-full p-3 border border-gray-300 rounded-sm focus:outline-none focus:border-[#b33953] transition-colors"></textarea>
@@ -35,7 +38,7 @@ export default function Contact() {
                 送信
               </button>
             </div>
-      </form>
+          </form>
         </section>
 
         {/* Social Media Links Section */}
