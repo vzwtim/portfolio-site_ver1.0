@@ -122,7 +122,10 @@ export default function InterestsSection() {
   const cultureInView = useInView(cultureRef, { amount: 0.6 });
   const digitalInView = useInView(digitalRef, { amount: 0.6 });
 
-const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start end', 'end start'] });
+const { scrollYProgress } = useScroll({
+  target: containerRef,
+  offset: ['start end', 'end end'],
+});
 const pathLength = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   useEffect(() => {
@@ -243,12 +246,12 @@ const pathLength = useTransform(scrollYProgress, [0, 1], [0, 1]);
       style={current.style}
     >
       <motion.svg
-        className="absolute -top-[40vh] left-0 w-full h-[200%] pointer-events-none"
+        className="absolute -top-[40vh] left-0 w-full h-[140%] pointer-events-none"
         viewBox="0 0 1000 3000"
         preserveAspectRatio="none"
       >
         <motion.path
-          d="M500 100 C200 500 800 900 500 1300 S800 1700 500 2100"
+          d="M500 100 C200 500 800 900 500 1300 S800 1700 500 2900"
           fill="none"
           stroke="#008877"
           strokeWidth="24"
