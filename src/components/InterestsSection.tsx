@@ -6,26 +6,62 @@ import { useEffect, useRef, useState } from 'react';
 
 const interests = {
   spaceAndCreation: [
-    { title: '不動産', description: '空間の価値を捉え、未来の可能性を創造する。', imageUrl: '/images/building_osaka.jpg' },
-    { title: '建築', description: '機能と美が融合した、心地よい空間を追求する。', imageUrl: '/images/drawing_aris.jpg' },
-    { title: '暮らし', description: '日々の営みを豊かにする、ささやかな工夫と発見。', imageUrl: '/images/kurashi.jpg' },
-    { title: '製作', description: '手を動かし、思考を形にする創造の喜び。', imageUrl: '/images/me_mad.jpg' },
+    {
+      title: 'Real Estate',
+      description: '空間の価値を捉え、未来の可能性を創造する。',
+      imageUrl: '/images/building_osaka.jpg',
+    },
+    {
+      title: 'Architecture',
+      description: '機能と美が融合した、心地よい空間を追求する。',
+      imageUrl: '/images/drawing_aris.jpg',
+    },
+    {
+      title: 'Living',
+      description: '日々の営みを豊かにする、ささやかな工夫と発見。',
+      imageUrl: '/images/kurashi.jpg',
+    },
+    {
+      title: 'Crafting',
+      description: '手を動かし、思考を形にする創造の喜び。',
+      imageUrl: '/images/me_mad.jpg',
+    },
   ],
   cultureAndExploration: [
-    { title: '写真', description: '光と影で切り取る、世界の美しい瞬間。', imageUrl: '/images/film_bw_29.jpg' },
-    { title: '食', description: '文化、歴史、そして人との繋がりを味わう。', imageUrl: '/images/food_me_tomato.jpg' },
-    { title: '盆栽', description: '小さな鉢の中に、大自然の縮図を育む。', imageUrl: '/images/bird.JPG' },
-    { title: '書道', description: '墨と筆で描く、静寂と躍動の芸術。', imageUrl: '/images/syodo_ko.jpg' },
-    { title: '旅', description: '未知の風景と文化に触れる、自己発見の冒険。', imageUrl: '/images/trip_kumano_3.jpg' },
+    {
+      title: 'Photography',
+      description: '光と影で切り取る、世界の美しい瞬間。',
+      imageUrl: '/images/film_bw_29.jpg',
+    },
+    {
+      title: 'Food',
+      description: '文化、歴史、そして人との繋がりを味わう。',
+      imageUrl: '/images/food_me_tomato.jpg',
+    },
+    {
+      title: 'Bonsai',
+      description: '小さな鉢の中に、大自然の縮図を育む。',
+      imageUrl: '/images/bird.JPG',
+    },
+    {
+      title: 'Calligraphy',
+      description: '墨と筆で描く、静寂と躍動の芸術。',
+      imageUrl: '/images/syodo_ko.jpg',
+    },
+    {
+      title: 'Travel',
+      description: '未知の風景と文化に触れる、自己発見の冒険。',
+      imageUrl: '/images/trip_kumano_3.jpg',
+    },
   ],
   digital: [
     {
-      title: 'プログラミング',
+      title: 'Programming',
       description: '論理と創造で、デジタル世界を構築する。',
       imageUrl: '/images/figure_master.webp',
     },
     {
-      title: 'Webデザイン',
+      title: 'Web Design',
       description: '美しさと使いやすさを追求し、情報を最適に届ける。',
       imageUrl: '/images/web_pavillion.PNG',
     },
@@ -52,17 +88,57 @@ const themes: Record<ThemeKey, { className: string; style?: React.CSSProperties 
     },
   },
   digital: {
-    className: 'text-green-300',
+    className: 'text-[#008877]',
     style: {
       backgroundColor: '#0a0a0a',
-      backgroundImage: 'radial-gradient(#22c55e40 1px, transparent 1px)',
+      backgroundImage: 'radial-gradient(#00887740 1px, transparent 1px)',
       backgroundSize: '20px 20px',
     },
   },
 };
 
+const codeSnippets = [
+  'const add = (a, b) => a + b;',
+  'for (let i = 0; i < 10; i++) {',
+  "  console.log(i);",
+  '}',
+  'async function fetchData() {',
+  "  return await fetch('/api');",
+  '}',
+];
+
+const TypingCodeBackground = () => {
+  const [displayed, setDisplayed] = useState<string[]>(Array(codeSnippets.length).fill(''));
+
+  useEffect(() => {
+    const timers = codeSnippets.map((snippet, idx) => {
+      let i = 0;
+      return setInterval(() => {
+        i = (i + 1) % (snippet.length + 1);
+        setDisplayed((prev) => {
+          const next = [...prev];
+          next[idx] = snippet.slice(0, i);
+          return next;
+        });
+      }, 80);
+    });
+    return () => timers.forEach(clearInterval);
+  }, []);
+
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20 flex flex-col">
+      {displayed.map((line, i) => (
+        <pre key={i} className="text-[#008877] font-mono text-xs md:text-sm">
+          {line}
+        </pre>
+      ))}
+    </div>
+  );
+};
+
 export default function InterestsSection() {
   const [theme, setTheme] = useState<ThemeKey>('spaceAndCreation');
+  const [hoveredImage, setHoveredImage] = useState<string | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const spaceRef = useRef(null);
   const cultureRef = useRef(null);
@@ -98,7 +174,7 @@ export default function InterestsSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <div className="relative w-full md:w-1/2 h-64 overflow-hidden rounded-lg">
+          <div className="relative w-full md:w-1/2 h-64 overflow-hidden">
             <Image
               src={interest.imageUrl}
               alt={interest.title}
@@ -133,7 +209,7 @@ export default function InterestsSection() {
           transition={{ duration: 0.6 }}
           whileHover={{ scale: 1.05 }}
         >
-          <div className="relative h-64 mb-4 overflow-hidden rounded-lg">
+          <div className="relative h-64 mb-4 overflow-hidden">
             <Image
               src={interest.imageUrl}
               alt={interest.title}
@@ -188,6 +264,84 @@ export default function InterestsSection() {
     </div>
   );
 
+  const renderDigitalGrid = (items: typeof interests.digital) => {
+    const layout: { key: string; className: string; interest?: typeof items[number] }[] = [
+      { key: 'item-0', className: 'col-start-1 col-span-6 row-start-1 row-span-2', interest: items[0] },
+      { key: 'item-1', className: 'col-start-5 col-span-3 row-start-3 row-span-3', interest: items[1] },
+      { key: 'item-2', className: 'col-start-10 col-span-3 row-start-1 row-span-3', interest: items[2] },
+      { key: 'ph1', className: 'relative overflow-hidden col-start-1 col-span-3 row-start-3 row-span-1' },
+      { key: 'ph2', className: 'relative overflow-hidden col-start-1 col-span-1 row-start-4 row-span-1' },
+      { key: 'ph3', className: 'relative overflow-hidden col-start-1 col-span-2 row-start-5 row-span-1' },
+      { key: 'ph4', className: 'relative overflow-hidden col-start-2 col-span-1 row-start-4 row-span-1' },
+      { key: 'ph5', className: 'relative overflow-hidden col-start-3 col-span-2 row-start-4 row-span-2' },
+      { key: 'ph6', className: 'relative overflow-hidden col-start-4 col-span-1 row-start-3 row-span-1' },
+      { key: 'ph7', className: 'relative overflow-hidden col-start-7 col-span-2 row-start-1 row-span-1' },
+      { key: 'ph8', className: 'relative overflow-hidden col-start-7 col-span-1 row-start-2 row-span-1' },
+      { key: 'ph9', className: 'relative overflow-hidden col-start-8 col-span-1 row-start-2 row-span-3' },
+      { key: 'ph10', className: 'relative overflow-hidden col-start-8 col-span-1 row-start-5 row-span-1' },
+      { key: 'ph11', className: 'relative overflow-hidden col-start-8 col-span-2 row-start-1 row-span-1' },
+      { key: 'ph12', className: 'relative overflow-hidden col-start-9 col-span-1 row-start-2 row-span-2' },
+      { key: 'ph13', className: 'relative overflow-hidden col-start-9 col-span-2 row-start-4 row-span-2' },
+      { key: 'ph14', className: 'relative overflow-hidden col-start-11 col-span-2 row-start-4 row-span-1' },
+      { key: 'ph15', className: 'relative overflow-hidden col-start-11 col-span-2 row-start-5 row-span-1' },
+    ];
+    return (
+      <div className="relative w-full h-full">
+        <TypingCodeBackground />
+        <div className="relative z-10 grid grid-cols-12 grid-rows-5 gap-1 w-full h-full">
+          {layout.map((block) =>
+            block.interest ? (
+              <motion.div
+                key={block.key}
+                className={`group cursor-pointer ${block.className}`}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                onMouseEnter={() => setHoveredImage(block.interest!.imageUrl)}
+                onMouseLeave={() => setHoveredImage(null)}
+              >
+                <div className="relative w-full h-full overflow-hidden">
+                  <Image
+                    src={block.interest.imageUrl}
+                    alt={block.interest.title}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    sizes="(max-width:768px)100vw,(max-width:1024px)50vw,33vw"
+                  />
+                </div>
+                <h4
+                  className="text-lg font-semibold mt-4 mb-2"
+                  style={{ fontFamily: '"Shippori Mincho", serif' }}
+                >
+                  {block.interest.title}
+                </h4>
+                <p
+                  className="text-sm opacity-80 leading-relaxed"
+                  style={{ fontFamily: '"Shippori Mincho", serif' }}
+                >
+                  {block.interest.description}
+                </p>
+              </motion.div>
+            ) : (
+              <div key={block.key} className={block.className}>
+                {hoveredImage && (
+                  <Image
+                    src={hoveredImage}
+                    alt="preview"
+                    fill
+                    className="object-cover opacity-60"
+                    sizes="16vw"
+                  />
+                )}
+              </div>
+            )
+          )}
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div
       ref={containerRef}
@@ -213,7 +367,6 @@ export default function InterestsSection() {
         <motion.h3
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
           viewport={{ once: true }}
           className="text-5xl md:text-7xl font-bold mb-16 text-center text-[#008877]"
           style={{ fontFamily: '"Shippori Mincho", serif' }}
@@ -244,18 +397,20 @@ export default function InterestsSection() {
       </section>
 
       {/* Digital */}
-      <section ref={digitalRef} className="min-h-screen flex flex-col justify-center px-8">
+      <section ref={digitalRef} className="h-screen w-full flex flex-col overflow-hidden">
         <motion.h3
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-5xl md:text-7xl font-bold mb-16 text-center"
+          className="text-5xl md:text-7xl font-bold mb-8 text-center text-[#008877]"
           style={{ fontFamily: '"Shippori Mincho", serif' }}
         >
           でじたる
         </motion.h3>
-        {renderGridCards(interests.digital)}
+        <div className="flex-1">
+          {renderDigitalGrid(interests.digital)}
+        </div>
       </section>
     </div>
   );

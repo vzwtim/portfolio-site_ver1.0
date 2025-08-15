@@ -1,7 +1,5 @@
 'use client';
 
-
-
 import Image from "next/image";
 import { motion, useScroll, useTransform } from 'framer-motion';
 import InterestsSection from "../components/InterestsSection";
@@ -64,9 +62,7 @@ export default function Home() {
             </h2>
             <div className="w-24 h-px bg-[#232024] mx-auto mb-8"></div>
             <p className="text-lg leading-relaxed max-w-3xl mx-auto" style={{ fontFamily: '"Shippori Mincho", serif' }}>
-              建築の美しさと技術の可能性を融合させ、新しい価値を創造することを目指しています。
-              伝統的な和の精神と現代的な技術を組み合わせ、人々の暮らしを豊かにする空間を設計します。
-        </p>
+              建築の美しさと技術の可能性を融合させ、新しい価値を創造することを目指しています.\n              伝統的な和の精神と現代的な技術を組み合わせ、人々の暮らしを豊かにする空間を設計します.\n        </p>
           </motion.div>
         </div>
       </section>
