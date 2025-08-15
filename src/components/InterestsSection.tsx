@@ -195,17 +195,34 @@ export default function InterestsSection() {
 
   const renderDigitalGrid = (items: typeof interests.digital) => {
     const layout: { key: string; className: string; interest?: typeof items[number] }[] = [
-      { key: 'item-0', className: 'col-span-2 row-span-2 md:col-start-1 md:col-span-3 md:row-start-1 md:row-span-2', interest: items[0] },
-      { key: 'item-1', className: 'col-span-2 row-span-2 md:col-start-4 md:col-span-3 md:row-start-1 md:row-span-1', interest: items[1] },
-      { key: 'item-2', className: 'col-span-2 row-span-2 md:col-start-2 md:col-span-4 md:row-start-3 md:row-span-2', interest: items[2] },
-      { key: 'ph1', className: 'hidden md:block relative overflow-hidden md:col-start-4 md:col-span-3 md:row-start-2 md:row-span-1' },
-      { key: 'ph2', className: 'hidden md:block relative overflow-hidden md:col-start-1 md:col-span-1 md:row-start-3 md:row-span-1' },
-      { key: 'ph3', className: 'hidden md:block relative overflow-hidden md:col-start-6 md:col-span-1 md:row-start-2 md:row-span-2' },
-      { key: 'ph4', className: 'hidden md:block relative overflow-hidden md:col-start-1 md:col-span-1 md:row-start-4 md:row-span-1' },
-      { key: 'ph5', className: 'hidden md:block relative overflow-hidden md:col-start-6 md:col-span-1 md:row-start-4 md:row-span-1' },
-      { key: 'ph6', className: 'hidden md:block relative overflow-hidden md:col-start-5 md:col-span-2 md:row-start-3 md:row-span-2' },
-      { key: 'ph7', className: 'hidden md:block relative overflow-hidden md:col-start-2 md:col-span-2 md:row-start-5 md:row-span-1' },
-      { key: 'ph8', className: 'hidden md:block relative overflow-hidden md:col-start-4 md:col-span-3 md:row-start-5 md:row-span-1' },
+      {
+        key: 'item-0',
+        className: 'col-span-2 row-span-2 md:col-start-1 md:col-span-3 md:row-start-1 md:row-span-2',
+        interest: items[0],
+      },
+      {
+        key: 'item-1',
+        className: 'col-span-2 row-span-2 md:col-start-4 md:col-span-3 md:row-start-1 md:row-span-1',
+        interest: items[1],
+      },
+      {
+        key: 'item-2',
+        className: 'col-span-2 row-span-2 md:col-start-2 md:col-span-4 md:row-start-3 md:row-span-2',
+        interest: items[2],
+      },
+      { key: 'ph1', className: 'hidden md:block relative overflow-hidden md:col-start-4 md:col-span-1 md:row-start-2 md:row-span-1' },
+      { key: 'ph2', className: 'hidden md:block relative overflow-hidden md:col-start-5 md:col-span-1 md:row-start-2 md:row-span-1' },
+      { key: 'ph3', className: 'hidden md:block relative overflow-hidden md:col-start-6 md:col-span-1 md:row-start-2 md:row-span-1' },
+      { key: 'ph4', className: 'hidden md:block relative overflow-hidden md:col-start-1 md:col-span-1 md:row-start-3 md:row-span-1' },
+      { key: 'ph5', className: 'hidden md:block relative overflow-hidden md:col-start-1 md:col-span-1 md:row-start-4 md:row-span-1' },
+      { key: 'ph6', className: 'hidden md:block relative overflow-hidden md:col-start-6 md:col-span-1 md:row-start-3 md:row-span-1' },
+      { key: 'ph7', className: 'hidden md:block relative overflow-hidden md:col-start-6 md:col-span-1 md:row-start-4 md:row-span-1' },
+      { key: 'ph8', className: 'hidden md:block relative overflow-hidden md:col-start-1 md:col-span-1 md:row-start-5 md:row-span-1' },
+      { key: 'ph9', className: 'hidden md:block relative overflow-hidden md:col-start-2 md:col-span-1 md:row-start-5 md:row-span-1' },
+      { key: 'ph10', className: 'hidden md:block relative overflow-hidden md:col-start-3 md:col-span-1 md:row-start-5 md:row-span-1' },
+      { key: 'ph11', className: 'hidden md:block relative overflow-hidden md:col-start-4 md:col-span-1 md:row-start-5 md:row-span-1' },
+      { key: 'ph12', className: 'hidden md:block relative overflow-hidden md:col-start-5 md:col-span-1 md:row-start-5 md:row-span-1' },
+      { key: 'ph13', className: 'hidden md:block relative overflow-hidden md:col-start-6 md:col-span-1 md:row-start-5 md:row-span-1' },
     ];
     return (
       <div className="relative">
