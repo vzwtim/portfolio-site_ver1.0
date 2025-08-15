@@ -199,12 +199,17 @@ export default function InterestsSection() {
       { key: 'ph2', className: 'col-span-1 row-span-1' },
       { key: 'ph3', className: 'col-span-1 row-span-1' },
       { key: 'ph4', className: 'col-span-1 row-span-1' },
-      { key: 'ph5', className: 'col-span-2 row-span-2' },
+      { key: 'ph5', className: 'col-span-1 row-span-1' },
+      { key: 'ph6', className: 'col-span-1 row-span-1' },
+      { key: 'ph7', className: 'col-span-2 row-span-1' },
+      { key: 'ph8', className: 'col-span-2 row-span-1' },
+      { key: 'ph9', className: 'col-span-2 row-span-2' },
+      { key: 'ph10', className: 'col-span-2 row-span-2' },
     ];
     return (
       <div className="relative">
         <TypingCodeBackground />
-        <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[150px] gap-4 relative z-10">
+        <div className="grid grid-cols-2 md:grid-cols-6 auto-rows-[150px] gap-4 relative z-10">
           {items.map((interest) => (
             <motion.div
               key={interest.title}
@@ -222,7 +227,7 @@ export default function InterestsSection() {
                   alt={interest.title}
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
-                  sizes="(max-width:768px)100vw,(max-width:1024px)50vw,25vw"
+                  sizes="(max-width:768px)100vw,(max-width:1024px)50vw,33vw"
                 />
               </div>
               <h4
@@ -250,7 +255,7 @@ export default function InterestsSection() {
                   alt="preview"
                   fill
                   className="object-cover opacity-60"
-                  sizes="25vw"
+                  sizes="16vw"
                 />
               )}
             </div>
