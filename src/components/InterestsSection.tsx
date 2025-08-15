@@ -155,29 +155,35 @@ export default function InterestsSection() {
   );
 
   const renderDigitalGrid = (items: typeof interests.digital) => {
-    const totalCells = 8;
-    const placeholders = Array.from({ length: totalCells - items.length });
+    const placeholders = [
+      { key: 'ph1', className: 'col-span-1 row-span-1' },
+      { key: 'ph2', className: 'col-span-1 row-span-2' },
+      { key: 'ph3', className: 'col-span-2 row-span-1' },
+      { key: 'ph4', className: 'col-span-1 row-span-1' },
+      { key: 'ph5', className: 'col-span-1 row-span-1' },
+      { key: 'ph6', className: 'col-span-2 row-span-1' },
+    ];
     const code = `const add = (a, b) => a + b;\nconsole.log(add(2, 3));`;
     return (
       <div className="relative">
         <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
-          {[...Array(3)].map((_, i) => (
+          {[...Array(5)].map((_, i) => (
             <motion.pre
               key={i}
-              className="text-[#008877] font-mono text-xs md:text-sm" 
+              className="text-[#008877] font-mono text-xs md:text-sm"
               initial={{ y: '100%' }}
               animate={{ y: '-100%' }}
-              transition={{ repeat: Infinity, duration: 20, delay: i * 5, ease: 'linear' }}
+              transition={{ repeat: Infinity, duration: 20, delay: i * 4, ease: 'linear' }}
             >
               {code}
             </motion.pre>
           ))}
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 relative z-10">
+        <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[120px] gap-4 relative z-10">
           {items.map((interest) => (
             <motion.div
               key={interest.title}
-              className="group cursor-pointer"
+              className="group cursor-pointer col-span-2 row-span-2"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -185,7 +191,7 @@ export default function InterestsSection() {
               onMouseEnter={() => setHoveredImage(interest.imageUrl)}
               onMouseLeave={() => setHoveredImage(null)}
             >
-              <div className="relative h-40 md:h-64 mb-4 overflow-hidden rounded-lg">
+              <div className="relative w-full h-full overflow-hidden rounded-lg">
                 <Image
                   src={interest.imageUrl}
                   alt={interest.title}
@@ -195,7 +201,7 @@ export default function InterestsSection() {
                 />
               </div>
               <h4
-                className="text-lg font-semibold mb-2"
+                className="text-lg font-semibold mt-4 mb-2"
                 style={{ fontFamily: '"Shippori Mincho", serif' }}
               >
                 {interest.title}
@@ -208,10 +214,10 @@ export default function InterestsSection() {
               </p>
             </motion.div>
           ))}
-          {placeholders.map((_, idx) => (
+          {placeholders.map((ph) => (
             <div
-              key={idx}
-              className="hidden md:block relative h-40 md:h-64 rounded-lg overflow-hidden"
+              key={ph.key}
+              className={`hidden md:block relative overflow-hidden rounded-lg ${ph.className}`}
             >
               {hoveredImage && (
                 <Image
@@ -280,7 +286,7 @@ export default function InterestsSection() {
       </section>
 
       {/* Digital */}
-      <section ref={digitalRef} className="min-h-screen flex flex-col justify-center px-8">
+      <section ref={digitalRef} className="min-h-[120vh] flex flex-col justify-center px-8 py-20">
         <motion.h3
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
