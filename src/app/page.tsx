@@ -5,6 +5,7 @@
 import Image from "next/image";
 import { useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import HorizontalScrollSection from '@/components/HorizontalScrollSection'; // Add this import
 
 const interests = {
   spaceAndCreation: [
@@ -238,7 +239,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      
+
     </div>
   );
 }
