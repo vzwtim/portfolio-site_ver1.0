@@ -175,7 +175,7 @@ export default function InterestsSection() {
       style={current.style}
     >
       <motion.svg
-        className="absolute inset-0 w-full h-full pointer-events-none -z-10"
+        className="absolute inset-0 w-full h-full pointer-events-none"
         viewBox="0 0 1000 800"
         preserveAspectRatio="none"
       >
@@ -190,7 +190,10 @@ export default function InterestsSection() {
       </motion.svg>
 
       {/* Space and Creation */}
-      <section ref={spaceRef} className="max-w-6xl mx-auto py-32 px-8 md:px-24">
+      <section
+        ref={spaceRef}
+        className="relative z-10 max-w-6xl mx-auto py-32 px-8 md:px-24"
+      >
         <motion.h3
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -205,7 +208,7 @@ export default function InterestsSection() {
       </section>
 
       {/* Culture and Exploration */}
-      <section ref={cultureRef} className="py-32 px-8">
+      <section ref={cultureRef} className="relative z-10 py-32 px-8">
         <motion.h3
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -220,7 +223,7 @@ export default function InterestsSection() {
       </section>
 
       {/* Digital */}
-      <section ref={digitalRef} className="py-32 px-8">
+      <section ref={digitalRef} className="relative z-10 py-32 px-8">
         <motion.h3
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
