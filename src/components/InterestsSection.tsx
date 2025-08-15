@@ -315,7 +315,7 @@ export default function InterestsSection() {
       </section>
 
       {/* Digital */}
-      <section ref={digitalRef} className="min-h-screen w-full flex flex-col overflow-hidden px-4 py-8">
+      <section ref={digitalRef} className="min-h-[150vh] w-full flex flex-col overflow-hidden px-4 py-8">
         <motion.h3
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
