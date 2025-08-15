@@ -109,8 +109,8 @@ export default function InterestsSection() {
   const cultureInView = useInView(cultureRef, { amount: 0.6 });
   const digitalInView = useInView(digitalRef, { amount: 0.6 });
 
-  const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start end', 'end start'] });
-  const pathLength = useTransform(scrollYProgress, [0, 1], [0, 1]);
+const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start end', 'end start'] });
+const pathLength = useTransform(scrollYProgress, [0, 0.8], [0, 1]);
 
   useEffect(() => {
     if (spaceInView) {
@@ -154,13 +154,13 @@ export default function InterestsSection() {
             className={`md:w-1/2 flex flex-col ${index % 2 !== 0 ? 'md:items-end md:text-right' : ''}`}
           >
             <h4
-              className="text-4xl md:text-5xl font-semibold mb-6 text-black"
+              className="text-4xl md:text-5xl font-semibold mb-6"
               style={{ fontFamily: '"Shippori Mincho", serif' }}
             >
               {interest.title}
             </h4>
             <p
-              className="text-xl md:text-2xl leading-relaxed text-black"
+              className="text-xl md:text-2xl leading-relaxed"
               style={{ fontFamily: '"Shippori Mincho", serif' }}
             >
               {interest.description}
@@ -193,13 +193,13 @@ export default function InterestsSection() {
             />
           </div>
           <h4
-            className="text-2xl font-semibold mb-2 text-black"
+            className="text-2xl font-semibold mb-2"
             style={{ fontFamily: '"Shippori Mincho", serif' }}
           >
             {interest.title}
           </h4>
           <p
-            className="text-base opacity-80 leading-relaxed text-black"
+            className="text-base opacity-80 leading-relaxed"
             style={{ fontFamily: '"Shippori Mincho", serif' }}
           >
             {interest.description}
@@ -233,14 +233,14 @@ export default function InterestsSection() {
       {/* Space & Creation */}
       <section
         ref={spaceRef}
-        className="relative z-10 max-w-6xl mx-auto py-32 px-8 md:px-24"
+        className="relative z-10 max-w-6xl mx-auto py-32 px-8 md:px-24 text-black"
       >
         <motion.h3
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-6xl md:text-8xl font-bold mb-16 text-center text-black"
+          className="text-6xl md:text-8xl font-bold mb-16 text-center"
           style={{ fontFamily: '"Shippori Mincho", serif' }}
         >
           Space & Creation
@@ -249,13 +249,13 @@ export default function InterestsSection() {
       </section>
 
       {/* Culture & Exploration */}
-      <section ref={cultureRef} className="relative z-10 py-32 px-8">
+      <section ref={cultureRef} className="relative z-10 py-32 px-8 text-black">
         <motion.h3
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-6xl md:text-8xl font-bold mb-16 text-center text-black"
+          className="text-6xl md:text-8xl font-bold mb-16 text-center"
           style={{ fontFamily: '"Shippori Mincho", serif' }}
         >
           Culture & Exploration
@@ -264,13 +264,13 @@ export default function InterestsSection() {
       </section>
 
       {/* Digital */}
-      <section ref={digitalRef} className="relative z-10 py-32 px-8">
+      <section ref={digitalRef} className="relative z-10 py-32 px-8 text-[#008877]">
         <motion.h3
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-6xl md:text-8xl font-bold mb-16 text-center text-black"
+          className="text-6xl md:text-8xl font-bold mb-16 text-center"
           style={{ fontFamily: '"Shippori Mincho", serif' }}
         >
           Digital
