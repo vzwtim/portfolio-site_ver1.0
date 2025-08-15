@@ -212,7 +212,7 @@ const pathLength = useTransform(scrollYProgress, [0, 1], [0, 1]);
   return (
     <div
       ref={containerRef}
-      className={`relative overflow-hidden transition-colors duration-700 ease-out ${current.className}`}
+      className={`relative overflow-x-hidden transition-colors duration-700 ease-out ${current.className}`}
       style={current.style}
     >
       <motion.svg
@@ -221,7 +221,7 @@ const pathLength = useTransform(scrollYProgress, [0, 1], [0, 1]);
         preserveAspectRatio="none"
       >
         <motion.path
-          d="M500 0 C200 400 800 800 500 1200 S800 1600 500 2000"
+          d="M500 100 C200 500 800 900 500 1300 S800 1700 500 2100"
           fill="none"
           stroke="#008877"
           strokeWidth="24"
