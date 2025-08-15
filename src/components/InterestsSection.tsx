@@ -195,27 +195,27 @@ export default function InterestsSection() {
 
   const renderDigitalGrid = (items: typeof interests.digital) => {
     const layout: { key: string; className: string; interest?: typeof items[number] }[] = [
-      { key: 'item-0', className: 'col-start-1 col-span-3 row-start-1 row-span-2', interest: items[0] },
-      { key: 'item-1', className: 'col-start-4 col-span-3 row-start-1 row-span-2', interest: items[1] },
-      { key: 'item-2', className: 'col-start-2 col-span-4 row-start-3 row-span-2', interest: items[2] },
-      { key: 'ph1', className: 'relative overflow-hidden col-start-1 col-span-1 row-start-3 row-span-2' },
-      { key: 'ph2', className: 'relative overflow-hidden col-start-6 col-span-1 row-start-3 row-span-2' },
-      { key: 'ph3', className: 'relative overflow-hidden col-start-1 col-span-1 row-start-5 row-span-1' },
-      { key: 'ph4', className: 'relative overflow-hidden col-start-2 col-span-1 row-start-5 row-span-1' },
-      { key: 'ph5', className: 'relative overflow-hidden col-start-3 col-span-1 row-start-5 row-span-1' },
-      { key: 'ph6', className: 'relative overflow-hidden col-start-4 col-span-1 row-start-5 row-span-1' },
-      { key: 'ph7', className: 'relative overflow-hidden col-start-5 col-span-1 row-start-5 row-span-1' },
-      { key: 'ph8', className: 'relative overflow-hidden col-start-6 col-span-1 row-start-5 row-span-1' },
+      { key: 'item-0', className: 'col-start-1 col-span-6 row-start-1 row-span-2', interest: items[0] },
+      { key: 'item-1', className: 'col-start-7 col-span-6 row-start-1 row-span-2', interest: items[1] },
+      { key: 'item-2', className: 'col-start-3 col-span-8 row-start-3 row-span-2', interest: items[2] },
+      { key: 'ph1', className: 'relative overflow-hidden col-start-1 col-span-2 row-start-3 row-span-2' },
+      { key: 'ph2', className: 'relative overflow-hidden col-start-11 col-span-2 row-start-3 row-span-2' },
+      { key: 'ph3', className: 'relative overflow-hidden col-start-1 col-span-2 row-start-5 row-span-1' },
+      { key: 'ph4', className: 'relative overflow-hidden col-start-3 col-span-2 row-start-5 row-span-1' },
+      { key: 'ph5', className: 'relative overflow-hidden col-start-5 col-span-2 row-start-5 row-span-1' },
+      { key: 'ph6', className: 'relative overflow-hidden col-start-7 col-span-2 row-start-5 row-span-1' },
+      { key: 'ph7', className: 'relative overflow-hidden col-start-9 col-span-2 row-start-5 row-span-1' },
+      { key: 'ph8', className: 'relative overflow-hidden col-start-11 col-span-2 row-start-5 row-span-1' },
     ];
     return (
-      <div className="relative w-full h-full">
+      <div className="relative w-full h-full p-2 md:p-4">
         <TypingCodeBackground />
-        <div className="relative z-10 grid grid-cols-6 grid-rows-5 gap-1 w-full h-full">
+        <div className="relative z-10 grid grid-cols-12 grid-rows-5 gap-2 w-full h-full">
           {layout.map((block) =>
             block.interest ? (
               <motion.div
                 key={block.key}
-                className={`group cursor-pointer ${block.className}`}
+                className={`group cursor-pointer relative overflow-hidden ${block.className}`}
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -223,37 +223,37 @@ export default function InterestsSection() {
                 onMouseEnter={() => setHoveredImage(block.interest!.imageUrl)}
                 onMouseLeave={() => setHoveredImage(null)}
               >
-                <div className="relative w-full h-full overflow-hidden">
-                  <Image
-                    src={block.interest.imageUrl}
-                    alt={block.interest.title}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-110"
-                    sizes="(max-width:768px)100vw,(max-width:1024px)50vw,33vw"
-                  />
+                <Image
+                  src={block.interest.imageUrl}
+                  alt={block.interest.title}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  sizes="(max-width:768px)100vw,(max-width:1024px)50vw,33vw"
+                />
+                <div className="absolute inset-0 flex flex-col justify-end bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity p-2">
+                  <h4
+                    className="text-sm md:text-base font-semibold text-white"
+                    style={{ fontFamily: '"Shippori Mincho", serif' }}
+                  >
+                    {block.interest.title}
+                  </h4>
+                  <p
+                    className="text-xs md:text-sm text-white opacity-80 leading-relaxed"
+                    style={{ fontFamily: '"Shippori Mincho", serif' }}
+                  >
+                    {block.interest.description}
+                  </p>
                 </div>
-                <h4
-                  className="text-lg font-semibold mt-4 mb-2"
-                  style={{ fontFamily: '"Shippori Mincho", serif' }}
-                >
-                  {block.interest.title}
-                </h4>
-                <p
-                  className="text-sm opacity-80 leading-relaxed"
-                  style={{ fontFamily: '"Shippori Mincho", serif' }}
-                >
-                  {block.interest.description}
-                </p>
               </motion.div>
             ) : (
-              <div key={block.key} className={block.className}>
+              <div key={block.key} className={`${block.className}`}>
                 {hoveredImage && (
                   <Image
                     src={hoveredImage}
                     alt="preview"
                     fill
                     className="object-cover opacity-60"
-                    sizes="16vw"
+                    sizes="8vw"
                   />
                 )}
               </div>
@@ -315,7 +315,7 @@ export default function InterestsSection() {
       </section>
 
       {/* Digital */}
-      <section ref={digitalRef} className="h-screen w-full flex flex-col overflow-hidden">
+      <section ref={digitalRef} className="min-h-screen w-full flex flex-col overflow-hidden px-4 py-8">
         <motion.h3
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
