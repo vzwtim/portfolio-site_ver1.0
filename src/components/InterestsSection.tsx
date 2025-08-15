@@ -122,11 +122,28 @@ export default function InterestsSection() {
   const cultureInView = useInView(cultureRef, { amount: 0.6 });
   const digitalInView = useInView(digitalRef, { amount: 0.6 });
 
-const { scrollYProgress } = useScroll({
-  target: containerRef,
-  offset: ['start end', 'end end'],
-});
-const pathLength = useTransform(scrollYProgress, [0, 1], [0, 1]);
+  const { scrollY } = useScroll();
+  const [range, setRange] = useState({ start: 0, end: 0 });
+
+  useEffect(() => {
+    const calcRange = () => {
+      if (!containerRef.current) return;
+      const rect = containerRef.current.getBoundingClientRect();
+      const scrollTop = window.scrollY || window.pageYOffset;
+      const start = rect.top + scrollTop - window.innerHeight;
+      const end = rect.bottom + scrollTop - window.innerHeight;
+      setRange({ start, end });
+    };
+    calcRange();
+    window.addEventListener('resize', calcRange);
+    return () => window.removeEventListener('resize', calcRange);
+  }, []);
+
+  const pathLength = useTransform(scrollY, (y) => {
+    if (y <= range.start) return 0;
+    if (y >= range.end) return 1;
+    return (y - range.start) / (range.end - range.start);
+  });
 
   useEffect(() => {
     if (spaceInView) {
