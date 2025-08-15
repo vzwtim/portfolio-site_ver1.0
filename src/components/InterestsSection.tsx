@@ -75,7 +75,6 @@ export default function InterestsSection() {
 
   const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start end', 'end start'] });
   const pathLength = useTransform(scrollYProgress, [0, 1], [0, 1]);
-  const waveX = useTransform(scrollYProgress, [0, 1], [-200, 200]);
 
   useEffect(() => {
     if (spaceInView) {
@@ -176,16 +175,16 @@ export default function InterestsSection() {
     >
       <motion.svg
         className="absolute inset-0 w-full h-full pointer-events-none"
-        viewBox="0 0 1000 800"
+        viewBox="0 0 1000 3000"
         preserveAspectRatio="none"
       >
         <motion.path
-          d="M0 500 C200 200 400 800 600 500 S800 200 1000 500"
+          d="M500 0 C200 400 800 800 500 1200 S800 2000 500 3000"
           fill="none"
           stroke="#008877"
           strokeWidth="8"
           strokeLinecap="round"
-          style={{ pathLength, x: waveX }}
+          style={{ pathLength }}
         />
       </motion.svg>
 
