@@ -41,7 +41,8 @@ type ThemeKey = 'spaceAndCreation' | 'cultureAndExploration' | 'digital';
 
 const themes: Record<ThemeKey, { className: string; style?: React.CSSProperties }> = {
   spaceAndCreation: {
-    className: 'bg-white text-black',
+    className: 'text-black',
+    style: { backgroundColor: '#f0fff8' },
   },
   cultureAndExploration: {
     className: 'text-red-900',
@@ -74,6 +75,7 @@ export default function InterestsSection() {
 
   const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start end', 'end start'] });
   const pathLength = useTransform(scrollYProgress, [0, 1], [0, 1]);
+  const waveX = useTransform(scrollYProgress, [0, 1], [-200, 200]);
 
   useEffect(() => {
     if (spaceInView) {
@@ -88,30 +90,44 @@ export default function InterestsSection() {
   const current = themes[theme];
 
   const renderAlternatingCards = (items: typeof interests.spaceAndCreation) => (
-    <div className="flex flex-col gap-32">
+    <div className="flex flex-col gap-40">
       {items.map((interest, index) => (
         <motion.div
           key={interest.title}
-          className={`flex flex-col md:flex-row items-center gap-16 ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}
+          className={`flex flex-col md:flex-row items-center md:items-start gap-12 md:gap-24 ${
+            index % 2 !== 0 ? 'md:flex-row-reverse' : ''
+          }`}
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <div className="w-full md:w-1/2 flex justify-center p-4">
+          <div
+            className={`w-full md:w-1/2 flex justify-center p-4 ${
+              index % 2 !== 0 ? 'md:justify-end' : 'md:justify-start'
+            }`}
+          >
             <Image
               src={interest.imageUrl}
               alt={interest.title}
-              width={600}
-              height={400}
-              className="w-full max-w-md h-auto object-contain rounded-lg"
+              width={700}
+              height={500}
+              className="w-full max-w-xl h-auto object-cover rounded-xl"
             />
           </div>
-          <div className="md:w-1/2">
-            <h4 className="text-2xl font-semibold mb-4 text-black" style={{ fontFamily: '"Shippori Mincho", serif' }}>
+          <div
+            className={`md:w-1/2 flex flex-col ${index % 2 !== 0 ? 'md:items-end md:text-right' : ''}`}
+          >
+            <h4
+              className="text-3xl md:text-4xl font-semibold mb-6 text-black"
+              style={{ fontFamily: '"Shippori Mincho", serif' }}
+            >
               {interest.title}
             </h4>
-            <p className="leading-relaxed text-black" style={{ fontFamily: '"Shippori Mincho", serif' }}>
+            <p
+              className="text-lg md:text-xl leading-relaxed text-black"
+              style={{ fontFamily: '"Shippori Mincho", serif' }}
+            >
               {interest.description}
             </p>
           </div>
@@ -160,21 +176,21 @@ export default function InterestsSection() {
     >
       <motion.svg
         className="absolute inset-0 w-full h-full pointer-events-none -z-10"
-        viewBox="0 0 1000 1000"
+        viewBox="0 0 1000 800"
         preserveAspectRatio="none"
       >
         <motion.path
-          d="M0 500 Q500 0 1000 500"
+          d="M0 500 C200 200 400 800 600 500 S800 200 1000 500"
           fill="none"
           stroke="#008877"
           strokeWidth="8"
           strokeLinecap="round"
-          style={{ pathLength }}
+          style={{ pathLength, x: waveX }}
         />
       </motion.svg>
 
       {/* Space and Creation */}
-      <section ref={spaceRef} className="py-32 px-8 md:px-24">
+      <section ref={spaceRef} className="max-w-6xl mx-auto py-32 px-8 md:px-24">
         <motion.h3
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
