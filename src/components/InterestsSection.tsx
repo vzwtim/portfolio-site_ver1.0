@@ -194,72 +194,71 @@ export default function InterestsSection() {
   );
 
   const renderDigitalGrid = (items: typeof interests.digital) => {
-    const placeholders = [
-      { key: 'ph1', className: 'col-span-1 row-span-1' },
-      { key: 'ph2', className: 'col-span-1 row-span-1' },
-      { key: 'ph3', className: 'col-span-1 row-span-1' },
-      { key: 'ph4', className: 'col-span-1 row-span-1' },
-      { key: 'ph5', className: 'col-span-1 row-span-1' },
-      { key: 'ph6', className: 'col-span-1 row-span-1' },
-      { key: 'ph7', className: 'col-span-2 row-span-1' },
-      { key: 'ph8', className: 'col-span-2 row-span-1' },
-      { key: 'ph9', className: 'col-span-2 row-span-2' },
-      { key: 'ph10', className: 'col-span-2 row-span-2' },
+    const layout: { key: string; className: string; interest?: typeof items[number] }[] = [
+      { key: 'item-0', className: 'col-span-2 row-span-2 md:col-start-1 md:col-span-3 md:row-start-1 md:row-span-2', interest: items[0] },
+      { key: 'item-1', className: 'col-span-2 row-span-2 md:col-start-4 md:col-span-3 md:row-start-1 md:row-span-1', interest: items[1] },
+      { key: 'item-2', className: 'col-span-2 row-span-2 md:col-start-2 md:col-span-4 md:row-start-3 md:row-span-2', interest: items[2] },
+      { key: 'ph1', className: 'hidden md:block relative overflow-hidden md:col-start-4 md:col-span-3 md:row-start-2 md:row-span-1' },
+      { key: 'ph2', className: 'hidden md:block relative overflow-hidden md:col-start-1 md:col-span-1 md:row-start-3 md:row-span-1' },
+      { key: 'ph3', className: 'hidden md:block relative overflow-hidden md:col-start-6 md:col-span-1 md:row-start-2 md:row-span-2' },
+      { key: 'ph4', className: 'hidden md:block relative overflow-hidden md:col-start-1 md:col-span-1 md:row-start-4 md:row-span-1' },
+      { key: 'ph5', className: 'hidden md:block relative overflow-hidden md:col-start-6 md:col-span-1 md:row-start-4 md:row-span-1' },
+      { key: 'ph6', className: 'hidden md:block relative overflow-hidden md:col-start-5 md:col-span-2 md:row-start-3 md:row-span-2' },
+      { key: 'ph7', className: 'hidden md:block relative overflow-hidden md:col-start-2 md:col-span-2 md:row-start-5 md:row-span-1' },
+      { key: 'ph8', className: 'hidden md:block relative overflow-hidden md:col-start-4 md:col-span-3 md:row-start-5 md:row-span-1' },
     ];
     return (
       <div className="relative">
         <TypingCodeBackground />
         <div className="grid grid-cols-2 md:grid-cols-6 auto-rows-[150px] gap-4 relative z-10">
-          {items.map((interest) => (
-            <motion.div
-              key={interest.title}
-              className="group cursor-pointer col-span-2 row-span-2"
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              onMouseEnter={() => setHoveredImage(interest.imageUrl)}
-              onMouseLeave={() => setHoveredImage(null)}
-            >
-              <div className="relative w-full h-full overflow-hidden">
-                <Image
-                  src={interest.imageUrl}
-                  alt={interest.title}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-110"
-                  sizes="(max-width:768px)100vw,(max-width:1024px)50vw,33vw"
-                />
+          {layout.map((block) =>
+            block.interest ? (
+              <motion.div
+                key={block.key}
+                className={`group cursor-pointer ${block.className}`}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                onMouseEnter={() => setHoveredImage(block.interest!.imageUrl)}
+                onMouseLeave={() => setHoveredImage(null)}
+              >
+                <div className="relative w-full h-full overflow-hidden">
+                  <Image
+                    src={block.interest.imageUrl}
+                    alt={block.interest.title}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    sizes="(max-width:768px)100vw,(max-width:1024px)50vw,33vw"
+                  />
+                </div>
+                <h4
+                  className="text-lg font-semibold mt-4 mb-2"
+                  style={{ fontFamily: '"Shippori Mincho", serif' }}
+                >
+                  {block.interest.title}
+                </h4>
+                <p
+                  className="text-sm opacity-80 leading-relaxed"
+                  style={{ fontFamily: '"Shippori Mincho", serif' }}
+                >
+                  {block.interest.description}
+                </p>
+              </motion.div>
+            ) : (
+              <div key={block.key} className={block.className}>
+                {hoveredImage && (
+                  <Image
+                    src={hoveredImage}
+                    alt="preview"
+                    fill
+                    className="object-cover opacity-60"
+                    sizes="16vw"
+                  />
+                )}
               </div>
-              <h4
-                className="text-lg font-semibold mt-4 mb-2"
-                style={{ fontFamily: '"Shippori Mincho", serif' }}
-              >
-                {interest.title}
-              </h4>
-              <p
-                className="text-sm opacity-80 leading-relaxed"
-                style={{ fontFamily: '"Shippori Mincho", serif' }}
-              >
-                {interest.description}
-              </p>
-            </motion.div>
-          ))}
-          {placeholders.map((ph) => (
-            <div
-              key={ph.key}
-              className={`hidden md:block relative overflow-hidden ${ph.className}`}
-            >
-              {hoveredImage && (
-                <Image
-                  src={hoveredImage}
-                  alt="preview"
-                  fill
-                  className="object-cover opacity-60"
-                  sizes="16vw"
-                />
-              )}
-            </div>
-          ))}
+            )
+          )}
         </div>
       </div>
     );
