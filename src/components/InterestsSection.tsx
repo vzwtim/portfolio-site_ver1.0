@@ -46,9 +46,10 @@ const themes: Record<ThemeKey, { className: string; style?: React.CSSProperties 
   cultureAndExploration: {
     className: 'text-red-900',
     style: {
-      backgroundColor: '#ffe4e6',
-      backgroundImage:
-        'repeating-linear-gradient(45deg,#ffffff 0,#ffffff 25px,#fecaca 25px,#fecaca 50px)',
+      backgroundColor: '#ffffff',
+      backgroundImage: 'url("/images/asanoha.svg")',
+      backgroundSize: '40px 40px',
+      backgroundRepeat: 'repeat',
     },
   },
   digital: {
@@ -153,6 +154,41 @@ export default function InterestsSection() {
     </div>
   );
 
+  const renderScatteredCards = (items: typeof interests.spaceAndCreation) => (
+    <div className="grid grid-cols-2 md:grid-cols-3 gap-10 md:gap-16 justify-items-center">
+      {items.map((interest, index) => {
+        const offsets = ['md:mt-0', 'md:mt-16', 'md:-mt-8', 'md:mt-24', 'md:-mt-4'];
+        return (
+          <motion.div
+            key={interest.title}
+            className={`w-64 md:w-56 group cursor-pointer ${offsets[index] ?? ''}`}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            whileHover={{ scale: 1.05 }}
+          >
+            <div className="relative w-full aspect-square mb-4 overflow-hidden rounded-full shadow-lg transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-2xl">
+              <Image
+                src={interest.imageUrl}
+                alt={interest.title}
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-110"
+                sizes="(max-width:768px)100vw,(max-width:1024px)50vw,25vw"
+              />
+            </div>
+            <h4 className="text-lg font-semibold mb-2" style={{ fontFamily: '"Shippori Mincho", serif' }}>
+              {interest.title}
+            </h4>
+            <p className="text-sm opacity-80 leading-relaxed" style={{ fontFamily: '"Shippori Mincho", serif' }}>
+              {interest.description}
+            </p>
+          </motion.div>
+        );
+      })}
+    </div>
+  );
+
   return (
     <div
       ref={containerRef}
@@ -189,7 +225,7 @@ export default function InterestsSection() {
       </section>
 
       {/* Culture and Exploration */}
-      <section ref={cultureRef} className="min-h-screen flex flex-col justify-center px-8">
+      <section ref={cultureRef} className="min-h-[140vh] flex flex-col justify-center px-8 py-40">
         <motion.h3
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -200,7 +236,7 @@ export default function InterestsSection() {
         >
           文化と探求
         </motion.h3>
-        {renderGridCards(interests.cultureAndExploration)}
+        {renderScatteredCards(interests.cultureAndExploration)}
       </section>
 
       {/* Digital */}
