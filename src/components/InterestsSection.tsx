@@ -130,7 +130,7 @@ export default function InterestsSection() {
           className="text-5xl md:text-7xl font-bold mb-16 text-center"
           style={{ fontFamily: '"Shippori Mincho", serif' }}
         >
-          空間と創造
+          興味・関心
         </motion.h3>
         {renderCards(interests.spaceAndCreation)}
       </section>
