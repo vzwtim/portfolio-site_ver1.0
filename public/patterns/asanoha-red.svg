@@ -1,9 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
-  <g fill="none" stroke="#bb5555" stroke-width="0.5" stroke-opacity="0.3">
-    <!-- outer hexagon -->
-    <path d="M10 0L20 5L20 15L10 20L0 15L0 5Z"/>
-    <!-- star lines -->
-    <path d="M10 0L10 20M0 5L20 5M0 15L20 15"/>
-    <path d="M0 5L10 10M20 5L10 10M0 15L10 10M20 15L10 10"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
+  <g fill="none" stroke="#bb5555" stroke-width="1.5">
+    <polygon points="20,0 30,10 30,30 20,40 10,30 10,10"/>
+    <polygon points="20,0 30,30 10,30"/>
+    <polygon points="30,10 20,40 10,10"/>
   </g>
 </svg>
