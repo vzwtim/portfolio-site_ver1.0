@@ -38,7 +38,7 @@ export default function Header({ textColor }: HeaderProps) {
         </Link>
         
         {/* Right side - Navigation */}
-        <nav>
+        <nav className="pr-8">
           <ul className="flex flex-row items-center space-x-6 md:space-x-8">
             <li>
               <Link href="/about">
