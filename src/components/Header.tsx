@@ -15,8 +15,10 @@ export default function Header({ textColor }: HeaderProps) {
   const hoverTextColorClass = 'hover:text-highlight';
 
   return (
-    <header className={`fixed top-0 left-0 z-50 p-6 md:p-8 transition-colors duration-300 ${textColor}`}
-      style={{ width: '100vw', paddingRight: `${scrollbarWidth}px` }}>
+    <header
+      className={`fixed top-0 left-0 z-50 py-6 px-8 md:py-8 md:px-12 transition-colors duration-300 ${textColor}`}
+      style={{ width: '100vw', paddingRight: `${scrollbarWidth}px` }}
+    >
       <div className="flex justify-between items-center max-w-7xl mx-auto">
         {/* Left side - Logo */}
         <Link href="/">
