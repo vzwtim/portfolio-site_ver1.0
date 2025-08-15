@@ -46,7 +46,6 @@ const themes: Record<ThemeKey, { className: string; style?: React.CSSProperties 
   cultureAndExploration: {
     className: 'text-red-900',
     style: {
-      backgroundColor: '#ffe4e6',
       backgroundImage:
         `
         linear-gradient(30deg, #bb5555 12%, transparent 12.5%, transparent 87%, #bb5555 87.5%),
@@ -174,7 +173,9 @@ export default function InterestsSection() {
           transition={{ duration: 0.6 }}
           whileHover={{ scale: 1.05 }}
         >
-          <div className="relative h-64 mb-4 overflow-hidden rounded-lg">
+          <div
+            className="relative w-full h-64 mb-4 overflow-hidden rounded-full shadow-lg transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-2xl"
+          >
             <Image
               src={interest.imageUrl}
               alt={interest.title}
@@ -230,7 +231,7 @@ export default function InterestsSection() {
       </section>
 
       {/* Culture and Exploration */}
-      <section ref={cultureRef} className="min-h-screen flex flex-col justify-center px-8">
+      <section ref={cultureRef} className="min-h-[120vh] flex flex-col justify-center px-8 py-32">
         <motion.h3
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
