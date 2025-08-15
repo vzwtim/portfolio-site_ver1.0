@@ -169,6 +169,7 @@ export default function InterestsSection() {
           strokeWidth="80"
           strokeLinecap="round"
           style={{ pathLength }}
+
         />
       </motion.svg>
 
