@@ -66,7 +66,7 @@ const interests = {
       imageUrl: '/images/web_pavillion.PNG',
     },
     {
-      title: 'Data Analysis',
+      title: 'データ分析',
       description: '数字の裏に隠された意味を読み解き、未来を予測する。',
       imageUrl: '/images/ai_girl_1.png',
     },
@@ -77,31 +77,68 @@ type ThemeKey = 'spaceAndCreation' | 'cultureAndExploration' | 'digital';
 
 const themes: Record<ThemeKey, { className: string; style?: React.CSSProperties }> = {
   spaceAndCreation: {
-   className: 'text-black',
-    style: { backgroundColor: '#f0fff8' },
-
+    className: 'bg-white text-gray-900',
   },
   cultureAndExploration: {
-    className: 'text-black',
+    className: 'text-red-900',
     style: {
-      backgroundColor: '#ffffff',
-      backgroundImage: 'url("/images/asanoha.svg")',
-      backgroundSize: '40px 40px',
-      backgroundRepeat: 'repeat',
+      backgroundColor: '#ffe4e6',
+      backgroundImage:
+        'repeating-linear-gradient(45deg,#ffffff 0,#ffffff 25px,#fecaca 25px,#fecaca 50px)',
     },
   },
   digital: {
-    className: 'text-black',
+    className: 'text-[#008877]',
     style: {
       backgroundColor: '#0a0a0a',
-      backgroundImage: 'radial-gradient(#22c55e40 1px, transparent 1px)',
+      backgroundImage: 'radial-gradient(#00887740 1px, transparent 1px)',
       backgroundSize: '20px 20px',
     },
   },
 };
 
+const codeSnippets = [
+  'const add = (a, b) => a + b;',
+  'for (let i = 0; i < 10; i++) {',
+  "  console.log(i);",
+  '}',
+  'async function fetchData() {',
+  "  return await fetch('/api');",
+  '}',
+];
+
+const TypingCodeBackground = () => {
+  const [displayed, setDisplayed] = useState<string[]>(Array(codeSnippets.length).fill(''));
+
+  useEffect(() => {
+    const timers = codeSnippets.map((snippet, idx) => {
+      let i = 0;
+      return setInterval(() => {
+        i = (i + 1) % (snippet.length + 1);
+        setDisplayed((prev) => {
+          const next = [...prev];
+          next[idx] = snippet.slice(0, i);
+          return next;
+        });
+      }, 80);
+    });
+    return () => timers.forEach(clearInterval);
+  }, []);
+
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20 flex flex-col">
+      {displayed.map((line, i) => (
+        <pre key={i} className="text-[#008877] font-mono text-xs md:text-sm">
+          {line}
+        </pre>
+      ))}
+    </div>
+  );
+};
+
 export default function InterestsSection() {
   const [theme, setTheme] = useState<ThemeKey>('spaceAndCreation');
+  const [hoveredImage, setHoveredImage] = useState<string | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const spaceRef = useRef(null);
   const cultureRef = useRef(null);
@@ -111,8 +148,8 @@ export default function InterestsSection() {
   const cultureInView = useInView(cultureRef, { amount: 0.6 });
   const digitalInView = useInView(digitalRef, { amount: 0.6 });
 
-const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start end', 'end start'] });
-const pathLength = useTransform(scrollYProgress, [0, 0.8], [0, 1]);
+  const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start end', 'end start'] });
+  const lineX = useTransform(scrollYProgress, [0, 1], ['-20%', '20%']);
 
   useEffect(() => {
     if (spaceInView) {
@@ -127,45 +164,31 @@ const pathLength = useTransform(scrollYProgress, [0, 0.8], [0, 1]);
   const current = themes[theme];
 
   const renderAlternatingCards = (items: typeof interests.spaceAndCreation) => (
-    <div className="flex flex-col gap-40">
+    <div className="flex flex-col gap-24">
       {items.map((interest, index) => (
         <motion.div
           key={interest.title}
-          className={`flex flex-col md:flex-row items-center md:items-start gap-12 md:gap-24 ${
-            index % 2 !== 0 ? 'md:flex-row-reverse' : ''
-          }`}
-
+          className={`flex flex-col md:flex-row items-center gap-8 ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <div
-            className={`w-full md:w-1/2 flex justify-center p-8 ${
-              index % 2 !== 0 ? 'md:justify-end' : 'md:justify-start'
-            }`}
-          >
+          <div className="relative w-full md:w-1/2 h-64 overflow-hidden">
             <Image
               src={interest.imageUrl}
               alt={interest.title}
-              width={1000}
-              height={800}
-              className="w-full max-w-2xl h-auto object-cover rounded-xl"
+              fill
+              className="object-cover"
+              sizes="(max-width:768px)100vw,(max-width:1024px)50vw,50vw"
             />
+            <div className="absolute inset-0 bg-[#008877] opacity-60 mix-blend-multiply" />
           </div>
-          <div
-            className={`md:w-1/2 flex flex-col ${index % 2 !== 0 ? 'md:items-end md:text-right' : ''}`}
-          >
-            <h4
-              className="text-4xl md:text-5xl font-semibold mb-6"
-              style={{ fontFamily: '"Shippori Mincho", serif' }}
-            >
+          <div className="md:w-1/2">
+            <h4 className="text-2xl font-semibold mb-4" style={{ fontFamily: '"Shippori Mincho", serif' }}>
               {interest.title}
             </h4>
-            <p
-              className="text-xl md:text-2xl leading-relaxed"
-              style={{ fontFamily: '"Shippori Mincho", serif' }}
-            >
+            <p className="opacity-80 leading-relaxed" style={{ fontFamily: '"Shippori Mincho", serif' }}>
               {interest.description}
             </p>
           </div>
@@ -186,7 +209,7 @@ const pathLength = useTransform(scrollYProgress, [0, 0.8], [0, 1]);
           transition={{ duration: 0.6 }}
           whileHover={{ scale: 1.05 }}
         >
-          <div className="relative h-80 mb-4 overflow-hidden rounded-lg">
+          <div className="relative h-64 mb-4 overflow-hidden">
             <Image
               src={interest.imageUrl}
               alt={interest.title}
@@ -195,16 +218,10 @@ const pathLength = useTransform(scrollYProgress, [0, 0.8], [0, 1]);
               sizes="(max-width:768px)100vw,(max-width:1024px)50vw,25vw"
             />
           </div>
-          <h4
-            className="text-2xl font-semibold mb-2"
-            style={{ fontFamily: '"Shippori Mincho", serif' }}
-          >
+          <h4 className="text-lg font-semibold mb-2" style={{ fontFamily: '"Shippori Mincho", serif' }}>
             {interest.title}
           </h4>
-          <p
-            className="text-base opacity-80 leading-relaxed"
-            style={{ fontFamily: '"Shippori Mincho", serif' }}
-          >
+          <p className="text-sm opacity-80 leading-relaxed" style={{ fontFamily: '"Shippori Mincho", serif' }}>
             {interest.description}
           </p>
         </motion.div>
@@ -212,40 +229,83 @@ const pathLength = useTransform(scrollYProgress, [0, 0.8], [0, 1]);
     </div>
   );
 
-  const renderScatteredCards = (items: typeof interests.spaceAndCreation) => (
-    <div className="grid grid-cols-2 md:grid-cols-3 gap-10 md:gap-16 justify-items-center">
-      {items.map((interest, index) => {
-        const offsets = ['md:mt-0', 'md:mt-16', 'md:-mt-8', 'md:mt-24', 'md:-mt-4'];
-        return (
-          <motion.div
-            key={interest.title}
-            className={`w-64 md:w-56 group cursor-pointer ${offsets[index] ?? ''}`}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            whileHover={{ scale: 1.05 }}
-          >
-            <div className="relative w-full aspect-square mb-4 overflow-hidden rounded-full shadow-lg transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-2xl">
-              <Image
-                src={interest.imageUrl}
-                alt={interest.title}
-                fill
-                className="object-cover transition-transform duration-500 group-hover:scale-110"
-                sizes="(max-width:768px)100vw,(max-width:1024px)50vw,25vw"
-              />
-            </div>
-            <h4 className="text-lg font-semibold mb-2" style={{ fontFamily: '"Shippori Mincho", serif' }}>
-              {interest.title}
-            </h4>
-            <p className="text-sm opacity-80 leading-relaxed" style={{ fontFamily: '"Shippori Mincho", serif' }}>
-              {interest.description}
-            </p>
-          </motion.div>
-        );
-      })}
-    </div>
-  );
+  const renderDigitalGrid = (items: typeof interests.digital) => {
+    const layout: { key: string; className: string; interest?: typeof items[number] }[] = [
+      { key: 'item-0', className: 'col-start-1 col-span-6 row-start-1 row-span-2', interest: items[0] },
+      { key: 'item-1', className: 'col-start-5 col-span-3 row-start-3 row-span-3', interest: items[1] },
+      { key: 'item-2', className: 'col-start-10 col-span-3 row-start-1 row-span-3', interest: items[2] },
+      { key: 'ph1', className: 'relative overflow-hidden col-start-1 col-span-3 row-start-3 row-span-1' },
+      { key: 'ph2', className: 'relative overflow-hidden col-start-1 col-span-1 row-start-4 row-span-1' },
+      { key: 'ph3', className: 'relative overflow-hidden col-start-1 col-span-2 row-start-5 row-span-1' },
+      { key: 'ph4', className: 'relative overflow-hidden col-start-2 col-span-1 row-start-4 row-span-1' },
+      { key: 'ph5', className: 'relative overflow-hidden col-start-3 col-span-2 row-start-4 row-span-2' },
+      { key: 'ph6', className: 'relative overflow-hidden col-start-4 col-span-1 row-start-3 row-span-1' },
+      { key: 'ph7', className: 'relative overflow-hidden col-start-7 col-span-2 row-start-1 row-span-1' },
+      { key: 'ph8', className: 'relative overflow-hidden col-start-7 col-span-1 row-start-2 row-span-1' },
+      { key: 'ph9', className: 'relative overflow-hidden col-start-8 col-span-1 row-start-2 row-span-3' },
+      { key: 'ph10', className: 'relative overflow-hidden col-start-8 col-span-1 row-start-5 row-span-1' },
+      { key: 'ph11', className: 'relative overflow-hidden col-start-8 col-span-2 row-start-1 row-span-1' },
+      { key: 'ph12', className: 'relative overflow-hidden col-start-9 col-span-1 row-start-2 row-span-2' },
+      { key: 'ph13', className: 'relative overflow-hidden col-start-9 col-span-2 row-start-4 row-span-2' },
+      { key: 'ph14', className: 'relative overflow-hidden col-start-11 col-span-2 row-start-4 row-span-1' },
+      { key: 'ph15', className: 'relative overflow-hidden col-start-11 col-span-2 row-start-5 row-span-1' },
+    ];
+    return (
+      <div className="relative w-full h-full">
+        <TypingCodeBackground />
+        <div className="relative z-10 grid grid-cols-12 grid-rows-5 gap-1 w-full h-full">
+          {layout.map((block) =>
+            block.interest ? (
+              <motion.div
+                key={block.key}
+                className={`group cursor-pointer ${block.className}`}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                onMouseEnter={() => setHoveredImage(block.interest!.imageUrl)}
+                onMouseLeave={() => setHoveredImage(null)}
+              >
+                <div className="relative w-full h-full overflow-hidden">
+                  <Image
+                    src={block.interest.imageUrl}
+                    alt={block.interest.title}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    sizes="(max-width:768px)100vw,(max-width:1024px)50vw,33vw"
+                  />
+                </div>
+                <h4
+                  className="text-lg font-semibold mt-4 mb-2"
+                  style={{ fontFamily: '"Shippori Mincho", serif' }}
+                >
+                  {block.interest.title}
+                </h4>
+                <p
+                  className="text-sm opacity-80 leading-relaxed"
+                  style={{ fontFamily: '"Shippori Mincho", serif' }}
+                >
+                  {block.interest.description}
+                </p>
+              </motion.div>
+            ) : (
+              <div key={block.key} className={block.className}>
+                {hoveredImage && (
+                  <Image
+                    src={hoveredImage}
+                    alt="preview"
+                    fill
+                    className="object-cover opacity-60"
+                    sizes="16vw"
+                  />
+                )}
+              </div>
+            )
+          )}
+        </div>
+      </div>
+    );
+  };
 
   return (
     <div
@@ -254,66 +314,63 @@ const pathLength = useTransform(scrollYProgress, [0, 0.8], [0, 1]);
       style={current.style}
     >
       <motion.svg
-        className="absolute inset-0 w-full h-full pointer-events-none"
-        viewBox="0 0 1000 3000"
-        preserveAspectRatio="none"
+        style={{ x: lineX }}
+        className="absolute -top-32 -left-32 w-[500px] h-[500px] pointer-events-none -z-10"
+        viewBox="0 0 500 500"
       >
-        <motion.path
-          d="M500 0 C200 400 800 800 500 1200 S800 1600 500 2000"
+        <path
+          d="M0,200 Q250,0 500,200"
           fill="none"
           stroke="#008877"
-          strokeWidth="24"
+          strokeWidth="80"
           strokeLinecap="round"
-          style={{ pathLength }}
         />
       </motion.svg>
 
-      {/* Space & Creation */}
-      <section
-        ref={spaceRef}
-        className="relative z-10 max-w-6xl mx-auto py-32 px-8 md:px-24 text-black"
-      >
+      {/* Space and Creation */}
+      <section ref={spaceRef} className="min-h-screen flex flex-col justify-center px-8">
         <motion.h3
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-6xl md:text-8xl font-bold mb-16 text-center"
+          className="text-5xl md:text-7xl font-bold mb-16 text-center text-[#008877]"
           style={{ fontFamily: '"Shippori Mincho", serif' }}
         >
-          Space & Creation
+          空間と創造
         </motion.h3>
         {renderAlternatingCards(interests.spaceAndCreation)}
       </section>
 
-      {/* Culture & Exploration */}
-      <section ref={cultureRef} className="relative z-10 py-32 px-8 text-black">
+      {/* Culture and Exploration */}
+      <section ref={cultureRef} className="min-h-screen flex flex-col justify-center px-8">
         <motion.h3
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-6xl md:text-8xl font-bold mb-16 text-center"
+          className="text-5xl md:text-7xl font-bold mb-16 text-center"
           style={{ fontFamily: '"Shippori Mincho", serif' }}
         >
-          Culture & Exploration
+          文化と探求
         </motion.h3>
         {renderGridCards(interests.cultureAndExploration)}
       </section>
 
       {/* Digital */}
-      <section ref={digitalRef} className="relative z-10 py-32 px-8 text-[#008877]">
+      <section ref={digitalRef} className="h-screen w-full flex flex-col overflow-hidden">
         <motion.h3
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-6xl md:text-8xl font-bold mb-16 text-center"
+          className="text-5xl md:text-7xl font-bold mb-8 text-center text-[#008877]"
           style={{ fontFamily: '"Shippori Mincho", serif' }}
         >
-          Digital
+          でじたる
         </motion.h3>
-        {renderGridCards(interests.digital)}
+        <div className="flex-1">
+          {renderDigitalGrid(interests.digital)}
+        </div>
       </section>
     </div>
   );
