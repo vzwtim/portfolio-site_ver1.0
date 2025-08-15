@@ -47,17 +47,9 @@ const themes: Record<ThemeKey, { className: string; style?: React.CSSProperties 
     className: 'text-red-900',
     style: {
       backgroundColor: '#ffffff',
-      backgroundImage:
-        `
-        linear-gradient(30deg, #bb5555 12%, transparent 12.5%, transparent 87%, #bb5555 87.5%),
-        linear-gradient(150deg, #bb5555 12%, transparent 12.5%, transparent 87%, #bb5555 87.5%),
-        linear-gradient(30deg, #bb5555 12%, transparent 12.5%, transparent 87%, #bb5555 87.5%),
-        linear-gradient(150deg, #bb5555 12%, transparent 12.5%, transparent 87%, #bb5555 87.5%),
-        linear-gradient(60deg, #bb5555 25%, transparent 25.5%, transparent 75%, #bb5555 75.5%),
-        linear-gradient(120deg, #bb5555 25%, transparent 25.5%, transparent 75%, #bb5555 75.5%)
-        `,
-      backgroundSize: '40px 70px',
-      backgroundPosition: '0 0,0 0,20px 35px,20px 35px,0 0,0 0',
+      backgroundImage: 'url(/patterns/asanoha-red.svg)',
+      backgroundSize: '80px 80px',
+      backgroundRepeat: 'repeat',
     },
   },
   digital: {
