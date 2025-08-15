@@ -61,6 +61,45 @@ const themes: Record<ThemeKey, { className: string; style?: React.CSSProperties 
   },
 };
 
+const codeSnippets = [
+  'const add = (a, b) => a + b;',
+  'for (let i = 0; i < 10; i++) {',
+  "  console.log(i);",
+  '}',
+  'async function fetchData() {',
+  "  return await fetch('/api');",
+  '}',
+];
+
+const TypingCodeBackground = () => {
+  const [displayed, setDisplayed] = useState<string[]>(Array(codeSnippets.length).fill(''));
+
+  useEffect(() => {
+    const timers = codeSnippets.map((snippet, idx) => {
+      let i = 0;
+      return setInterval(() => {
+        i = (i + 1) % (snippet.length + 1);
+        setDisplayed((prev) => {
+          const next = [...prev];
+          next[idx] = snippet.slice(0, i);
+          return next;
+        });
+      }, 80);
+    });
+    return () => timers.forEach(clearInterval);
+  }, []);
+
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20 flex flex-col">
+      {displayed.map((line, i) => (
+        <pre key={i} className="text-[#008877] font-mono text-xs md:text-sm">
+          {line}
+        </pre>
+      ))}
+    </div>
+  );
+};
+
 export default function InterestsSection() {
   const [theme, setTheme] = useState<ThemeKey>('spaceAndCreation');
   const [hoveredImage, setHoveredImage] = useState<string | null>(null);
@@ -99,7 +138,7 @@ export default function InterestsSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <div className="relative w-full md:w-1/2 h-64 overflow-hidden rounded-lg">
+          <div className="relative w-full md:w-1/2 h-64 overflow-hidden">
             <Image
               src={interest.imageUrl}
               alt={interest.title}
@@ -134,7 +173,7 @@ export default function InterestsSection() {
           transition={{ duration: 0.6 }}
           whileHover={{ scale: 1.05 }}
         >
-          <div className="relative h-64 mb-4 overflow-hidden rounded-lg">
+          <div className="relative h-64 mb-4 overflow-hidden">
             <Image
               src={interest.imageUrl}
               alt={interest.title}
@@ -157,29 +196,15 @@ export default function InterestsSection() {
   const renderDigitalGrid = (items: typeof interests.digital) => {
     const placeholders = [
       { key: 'ph1', className: 'col-span-1 row-span-1' },
-      { key: 'ph2', className: 'col-span-1 row-span-2' },
-      { key: 'ph3', className: 'col-span-2 row-span-1' },
+      { key: 'ph2', className: 'col-span-1 row-span-1' },
+      { key: 'ph3', className: 'col-span-1 row-span-1' },
       { key: 'ph4', className: 'col-span-1 row-span-1' },
-      { key: 'ph5', className: 'col-span-1 row-span-1' },
-      { key: 'ph6', className: 'col-span-2 row-span-1' },
+      { key: 'ph5', className: 'col-span-2 row-span-2' },
     ];
-    const code = `const add = (a, b) => a + b;\nconsole.log(add(2, 3));`;
     return (
       <div className="relative">
-        <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
-          {[...Array(5)].map((_, i) => (
-            <motion.pre
-              key={i}
-              className="text-[#008877] font-mono text-xs md:text-sm"
-              initial={{ y: '100%' }}
-              animate={{ y: '-100%' }}
-              transition={{ repeat: Infinity, duration: 20, delay: i * 4, ease: 'linear' }}
-            >
-              {code}
-            </motion.pre>
-          ))}
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[120px] gap-4 relative z-10">
+        <TypingCodeBackground />
+        <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[150px] gap-4 relative z-10">
           {items.map((interest) => (
             <motion.div
               key={interest.title}
@@ -191,7 +216,7 @@ export default function InterestsSection() {
               onMouseEnter={() => setHoveredImage(interest.imageUrl)}
               onMouseLeave={() => setHoveredImage(null)}
             >
-              <div className="relative w-full h-full overflow-hidden rounded-lg">
+              <div className="relative w-full h-full overflow-hidden">
                 <Image
                   src={interest.imageUrl}
                   alt={interest.title}
@@ -217,7 +242,7 @@ export default function InterestsSection() {
           {placeholders.map((ph) => (
             <div
               key={ph.key}
-              className={`hidden md:block relative overflow-hidden rounded-lg ${ph.className}`}
+              className={`hidden md:block relative overflow-hidden ${ph.className}`}
             >
               {hoveredImage && (
                 <Image
