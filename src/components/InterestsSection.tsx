@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 
 const interests = {
@@ -41,7 +41,7 @@ type ThemeKey = 'spaceAndCreation' | 'cultureAndExploration' | 'digital';
 
 const themes: Record<ThemeKey, { className: string; style?: React.CSSProperties }> = {
   spaceAndCreation: {
-    className: 'bg-green-50 text-green-900',
+    className: 'bg-white text-black',
   },
   cultureAndExploration: {
     className: 'text-red-900',
@@ -63,6 +63,7 @@ const themes: Record<ThemeKey, { className: string; style?: React.CSSProperties 
 
 export default function InterestsSection() {
   const [theme, setTheme] = useState<ThemeKey>('spaceAndCreation');
+  const containerRef = useRef<HTMLDivElement | null>(null);
   const spaceRef = useRef(null);
   const cultureRef = useRef(null);
   const digitalRef = useRef(null);
@@ -70,6 +71,9 @@ export default function InterestsSection() {
   const spaceInView = useInView(spaceRef, { amount: 0.6 });
   const cultureInView = useInView(cultureRef, { amount: 0.6 });
   const digitalInView = useInView(digitalRef, { amount: 0.6 });
+
+  const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start end', 'end start'] });
+  const pathLength = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   useEffect(() => {
     if (spaceInView) {
@@ -83,7 +87,40 @@ export default function InterestsSection() {
 
   const current = themes[theme];
 
-  const renderCards = (items: typeof interests.spaceAndCreation) => (
+  const renderAlternatingCards = (items: typeof interests.spaceAndCreation) => (
+    <div className="flex flex-col gap-32">
+      {items.map((interest, index) => (
+        <motion.div
+          key={interest.title}
+          className={`flex flex-col md:flex-row items-center gap-16 ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="w-full md:w-1/2 flex justify-center p-4">
+            <Image
+              src={interest.imageUrl}
+              alt={interest.title}
+              width={600}
+              height={400}
+              className="w-full max-w-md h-auto object-contain rounded-lg"
+            />
+          </div>
+          <div className="md:w-1/2">
+            <h4 className="text-2xl font-semibold mb-4 text-black" style={{ fontFamily: '"Shippori Mincho", serif' }}>
+              {interest.title}
+            </h4>
+            <p className="leading-relaxed text-black" style={{ fontFamily: '"Shippori Mincho", serif' }}>
+              {interest.description}
+            </p>
+          </div>
+        </motion.div>
+      ))}
+    </div>
+  );
+
+  const renderGridCards = (items: typeof interests.spaceAndCreation) => (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
       {items.map((interest) => (
         <motion.div
@@ -117,26 +154,42 @@ export default function InterestsSection() {
 
   return (
     <div
-      className={`transition-colors duration-700 ease-out ${current.className}`}
+      ref={containerRef}
+      className={`relative overflow-hidden transition-colors duration-700 ease-out ${current.className}`}
       style={current.style}
     >
+      <motion.svg
+        className="absolute inset-0 w-full h-full pointer-events-none -z-10"
+        viewBox="0 0 1000 1000"
+        preserveAspectRatio="none"
+      >
+        <motion.path
+          d="M0 500 Q500 0 1000 500"
+          fill="none"
+          stroke="#008877"
+          strokeWidth="8"
+          strokeLinecap="round"
+          style={{ pathLength }}
+        />
+      </motion.svg>
+
       {/* Space and Creation */}
-      <section ref={spaceRef} className="min-h-screen flex flex-col justify-center px-8">
+      <section ref={spaceRef} className="py-32 px-8 md:px-24">
         <motion.h3
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-5xl md:text-7xl font-bold mb-16 text-center"
+          className="text-5xl md:text-7xl font-bold mb-16 text-center text-[#008877]"
           style={{ fontFamily: '"Shippori Mincho", serif' }}
         >
           空間と創造
         </motion.h3>
-        {renderCards(interests.spaceAndCreation)}
+        {renderAlternatingCards(interests.spaceAndCreation)}
       </section>
 
       {/* Culture and Exploration */}
-      <section ref={cultureRef} className="min-h-screen flex flex-col justify-center px-8">
+      <section ref={cultureRef} className="py-32 px-8">
         <motion.h3
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -147,11 +200,11 @@ export default function InterestsSection() {
         >
           文化と探求
         </motion.h3>
-        {renderCards(interests.cultureAndExploration)}
+        {renderGridCards(interests.cultureAndExploration)}
       </section>
 
       {/* Digital */}
-      <section ref={digitalRef} className="min-h-screen flex flex-col justify-center px-8">
+      <section ref={digitalRef} className="py-32 px-8">
         <motion.h3
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -162,7 +215,7 @@ export default function InterestsSection() {
         >
           でじたる
         </motion.h3>
-        {renderCards(interests.digital)}
+        {renderGridCards(interests.digital)}
       </section>
     </div>
   );
