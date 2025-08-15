@@ -208,9 +208,9 @@ export default function InterestsSection() {
       { key: 'ph8', className: 'relative overflow-hidden col-start-6 col-span-1 row-start-5 row-span-1' },
     ];
     return (
-      <div className="relative max-w-6xl mx-auto">
+      <div className="relative w-full h-full">
         <TypingCodeBackground />
-        <div className="relative z-10 grid grid-cols-6 grid-rows-5 gap-1 w-full aspect-[6/5]">
+        <div className="relative z-10 grid grid-cols-6 grid-rows-5 gap-1 w-full h-full">
           {layout.map((block) =>
             block.interest ? (
               <motion.div
@@ -315,18 +315,20 @@ export default function InterestsSection() {
       </section>
 
       {/* Digital */}
-      <section ref={digitalRef} className="min-h-[120vh] flex flex-col justify-center px-8 py-20">
+      <section ref={digitalRef} className="h-screen w-full flex flex-col overflow-hidden">
         <motion.h3
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-5xl md:text-7xl font-bold mb-16 text-center text-[#008877]"
+          className="text-5xl md:text-7xl font-bold mb-8 text-center text-[#008877]"
           style={{ fontFamily: '"Shippori Mincho", serif' }}
         >
           でじたる
         </motion.h3>
-        {renderDigitalGrid(interests.digital)}
+        <div className="flex-1">
+          {renderDigitalGrid(interests.digital)}
+        </div>
       </section>
     </div>
   );
