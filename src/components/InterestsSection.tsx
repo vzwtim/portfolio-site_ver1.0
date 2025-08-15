@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 
@@ -10,21 +11,25 @@ const interests = {
       title: 'Real Estate',
       description: '空間の価値を捉え、未来の可能性を創造する。',
       imageUrl: '/images/building_osaka.jpg',
+      href: '#',
     },
     {
       title: 'Architecture',
       description: '機能と美が融合した、心地よい空間を追求する。',
       imageUrl: '/images/drawing_aris.jpg',
+      href: '#',
     },
     {
       title: 'Living',
       description: '日々の営みを豊かにする、ささやかな工夫と発見。',
       imageUrl: '/images/kurashi.jpg',
+      href: '#',
     },
     {
       title: 'Crafting',
       description: '手を動かし、思考を形にする創造の喜び。',
       imageUrl: '/images/me_mad.jpg',
+      href: '#',
     },
   ],
   cultureAndExploration: [
@@ -32,26 +37,31 @@ const interests = {
       title: 'Photography',
       description: '光と影で切り取る、世界の美しい瞬間。',
       imageUrl: '/images/film_bw_29.jpg',
+      href: '#',
     },
     {
       title: 'Food',
       description: '文化、歴史、そして人との繋がりを味わう。',
       imageUrl: '/images/food_me_tomato.jpg',
+      href: '#',
     },
     {
       title: 'Bonsai',
       description: '小さな鉢の中に、大自然の縮図を育む。',
       imageUrl: '/images/bird.JPG',
+      href: '#',
     },
     {
       title: 'Calligraphy',
       description: '墨と筆で描く、静寂と躍動の芸術。',
       imageUrl: '/images/syodo_ko.jpg',
+      href: '#',
     },
     {
       title: 'Travel',
       description: '未知の風景と文化に触れる、自己発見の冒険。',
       imageUrl: '/images/trip_kumano_3.jpg',
+      href: '#',
     },
   ],
   digital: [
@@ -59,16 +69,19 @@ const interests = {
       title: 'Programming',
       description: '論理と創造で、デジタル世界を構築する。',
       imageUrl: '/images/figure_master.webp',
+      href: '#',
     },
     {
       title: 'Web Design',
       description: '美しさと使いやすさを追求し、情報を最適に届ける。',
       imageUrl: '/images/web_pavillion.PNG',
+      href: '#',
     },
     {
       title: 'Data Analysis',
       description: '数字の裏に隠された意味を読み解き、未来を予測する。',
       imageUrl: '/images/ai_girl_1.png',
+      href: '#',
     },
   ],
 };
@@ -165,6 +178,13 @@ const pathLength = useTransform(scrollYProgress, [0, 1], [0, 1]);
             >
               {interest.description}
             </p>
+            <Link
+              href={interest.href}
+              className="mt-4 text-lg text-[#008877] underline"
+              style={{ fontFamily: '"Shippori Mincho", serif' }}
+            >
+              詳しく見る
+            </Link>
           </div>
         </motion.div>
       ))}
@@ -204,6 +224,13 @@ const pathLength = useTransform(scrollYProgress, [0, 1], [0, 1]);
           >
             {interest.description}
           </p>
+          <Link
+            href={interest.href}
+            className="mt-2 inline-block text-sm text-[#008877] underline"
+            style={{ fontFamily: '"Shippori Mincho", serif' }}
+          >
+            詳しく見る
+          </Link>
         </motion.div>
       ))}
     </div>
@@ -216,7 +243,7 @@ const pathLength = useTransform(scrollYProgress, [0, 1], [0, 1]);
       style={current.style}
     >
       <motion.svg
-        className="absolute inset-0 w-full h-full pointer-events-none"
+        className="absolute -top-[40vh] left-0 w-full h-[200%] pointer-events-none"
         viewBox="0 0 1000 3000"
         preserveAspectRatio="none"
       >
