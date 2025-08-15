@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion } from 'framer-motion';
 import { usePathname } from 'next/navigation';
-import { useState, useEffect, cloneElement, isValidElement } from 'react'; // cloneElement, isValidElement をインポート
+import { useState, useEffect } from 'react';
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CustomCursor from "@/components/CustomCursor";

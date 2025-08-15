@@ -15,8 +15,10 @@ export default function Header({ textColor }: HeaderProps) {
   const hoverTextColorClass = 'hover:text-highlight';
 
   return (
-    <header className={`fixed top-0 left-0 z-50 p-6 md:p-8 transition-colors duration-300 ${textColor}`}
-      style={{ width: '100vw', paddingRight: `${scrollbarWidth}px` }}>
+    <header
+      className={`fixed top-0 left-0 z-50 py-6 px-8 md:py-8 md:px-12 transition-colors duration-300 ${textColor}`}
+      style={{ width: '100vw', paddingRight: `${scrollbarWidth}px` }}
+    >
       <div className="flex justify-between items-center max-w-7xl mx-auto">
         {/* Left side - Logo */}
         <Link href="/">
@@ -36,21 +38,9 @@ export default function Header({ textColor }: HeaderProps) {
         </Link>
         
         {/* Right side - Navigation */}
-        <nav>
+        <nav className="pr-8">
           <ul className="flex flex-row items-center space-x-6 md:space-x-8">
-          <li>
-              <Link href="/works">
-                <span
-                  className={`text-sm md:text-base font-bold ${hoverTextColorClass} transition-colors duration-300 cursor-pointer tracking-wide`}
-                  style={{ fontFamily: '"Shippori Mincho", serif' }}
-                  onMouseEnter={textEnter}
-                  onMouseLeave={textLeave}
-                >
-                  作品
-                </span>
-            </Link>
-          </li>
-          <li>
+            <li>
               <Link href="/about">
                 <span
                   className={`text-sm md:text-base font-bold ${hoverTextColorClass} transition-colors duration-300 cursor-pointer tracking-wide`}
@@ -58,23 +48,11 @@ export default function Header({ textColor }: HeaderProps) {
                   onMouseEnter={textEnter}
                   onMouseLeave={textLeave}
                 >
-                  私について
+                  about
                 </span>
-            </Link>
-          </li>
-          <li>
-              <Link href="/contact">
-                <span
-                  className={`text-sm md:text-base font-bold ${hoverTextColorClass} transition-colors duration-300 cursor-pointer tracking-wide`}
-                  style={{ fontFamily: '"Shippori Mincho", serif' }}
-                  onMouseEnter={textEnter}
-                  onMouseLeave={textLeave}
-                >
-                  連絡先
-                </span>
-            </Link>
-          </li>
-          <li>
+              </Link>
+            </li>
+            <li>
               <Link href="/photos">
                 <span
                   className={`text-sm md:text-base font-bold ${hoverTextColorClass} transition-colors duration-300 cursor-pointer tracking-wide`}
@@ -82,11 +60,35 @@ export default function Header({ textColor }: HeaderProps) {
                   onMouseEnter={textEnter}
                   onMouseLeave={textLeave}
                 >
-                  写真
+                  gallery
                 </span>
-            </Link>
-          </li>
-        </ul>
+              </Link>
+            </li>
+            <li>
+              <Link href="/works">
+                <span
+                  className={`text-sm md:text-base font-bold ${hoverTextColorClass} transition-colors duration-300 cursor-pointer tracking-wide`}
+                  style={{ fontFamily: '"Shippori Mincho", serif' }}
+                  onMouseEnter={textEnter}
+                  onMouseLeave={textLeave}
+                >
+                  works
+                </span>
+              </Link>
+            </li>
+            <li>
+              <Link href="/contact">
+                <span
+                  className={`text-sm md:text-base font-bold ${hoverTextColorClass} transition-colors duration-300 cursor-pointer tracking-wide`}
+                  style={{ fontFamily: '"Shippori Mincho", serif' }}
+                  onMouseEnter={textEnter}
+                  onMouseLeave={textLeave}
+                >
+                  contact
+                </span>
+              </Link>
+            </li>
+          </ul>
       </nav>
       </div>
     </header>
