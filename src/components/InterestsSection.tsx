@@ -46,6 +46,7 @@ const themes: Record<ThemeKey, { className: string; style?: React.CSSProperties 
   cultureAndExploration: {
     className: 'text-red-900',
     style: {
+      backgroundColor: '#ffffff',
       backgroundImage:
         `
         linear-gradient(30deg, #bb5555 12%, transparent 12.5%, transparent 87%, #bb5555 87.5%),
@@ -174,7 +175,7 @@ export default function InterestsSection() {
           whileHover={{ scale: 1.05 }}
         >
           <div
-            className="relative w-full h-64 mb-4 overflow-hidden rounded-full shadow-lg transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-2xl"
+            className="relative w-full aspect-square mb-4 overflow-hidden rounded-full shadow-lg transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-2xl"
           >
             <Image
               src={interest.imageUrl}
