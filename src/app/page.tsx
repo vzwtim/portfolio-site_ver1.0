@@ -5,6 +5,7 @@
 import Image from "next/image";
 import { motion, useScroll, useTransform } from 'framer-motion';
 import InterestsSection from "../components/InterestsSection";
+import AsanohaPattern from '../components/AsanohaPattern';
 
 export default function Home() {
   const { scrollYProgress } = useScroll();
@@ -68,6 +69,29 @@ export default function Home() {
               伝統的な和の精神と現代的な技術を組み合わせ、人々の暮らしを豊かにする空間を設計します。
         </p>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Culture and Exploration Section */}
+      <section className="py-20 px-8 bg-white text-[#232024]">
+        <div className="max-w-4xl mx-auto text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ fontFamily: '"Shippori Mincho", serif' }}>
+              文化と探求
+            </h2>
+            <div className="w-24 h-px bg-[#232024] mx-auto mb-8"></div>
+            <p className="text-lg leading-relaxed max-w-3xl mx-auto" style={{ fontFamily: '"Shippori Mincho", serif' }}>
+              日本の伝統文化や美学に深い関心を持ち、その探求を続けています。麻の葉模様のアニメーションは、その一環として制作したものです。
+            </p>
+          </motion.div>
+        </div>
+        <div className="h-[50vh] w-full">
+            <AsanohaPattern />
         </div>
       </section>
 
