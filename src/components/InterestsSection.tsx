@@ -110,7 +110,7 @@ export default function InterestsSection() {
   const digitalInView = useInView(digitalRef, { amount: 0.6 });
 
 const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start end', 'end start'] });
-const pathLength = useTransform(scrollYProgress, [0, 0.8], [0, 1]);
+const pathLength = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   useEffect(() => {
     if (spaceInView) {
