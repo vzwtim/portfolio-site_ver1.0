@@ -52,10 +52,10 @@ const themes: Record<ThemeKey, { className: string; style?: React.CSSProperties 
     },
   },
   digital: {
-    className: 'text-green-300',
+    className: 'text-[#008877]',
     style: {
       backgroundColor: '#0a0a0a',
-      backgroundImage: 'radial-gradient(#22c55e40 1px, transparent 1px)',
+      backgroundImage: 'radial-gradient(#00887740 1px, transparent 1px)',
       backgroundSize: '20px 20px',
     },
   },
@@ -63,6 +63,7 @@ const themes: Record<ThemeKey, { className: string; style?: React.CSSProperties 
 
 export default function InterestsSection() {
   const [theme, setTheme] = useState<ThemeKey>('spaceAndCreation');
+  const [hoveredImage, setHoveredImage] = useState<string | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const spaceRef = useRef(null);
   const cultureRef = useRef(null);
@@ -153,6 +154,81 @@ export default function InterestsSection() {
     </div>
   );
 
+  const renderDigitalGrid = (items: typeof interests.digital) => {
+    const totalCells = 8;
+    const placeholders = Array.from({ length: totalCells - items.length });
+    const code = `const add = (a, b) => a + b;\nconsole.log(add(2, 3));`;
+    return (
+      <div className="relative">
+        <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
+          {[...Array(3)].map((_, i) => (
+            <motion.pre
+              key={i}
+              className="text-[#008877] font-mono text-xs md:text-sm" 
+              initial={{ y: '100%' }}
+              animate={{ y: '-100%' }}
+              transition={{ repeat: Infinity, duration: 20, delay: i * 5, ease: 'linear' }}
+            >
+              {code}
+            </motion.pre>
+          ))}
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 relative z-10">
+          {items.map((interest) => (
+            <motion.div
+              key={interest.title}
+              className="group cursor-pointer"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              onMouseEnter={() => setHoveredImage(interest.imageUrl)}
+              onMouseLeave={() => setHoveredImage(null)}
+            >
+              <div className="relative h-40 md:h-64 mb-4 overflow-hidden rounded-lg">
+                <Image
+                  src={interest.imageUrl}
+                  alt={interest.title}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  sizes="(max-width:768px)100vw,(max-width:1024px)50vw,25vw"
+                />
+              </div>
+              <h4
+                className="text-lg font-semibold mb-2"
+                style={{ fontFamily: '"Shippori Mincho", serif' }}
+              >
+                {interest.title}
+              </h4>
+              <p
+                className="text-sm opacity-80 leading-relaxed"
+                style={{ fontFamily: '"Shippori Mincho", serif' }}
+              >
+                {interest.description}
+              </p>
+            </motion.div>
+          ))}
+          {placeholders.map((_, idx) => (
+            <div
+              key={idx}
+              className="hidden md:block relative h-40 md:h-64 rounded-lg overflow-hidden"
+            >
+              {hoveredImage && (
+                <Image
+                  src={hoveredImage}
+                  alt="preview"
+                  fill
+                  className="object-cover opacity-60"
+                  sizes="25vw"
+                />
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div
       ref={containerRef}
@@ -210,12 +286,12 @@ export default function InterestsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-5xl md:text-7xl font-bold mb-16 text-center"
+          className="text-5xl md:text-7xl font-bold mb-16 text-center text-[#008877]"
           style={{ fontFamily: '"Shippori Mincho", serif' }}
         >
           でじたる
         </motion.h3>
-        {renderGridCards(interests.digital)}
+        {renderDigitalGrid(interests.digital)}
       </section>
     </div>
   );
