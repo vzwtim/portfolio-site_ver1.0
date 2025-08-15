@@ -47,7 +47,7 @@ const SpaceAndCreation = () => {
           空間と創造
         </h2>
         <p className="text-lg md:text-xl leading-relaxed max-w-3xl mx-auto" style={{ fontFamily: '"Shippori Mincho", serif' }}>
-          lusion.coの "beyond visions with in reach" の部分を模倣したテキストです。
+          lusion.coの &quot;beyond visions with in reach&quot; の部分を模倣したテキストです。
           ここに、建築の美しさや技術の可能性を融合させることについての説明が入ります。
         </p>
       </motion.div>
