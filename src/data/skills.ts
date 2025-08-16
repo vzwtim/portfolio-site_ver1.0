@@ -1,34 +1,24 @@
-"use client";
-import React, { useMemo, useState } from "react";
-import {
-  RadarChart,
-  PolarGrid,
-  PolarAngleAxis,
-  PolarRadiusAxis,
-  Radar,
-  Legend,
-  ResponsiveContainer,
-  BarChart,
-  CartesianGrid,
-  XAxis,
-  YAxis,
-  Tooltip,
-  Bar,
-  Cell,
-} from "recharts";
+export const SCORE = { STRONG: 5, ASSISTED: 2, FUTURE: 1 } as const;
 
-// =====================================
-// 五目飯スキルチャート（Radar + Bar） - 拡張版
-// ・カテゴリとツールを大幅拡張
-// ・プリセット切替 / カテゴリチップON-OFF / 検索フィルタ
-// =====================================
+export interface SkillCategory {
+  key: string;
+  label: string;
+  current: number;
+  growth: number;
+}
 
-// === スコア定義 ===
-// 5 = 使える（即戦力） / 2 = AIと一緒ならできる・学習中 / 1 = これから
-const SCORE = { STRONG: 5, ASSISTED: 2, FUTURE: 1 } as const;
+export interface SkillTool {
+  label: string;
+  cat: string;
+  level: number;
+}
 
-// === 基本カテゴリ ===
-const baseCategories = [
+export interface StageSkillData {
+  categories: SkillCategory[];
+  tools: SkillTool[];
+}
+
+const currentCategories: SkillCategory[] = [
   { key: "programming", label: "プログラミング", current: 4, growth: 5 },
   { key: "architecture", label: "建築・設計", current: 5, growth: 4 },
   { key: "design", label: "デザイン", current: 4, growth: 5 },
@@ -40,8 +30,7 @@ const baseCategories = [
   { key: "dx", label: "DX/自動化", current: 3, growth: 5 },
 ];
 
-// === 追加カテゴリ（網羅） ===
-const extraCategories = [
+const futureCategories: SkillCategory[] = [
   { key: "marketing", label: "マーケティング", current: 3, growth: 5 },
   { key: "pm", label: "プロジェクトマネジメント", current: 4, growth: 5 },
   { key: "legal", label: "法務・コンプライアンス", current: 2, growth: 4 },
@@ -55,10 +44,7 @@ const extraCategories = [
   { key: "training", label: "トレーニング・コーチング", current: 3, growth: 4 },
 ];
 
-const allCategories = [...baseCategories, ...extraCategories];
-
-// === ツール（スキル要素） ===
-const baseTools = [
+const currentTools: SkillTool[] = [
   // プログラミング
   { label: "Python", cat: "プログラミング", level: SCORE.STRONG },
   { label: "JavaScript / TypeScript", cat: "プログラミング", level: SCORE.ASSISTED },
@@ -97,7 +83,7 @@ const baseTools = [
   { label: "ダッシュボード試作（Kepler/BI）", cat: "DX/自動化", level: SCORE.ASSISTED },
 ];
 
-const extraTools = [
+const futureTools: SkillTool[] = [
   // マーケティング
   { label: "Webマーケティング", cat: "マーケティング", level: SCORE.ASSISTED },
   { label: "SEO・SNS運用", cat: "マーケティング", level: SCORE.ASSISTED },
@@ -135,143 +121,15 @@ const extraTools = [
   { label: "キャリア面談", cat: "トレーニング・コーチング", level: 3 },
 ];
 
-const allToolsRaw = [...baseTools, ...extraTools];
+export const careerStages = [
+  { key: "current", label: "現在" },
+  { key: "future", label: "将来" },
+] as const;
 
-// === 表示順 ===
-const CAT_ORDER = [
-  "プログラミング",
-  "データ分析",
-  "DX/自動化",
-  "建築・設計",
-  "デザイン",
-  "GIS・可視化",
-  "不動産",
-  "金融",
-  "マーケティング",
-  "プロジェクトマネジメント",
-  "法務・コンプライアンス",
-  "コミュニケーション・プレゼン",
-  "教育・研修",
-  "リサーチ・分析",
-  "サステナビリティ/ESG",
-  "顧客対応・CX",
-  "語学",
-  "office365",
-];
+export type CareerStageKey = typeof careerStages[number]["key"];
 
-const COLORS = {
-  strong: "#bb5555", // くすんだ赤
-  assisted: "#008877", // 深みのあるティールグリーン
-  radarCurrent: "#bb5555",
-  radarGrowth: "#008877",
+export const skillsByStage: Record<CareerStageKey, StageSkillData> = {
+  current: { categories: currentCategories, tools: currentTools },
+  future: { categories: futureCategories, tools: futureTools },
 };
-
-export default function SkillsChart() {
-  const [selectedCats, setSelectedCats] = useState<string[]>([
-    "建築・設計",
-    "デザイン",
-    "GIS・可視化",
-    "不動産",
-    "金融",
-    "プログラミング",
-    "データ分析",
-    "DX/自動化",
-  ]);
-  const [search, setSearch] = useState("");
-
-  const radarData = useMemo(
-    () => allCategories.filter((c) => selectedCats.includes(c.label)),
-    [selectedCats]
-  );
-
-  const tools = useMemo(() => {
-    return allToolsRaw
-      .filter((t) => selectedCats.includes(t.cat))
-      .filter((t) => (search ? t.label.toLowerCase().includes(search.toLowerCase()) : true))
-      .slice()
-      .sort((a, b) => {
-        const byCat = CAT_ORDER.indexOf(a.cat) - CAT_ORDER.indexOf(b.cat);
-        if (byCat !== 0) return byCat;
-        if (b.level !== a.level) return b.level - a.level;
-        return a.label.localeCompare(b.label, "ja");
-      })
-      .map((d, i) => ({ ...d, idx: i }));
-  }, [selectedCats, search]);
-
-  return (
-    <div className="min-h-screen w-full bg-white py-10 px-4">
-      <div className="max-w-7xl mx-auto mb-8"> {/* mb-8で下に余白 */}
-        <div className="flex flex-wrap gap-2">
-          {/* カテゴリチップのボタンたち */}
-          {CAT_ORDER.map((label) => (
-            <button
-              key={label}
-              onClick={() =>
-                setSelectedCats((prev) =>
-                  prev.includes(label) ? prev.filter((l) => l !== label) : [...prev, label]
-                )
-              }
-              className={`px-3 py-1 rounded-md text-xs border transition ${
-                selectedCats.includes(label)
-                  ? "bg-[#bb5555] text-white border-[#bb5555]"
-                  : "bg-white text-neutral-700 border-neutral-200 hover:bg-neutral-50"
-              }`}
-            >
-              {label}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-8">
-        
-
-        
-
-        {/* レーダーチャート */}
-        <section className="bg-white rounded-2xl shadow p-6 w-full lg:w-1/2">
-          
-          <div className="w-full h-[360px]">
-            <ResponsiveContainer width="100%" height="100%">
-              <RadarChart data={radarData} outerRadius={120}>
-                <PolarGrid />
-                <PolarAngleAxis dataKey="label" />
-                <PolarRadiusAxis domain={[0, 10]} tickCount={6} />
-                <Radar name="現在" dataKey="current" stroke={COLORS.radarCurrent} fill={COLORS.radarCurrent} fillOpacity={0.35} />
-                <Radar name="伸びしろ" dataKey="growth" stroke={COLORS.radarGrowth} fill={COLORS.radarGrowth} fillOpacity={0.25} />
-                <Legend />
-              </RadarChart>
-            </ResponsiveContainer>
-          </div>
-        </section>
-
-        {/* 横型バー */}
-        <section className="bg-white rounded-2xl shadow p-6 w-full lg:w-1/2">
-          
-          <div className="w-full h-[640px]">
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={tools} layout="vertical" margin={{ top: 10, right: 20, bottom: 10, left: 150 }}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis type="number" domain={[0, 5]} ticks={[0, 1, 2, 3, 4, 5]} />
-                <YAxis type="category" dataKey="label" width={150} />
-                <Tooltip formatter={(value: number) => `${value} / 5`} labelFormatter={(label: string) => `${label}`} />
-                <Bar dataKey="level" radius={[4, 4, 4, 4]}>
-                  {tools.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={entry.level === SCORE.STRONG ? COLORS.strong : COLORS.assisted} />
-                  ))}
-                </Bar>
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
-          <div className="mt-4 flex flex-wrap items-center gap-4 text-sm">
-            <span className="inline-flex items-center gap-2"><span className="inline-block w-3 h-3 rounded bg-[#bb5555]"></span>使える（5）</span>
-            <span className="inline-flex items-center gap-2"><span className="inline-block w-3 h-3 rounded bg-[#008877]"></span>AIと一緒/学習中（2）</span>
-          </div>
-        </section>
-
-        
-      </div>
-    </div>
-  );
-}
 
