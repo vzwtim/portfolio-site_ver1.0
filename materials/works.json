@@ -4,41 +4,47 @@
     "title": "Project Alpha",
     "description": "This is a description for Project Alpha. It showcases innovative design and engineering principles.",
     "monochromeImage": "/images/film_bw_1.jpg",
-    "colorImage": "/images/film_color_1.jpg"
+    "colorImage": "/images/film_color_1.jpg",
+    "tags": ["data-analysis"]
   },
   {
     "id": "project-beta",
     "title": "Project Beta",
     "description": "A deep dive into sustainable architecture and urban planning.",
     "monochromeImage": "/images/film_bw_1.jpg",
-    "colorImage": "/images/film_color_1.jpg"
+    "colorImage": "/images/film_color_1.jpg",
+    "tags": ["design-programming"]
   },
   {
     "id": "project-gamma",
     "title": "Project Gamma",
     "description": "Exploring the intersection of traditional craftsmanship and modern technology.",
     "monochromeImage": "/images/film_bw_1.jpg",
-    "colorImage": "/images/film_color_1.jpg"
+    "colorImage": "/images/film_color_1.jpg",
+    "tags": ["artificial-intelligence"]
   },
   {
     "id": "project-delta",
     "title": "Project Delta",
     "description": "A study on material science and its application in structural design.",
     "monochromeImage": "/images/film_bw_1.jpg",
-    "colorImage": "/images/film_color_1.jpg"
+    "colorImage": "/images/film_color_1.jpg",
+    "tags": ["data-analysis"]
   },
   {
     "id": "project-epsilon",
     "title": "Project Epsilon",
     "description": "Innovative solutions for compact living spaces in urban environments.",
     "monochromeImage": "/images/film_bw_1.jpg",
-    "colorImage": "/images/film_color_1.jpg"
+    "colorImage": "/images/film_color_1.jpg",
+    "tags": ["design-programming"]
   },
   {
     "id": "project-zeta",
     "title": "Project Zeta",
     "description": "A conceptual project focusing on future city infrastructure.",
     "monochromeImage": "/images/film_bw_1.jpg",
-    "colorImage": "/images/film_color_1.jpg"
+    "colorImage": "/images/film_color_1.jpg",
+    "tags": ["artificial-intelligence"]
   }
 ]
