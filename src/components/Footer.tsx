@@ -1,6 +1,7 @@
 
 import Link from 'next/link';
-import { FaInstagram, FaTwitter, FaGithub, FaPencilAlt } from 'react-icons/fa';
+import { FaInstagram, FaGithub, FaPencilAlt } from 'react-icons/fa';
+import { FaXTwitter } from 'react-icons/fa6';
 
 const Footer = () => {
   return (
@@ -11,22 +12,42 @@ const Footer = () => {
             <p className="text-sm">&copy; {new Date().getFullYear()} YUDAI. All Rights Reserved.</p>
           </div>
           <div className="flex space-x-4">
-            <Link href="https://instagram.com" passHref>
+            <Link
+              href="https://www.instagram.com/babachan_1222/"
+              target="_blank"
+              rel="noopener noreferrer"
+              passHref
+            >
               <span className="text-xl hover:text-[#bb5555] transition-colors duration-300 cursor-pointer">
                 <FaInstagram />
               </span>
             </Link>
-            <Link href="https://twitter.com" passHref>
+            <Link
+              href="https://x.com/yudaizit"
+              target="_blank"
+              rel="noopener noreferrer"
+              passHref
+            >
               <span className="text-xl hover:text-[#bb5555] transition-colors duration-300 cursor-pointer">
-                <FaTwitter />
+                <FaXTwitter />
               </span>
             </Link>
-            <Link href="https://note.com" passHref>
+            <Link
+              href="https://note.com/yubayuba"
+              target="_blank"
+              rel="noopener noreferrer"
+              passHref
+            >
               <span className="text-xl hover:text-[#bb5555] transition-colors duration-300 cursor-pointer">
                 <FaPencilAlt />
               </span>
             </Link>
-            <Link href="https://github.com" passHref>
+            <Link
+              href="https://github.com/vzwtim"
+              target="_blank"
+              rel="noopener noreferrer"
+              passHref
+            >
               <span className="text-xl hover:text-[#bb5555] transition-colors duration-300 cursor-pointer">
                 <FaGithub />
               </span>

@@ -12,8 +12,8 @@ const slugify = (text: string) =>
 
 const getCultureLink = (title: string) =>
   title === 'Photography' ? '/photos' : `/special/${slugify(title)}`;
-
 const getWorksLink = (title: string) => `/works?tag=${slugify(title)}`;
+const getDigitalLink = (title: string) => `/works?tag=${slugify(title)}`;
 
 const interests = {
   spaceAndCreation: [
