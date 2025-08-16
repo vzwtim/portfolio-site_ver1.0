@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest"
+    "test": "jest",
+    "images:build": "node scripts/gen-images.mjs",
+    "images:clean": "node -e \"import('node:fs').then(fs=>fs.rmSync('public/optimized',{recursive:true,force:true}))\""
   },
   "dependencies": {
     "@types/p5": "^1.7.6",
@@ -34,9 +36,11 @@
     "autoprefixer": "^10.4.21",
     "eslint": "^8",
     "eslint-config-next": "14.2.3",
+    "fast-glob": "^3.3.3",
     "jest": "^30.0.5",
     "jest-environment-jsdom": "^30.0.5",
     "postcss": "^8.5.6",
+    "sharp": "^0.34.3",
     "typescript": "^5"
   }
 }
