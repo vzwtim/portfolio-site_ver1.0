@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion, useScroll, useTransform } from 'framer-motion';
 import dynamic from 'next/dynamic';
+import { optimizedImage } from '@/lib/optimizedImage';
 
 const InterestsSection = dynamic(() => import("../components/InterestsSection"), { ssr: false });
 
@@ -24,7 +25,7 @@ export default function Home() {
           className="absolute inset-0 z-0"
         >
           <Image
-            src="/images/mv_gomoku_1.jpg"
+            src={optimizedImage('/images/mv_gomoku_1.jpg', { width: 1600 })}
             alt="Gomoku Rice"
             fill
             className="object-cover"

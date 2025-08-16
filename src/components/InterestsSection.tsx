@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
+import { optimizedImage } from '@/lib/optimizedImage';
 
 const slugify = (text: string) =>
   text
@@ -20,49 +21,49 @@ const interests = {
     {
       title: 'Real Estate',
       description: '空間の価値を捉え、未来の可能性を創造する。',
-      imageUrl: '/images/building_osaka.jpg',
+      imageUrl: optimizedImage('/images/building_osaka.jpg'),
     },
     {
       title: 'Architecture',
       description: '機能と美が融合した、心地よい空間を追求する。',
-      imageUrl: '/images/drawing_aris.jpg',
+      imageUrl: optimizedImage('/images/drawing_aris.jpg'),
     },
     {
       title: 'Living',
       description: '日々の営みを豊かにする、ささやかな工夫と発見。',
-      imageUrl: '/images/kurashi.jpg',
+      imageUrl: optimizedImage('/images/kurashi.jpg'),
     },
     {
       title: 'Crafting',
       description: '手を動かし、思考を形にする創造の喜び。',
-      imageUrl: '/images/me_mad.jpg',
+      imageUrl: optimizedImage('/images/me_mad.jpg'),
     },
   ],
   cultureAndExploration: [
     {
       title: 'Photography',
       description: '光と影で切り取る、世界の美しい瞬間。',
-      imageUrl: '/images/film_bw_29.jpg',
+      imageUrl: optimizedImage('/images/film_bw_29.jpg'),
     },
     {
       title: 'Food',
       description: '文化、歴史、そして人との繋がりを味わう。',
-      imageUrl: '/images/food_me_tomato.jpg',
+      imageUrl: optimizedImage('/images/food_me_tomato.jpg'),
     },
     {
       title: 'Bonsai',
       description: '小さな鉢の中に、大自然の縮図を育む。',
-      imageUrl: '/images/bird.JPG',
+      imageUrl: optimizedImage('/images/bird.JPG'),
     },
     {
       title: 'Calligraphy',
       description: '墨と筆で描く、静寂と躍動。',
-      imageUrl: '/images/syodo_ko.jpg',
+      imageUrl: optimizedImage('/images/syodo_ko.jpg'),
     },
     {
       title: 'Travel',
       description: '未知の風景と文化に触れる、自己発見の冒険。',
-      imageUrl: '/images/trip_kumano_3.jpg',
+      imageUrl: optimizedImage('/images/trip_kumano_3.jpg'),
     },
   ],
   digital: [
@@ -74,12 +75,12 @@ const interests = {
     {
       title: 'Design × Programming',
       description: '美しさと使いやすさを追求し、情報を最適に届ける。',
-      imageUrl: '/images/web_pavillion.PNG',
+      imageUrl: optimizedImage('/images/web_pavillion.PNG'),
     },
     {
       title: 'Artificial Intelligence',
       description: '正直、作業はこいつ任せだぜ、相棒。',
-      imageUrl: '/images/ai_girl_1.png',
+      imageUrl: optimizedImage('/images/ai_girl_1.png'),
     },
   ],
 };
