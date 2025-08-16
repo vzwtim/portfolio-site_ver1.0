@@ -41,31 +41,21 @@ export default function WorkPage({ params }: PageProps) {
 
   return (
     <main
-      className="min-h-screen text-gray-900"
+      className="flex h-screen w-screen overflow-x-auto overflow-y-hidden text-gray-900 snap-x snap-mandatory"
       style={{ backgroundColor: work.bgColor }}
     >
-      <div className="max-w-6xl mx-auto px-6 py-16 flex flex-col md:flex-row items-center gap-10">
-        <div className="flex-1">
+      <section className="flex-shrink-0 w-screen h-screen flex items-center justify-center p-8">
+        <div className="text-center max-w-xl">
           <h1 className="text-4xl font-bold mb-6">{work.title}</h1>
           <p className="text-lg leading-relaxed">{work.description}</p>
         </div>
-        <div className="flex-1 relative w-full h-96">
-          <Image
-            src={work.colorImage}
-            alt={work.title}
-            fill
-            className="object-cover rounded-lg shadow-lg"
-          />
-          <div className="hidden md:block absolute -left-10 bottom-0 w-40 h-40">
-            <Image
-              src={work.monochromeImage}
-              alt=""
-              fill
-              className="object-cover rounded-md shadow-md"
-            />
-          </div>
-        </div>
-      </div>
+      </section>
+      <section className="flex-shrink-0 w-screen h-screen relative">
+        <Image src={work.colorImage} alt={work.title} fill className="object-cover" />
+      </section>
+      <section className="flex-shrink-0 w-screen h-screen relative">
+        <Image src={work.monochromeImage} alt="" fill className="object-cover" />
+      </section>
     </main>
   );
 }

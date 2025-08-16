@@ -21,6 +21,7 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
   const pathname = usePathname();
   const [isLoading, setIsLoading] = useState(true);
   const isHomePage = pathname === '/';
+  const isWorkDetailPage = pathname.startsWith('/works/') && pathname !== '/works';
 
   // 色の状態管理を ClientLayout に移動
   const [bgColor, setBgColor] = useState('bg-white');
@@ -47,7 +48,7 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
         <CursorProvider>
           <CustomCursor />
         {/* Header に textColor を渡す */}
-        <Header textColor={textColor} />
+        {!isWorkDetailPage && <Header textColor={textColor} />}
           <AnimatePresence mode="wait" initial={false}>
             <motion.main
               key={pathname}
@@ -61,9 +62,11 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
             </motion.main>
           </AnimatePresence>
           
-          <ShadowAnimation>
-            <Footer />
-          </ShadowAnimation>
+          {!isWorkDetailPage && (
+            <ShadowAnimation>
+              <Footer />
+            </ShadowAnimation>
+          )}
         </CursorProvider>
       </ScrollbarWidthProvider> {/* Close ScrollbarWidthProvider */}
     </div>
