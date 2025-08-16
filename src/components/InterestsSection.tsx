@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 
@@ -10,21 +11,25 @@ const interests = {
       title: 'Real Estate',
       description: '空間の価値を捉え、未来の可能性を創造する。',
       imageUrl: '/images/building_osaka.jpg',
+      tag: 'realestate',
     },
     {
       title: 'Architecture',
       description: '機能と美が融合した、心地よい空間を追求する。',
       imageUrl: '/images/drawing_aris.jpg',
+      tag: 'architecture',
     },
     {
       title: 'Living',
       description: '日々の営みを豊かにする、ささやかな工夫と発見。',
       imageUrl: '/images/kurashi.jpg',
+      tag: 'living',
     },
     {
       title: 'Crafting',
       description: '手を動かし、思考を形にする創造の喜び。',
       imageUrl: '/images/me_mad.jpg',
+      tag: 'crafting',
     },
   ],
   cultureAndExploration: [
@@ -270,7 +275,13 @@ export default function InterestsSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <div className="relative w-full md:w-1/2 h-64 overflow-hidden">
+          <motion.div
+            className="relative w-full md:w-1/2 h-64 overflow-hidden"
+            initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
             <Image
               src={interest.imageUrl}
               alt={interest.title}
@@ -278,7 +289,7 @@ export default function InterestsSection() {
               className="object-cover"
               sizes="(max-width:768px)100vw,(max-width:1024px)50vw,50vw"
             />
-          </div>
+          </motion.div>
           <div className="md:w-1/2">
             <h4 className="text-2xl font-semibold mb-4">
               {interest.title}
@@ -286,6 +297,14 @@ export default function InterestsSection() {
             <p className="opacity-80 leading-relaxed">
               {interest.description}
             </p>
+            {interest.tag && (
+              <Link
+                href={`/works?tag=${interest.tag}`}
+                className="mt-4 inline-block text-sm font-medium underline"
+              >
+                works →
+              </Link>
+            )}
           </div>
         </motion.div>
       ))}
