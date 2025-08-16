@@ -163,7 +163,7 @@ const COLORS = {
   strong: "#bb5555", // くすんだ赤
   assisted: "#008877", // 深みのあるティールグリーン
   radarCurrent: "#bb5555",
-  radarGrowth: "#008877",
+  radarFuture: "#008877",
 };
 
 export default function SkillsChart() {
@@ -180,7 +180,10 @@ export default function SkillsChart() {
   const [search, setSearch] = useState("");
 
   const radarData = useMemo(
-    () => allCategories.filter((c) => selectedCats.includes(c.label)),
+    () =>
+      allCategories
+        .filter((c) => selectedCats.includes(c.label))
+        .map((c) => ({ ...c, future: c.current + c.growth })),
     [selectedCats]
   );
 
@@ -237,9 +240,31 @@ export default function SkillsChart() {
                 <PolarGrid />
                 <PolarAngleAxis dataKey="label" />
                 <PolarRadiusAxis domain={[0, 10]} tickCount={6} />
-                <Radar name="現在" dataKey="current" stroke={COLORS.radarCurrent} fill={COLORS.radarCurrent} fillOpacity={0.35} />
-                <Radar name="伸びしろ" dataKey="growth" stroke={COLORS.radarGrowth} fill={COLORS.radarGrowth} fillOpacity={0.25} />
-                <Legend />
+                <Radar
+                  name="現在"
+                  dataKey="current"
+                  stroke={COLORS.radarCurrent}
+                  fill={COLORS.radarCurrent}
+                  fillOpacity={0.35}
+                />
+                <Radar
+                  name="未来"
+                  dataKey="future"
+                  stroke={COLORS.radarFuture}
+                  fill={COLORS.radarFuture}
+                  fillOpacity={0.15}
+                />
+                <Legend
+                  payload={[
+                    { value: "現在", type: "square", id: "current", color: COLORS.radarCurrent },
+                    {
+                      value: "未来（現在+伸びしろ）",
+                      type: "square",
+                      id: "future",
+                      color: COLORS.radarFuture,
+                    },
+                  ]}
+                />
               </RadarChart>
             </ResponsiveContainer>
           </div>
