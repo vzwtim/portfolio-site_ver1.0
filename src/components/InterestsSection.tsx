@@ -209,7 +209,7 @@ const TypingCodeBackground: React.FC<TypingCodeBackgroundProps> = ({ snippets, p
 
 export default function InterestsSection() {
   const [theme, setTheme] = useState<ThemeKey>('spaceAndCreation');
-  const [hoveredImage, setHoveredImage] = useState<string | null>(null);
+  const [hoveredImages, setHoveredImages] = useState<string[]>([]);
   const [animatedSnippets, setAnimatedSnippets] = useState<{ snippets: string[]; position: React.CSSProperties }[]>([]);
   
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -226,6 +226,48 @@ export default function InterestsSection() {
 
   const { scrollYProgress: scrollYProgressCulture } = useScroll({ target: cultureRef, offset: ["start end", "end start"] });
   const backgroundYCulture = useTransform(scrollYProgressCulture, [0, 1], ["-100%", "100%"]);
+
+  const [imagePools, setImagePools] = useState<Record<string, string[]>>({
+    'Data Analysis': [],
+    'Design × Programming': [],
+    'Artificial Intelligence': [],
+  });
+
+  useEffect(() => {
+    const fetchImages = async (keyword: string) => {
+      const res = await fetch(`/api/images?keyword=${keyword}`);
+      if (!res.ok) return [] as string[];
+      return (await res.json()) as string[];
+    };
+
+    const loadImages = async () => {
+      const [mapImgs, drawingImgs, webImgs, designImgs, aiImgs] = await Promise.all([
+        fetchImages('map'),
+        fetchImages('drawing'),
+        fetchImages('web'),
+        fetchImages('design'),
+        fetchImages('ai'),
+      ]);
+      setImagePools({
+        'Data Analysis': mapImgs,
+        'Design × Programming': [...drawingImgs, ...webImgs, ...designImgs],
+        'Artificial Intelligence': aiImgs,
+      });
+    };
+
+    loadImages();
+  }, []);
+
+  const getRandomImages = (title: string, count: number) => {
+    const pool = imagePools[title] || [];
+    if (pool.length === 0) return [];
+    const result: string[] = [];
+    for (let i = 0; i < count; i++) {
+      const idx = Math.floor(Math.random() * pool.length);
+      result.push(pool[idx]);
+    }
+    return result;
+  };
 
   useEffect(() => {
     const generateSnippets = () => {
@@ -415,6 +457,8 @@ export default function InterestsSection() {
       { key: 'ph19', className: 'relative overflow-hidden col-start-6 col-span-1 row-start-7 row-span-2' },
       { key: 'ph20', className: 'relative overflow-hidden col-start-11 col-span-2 row-start-1 row-span-2' },
     ];
+    const placeholders = layout.filter((b) => !b.interest).length;
+    let phIndex = -1;
     return (
       <div className="relative w-full">
         {animatedSnippets.map((config, index) => (
@@ -427,8 +471,8 @@ export default function InterestsSection() {
                 href={getWorksLink(block.interest.title)}
                 key={block.key}
                 className={`group cursor-pointer ${block.className}`}
-                onMouseEnter={() => setHoveredImage(block.interest!.imageUrl)}
-                onMouseLeave={() => setHoveredImage(null)}
+                onMouseEnter={() => setHoveredImages(getRandomImages(block.interest!.title, placeholders))}
+                onMouseLeave={() => setHoveredImages([])}
               >
                 <motion.div
                   className="w-full h-full"
@@ -461,17 +505,23 @@ export default function InterestsSection() {
                 </motion.div>
               </Link>
             ) : (
-              <div key={block.key} className={`${block.className} bg-white/5 rounded-md`}>
-                {hoveredImage && (
-                  <Image
-                    src={hoveredImage}
-                    alt="preview"
-                    fill
-                    className="object-cover opacity-20 rounded-md"
-                    sizes="16vw"
-                  />
-                )}
-              </div>
+              (() => {
+                phIndex++;
+                const imgSrc = hoveredImages[phIndex];
+                return (
+                  <div key={block.key} className={`${block.className} bg-white/5 rounded-md`}>
+                    {imgSrc && (
+                      <Image
+                        src={imgSrc}
+                        alt="preview"
+                        fill
+                        className="object-cover opacity-20 rounded-md"
+                        sizes="16vw"
+                      />
+                    )}
+                  </div>
+                );
+              })()
             )
           )}
         </div>
