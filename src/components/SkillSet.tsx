@@ -33,7 +33,7 @@ const baseCategories = [
   { key: "architecture", label: "建築・設計", current: 5, growth: 4 },
   { key: "design", label: "デザイン", current: 4, growth: 5 },
   { key: "gis", label: "GIS・可視化", current: 5, growth: 4 },
-  { key: "office", label: "オフィス", current: 5, growth: 3 },
+  { key: "office", label: "office365", current: 5, growth: 3 },
   { key: "data", label: "データ分析", current: 2, growth: 5 },
   { key: "realestate", label: "不動産", current: 5, growth: 4 },
   { key: "finance", label: "金融", current: 4, growth: 5 },
@@ -51,7 +51,7 @@ const extraCategories = [
   { key: "research", label: "リサーチ・分析", current: 4, growth: 5 },
   { key: "innovation", label: "イノベーション/新規事業", current: 3, growth: 5 },
   { key: "sustainability", label: "サステナビリティ/ESG", current: 2, growth: 5 },
-  { key: "customer", label: "顧客対応・CX", current: 4, growth: 5 },
+  { key: "customer", label: "顧客対応・CX", current: 1, growth: 1 },
   { key: "training", label: "トレーニング・コーチング", current: 3, growth: 4 },
 ];
 
@@ -79,9 +79,9 @@ const baseTools = [
   { label: "ArcGIS", cat: "GIS・可視化", level: SCORE.STRONG },
   { label: "QGIS", cat: "GIS・可視化", level: SCORE.STRONG },
   { label: "Kepler.gl", cat: "GIS・可視化", level: SCORE.STRONG },
-  // オフィス
-  { label: "Excel", cat: "オフィス", level: SCORE.STRONG },
-  { label: "PowerPoint", cat: "オフィス", level: SCORE.STRONG },
+  // office365
+  { label: "Excel", cat: "office365", level: SCORE.STRONG },
+  { label: "PowerPoint", cat: "office365", level: SCORE.STRONG },
   // データ
   { label: "Pandas", cat: "データ分析", level: SCORE.ASSISTED },
   { label: "NumPy", cat: "データ分析", level: SCORE.ASSISTED },
@@ -128,7 +128,7 @@ const extraTools = [
   { label: "ESGレポート作成", cat: "サステナビリティ/ESG", level: SCORE.ASSISTED },
   { label: "環境配慮設計", cat: "サステナビリティ/ESG", level: SCORE.ASSISTED },
   // CX
-  { label: "顧客満足度分析", cat: "顧客対応・CX", level: SCORE.STRONG },
+  { label: "顧客満足度分析", cat: "顧客対応・CX", level: 1 },
   { label: "カスタマーサクセス運用", cat: "顧客対応・CX", level: 3 },
   // トレーニング
   { label: "1on1コーチング", cat: "トレーニング・コーチング", level: 3 },
@@ -156,7 +156,7 @@ const CAT_ORDER = [
   "サステナビリティ/ESG",
   "顧客対応・CX",
   "語学",
-  "オフィス",
+  "office365",
 ];
 
 const COLORS = {
@@ -236,7 +236,7 @@ export default function SkillsChart() {
               <RadarChart data={radarData} outerRadius={120}>
                 <PolarGrid />
                 <PolarAngleAxis dataKey="label" />
-                <PolarRadiusAxis domain={[0, 5]} tickCount={6} />
+                <PolarRadiusAxis domain={[0, 10]} tickCount={6} />
                 <Radar name="現在" dataKey="current" stroke={COLORS.radarCurrent} fill={COLORS.radarCurrent} fillOpacity={0.35} />
                 <Radar name="伸びしろ" dataKey="growth" stroke={COLORS.radarGrowth} fill={COLORS.radarGrowth} fillOpacity={0.25} />
                 <Legend />
