@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import SkillsChart from '@/components/SkillsChart';
-// skillsデータは使う前提で残すけど、careerStages/CareerStageKey の衝突を避けるために import から外す
+// careerStages / CareerStageKey はもう使わないので import しない
 import { skillsByStage } from '@/data/skills';
 
 // タイムライン用の型
@@ -74,12 +74,12 @@ export default function About() {
             <input
               type="range"
               min={0}
-              max={careerStages.length - 1}
+                max={timelineStages.length - 1} 
               value={stage}
               onChange={(e) => setStage(parseInt(e.target.value))}
               className="w-full"
             />
-            <p className="mt-2">{careerStages[stage].label}</p>
+            <p className="mt-2">{timelineStages[stage].label}</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="border border-gray-200/80 p-6 rounded-sm bg-white/50">
