@@ -5,6 +5,16 @@ import Link from 'next/link';
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 
+const slugify = (text: string) =>
+  text
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-');
+
+const getCultureLink = (title: string) =>
+  title === 'Photography' ? '/photos' : `/special/${slugify(title)}`;
+
+const getDigitalLink = (title: string) => `/works?tag=${slugify(title)}`;
+
 const interests = {
   spaceAndCreation: [
     {
@@ -425,38 +435,43 @@ export default function InterestsSection() {
         <div className="relative z-10 grid grid-cols-[repeat(12,1fr)] grid-rows-[repeat(15,1fr)] w-full max-w-6xl mx-auto h-[80vh] md:h-[90vh] gap-4">
           {layout.map((block) =>
             block.interest ? (
-              <motion.div
+              <Link
+                href={getDigitalLink(block.interest.title)}
                 key={block.key}
                 className={`group cursor-pointer ${block.className}`}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
                 onMouseEnter={() => setHoveredImage(block.interest!.imageUrl)}
                 onMouseLeave={() => setHoveredImage(null)}
               >
-                <div className="relative w-full h-full min-h-0 overflow-hidden rounded-lg shadow-lg bg-gray-800/20">
-                  <Image
-                    src={block.interest.imageUrl}
-                    alt={block.interest.title}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-110"
-                    sizes="(max-width:768px)100vw,(max-width:1024px)50vw,33vw"
-                  />
-                </div>
-                <h4
-                  className="text-xl font-semibold mt-4 mb-2 text-white"
-                  style={{}}
+                <motion.div
+                  className="w-full h-full"
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
                 >
-                  {block.interest.title}
-                </h4>
-                <p
-                  className="text-base opacity-80 leading-relaxed"
-                  style={{}}
-                >
-                  {block.interest.description}
-                </p>
-              </motion.div>
+                  <div className="relative w-full h-full min-h-0 overflow-hidden rounded-lg shadow-lg bg-gray-800/20">
+                    <Image
+                      src={block.interest.imageUrl}
+                      alt={block.interest.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      sizes="(max-width:768px)100vw,(max-width:1024px)50vw,33vw"
+                    />
+                  </div>
+                  <h4
+                    className="text-xl font-semibold mt-4 mb-2 text-white"
+                    style={{}}
+                  >
+                    {block.interest.title}
+                  </h4>
+                  <p
+                    className="text-base opacity-80 leading-relaxed"
+                    style={{}}
+                  >
+                    {block.interest.description}
+                  </p>
+                </motion.div>
+              </Link>
             ) : (
               <div key={block.key} className={`${block.className} bg-white/5 rounded-md`}>
                 {hoveredImage && (
@@ -573,30 +588,34 @@ return (
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-x-16 gap-y-32 max-w-6xl mx-auto">
           {interests.cultureAndExploration.map((interest, index) => (
-            <motion.div
+            <Link
+              href={getCultureLink(interest.title)}
               key={interest.title}
               className="group cursor-pointer"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <div className="relative h-80 mb-6 overflow-hidden rounded-lg shadow-lg">
-                <Image
-                  src={interest.imageUrl}
-                  alt={interest.title}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-110"
-                  sizes="(max-width:768px)100vw,(max-width:1024px)50vw,33vw"
-                />
-              </div>
-              <h4 className="text-xl font-semibold mb-2">
-                {interest.title}
-              </h4>
-              <p className="text-base opacity-80 leading-relaxed">
-                {interest.description}
-              </p>
-            </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <div className="relative h-80 mb-6 overflow-hidden rounded-lg shadow-lg">
+                  <Image
+                    src={interest.imageUrl}
+                    alt={interest.title}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    sizes="(max-width:768px)100vw,(max-width:1024px)50vw,33vw"
+                  />
+                </div>
+                <h4 className="text-xl font-semibold mb-2">
+                  {interest.title}
+                </h4>
+                <p className="text-base opacity-80 leading-relaxed">
+                  {interest.description}
+                </p>
+              </motion.div>
+            </Link>
           ))}
         </div>
       </motion.section>
