@@ -166,6 +166,27 @@ const COLORS = {
   radarGrowth: "#008877",
 };
 
+// カスタムY軸ティック: ラベルを-30度回転し、カテゴリを淡色で併記
+const CustomYAxisTick = ({ x, y, payload }: any) => {
+  const category = payload?.payload?.cat;
+  return (
+    <g transform={`translate(${x},${y})`}>
+      <text
+        x={0}
+        y={0}
+        dy={4}
+        textAnchor="end"
+        fill="#333"
+        fontSize={12}
+        transform="rotate(-30)"
+      >
+        {payload.value}
+        <tspan fill="#999" fontSize={10}>{` (${category})`}</tspan>
+      </text>
+    </g>
+  );
+};
+
 export default function SkillsChart() {
   const [selectedCats, setSelectedCats] = useState<string[]>([
     "建築・設計",
@@ -250,10 +271,10 @@ export default function SkillsChart() {
           
           <div className="w-full h-[640px]">
             <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={tools} layout="vertical" margin={{ top: 10, right: 20, bottom: 10, left: 150 }}>
+              <BarChart data={tools} layout="vertical" margin={{ top: 10, right: 20, bottom: 10, left: 240 }}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis type="number" domain={[0, 5]} ticks={[0, 1, 2, 3, 4, 5]} />
-                <YAxis type="category" dataKey="label" width={150} />
+                <YAxis type="category" dataKey="label" width={240} tick={<CustomYAxisTick />} />
                 <Tooltip formatter={(value: number) => `${value} / 5`} labelFormatter={(label: string) => `${label}`} />
                 <Bar dataKey="level" radius={[4, 4, 4, 4]}>
                   {tools.map((entry, index) => (
