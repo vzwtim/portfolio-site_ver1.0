@@ -47,9 +47,10 @@
 
 ## ソーシャルメディアリンク
 
-- Twitter: 
-- LinkedIn: 
-- GitHub: 
+- Instagram: https://www.instagram.com/babachan_1222/
+- GitHub: https://github.com/vzwtim
+- X: https://x.com/yudaizit
+- note: https://note.com/yubayuba
 
 ## 連絡先情報
 
