@@ -6,26 +6,14 @@ import SkillsChart from '@/components/SkillsChart';
 // careerStages / CareerStageKey はもう使わないので import しない
 import { skillsByStage } from '@/data/skills';
 
-// タイムライン用の型
-type TimelineStage = { label: string; education: string[]; work: string[] };
+type SkillsStageKey = keyof typeof skillsByStage; // "current" | "future" など
+type TimelineStage = { label: string; education: string[]; work: string[]; key: SkillsStageKey };
 
 // Career stages with corresponding education and work entries
 const timelineStages: TimelineStage[] = [
-  {
-    label: '高校',
-    education: ['仙台第二高等学校 卒業'],
-    work: [],
-  },
-  {
-    label: '大学',
-    education: ['東京大学工学部建築学科 卒業'],
-    work: [],
-  },
-  {
-    label: '大学院',
-    education: ['東京大学大学院 新領域創成科学研究科 社会文化環境学 修了'],
-    work: [],
-  },
+  { label: '高校',   education: ['仙台第二高等学校 卒業'], work: [], key: 'future' },
+  { label: '大学',   education: ['東京大学工学部建築学科 卒業'], work: [], key: 'future' },
+  { label: '大学院', education: ['東京大学大学院 新領域創成科学研究科 社会文化環境学 修了'], work: [], key: 'future' },
   {
     label: '社会人',
     education: [],
@@ -34,6 +22,7 @@ const timelineStages: TimelineStage[] = [
       '〇〇株式会社 建築設計部 (20XX年 - 20YY年)',
       '△△スタートアップ ソフトウェアエンジニア (20YY年 - 現在)',
     ],
+    key: 'current',
   },
 ];
 
@@ -122,7 +111,7 @@ export default function About() {
           </div>
         
           {/* スキルチャート：stage は number 想定 */}
-          <SkillsChart stageData={skillsByStage[stage]} />
+          <SkillsChart stageData={skillsByStage[timelineStages[stage].key]} />
         </section>
       </div>
     </main>
