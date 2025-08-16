@@ -3,24 +3,58 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import SkillsChart from '@/components/SkillsChart';
-import { careerStages, skillsByStage, CareerStageKey } from '@/data/skills';
+// skillsデータは使う前提で残すけど、careerStages/CareerStageKey の衝突を避けるために import から外す
+import { skillsByStage } from '@/data/skills';
+
+// タイムライン用の型
+type TimelineStage = { label: string; education: string[]; work: string[] };
+
+// Career stages with corresponding education and work entries
+const timelineStages: TimelineStage[] = [
+  {
+    label: '高校',
+    education: ['仙台第二高等学校 卒業'],
+    work: [],
+  },
+  {
+    label: '大学',
+    education: ['東京大学工学部建築学科 卒業'],
+    work: [],
+  },
+  {
+    label: '大学院',
+    education: ['東京大学大学院 新領域創成科学研究科 社会文化環境学 修了'],
+    work: [],
+  },
+  {
+    label: '社会人',
+    education: [],
+    work: [
+      '〇〇株式会社 アセット戦略部 (2024年 - 2025年)',
+      '〇〇株式会社 建築設計部 (20XX年 - 20YY年)',
+      '△△スタートアップ ソフトウェアエンジニア (20YY年 - 現在)',
+    ],
+  },
+];
 
 export default function About() {
-  const [stage, setStage] = useState<CareerStageKey>(careerStages[0].key);
+  // indexで管理（スライダーと相性が良い）
+  const [stage, setStage] = useState<number>(0);
+  const current = timelineStages[stage];
 
   return (
     <main className="bg-[#ffffff] text-[#232024] pt-24 md:pt-28 px-8 md:px-16 lg:px-32 min-h-screen">
       <div className="max-w-6xl mx-auto">
-
         {/* Profile Section */}
         <section className="flex flex-col items-center mb-24">
           <div className="w-full max-w-xs md:max-w-sm lg:max-w-md relative mx-auto">
             <Image
-              src="/images/babayudai_logo.svg" // ロゴ画像のパス
+              src="/images/babayudai_logo.svg"
               alt="YUDAI Logo"
-              width={500} // Adjust as needed for SVG, or remove if fill is used
-              height={500} // Adjust as needed for SVG, or remove if fill is used
+              width={500}
+              height={500}
               className="object-contain"
+              priority
             />
           </div>
           <div className="text-center">
@@ -35,24 +69,33 @@ export default function About() {
 
         {/* Career & Education Section */}
         <section className="mb-24">
-          <h2 className="text-3xl font-medium mb-8 text-center">
-            経歴・学歴
-          </h2>
+          <h2 className="text-3xl font-medium mb-8 text-center">経歴・学歴</h2>
+          <div className="mb-6 text-center">
+            <input
+              type="range"
+              min={0}
+              max={careerStages.length - 1}
+              value={stage}
+              onChange={(e) => setStage(parseInt(e.target.value))}
+              className="w-full"
+            />
+            <p className="mt-2">{careerStages[stage].label}</p>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="border border-gray-200/80 p-6 rounded-sm bg-white/50">
               <h3 className="text-xl font-bold mb-2">学歴</h3>
               <ul className="list-disc list-inside text-base leading-loose">
-                <li>仙台第二高等学校 卒業</li>
-                <li>東京大学工学部建築学科 卒業</li>
-                <li>東京大学大学院 新領域創成科学研究科 社会文化環境学 修了</li>
+                {current.education.map((item, idx) => (
+                  <li key={idx}>{item}</li>
+                ))}
               </ul>
             </div>
             <div className="border border-gray-200/80 p-6 rounded-sm bg-white/50">
               <h3 className="text-xl font-bold mb-2">職歴</h3>
               <ul className="list-disc list-inside text-base leading-loose">
-                <li>〇〇株式会社 アセット戦略部 (2024年 - 2025年)</li>
-                <li>〇〇株式会社 建築設計部 (20XX年 - 20YY年)</li>
-                <li>△△スタートアップ ソフトウェアエンジニア (20YY年 - 現在)</li>
+                {current.work.map((item, idx) => (
+                  <li key={idx}>{item}</li>
+                ))}
               </ul>
             </div>
           </div>

@@ -12,7 +12,7 @@ const slugify = (text: string) =>
 
 const getCultureLink = (title: string) =>
   title === 'Photography' ? '/photos' : `/special/${slugify(title)}`;
-
+const getWorksLink = (title: string) => `/works?tag=${slugify(title)}`;
 const getDigitalLink = (title: string) => `/works?tag=${slugify(title)}`;
 
 const interests = {
@@ -297,6 +297,12 @@ export default function InterestsSection() {
             <p className="opacity-80 leading-relaxed">
               {interest.description}
             </p>
+            <Link
+              href={getWorksLink(interest.title)}
+              className="inline-block mt-4 text-sm underline"
+            >
+              works →
+            </Link>
           </div>
         </motion.div>
       ))}
@@ -418,7 +424,7 @@ export default function InterestsSection() {
           {layout.map((block) =>
             block.interest ? (
               <Link
-                href={getDigitalLink(block.interest.title)}
+                href={getWorksLink(block.interest.title)}
                 key={block.key}
                 className={`group cursor-pointer ${block.className}`}
                 onMouseEnter={() => setHoveredImage(block.interest!.imageUrl)}
