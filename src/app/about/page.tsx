@@ -103,21 +103,25 @@ export default function About() {
 
         {/* Skills Section */}
         <section className="mb-24">
+          {/* タブ（timelineStages と同じ順でラベルを並べる） */}
           <div className="flex justify-center gap-2 mb-6">
-            {careerStages.map(({ key, label }) => (
+            {timelineStages.map((s, idx) => (
               <button
-                key={key}
-                onClick={() => setStage(key)}
+                key={s.label}
+                onClick={() => setStage(idx)}
                 className={`px-3 py-1 rounded-md text-sm border transition ${
-                  stage === key
+                  stage === idx
                     ? 'bg-[#bb5555] text-white border-[#bb5555]'
                     : 'bg-white text-neutral-700 border-neutral-200 hover:bg-neutral-50'
                 }`}
+                aria-pressed={stage === idx}
               >
-                {label}
+                {s.label}
               </button>
             ))}
           </div>
+        
+          {/* スキルチャート：stage は number 想定 */}
           <SkillsChart stageData={skillsByStage[stage]} />
         </section>
       </div>
