@@ -227,6 +227,44 @@ export default function InterestsSection() {
   const { scrollYProgress: scrollYProgressCulture } = useScroll({ target: cultureRef, offset: ["start end", "end start"] });
   const backgroundYCulture = useTransform(scrollYProgressCulture, [0, 1], ["-100%", "100%"]);
 
+  const [imagePools, setImagePools] = useState<Record<string, string[]>>({
+    'Data Analysis': [],
+    'Design × Programming': [],
+    'Artificial Intelligence': [],
+  });
+
+  useEffect(() => {
+    const fetchImages = async (keyword: string) => {
+      const res = await fetch(`/api/images?keyword=${keyword}`);
+      if (!res.ok) return [] as string[];
+      return (await res.json()) as string[];
+    };
+
+    const loadImages = async () => {
+      const [mapImgs, drawingImgs, webImgs, designImgs, aiImgs] = await Promise.all([
+        fetchImages('map'),
+        fetchImages('drawing'),
+        fetchImages('web'),
+        fetchImages('design'),
+        fetchImages('ai'),
+      ]);
+      setImagePools({
+        'Data Analysis': mapImgs,
+        'Design × Programming': [...drawingImgs, ...webImgs, ...designImgs],
+        'Artificial Intelligence': aiImgs,
+      });
+    };
+
+    loadImages();
+  }, []);
+
+  const getRandomImage = (title: string) => {
+    const pool = imagePools[title] || [];
+    if (pool.length === 0) return '';
+    const idx = Math.floor(Math.random() * pool.length);
+    return pool[idx];
+  };
+
   useEffect(() => {
     const generateSnippets = () => {
       const newSnippets = [
@@ -427,7 +465,7 @@ export default function InterestsSection() {
                 href={getWorksLink(block.interest.title)}
                 key={block.key}
                 className={`group cursor-pointer ${block.className}`}
-                onMouseEnter={() => setHoveredImage(block.interest!.imageUrl)}
+                onMouseEnter={() => setHoveredImage(getRandomImage(block.interest!.title))}
                 onMouseLeave={() => setHoveredImage(null)}
               >
                 <motion.div
