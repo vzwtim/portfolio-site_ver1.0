@@ -1,13 +1,16 @@
 "use client";
 
 import Image from 'next/image';
+import { useState } from 'react';
 import SkillsChart from '@/components/SkillSet';
+import { careerStages, skillsByStage, CareerStageKey } from '@/data/skills';
 
 export default function About() {
+  const [stage, setStage] = useState<CareerStageKey>(careerStages[0].key);
+
   return (
     <main className="bg-[#ffffff] text-[#232024] pt-24 md:pt-28 px-8 md:px-16 lg:px-32 min-h-screen">
       <div className="max-w-6xl mx-auto">
-        
 
         {/* Profile Section */}
         <section className="flex flex-col items-center mb-24">
@@ -21,13 +24,11 @@ export default function About() {
             />
           </div>
           <div className="text-center">
-            
             <p className="text-lg leading-relaxed mb-4">
               大学で建築・都市・社会・環境を学び、現在は不動産デベロッパーとして、用地取得・開発・アセットマネジメント業務に従事。経営企画・DXプロジェクトにも参画し、ビルやマンション単位の取得開発に携わっています。
-        </p>
+            </p>
             <p className="text-lg leading-relaxed">
-              都市のダイナミクスを見つめながら、和室・ちゃぶ台・ミニマルな暮らしを軸に、日々の発見や街歩きの記録を積み重ねています。一級建築士の取得を目指しつつ、将来的には街と暮らしをつなぐ事業に挑戦予定です。
-              趣味は、盆栽や書道などの日本文化、写真撮影、そして旅行。特に、自然や歴史的な場所を訪れることが好きです。
+              都市のダイナミクスを見つめながら、和室・ちゃぶ台・ミニマルな暮らしを軸に、日々の発見や街歩きの記録を積み重ねています。一級建築士の取得を目指しつつ、将来的には街と暮らしをつなぐ事業に挑戦予定です。趣味は、盆栽や書道などの日本文化、写真撮影、そして旅行。特に、自然や歴史的な場所を訪れることが好きです。
             </p>
           </div>
         </section>
@@ -55,11 +56,29 @@ export default function About() {
               </ul>
             </div>
           </div>
-      </section>
+        </section>
 
         {/* Skills Section */}
-        <SkillsChart />
-    </div>
+        <section className="mb-24">
+          <div className="flex justify-center gap-2 mb-6">
+            {careerStages.map(({ key, label }) => (
+              <button
+                key={key}
+                onClick={() => setStage(key)}
+                className={`px-3 py-1 rounded-md text-sm border transition ${
+                  stage === key
+                    ? 'bg-[#bb5555] text-white border-[#bb5555]'
+                    : 'bg-white text-neutral-700 border-neutral-200 hover:bg-neutral-50'
+                }`}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+          <SkillsChart stageData={skillsByStage[stage]} />
+        </section>
+      </div>
     </main>
   );
 }
+
