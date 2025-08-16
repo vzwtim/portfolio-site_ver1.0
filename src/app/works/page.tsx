@@ -1,14 +1,14 @@
 
-"use client";
-
 import React from 'react';
-import { useSearchParams } from 'next/navigation';
 import WorkCard from '@/components/WorkCard';
 import worksData from '../../../materials/works.json';
 
-const WorksPage: React.FC = () => {
-  const searchParams = useSearchParams();
-  const tag = searchParams.get('tag');
+interface WorksPageProps {
+  searchParams?: { tag?: string };
+}
+
+const WorksPage: React.FC<WorksPageProps> = ({ searchParams }) => {
+  const tag = searchParams?.tag;
 
   const filteredWorks = tag
     ? worksData.filter((work) => work.tags && work.tags.includes(tag))
