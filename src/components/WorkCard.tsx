@@ -31,13 +31,12 @@ const WorkCard: React.FC<WorkCardProps> = ({
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
-          <div className="relative w-full h-64 overflow-hidden">
+          <div className="relative w-full aspect-video overflow-hidden">
             <Image
               src={isHovered ? colorImage : monochromeImage}
               alt={title}
-              layout="fill"
-              objectFit="cover"
-              className="transition-transform duration-500 ease-in-out group-hover:scale-110"
+              fill
+              className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
             />
           </div>
         </div>
