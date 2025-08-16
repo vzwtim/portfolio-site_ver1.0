@@ -10,6 +10,7 @@ interface WorkCardProps {
   description: string;
   monochromeImage: string;
   colorImage: string;
+  tags?: string[];
 }
 
 const WorkCard: React.FC<WorkCardProps> = ({
@@ -18,33 +19,47 @@ const WorkCard: React.FC<WorkCardProps> = ({
   description,
   monochromeImage,
   colorImage,
+  tags = [],
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <Link href={`/works/${id}`}>
-      <div
-        className="relative rounded-lg shadow-lg overflow-hidden cursor-pointer group"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
-        <div className="relative w-full h-64 overflow-hidden mb-4">
-          <Image
-            src={isHovered ? colorImage : monochromeImage}
-            alt={title}
-            layout="fill"
-            objectFit="cover"
-            className="transition-transform duration-500 ease-in-out group-hover:scale-110"
-          />
-        </div>
+    <div>
+      <Link href={`/works/${id}`}>
         <div
-          className="p-4 pt-8 bg-white"
+          className="relative rounded-lg shadow-lg overflow-hidden cursor-pointer group"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
         >
-          <h2 className="text-2xl font-bold mb-2 text-gray-900">{title}</h2>
-          <p className="text-gray-700">{description}</p>
+          <div className="relative w-full h-64 overflow-hidden">
+            <Image
+              src={isHovered ? colorImage : monochromeImage}
+              alt={title}
+              layout="fill"
+              objectFit="cover"
+              className="transition-transform duration-500 ease-in-out group-hover:scale-110"
+            />
+          </div>
         </div>
+      </Link>
+      <div className="mt-4">
+        <h2 className="text-2xl font-bold mb-2 text-gray-900">{title}</h2>
+        <p className="text-gray-700">{description}</p>
+        {tags.length > 0 && (
+          <div className="mt-2 flex flex-wrap gap-2">
+            {tags.map((tag) => (
+              <Link
+                key={tag}
+                href={`/works?tag=${tag}`}
+                className="text-sm text-blue-600 hover:underline"
+              >
+                #{tag}
+              </Link>
+            ))}
+          </div>
+        )}
       </div>
-    </Link>
+    </div>
   );
 };
 
