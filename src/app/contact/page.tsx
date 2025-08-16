@@ -47,9 +47,42 @@ export default function Contact() {
             ソーシャルメディア
           </h2>
           <div className="flex justify-center space-x-8 text-xl">
-            <a href="#" className="hover:text-[#b33953] transition-colors" style={{ fontFamily: '"Shippori Mincho", serif' }}>Twitter</a>
-            <a href="#" className="hover:text-[#b33953] transition-colors" style={{ fontFamily: '"Shippori Mincho", serif' }}>LinkedIn</a>
-            <a href="#" className="hover:text-[#b33953] transition-colors" style={{ fontFamily: '"Shippori Mincho", serif' }}>GitHub</a>
+            <a
+              href="https://www.instagram.com/babachan_1222/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-[#b33953] transition-colors"
+              style={{ fontFamily: '"Shippori Mincho", serif' }}
+            >
+              Instagram
+            </a>
+            <a
+              href="https://github.com/vzwtim"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-[#b33953] transition-colors"
+              style={{ fontFamily: '"Shippori Mincho", serif' }}
+            >
+              GitHub
+            </a>
+            <a
+              href="https://x.com/yudaizit"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-[#b33953] transition-colors"
+              style={{ fontFamily: '"Shippori Mincho", serif' }}
+            >
+              X (Twitter)
+            </a>
+            <a
+              href="https://note.com/yubayuba"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-[#b33953] transition-colors"
+              style={{ fontFamily: '"Shippori Mincho", serif' }}
+            >
+              note
+            </a>
           </div>
         </section>
       </div>

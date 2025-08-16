@@ -5,8 +5,37 @@ import { useState } from 'react';
 import SkillsChart from '@/components/SkillSet';
 import { careerStages, skillsByStage, CareerStageKey } from '@/data/skills';
 
+// Career stages with corresponding education and work entries
+const careerStages: { label: string; education: string[]; work: string[] }[] = [
+  {
+    label: '高校',
+    education: ['仙台第二高等学校 卒業'],
+    work: [],
+  },
+  {
+    label: '大学',
+    education: ['東京大学工学部建築学科 卒業'],
+    work: [],
+  },
+  {
+    label: '大学院',
+    education: ['東京大学大学院 新領域創成科学研究科 社会文化環境学 修了'],
+    work: [],
+  },
+  {
+    label: '社会人',
+    education: [],
+    work: [
+      '〇〇株式会社 アセット戦略部 (2024年 - 2025年)',
+      '〇〇株式会社 建築設計部 (20XX年 - 20YY年)',
+      '△△スタートアップ ソフトウェアエンジニア (20YY年 - 現在)',
+    ],
+  },
+];
+
 export default function About() {
   const [stage, setStage] = useState<CareerStageKey>(careerStages[0].key);
+  const current = careerStages[stage];
 
   return (
     <main className="bg-[#ffffff] text-[#232024] pt-24 md:pt-28 px-8 md:px-16 lg:px-32 min-h-screen">
@@ -35,24 +64,33 @@ export default function About() {
 
         {/* Career & Education Section */}
         <section className="mb-24">
-          <h2 className="text-3xl font-medium mb-8 text-center">
-            経歴・学歴
-          </h2>
+          <h2 className="text-3xl font-medium mb-8 text-center">経歴・学歴</h2>
+          <div className="mb-6 text-center">
+            <input
+              type="range"
+              min={0}
+              max={careerStages.length - 1}
+              value={stage}
+              onChange={(e) => setStage(parseInt(e.target.value))}
+              className="w-full"
+            />
+            <p className="mt-2">{careerStages[stage].label}</p>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="border border-gray-200/80 p-6 rounded-sm bg-white/50">
               <h3 className="text-xl font-bold mb-2">学歴</h3>
               <ul className="list-disc list-inside text-base leading-loose">
-                <li>仙台第二高等学校 卒業</li>
-                <li>東京大学工学部建築学科 卒業</li>
-                <li>東京大学大学院 新領域創成科学研究科 社会文化環境学 修了</li>
+                {current.education.map((item, idx) => (
+                  <li key={idx}>{item}</li>
+                ))}
               </ul>
             </div>
             <div className="border border-gray-200/80 p-6 rounded-sm bg-white/50">
               <h3 className="text-xl font-bold mb-2">職歴</h3>
               <ul className="list-disc list-inside text-base leading-loose">
-                <li>〇〇株式会社 アセット戦略部 (2024年 - 2025年)</li>
-                <li>〇〇株式会社 建築設計部 (20XX年 - 20YY年)</li>
-                <li>△△スタートアップ ソフトウェアエンジニア (20YY年 - 現在)</li>
+                {current.work.map((item, idx) => (
+                  <li key={idx}>{item}</li>
+                ))}
               </ul>
             </div>
           </div>
