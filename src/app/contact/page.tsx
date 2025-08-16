@@ -1,5 +1,3 @@
-import Link from 'next/link';
-
 export default function Contact() {
   return (
     <main className="bg-[#ffffff] text-[#232024] py-20 px-8 md:px-16 lg:px-32 min-h-screen">
@@ -41,50 +39,6 @@ export default function Contact() {
           </form>
         </section>
 
-        {/* Social Media Links Section */}
-        <section className="text-center">
-          <h2 className="text-2xl font-bold mb-8" style={{ fontFamily: '"Shippori Mincho", serif' }}>
-            ソーシャルメディア
-          </h2>
-          <div className="flex justify-center space-x-8 text-xl">
-            <a
-              href="https://www.instagram.com/babachan_1222/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-[#b33953] transition-colors"
-              style={{ fontFamily: '"Shippori Mincho", serif' }}
-            >
-              Instagram
-            </a>
-            <a
-              href="https://github.com/vzwtim"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-[#b33953] transition-colors"
-              style={{ fontFamily: '"Shippori Mincho", serif' }}
-            >
-              GitHub
-            </a>
-            <a
-              href="https://x.com/yudaizit"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-[#b33953] transition-colors"
-              style={{ fontFamily: '"Shippori Mincho", serif' }}
-            >
-              X (Twitter)
-            </a>
-            <a
-              href="https://note.com/yubayuba"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-[#b33953] transition-colors"
-              style={{ fontFamily: '"Shippori Mincho", serif' }}
-            >
-              note
-            </a>
-          </div>
-        </section>
       </div>
     </main>
   );
