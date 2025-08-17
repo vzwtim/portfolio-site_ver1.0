@@ -3,7 +3,6 @@ import Image from 'next/image'; // Image コンポーネントをインポート
 import { useState } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { useCursor } from '@/context/CursorContext';
-import { useScrollbarWidth } from '@/context/ScrollbarWidthContext';
 
 // textColor prop を受け取る
 interface HeaderProps {
@@ -12,7 +11,6 @@ interface HeaderProps {
 
 export default function Header({ textColor }: HeaderProps) {
   const { textEnter, textLeave } = useCursor();
-  const { scrollbarWidth } = useScrollbarWidth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const hoverTextColorClass = 'hover:text-highlight';
@@ -20,8 +18,7 @@ export default function Header({ textColor }: HeaderProps) {
 
   return (
     <header
-      className={`fixed top-0 left-0 z-50 w-full py-6 px-8 md:py-8 md:px-12 transition-colors duration-300 backdrop-blur-md bg-white/30 ${textColor}`}
-      style={{ paddingRight: `${scrollbarWidth}px` }}
+      className={`fixed top-0 left-0 z-50 w-full py-6 px-8 md:py-8 md:px-12 transition-colors duration-300 bg-transparent ${textColor}`}
     >
       <div className="flex justify-between items-center max-w-7xl mx-auto relative z-50">
         {/* Left side - Logo */}
@@ -111,7 +108,6 @@ export default function Header({ textColor }: HeaderProps) {
         className={`fixed inset-0 z-40 flex flex-col bg-white ${textColor} md:hidden transform transition-all duration-300 ease-in-out ${
           isMenuOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0 pointer-events-none'
         }`}
-        style={{ paddingRight: `${scrollbarWidth}px` }}
       >
         <nav className="flex-1 flex flex-col justify-center items-center px-8">
           <ul className="flex flex-col items-center space-y-8">
