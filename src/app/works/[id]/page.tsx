@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import works from '../../../../materials/works.json';
+import BackButton from '@/components/BackButton';
 
 type Work = {
   id: string;
@@ -10,6 +11,7 @@ type Work = {
   description: string;
   monochromeImage: string;
   colorImage: string;
+  images?: string[];
   bgColor?: string;
 };
 
@@ -39,13 +41,17 @@ export default function WorkPage({ params }: PageProps) {
     notFound();
   }
 
-  const images = [work.colorImage, work.monochromeImage].filter(Boolean);
+  const images =
+    work.images && work.images.length > 0
+      ? work.images
+      : [work.colorImage, work.monochromeImage].filter(Boolean);
 
   return (
     <main
-      className="flex h-screen w-screen overflow-x-auto overflow-y-hidden text-gray-900"
+      className="relative flex h-screen w-screen overflow-x-auto overflow-y-hidden text-gray-900"
       style={{ backgroundColor: work.bgColor }}
     >
+      <BackButton />
       <div className="flex-shrink-0 h-full w-[40vw] flex items-center p-8">
         <div className="max-w-md text-left">
           <h1 className="text-4xl font-bold mb-6">{work.title}</h1>

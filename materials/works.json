@@ -5,6 +5,11 @@
     "description": "This is a description for Project Alpha. It showcases innovative design and engineering principles.",
     "monochromeImage": "/images/film_bw_1.jpg",
     "colorImage": "/images/film_color_1.jpg",
+    "images": [
+      "/images/film_color_1.jpg",
+      "/images/film_bw_1.jpg",
+      "/images/film_color_2.jpg"
+    ],
     "bgColor": "#e9d5ff",
     "tags": ["data-analysis"]
   },
@@ -14,6 +19,11 @@
     "description": "A deep dive into sustainable architecture and urban planning.",
     "monochromeImage": "/images/film_bw_1.jpg",
     "colorImage": "/images/film_color_1.jpg",
+    "images": [
+      "/images/film_color_3.jpg",
+      "/images/film_bw_2.jpg",
+      "/images/film_color_4.jpg"
+    ],
     "bgColor": "#fde68a",
     "tags": ["design-programming"]
   },
@@ -23,6 +33,11 @@
     "description": "Exploring the intersection of traditional craftsmanship and modern technology.",
     "monochromeImage": "/images/film_bw_1.jpg",
     "colorImage": "/images/film_color_1.jpg",
+    "images": [
+      "/images/film_color_5.jpg",
+      "/images/film_bw_3.jpg",
+      "/images/film_color_6.jpg"
+    ],
     "bgColor": "#bae6fd",
     "tags": ["artificial-intelligence"]
   },
@@ -32,6 +47,11 @@
     "description": "A study on material science and its application in structural design.",
     "monochromeImage": "/images/film_bw_1.jpg",
     "colorImage": "/images/film_color_1.jpg",
+    "images": [
+      "/images/film_color_7.jpg",
+      "/images/film_bw_4.jpg",
+      "/images/film_color_8.jpg"
+    ],
     "bgColor": "#bbf7d0",
     "tags": ["data-analysis"]
   },
@@ -41,6 +61,11 @@
     "description": "Innovative solutions for compact living spaces in urban environments.",
     "monochromeImage": "/images/film_bw_1.jpg",
     "colorImage": "/images/film_color_1.jpg",
+    "images": [
+      "/images/film_color_9.jpg",
+      "/images/film_bw_5.jpg",
+      "/images/film_color_10.jpg"
+    ],
     "bgColor": "#fecaca",
     "tags": ["design-programming"]
   },
@@ -50,6 +75,11 @@
     "description": "A conceptual project focusing on future city infrastructure.",
     "monochromeImage": "/images/film_bw_1.jpg",
     "colorImage": "/images/film_color_1.jpg",
+    "images": [
+      "/images/film_color_11.jpg",
+      "/images/film_bw_6.jpg",
+      "/images/film_color_12.jpg"
+    ],
     "bgColor": "#fbcfe8",
     "tags": ["artificial-intelligence"]
   }
