@@ -1,11 +1,16 @@
 import React from "react";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "../globals.css";
 import ClientLayout from "@/components/ClientLayout";
 
 export const metadata: Metadata = {
   title: "YUDAI | Architectural Designer & Software Engineer",
   description: "The portfolio of YUDAI, exploring the intersection of architecture and technology.",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({
