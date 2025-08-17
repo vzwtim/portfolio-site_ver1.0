@@ -225,9 +225,6 @@ export default function InterestsSection() {
   const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start end', 'end start'] });
   const pathLength = useTransform(scrollYProgress, [0, 0.85], [0, 1]);
 
-  const { scrollYProgress: scrollYProgressCulture } = useScroll({ target: cultureRef, offset: ["start end", "end start"] });
-  const rawBackgroundYCulture = useTransform(scrollYProgressCulture, [0, 1], ["-100%", "100%"]); 
-  const backgroundYCulture = useSpring(rawBackgroundYCulture, { stiffness: 80, damping: 20 });
 
   const [imagePools, setImagePools] = useState<Record<string, string[]>>({
     'Data Analysis': [],
@@ -599,7 +596,7 @@ return (
           backgroundImage: 'url("/images/asanoha.svg")',
           backgroundSize: '140px 80px',
           backgroundRepeat: 'repeat',
-          backgroundPositionY: backgroundYCulture,
+          backgroundAttachment: 'fixed',
         }}
       >
         <div className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-white to-transparent" />
