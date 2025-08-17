@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion, useInView, useScroll, useTransform } from 'framer-motion';
+import { motion, useInView, useScroll, useTransform, useSpring } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import { optimizedImage } from '@/lib/optimizedImage';
 
@@ -226,7 +226,8 @@ export default function InterestsSection() {
   const pathLength = useTransform(scrollYProgress, [0, 0.85], [0, 1]);
 
   const { scrollYProgress: scrollYProgressCulture } = useScroll({ target: cultureRef, offset: ["start end", "end start"] });
-  const backgroundYCulture = useTransform(scrollYProgressCulture, [0, 1], ["-100%", "100%"]);
+  const rawBackgroundYCulture = useTransform(scrollYProgressCulture, [0, 1], ["-100%", "100%"]); 
+  const backgroundYCulture = useSpring(rawBackgroundYCulture, { stiffness: 80, damping: 20 });
 
   const [imagePools, setImagePools] = useState<Record<string, string[]>>({
     'Data Analysis': [],
