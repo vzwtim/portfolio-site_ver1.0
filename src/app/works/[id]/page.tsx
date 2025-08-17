@@ -39,23 +39,24 @@ export default function WorkPage({ params }: PageProps) {
     notFound();
   }
 
+  const images = [work.colorImage, work.monochromeImage].filter(Boolean);
+
   return (
     <main
-      className="flex h-screen w-screen overflow-x-auto overflow-y-hidden text-gray-900 snap-x snap-mandatory"
+      className="flex h-screen w-screen overflow-x-auto overflow-y-hidden text-gray-900"
       style={{ backgroundColor: work.bgColor }}
     >
-      <section className="flex-shrink-0 w-screen h-screen flex items-center justify-center p-8">
-        <div className="text-center max-w-xl">
+      <div className="flex-shrink-0 h-full w-[40vw] flex items-center p-8">
+        <div className="max-w-md text-left">
           <h1 className="text-4xl font-bold mb-6">{work.title}</h1>
           <p className="text-lg leading-relaxed">{work.description}</p>
         </div>
-      </section>
-      <section className="flex-shrink-0 w-screen h-screen relative">
-        <Image src={work.colorImage} alt={work.title} fill className="object-cover" />
-      </section>
-      <section className="flex-shrink-0 w-screen h-screen relative">
-        <Image src={work.monochromeImage} alt="" fill className="object-cover" />
-      </section>
+      </div>
+      {images.map((src, idx) => (
+        <div key={idx} className="relative flex-shrink-0 h-full w-[60vw]">
+          <Image src={src} alt={idx === 0 ? work.title : ''} fill className="object-cover" />
+        </div>
+      ))}
     </main>
   );
 }
