@@ -4,6 +4,7 @@ import { useState, useRef, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useScrollbarWidth } from '@/context/ScrollbarWidthContext';
+import { optimizedImage } from '@/lib/optimizedImage';
 
 interface Photo {
   src: string;
@@ -11,7 +12,7 @@ interface Photo {
   dominantBgColor: string; // Background color for modal
 }
 
-const initialPhotos: Photo[] = [
+const rawPhotos: Photo[] = [
   { src: '/images/trip_eu_1.jpg', alt: 'Europe Trip 1', dominantBgColor: '#ADD8E6' },
   { src: '/images/trip_eu_2.jpg', alt: 'Europe Trip 2', dominantBgColor: '#ADD8E6' },
   { src: '/images/trip_eu_3.jpg', alt: 'Europe Trip 3', dominantBgColor: '#ADD8E6' },
@@ -67,6 +68,8 @@ const initialPhotos: Photo[] = [
   { src: '/images/film_color_14.jpg', alt: 'Color Film 14', dominantBgColor: '#32CD32' },
   { src: '/images/film_color_15.jpg', alt: 'Color Film 15', dominantBgColor: '#32CD32' },
 ];
+
+const initialPhotos: Photo[] = rawPhotos.map((p) => ({ ...p, src: optimizedImage(p.src) }));
 
 export default function PhotosClientPage() {
   const { scrollbarWidth } = useScrollbarWidth();
