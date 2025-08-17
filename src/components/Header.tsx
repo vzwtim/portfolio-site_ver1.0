@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image'; // Image コンポーネントをインポート
+import { useState } from 'react';
+import { FaBars, FaTimes } from 'react-icons/fa';
 import { useCursor } from '@/context/CursorContext';
 import { useScrollbarWidth } from '@/context/ScrollbarWidthContext';
 
@@ -11,8 +13,10 @@ interface HeaderProps {
 export default function Header({ textColor }: HeaderProps) {
   const { textEnter, textLeave } = useCursor();
   const { scrollbarWidth } = useScrollbarWidth();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const hoverTextColorClass = 'hover:text-highlight';
+  const toggleMenu = (): void => setIsMenuOpen((prev) => !prev);
 
   return (
     <header
@@ -22,7 +26,7 @@ export default function Header({ textColor }: HeaderProps) {
       <div className="flex justify-between items-center max-w-7xl mx-auto">
         {/* Left side - Logo */}
         <Link href="/">
-          <div 
+          <div
             className="cursor-pointer"
             onMouseEnter={textEnter}
             onMouseLeave={textLeave}
@@ -36,9 +40,9 @@ export default function Header({ textColor }: HeaderProps) {
             />
           </div>
         </Link>
-        
+
         {/* Right side - Navigation */}
-        <nav className="pr-8">
+        <nav className="pr-8 hidden md:block">
           <ul className="flex flex-row items-center space-x-6 md:space-x-8">
             <li>
               <Link href="/about">
@@ -89,8 +93,78 @@ export default function Header({ textColor }: HeaderProps) {
               </Link>
             </li>
           </ul>
-      </nav>
+        </nav>
+
+        {/* Mobile menu button */}
+        <button
+          type="button"
+          className="md:hidden text-2xl"
+          onClick={toggleMenu}
+          aria-label="Toggle navigation menu"
+        >
+          {isMenuOpen ? <FaTimes /> : <FaBars />}
+        </button>
       </div>
+
+      {/* Mobile navigation */}
+      {isMenuOpen && (
+        <nav className="md:hidden mt-4">
+          <ul className="flex flex-col items-center space-y-4">
+            <li>
+              <Link href="/about">
+                <span
+                  className={`text-base font-bold ${hoverTextColorClass} transition-colors duration-300 cursor-pointer tracking-wide`}
+                  style={{ fontFamily: '"Montserrat ExtraBold", sans-serif' }}
+                  onMouseEnter={textEnter}
+                  onMouseLeave={textLeave}
+                  onClick={toggleMenu}
+                >
+                  about
+                </span>
+              </Link>
+            </li>
+            <li>
+              <Link href="/photos">
+                <span
+                  className={`text-base font-bold ${hoverTextColorClass} transition-colors duration-300 cursor-pointer tracking-wide`}
+                  style={{ fontFamily: '"Montserrat ExtraBold", sans-serif' }}
+                  onMouseEnter={textEnter}
+                  onMouseLeave={textLeave}
+                  onClick={toggleMenu}
+                >
+                  gallery
+                </span>
+              </Link>
+            </li>
+            <li>
+              <Link href="/works">
+                <span
+                  className={`text-base font-bold ${hoverTextColorClass} transition-colors duration-300 cursor-pointer tracking-wide`}
+                  style={{ fontFamily: '"Montserrat ExtraBold", sans-serif' }}
+                  onMouseEnter={textEnter}
+                  onMouseLeave={textLeave}
+                  onClick={toggleMenu}
+                >
+                  works
+                </span>
+              </Link>
+            </li>
+            <li>
+              <Link href="/contact">
+                <span
+                  className={`text-base font-bold ${hoverTextColorClass} transition-colors duration-300 cursor-pointer tracking-wide`}
+                  style={{ fontFamily: '"Montserrat ExtraBold", sans-serif' }}
+                  onMouseEnter={textEnter}
+                  onMouseLeave={textLeave}
+                  onClick={toggleMenu}
+                >
+                  contact
+                </span>
+              </Link>
+            </li>
+          </ul>
+        </nav>
+      )}
     </header>
   );
 }
