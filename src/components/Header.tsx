@@ -20,8 +20,8 @@ export default function Header({ textColor }: HeaderProps) {
 
   return (
     <header
-      className={`fixed top-0 left-0 z-50 py-6 px-8 md:py-8 md:px-12 transition-colors duration-300 ${textColor} relative`}
-      style={{ width: '100vw', paddingRight: `${scrollbarWidth}px` }}
+      className={`fixed top-0 left-0 z-50 w-full py-6 px-8 md:py-8 md:px-12 transition-colors duration-300 backdrop-blur-md bg-white/30 ${textColor}`}
+      style={{ paddingRight: `${scrollbarWidth}px` }}
     >
       <div className="flex justify-between items-center max-w-7xl mx-auto relative z-50">
         {/* Left side - Logo */}

@@ -47,8 +47,8 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
       <ScrollbarWidthProvider> {/* Wrap with ScrollbarWidthProvider */}
         <CursorProvider>
           <CustomCursor />
-        {/* Header に textColor を渡す */}
-        {!isWorkDetailPage && <Header textColor={textColor} />}
+          {/* Header に textColor を渡す */}
+          <Header textColor={textColor} />
           <AnimatePresence mode="wait" initial={false}>
             <motion.main
               key={pathname}
