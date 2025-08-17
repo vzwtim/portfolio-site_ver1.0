@@ -96,74 +96,86 @@ export default function Header({ textColor }: HeaderProps) {
         </nav>
 
         {/* Mobile menu button */}
-        <button
-          type="button"
-          className="md:hidden text-2xl"
-          onClick={toggleMenu}
-          aria-label="Toggle navigation menu"
-        >
-          {isMenuOpen ? <FaTimes /> : <FaBars />}
-        </button>
+        {!isMenuOpen && (
+          <button
+            type="button"
+            className="md:hidden text-2xl p-2"
+            onClick={toggleMenu}
+            aria-label="Open navigation menu"
+          >
+            <FaBars />
+          </button>
+        )}
       </div>
 
-      {/* Mobile navigation */}
+      {/* Mobile navigation overlay */}
       {isMenuOpen && (
-        <nav className="md:hidden mt-4">
-          <ul className="flex flex-col items-center space-y-4">
-            <li>
-              <Link href="/about">
-                <span
-                  className={`text-base font-bold ${hoverTextColorClass} transition-colors duration-300 cursor-pointer tracking-wide`}
-                  style={{ fontFamily: '"Montserrat ExtraBold", sans-serif' }}
-                  onMouseEnter={textEnter}
-                  onMouseLeave={textLeave}
-                  onClick={toggleMenu}
-                >
-                  about
-                </span>
-              </Link>
-            </li>
-            <li>
-              <Link href="/photos">
-                <span
-                  className={`text-base font-bold ${hoverTextColorClass} transition-colors duration-300 cursor-pointer tracking-wide`}
-                  style={{ fontFamily: '"Montserrat ExtraBold", sans-serif' }}
-                  onMouseEnter={textEnter}
-                  onMouseLeave={textLeave}
-                  onClick={toggleMenu}
-                >
-                  gallery
-                </span>
-              </Link>
-            </li>
-            <li>
-              <Link href="/works">
-                <span
-                  className={`text-base font-bold ${hoverTextColorClass} transition-colors duration-300 cursor-pointer tracking-wide`}
-                  style={{ fontFamily: '"Montserrat ExtraBold", sans-serif' }}
-                  onMouseEnter={textEnter}
-                  onMouseLeave={textLeave}
-                  onClick={toggleMenu}
-                >
-                  works
-                </span>
-              </Link>
-            </li>
-            <li>
-              <Link href="/contact">
-                <span
-                  className={`text-base font-bold ${hoverTextColorClass} transition-colors duration-300 cursor-pointer tracking-wide`}
-                  style={{ fontFamily: '"Montserrat ExtraBold", sans-serif' }}
-                  onMouseEnter={textEnter}
-                  onMouseLeave={textLeave}
-                  onClick={toggleMenu}
-                >
-                  contact
-                </span>
-              </Link>
-            </li>
-          </ul>
-        </nav>
+        <div className={`fixed inset-0 z-40 flex flex-col bg-white ${textColor}`}>
+          <button
+            type="button"
+            className="self-end m-6 text-2xl p-2"
+            onClick={toggleMenu}
+            aria-label="Close navigation menu"
+          >
+            <FaTimes />
+          </button>
+          <nav className="flex-1 flex flex-col justify-center items-center px-8">
+            <ul className="flex flex-col items-center space-y-8">
+              <li>
+                <Link href="/about">
+                  <span
+                    className={`text-base font-bold ${hoverTextColorClass} transition-colors duration-300 cursor-pointer tracking-wide`}
+                    style={{ fontFamily: '"Montserrat ExtraBold", sans-serif' }}
+                    onMouseEnter={textEnter}
+                    onMouseLeave={textLeave}
+                    onClick={toggleMenu}
+                  >
+                    about
+                  </span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/photos">
+                  <span
+                    className={`text-base font-bold ${hoverTextColorClass} transition-colors duration-300 cursor-pointer tracking-wide`}
+                    style={{ fontFamily: '"Montserrat ExtraBold", sans-serif' }}
+                    onMouseEnter={textEnter}
+                    onMouseLeave={textLeave}
+                    onClick={toggleMenu}
+                  >
+                    gallery
+                  </span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/works">
+                  <span
+                    className={`text-base font-bold ${hoverTextColorClass} transition-colors duration-300 cursor-pointer tracking-wide`}
+                    style={{ fontFamily: '"Montserrat ExtraBold", sans-serif' }}
+                    onMouseEnter={textEnter}
+                    onMouseLeave={textLeave}
+                    onClick={toggleMenu}
+                  >
+                    works
+                  </span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact">
+                  <span
+                    className={`text-base font-bold ${hoverTextColorClass} transition-colors duration-300 cursor-pointer tracking-wide`}
+                    style={{ fontFamily: '"Montserrat ExtraBold", sans-serif' }}
+                    onMouseEnter={textEnter}
+                    onMouseLeave={textLeave}
+                    onClick={toggleMenu}
+                  >
+                    contact
+                  </span>
+                </Link>
+              </li>
+            </ul>
+          </nav>
+        </div>
       )}
     </header>
   );
