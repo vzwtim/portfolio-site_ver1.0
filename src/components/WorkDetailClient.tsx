@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { useSearchParams } from 'next/navigation';
+import { optimizedImage } from '@/lib/optimizedImage';
 
 interface WorkDetailClientProps {
   workId: string;
@@ -23,12 +24,12 @@ const dummyWorkData = {
     この建築は、単なる構造物ではなく、未来の都市生活のあり方を提案するものです。
   `,
   images: [
-    '/images/image_ginza_1.png',
-    '/images/image_ginza_2.png',
-    '/images/image_ginza_3.png',
-    '/images/image_ginza_4.png',
-    '/images/building_osaka.jpg',
-    '/images/drawing_plantbuilding.png',
+    optimizedImage('/images/image_ginza_1.png'),
+    optimizedImage('/images/image_ginza_2.png'),
+    optimizedImage('/images/image_ginza_3.png'),
+    optimizedImage('/images/image_ginza_4.png'),
+    optimizedImage('/images/building_osaka.jpg'),
+    optimizedImage('/images/drawing_plantbuilding.png'),
   ],
 };
 

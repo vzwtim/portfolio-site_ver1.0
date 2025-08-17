@@ -3,6 +3,7 @@ import React from 'react';
 import Link from 'next/link';
 import WorkCard from '@/components/WorkCard';
 import worksData from '../../../materials/works.json';
+import { optimizedImage } from '@/lib/optimizedImage';
 
 interface WorksPageProps {
   searchParams: { tag?: string };
@@ -53,8 +54,8 @@ const WorksPage: React.FC<WorksPageProps> = ({ searchParams }) => {
             id={work.id}
             title={work.title}
             description={work.description}
-            monochromeImage={work.monochromeImage}
-            colorImage={work.colorImage}
+            monochromeImage={optimizedImage(work.monochromeImage)}
+            colorImage={optimizedImage(work.colorImage)}
             tags={work.tags}
           />
         ))}
