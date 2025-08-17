@@ -23,7 +23,7 @@ export default function Header({ textColor }: HeaderProps) {
       className={`fixed top-0 left-0 z-50 py-6 px-8 md:py-8 md:px-12 transition-colors duration-300 ${textColor} relative`}
       style={{ width: '100vw', paddingRight: `${scrollbarWidth}px` }}
     >
-      <div className="flex justify-between items-center max-w-7xl mx-auto">
+      <div className="flex justify-between items-center max-w-7xl mx-auto relative z-50">
         {/* Left side - Logo */}
         <Link href="/">
           <div
@@ -97,31 +97,22 @@ export default function Header({ textColor }: HeaderProps) {
       </div>
 
       {/* Mobile menu button */}
-      {!isMenuOpen && (
-        <button
-          type="button"
-          className="md:hidden text-2xl p-2 absolute top-6 right-8 md:top-8 md:right-12"
-          onClick={toggleMenu}
-          aria-label="Open navigation menu"
-        >
-          <FaBars />
-        </button>
-      )}
+      <button
+        type="button"
+        className="md:hidden text-2xl p-2 absolute top-6 right-8 md:top-8 md:right-12 z-50"
+        onClick={toggleMenu}
+        aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+      >
+        {isMenuOpen ? <FaTimes /> : <FaBars />}
+      </button>
 
       {/* Mobile navigation overlay */}
       <div
         className={`fixed inset-0 z-40 flex flex-col bg-white ${textColor} md:hidden transform transition-all duration-300 ease-in-out ${
-          isMenuOpen ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0 pointer-events-none'
-        } relative`}
+          isMenuOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0 pointer-events-none'
+        }`}
+        style={{ paddingRight: `${scrollbarWidth}px` }}
       >
-        <button
-          type="button"
-          className="absolute top-6 right-8 md:top-8 md:right-12 text-2xl p-2"
-          onClick={toggleMenu}
-          aria-label="Close navigation menu"
-        >
-          <FaTimes />
-        </button>
         <nav className="flex-1 flex flex-col justify-center items-center px-8">
           <ul className="flex flex-col items-center space-y-8">
             <li>
