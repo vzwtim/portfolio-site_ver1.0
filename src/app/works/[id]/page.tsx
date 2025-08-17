@@ -1,7 +1,10 @@
 // src/app/works/[id]/page.tsx
+'use client';
+
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
+import { useEffect, useRef } from 'react';
 import works from '../../../../materials/works.json';
 import BackButton from '@/components/BackButton';
 
@@ -46,8 +49,27 @@ export default function WorkPage({ params }: PageProps) {
       ? work.images
       : [work.colorImage, work.monochromeImage].filter(Boolean);
 
+  const mainRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = mainRef.current;
+    if (!el) return;
+
+    const handleWheel = (e: WheelEvent) => {
+      e.preventDefault();
+      el.scrollBy({ left: e.deltaY });
+    };
+
+    el.addEventListener('wheel', handleWheel, { passive: false });
+
+    return () => {
+      el.removeEventListener('wheel', handleWheel);
+    };
+  }, []);
+
   return (
     <main
+      ref={mainRef}
       className="relative flex h-screen w-screen overflow-x-auto overflow-y-hidden text-gray-900"
       style={{ backgroundColor: work.bgColor }}
     >
