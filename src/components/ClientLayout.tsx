@@ -22,6 +22,7 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
   const [isLoading, setIsLoading] = useState(true);
   const isHomePage = pathname === '/';
   const isWorkDetailPage = pathname.startsWith('/works/') && pathname !== '/works';
+  const isWorksRelatedPage = pathname.startsWith('/works');
 
   // 色の状態管理を ClientLayout に移動
   const [bgColor, setBgColor] = useState('bg-white');
@@ -52,10 +53,22 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
           <AnimatePresence mode="wait" initial={false}>
             <motion.main
               key={pathname}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
+              initial={
+                isWorksRelatedPage
+                  ? { opacity: 0, x: '100%' }
+                  : { opacity: 0, y: 20 }
+              }
+              animate={
+                isWorksRelatedPage
+                  ? { opacity: 1, x: 0 }
+                  : { opacity: 1, y: 0 }
+              }
+              exit={
+                isWorksRelatedPage
+                  ? { opacity: 0, x: '-100%' }
+                  : { opacity: 0, y: -20 }
+              }
+              transition={{ duration: 0.3, ease: 'easeInOut' }}
               className={textColor} // textColor を main にも適用
             >
               {children}
