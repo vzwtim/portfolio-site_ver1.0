@@ -25,7 +25,7 @@ export default function Home() {
           className="absolute inset-0 z-0"
         >
           <Image
-            src={optimizedImage('/images/mv_gomoku_1.jpg', { width: 1600 })}
+            src="/images/mv_gomoku_1.jpg"
             alt="Gomoku Rice"
             fill
             className="object-cover"
