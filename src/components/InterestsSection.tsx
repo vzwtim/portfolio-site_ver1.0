@@ -537,7 +537,7 @@ return (
       <motion.svg
         className="absolute inset-0 w-full h-full pointer-events-none"
         viewBox="0 0 1000 3000"
-        preserveAspectRatio="none"
+        preserveAspectRatio="xMidYMid slice"
       >
         <motion.path
           d="M800 0 C100 400 400 800 1000 1200 S800 200 500 2000 100 100"
@@ -545,6 +545,7 @@ return (
           stroke="#008877"
           strokeWidth="56"
           strokeLinecap="round"
+          vectorEffect="non-scaling-stroke"
           style={{ pathLength }}
         />
         <motion.path
@@ -553,6 +554,7 @@ return (
           stroke="#bb5555"
           strokeWidth="56"
           strokeLinecap="round"
+          vectorEffect="non-scaling-stroke"
           style={{ pathLength }}
         />
       </motion.svg>
