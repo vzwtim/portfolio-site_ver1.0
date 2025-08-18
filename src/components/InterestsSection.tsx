@@ -198,7 +198,10 @@ const TypingCodeBackground: React.FC<TypingCodeBackgroundProps> = ({ snippets, p
   }, [isAnimating, snippets]);
 
   return (
-    <div className="absolute overflow-hidden pointer-events-none z-20 opacity-100 flex flex-col p-2 rounded-lg" style={position}>
+    <div
+      className="absolute overflow-hidden pointer-events-none z-0 opacity-100 flex flex-col p-2 rounded-lg"
+      style={position}
+    >
       {snippets.map((_, i) => (
         <pre key={i} className="text-white font-mono text-sm md:text-base whitespace-pre-wrap">
           {displayed[i] || ''}
