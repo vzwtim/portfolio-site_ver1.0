@@ -41,9 +41,9 @@ export default function Home() {
           {/* Main Catchphrase - Simple and Clean */}
           <div className="flex justify-center items-center">
             <h1
-              className="text-white text-6xl md:text-6xl font-light tracking-wider"
+              className="text-white text-4xl md:text-6xl font-light tracking-wider whitespace-nowrap"
               style={{ fontFamily: '"Shippori Mincho", serif' }}>
-              　ぼくは、五目飯。
+              ぼくは、五目飯。
             </h1>
           </div>
         </motion.div>
