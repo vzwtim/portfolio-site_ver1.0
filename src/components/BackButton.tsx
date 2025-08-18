@@ -1,13 +1,17 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
+import type { ComponentPropsWithoutRef } from 'react';
 
-export default function BackButton() {
+interface BackButtonProps extends ComponentPropsWithoutRef<'button'> {}
+
+export default function BackButton({ className = '', ...props }: BackButtonProps) {
   const router = useRouter();
   return (
     <button
       onClick={() => router.back()}
-      className="absolute top-4 left-4 z-10 rounded-full bg-white/70 px-3 py-2 text-sm hover:bg-white"
+      className={`rounded-full bg-white/70 px-3 py-2 text-sm hover:bg-white ${className}`}
+      {...props}
     >
       ← Back
     </button>
