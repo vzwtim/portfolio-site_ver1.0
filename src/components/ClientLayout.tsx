@@ -36,7 +36,9 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
     slideDirection = 'back';
   }
 
-  prevPathRef.current = pathname;
+  useEffect(() => {
+    prevPathRef.current = pathname;
+  }, [pathname]);
 
   // 色の状態管理を ClientLayout に移動
   const [bgColor, setBgColor] = useState('bg-white');
@@ -60,7 +62,7 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
           <CustomCursor />
           {/* Header に textColor を渡す */}
           <Header textColor={textColor} />
-          <AnimatePresence mode="wait" initial={false}>
+          <AnimatePresence initial={false}>
             <motion.main
               key={pathname}
               initial={
