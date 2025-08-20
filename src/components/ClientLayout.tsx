@@ -62,30 +62,32 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
           <CustomCursor />
           {/* Header に textColor を渡す */}
           <Header textColor={textColor} />
-          <AnimatePresence initial={false}>
-            <motion.main
-              key={pathname}
-              initial={
-                slideDirection !== 'none'
-                  ? { opacity: 0, x: slideDirection === 'forward' ? '100%' : '-100%' }
-                  : { opacity: 0, y: 20 }
-              }
-              animate={
-                slideDirection !== 'none'
-                  ? { opacity: 1, x: 0 }
-                  : { opacity: 1, y: 0 }
-              }
-              exit={
-                slideDirection !== 'none'
-                  ? { opacity: 0, x: slideDirection === 'forward' ? '-100%' : '100%' }
-                  : { opacity: 0, y: -20 }
-              }
-              transition={{ duration: 0.3, ease: 'easeInOut' }}
-              className={textColor} // textColor を main にも適用
-            >
-              {children}
-            </motion.main>
-          </AnimatePresence>
+          <div className="relative min-h-screen">
+            <AnimatePresence initial={false} mode="wait">
+              <motion.main
+                key={pathname}
+                initial={
+                  slideDirection !== 'none'
+                    ? { opacity: 0, x: slideDirection === 'forward' ? '100%' : '-100%' }
+                    : { opacity: 0, y: 20 }
+                }
+                animate={
+                  slideDirection !== 'none'
+                    ? { opacity: 1, x: 0 }
+                    : { opacity: 1, y: 0 }
+                }
+                exit={
+                  slideDirection !== 'none'
+                    ? { opacity: 0, x: slideDirection === 'forward' ? '-100%' : '100%' }
+                    : { opacity: 0, y: -20 }
+                }
+                transition={{ duration: 0.3, ease: 'easeInOut' }}
+                className={`absolute inset-0 w-full ${textColor}`}
+              >
+                {children}
+              </motion.main>
+            </AnimatePresence>
+          </div>
           
           {!isWorkDetailPage && (
             <ShadowAnimation>
