@@ -63,7 +63,7 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
           {/* Header に textColor を渡す */}
           <Header textColor={textColor} />
           <div className="relative min-h-screen">
-            <AnimatePresence initial={false} mode="wait">
+            <AnimatePresence initial={false}>
               <motion.main
                 key={pathname}
                 initial={
