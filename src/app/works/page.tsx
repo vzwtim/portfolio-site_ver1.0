@@ -18,6 +18,11 @@ const WorksPage: React.FC<WorksPageProps> = ({ searchParams }) => {
     new Set([
       ...predefinedTags,
       ...worksData.flatMap((work) => work.tags || [])
+  const extraTags = ['food', 'bonsai', 'travel', 'calligraphy'];
+  const allTags = Array.from(
+    new Set([
+      ...worksData.flatMap((work) => work.tags || []),
+      ...extraTags,
     ])
   );
   return (
