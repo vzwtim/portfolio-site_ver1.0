@@ -1,6 +1,6 @@
 'use client';
 
-import Image from "next/image";
+import FadeInImage from "@/components/FadeInImage";
 import { motion, useScroll, useTransform } from 'framer-motion';
 import dynamic from 'next/dynamic';
 
@@ -23,7 +23,7 @@ export default function Home() {
           style={{ y: yBg }}
           className="absolute inset-0 z-0"
         >
-          <Image
+          <FadeInImage
             src="/images/mv_gomoku_1.jpg"
             alt="Gomoku Rice"
             fill

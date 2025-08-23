@@ -1,7 +1,7 @@
 
 "use client";
 import React, { useState } from 'react';
-import Image from 'next/image';
+import FadeInImage from './FadeInImage';
 import Link from 'next/link';
 
 interface WorkCardProps {
@@ -32,7 +32,7 @@ const WorkCard: React.FC<WorkCardProps> = ({
           onMouseLeave={() => setIsHovered(false)}
         >
           <div className="relative w-full aspect-video overflow-hidden">
-            <Image
+            <FadeInImage
               src={isHovered ? colorImage : monochromeImage}
               alt={title}
               fill
