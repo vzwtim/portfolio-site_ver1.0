@@ -10,7 +10,9 @@ import { CursorProvider } from '@/context/CursorContext';
 import { ScrollbarWidthProvider } from '@/context/ScrollbarWidthContext';
 
 const CustomCursor = dynamic(() => import("@/components/CustomCursor"), { ssr: false });
-const LoadingScreen = dynamic(() => import('@/components/LoadingScreen'), { ssr: false });
+// Render the loading screen on the server to avoid a flash of the underlying page
+// before the doors animation appears on first load
+import LoadingScreen from '@/components/LoadingScreen';
 const ShadowAnimation = dynamic(() => import('./ShadowAnimation'), { ssr: false });
 
 interface ClientLayoutProps {
