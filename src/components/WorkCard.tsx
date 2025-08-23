@@ -1,6 +1,6 @@
 
 "use client";
-import React, { useState } from 'react';
+import React from 'react';
 import FadeInImage from './FadeInImage';
 import Link from 'next/link';
 
@@ -8,8 +8,7 @@ interface WorkCardProps {
   id: string;
   title: string;
   description: string;
-  monochromeImage: string;
-  colorImage: string;
+  image: string;
   tags?: string[];
 }
 
@@ -17,23 +16,16 @@ const WorkCard: React.FC<WorkCardProps> = ({
   id,
   title,
   description,
-  monochromeImage,
-  colorImage,
+  image,
   tags = [],
 }) => {
-  const [isHovered, setIsHovered] = useState(false);
-
   return (
     <div>
       <Link href={`/works/${id}`}>
-        <div
-          className="relative rounded-lg shadow-lg overflow-hidden cursor-pointer group"
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-        >
+        <div className="relative rounded-lg shadow-lg overflow-hidden cursor-pointer group">
           <div className="relative w-full aspect-video overflow-hidden">
             <FadeInImage
-              src={isHovered ? colorImage : monochromeImage}
+              src={image}
               alt={title}
               fill
               className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
