@@ -46,7 +46,11 @@ const WorkCard: React.FC<WorkCardProps> = ({
     });
     setTimeout(() => {
       router.push(`/works/${id}`);
-      setTimeout(() => overlay.remove(), 600);
+      setTimeout(() => {
+        overlay.style.transition = 'clip-path 0.6s ease-in';
+        overlay.style.clipPath = `circle(0px at ${clientX}px ${clientY}px)`;
+        setTimeout(() => overlay.remove(), 600);
+      }, 100);
     }, 600);
   };
 

@@ -1,6 +1,21 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import BackButton from "@/components/BackButton";
+
 export default function WorkDetail() {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const t = setTimeout(() => setVisible(true), 700);
+    return () => clearTimeout(t);
+  }, []);
+
   return (
-    <main className="container mx-auto px-4 py-20">
+    <main
+      className={`container mx-auto px-4 py-20 transition-opacity duration-700 ease-out ${visible ? "opacity-100" : "opacity-0"}`}
+    >
+      <BackButton />
       <div className="max-w-4xl mx-auto">
         <h1 className="text-4xl font-bold mb-8">Project A</h1>
         <div className="bg-gray-200 h-96 w-full mb-8"></div> {/* Placeholder for image */}
