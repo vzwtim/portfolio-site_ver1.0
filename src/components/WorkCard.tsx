@@ -73,7 +73,7 @@ const WorkCard: React.FC<WorkCardProps> = ({
               <Link
                 key={tag}
                 href={`/works?tag=${tag}`}
-                className="text-sm text-blue-600 hover:underline"
+                className="text-sm text-[#008877] hover:underline"
               >
                 #{tag}
               </Link>

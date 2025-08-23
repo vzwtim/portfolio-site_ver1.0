@@ -14,7 +14,14 @@ const WorksPage: React.FC<WorksPageProps> = ({ searchParams }) => {
   const filteredWorks = tag
     ? worksData.filter((work) => work.tags?.includes(tag))
     : worksData;
-  const extraTags = ['food', 'bonsai', 'travel', 'calligraphy'];
+  const extraTags = [
+    'food',
+    'bonsai',
+    'travel',
+    'calligraphy',
+    'living',
+    'architecture',
+  ];
   const allTags = Array.from(
     new Set([
       ...worksData.flatMap((work) => work.tags || []),
@@ -26,13 +33,13 @@ const WorksPage: React.FC<WorksPageProps> = ({ searchParams }) => {
       <h1 className="text-5xl font-extrabold mb-12 mt-24 text-center">
         Works{tag ? `: ${tag}` : ''}
       </h1>
-      <div className="flex justify-center flex-wrap gap-4 mb-12">
+      <div className="flex justify-center flex-wrap gap-2 mb-12 text-sm">
         <Link
           href="/works"
-          className={`px-4 py-2 rounded ${
+          className={`px-2 py-1 rounded border transition-colors ${
             !tag
-              ? 'bg-gray-900 text-white'
-              : 'bg-gray-200 text-gray-900'
+              ? 'bg-[#008877] text-white border-[#008877]'
+              : 'text-[#008877] border-[#008877] hover:bg-[#008877] hover:text-white'
           }`}
         >
           All
@@ -41,10 +48,10 @@ const WorksPage: React.FC<WorksPageProps> = ({ searchParams }) => {
           <Link
             key={t}
             href={`/works?tag=${t}`}
-            className={`px-4 py-2 rounded ${
+            className={`px-2 py-1 rounded border transition-colors ${
               tag === t
-                ? 'bg-gray-900 text-white'
-                : 'bg-gray-200 text-gray-900'
+                ? 'bg-[#008877] text-white border-[#008877]'
+                : 'text-[#008877] border-[#008877] hover:bg-[#008877] hover:text-white'
             }`}
           >
             {t}
