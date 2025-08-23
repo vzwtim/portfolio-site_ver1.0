@@ -1,4 +1,3 @@
-
 "use client";
 import React from 'react';
 import FadeInImage from './FadeInImage';
@@ -8,7 +7,6 @@ import { useRouter } from 'next/navigation';
 interface WorkCardProps {
   id: string;
   title: string;
-  description: string;
   image: string;
   tags?: string[];
   bgColor?: string;
@@ -17,7 +15,6 @@ interface WorkCardProps {
 const WorkCard: React.FC<WorkCardProps> = ({
   id,
   title,
-  description,
   image,
   tags = [],
   bgColor,
@@ -66,7 +63,6 @@ const WorkCard: React.FC<WorkCardProps> = ({
       </Link>
       <div className="mt-4">
         <h2 className="text-2xl font-bold mb-2 text-gray-900">{title}</h2>
-        <p className="text-gray-700">{description}</p>
         {tags.length > 0 && (
           <div className="mt-2 flex flex-wrap gap-2">
             {tags.map((tag) => (
