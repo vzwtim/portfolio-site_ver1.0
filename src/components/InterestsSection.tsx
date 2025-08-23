@@ -85,6 +85,8 @@ const interests = {
   ],
 };
 
+const cultureWorkTitles = ['Food', 'Bonsai', 'Calligraphy', 'Travel'];
+
 type ThemeKey = 'spaceAndCreation' | 'cultureAndExploration' | 'digital';
 
 const themes: Record<ThemeKey, { className: string; style?: React.CSSProperties }> = {
@@ -625,34 +627,40 @@ return (
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-x-16 gap-y-32 max-w-6xl mx-auto">
           {interests.cultureAndExploration.map((interest, index) => (
-            <Link
-              href={getCultureLink(interest.title)}
-              key={interest.title}
-              className="group cursor-pointer"
-            >
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <div className="relative h-80 mb-6 overflow-hidden rounded-lg shadow-lg">
-                  <Image
-                    src={interest.imageUrl}
-                    alt={interest.title}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-110"
-                    sizes="(max-width:768px)100vw,(max-width:1024px)50vw,33vw"
-                  />
-                </div>
-                <h4 className="text-xl font-semibold mb-2">
-                  {interest.title}
-                </h4>
-                <p className="text-base opacity-80 leading-relaxed">
-                  {interest.description}
-                </p>
-              </motion.div>
-            </Link>
+            <div key={interest.title} className="group cursor-pointer">
+              <Link href={getCultureLink(interest.title)} className="block">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                  <div className="relative h-80 mb-6 overflow-hidden rounded-lg shadow-lg">
+                    <Image
+                      src={interest.imageUrl}
+                      alt={interest.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      sizes="(max-width:768px)100vw,(max-width:1024px)50vw,33vw"
+                    />
+                  </div>
+                  <h4 className="text-xl font-semibold mb-2">
+                    {interest.title}
+                  </h4>
+                  <p className="text-base opacity-80 leading-relaxed">
+                    {interest.description}
+                  </p>
+                </motion.div>
+              </Link>
+              {cultureWorkTitles.includes(interest.title) && (
+                <Link
+                  href={getWorksLink(interest.title)}
+                  className="inline-block mt-4 text-sm underline"
+                >
+                  works →
+                </Link>
+              )}
+            </div>
           ))}
         </div>
       </motion.section>
