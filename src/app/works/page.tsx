@@ -58,6 +58,7 @@ const WorksPage: React.FC<WorksPageProps> = ({ searchParams }) => {
               work.images?.[0] || work.colorImage || work.monochromeImage
             )}
             tags={work.tags}
+            bgColor={work.bgColor}
           />
         ))}
       </div>
