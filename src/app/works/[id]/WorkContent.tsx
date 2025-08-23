@@ -1,7 +1,7 @@
 // src/app/works/[id]/WorkContent.tsx
 'use client';
 
-import Image from 'next/image';
+import FadeInImage from '@/components/FadeInImage';
 import BackButton from '@/components/BackButton';
 import useHorizontalScroll from '@/hooks/useHorizontalScroll';
 
@@ -38,7 +38,7 @@ export default function WorkContent({ work, images }: WorkContentProps) {
       </div>
       {images.map((src, idx) => (
         <div key={idx} className="relative flex-shrink-0 h-full w-[60vw]">
-          <Image src={src} alt={idx === 0 ? work.title : ''} fill className="object-cover" />
+          <FadeInImage src={src} alt={idx === 0 ? work.title : ''} fill className="object-cover" />
         </div>
       ))}
     </main>
