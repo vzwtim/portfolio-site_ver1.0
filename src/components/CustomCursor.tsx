@@ -6,9 +6,17 @@ import { useCursor } from '@/context/CursorContext';
 
 const CustomCursor = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isTouchDevice, setIsTouchDevice] = useState(
+    typeof window !== 'undefined' &&
+      window.matchMedia('(hover: none), (pointer: coarse)').matches
+  );
   const { cursorVariant } = useCursor();
 
   useEffect(() => {
+    const mediaQuery = window.matchMedia('(hover: none), (pointer: coarse)');
+    const handleChange = (e: MediaQueryListEvent) => setIsTouchDevice(e.matches);
+    mediaQuery.addEventListener('change', handleChange);
+
     const mouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
@@ -16,6 +24,7 @@ const CustomCursor = () => {
     window.addEventListener('mousemove', mouseMove);
 
     return () => {
+      mediaQuery.removeEventListener('change', handleChange);
       window.removeEventListener('mousemove', mouseMove);
     };
   }, []);
@@ -36,6 +45,9 @@ const CustomCursor = () => {
       mixBlendMode: "difference",
     },
   };
+  if (isTouchDevice) {
+    return null;
+  }
 
   return (
     <motion.div
