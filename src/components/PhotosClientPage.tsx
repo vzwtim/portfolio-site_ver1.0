@@ -163,8 +163,8 @@ export default function PhotosClientPage() {
   return (
     <main className="bg-[#ffffff] text-[#232024] py-20 px-4 md:px-8 lg:px-16 min-h-screen">
       <div className="max-w-full mx-auto">
-        <h1 className="text-4xl font-medium mb-16 text-center pt-16" style={{ fontFamily: '"Shippori Mincho", serif' }}>
-          Photos
+        <h1 className="text-5xl font-extrabold mb-12 mt-24 text-center">
+          Gallary
         </h1>
         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 2xl:grid-cols-8 gap-px">
           {initialPhotos.map((photo, index) => (
