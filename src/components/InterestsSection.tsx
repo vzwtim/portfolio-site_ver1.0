@@ -584,7 +584,8 @@ return (
             className="md:col-span-2 text-base opacity-80 leading-relaxed"
             style={{}}
           >
-            建築、不動産、そして日々の暮らしの中での創造的な試み。機能と美が融合した心地よい空間、その価値を捉え、未来の可能性を創造すること。手を動かし、思考を形にすることの喜びを探求します。
+            建築や不動産、そして日々の暮らしに潜む創造的な試み。<br />
+            機能と美が溶け合う場所も、ちょっとした生活の工夫も、全部どう楽しむかという創造の一部。
           </motion.p>
         </div>
         <div className="max-w-6xl mx-auto">
@@ -623,7 +624,9 @@ return (
             className="md:col-span-2 text-base opacity-80 leading-relaxed"
             style={{}}
           >
-            光と影で切り取る写真、土地の味を噛みしめる食文化、そして未知の風景を求める旅。伝統的な盆栽や書道から、自己を発見する冒険まで。世界の多様な文化に触れ、その本質を探求します。
+            人類が暇を持て余した結果の産物。<br />
+            絵を描いたり、歌ったり、踊ったり。<br />
+            意味があることもあれば、まったくないこともある。けど、それがいい。
           </motion.p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-x-16 gap-y-32 max-w-6xl mx-auto">
@@ -704,7 +707,10 @@ return (
                 className="md:col-span-2 text-base text-gray-300 opacity-80 leading-relaxed"
                 style={{}}
             >
-                論理と創造性でデジタル世界を構築するプログラミング。美しさと使いやすさを追求するWebデザイン。そして、数字の裏に隠された意味を読み解き、未来を予測するデータ分析。コードの一行一行が、新しい価値を生み出すキャンバスです。
+                パソコンを触れば世界が広がる。<br />
+                クリックひとつでデザインが変わり、数字をいじれば未来が見える。<br />
+                ちょっとコードを書けば画面が動く、その瞬間がもう感動。<br />
+                テクノロジーは「やってみたい」をすぐ形にする、最高の遊び道具だ。
             </motion.p>
         </div>
         <div className="flex-1 max-w-6xl w-full">

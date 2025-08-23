@@ -34,12 +34,12 @@ export default function About() {
           </div>
           <div className="text-center">
             <p className="text-lg leading-relaxed mb-4">
-              大学で建築・都市・社会・環境を学び、現在は不動産デベロッパーとして、用地取得・開発・アセットマネジメント業務に従事。
-              経営企画・DXプロジェクトにも参画し、ビルやマンション単位の取得開発に携わっています。
+              大学で建築・社会・環境を学び、現在は不動産デベロッパーとして、用地取得・開発・アセットマネジメント業務に従事。
+              経営企画・DXのPJにも参画し、ビルやマンションの取得開発に携わっています。
             </p>
             <p className="text-lg leading-relaxed">
-              都市のダイナミクスを見つめながら、和室・ちゃぶ台・ミニマルな暮らしを軸に記録を積み重ねています。
-              一級建築士を目指し、将来的には街と暮らしをつなぐ事業に挑戦予定。
+              東京を練り歩き、建築を新しく建てることを考えながら、旧耐震の和室でちゃぶ台を前にお茶を淹れて暮らしています。
+              今年は不動産証券化の資格、来年は一級建築士取得予定。密かに一人デベロッパーを目指しています。
             </p>
           </div>
         </section>
@@ -53,7 +53,7 @@ export default function About() {
               <ul className="list-disc list-inside text-base leading-loose">
                 <li>仙台第二高等学校 卒業</li>
                 <li>東京大学工学部建築学科 卒業</li>
-                <li>東京大学大学院 新領域創成科学研究科 社会文化環境学 修了</li>
+                <li>東京大学大学院 新領域創成科学研究科 社会文化環境学専攻 修了</li>
               </ul>
             </div>
             <div className="border border-gray-200/80 p-6 rounded-sm bg白/50">

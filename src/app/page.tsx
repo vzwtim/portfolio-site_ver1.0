@@ -64,11 +64,11 @@ export default function Home() {
             </h2>
             <div className="w-24 h-px bg-[#232024] mx-auto mb-8"></div>
             <p className="text-lg leading-relaxed max-w-3xl mx-auto" style={{ fontFamily: '"Shippori Mincho", serif' }}>
-              しいたけ、にんじん、たけのこ、鶏肉、油揚げ…。
-              全員ジャンルも食感もバラバラなのに、一つの器で平和共存。
-              お互いを邪魔せず、むしろ引き立て合う。
-              主役はいないけれど、全員が欠かせない存在。
-              それが五目飯であり、目指す空間づくりだ。</p>
+              しいたけはダシ担当。にんじんは見た目担当。たけのこは食感担当。鶏肉はガッツリ担当。油揚げは裏方担当。
+              …そう、これが俺たち五目飯。<br />
+              誰が主役？って聞かれても、そんなの決めなくていいのさ。<br />
+              だからさ、地味とか寄せ集めとか言わないで、今日も食べてくれよ。<br />
+              五目どころか、満足は無限大だぞ？</p>
           </motion.div>
         </div>
       </section>
