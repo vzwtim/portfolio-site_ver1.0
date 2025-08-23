@@ -25,7 +25,7 @@
       "/images/film_color_4.jpg"
     ],
     "bgColor": "#fde68a",
-    "tags": ["design-programming"]
+    "tags": ["design-programming", "architecture"]
   },
   {
     "id": "project-gamma",
@@ -67,7 +67,7 @@
       "/images/film_color_10.jpg"
     ],
     "bgColor": "#fecaca",
-    "tags": ["design-programming"]
+    "tags": ["design-programming", "living"]
   },
   {
     "id": "project-zeta",
