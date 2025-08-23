@@ -312,17 +312,17 @@ export default function InterestsSection() {
   const current = themes[theme];
 
   const renderAlternatingCards = (items: typeof interests.spaceAndCreation) => (
-    <div className="flex flex-col gap-24">
+    <div className="flex flex-col gap-12 md:gap-24">
       {items.map((interest, index) => (
         <motion.div
           key={interest.title}
-          className={`flex flex-col md:flex-row items-center gap-8 ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}
+          className={`flex flex-col md:flex-row items-center gap-6 md:gap-8 ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <div className="relative w-full md:w-1/2 h-64 overflow-hidden">
+          <div className="relative w-full md:w-1/2 h-56 md:h-64 overflow-hidden">
             <Image
               src={interest.imageUrl}
               alt={interest.title}
@@ -332,15 +332,15 @@ export default function InterestsSection() {
             />
           </div>
           <div className="md:w-1/2">
-            <h4 className="text-2xl font-semibold mb-4">
+            <h4 className="text-xl md:text-2xl font-semibold mb-2 md:mb-4">
               {interest.title}
             </h4>
-            <p className="opacity-80 leading-relaxed">
+            <p className="opacity-80 leading-relaxed text-sm md:text-base">
               {interest.description}
             </p>
             <Link
               href={getWorksLink(interest.title)}
-              className="inline-block mt-4 text-sm underline"
+              className="inline-block mt-2 md:mt-4 text-sm underline"
             >
               works →
             </Link>
@@ -560,15 +560,15 @@ return (
       {/* Space & Creation */}
       <section
         ref={spaceRef}
-        className="relative z-10 py-48 px-8 text-black"
+        className="relative z-10 py-16 md:py-48 px-8 text-black"
       >
-        <div className="grid md:grid-cols-3 gap-x-12 gap-y-8 mb-32 items-center max-w-6xl mx-auto w-full">
+        <div className="grid md:grid-cols-3 gap-x-12 gap-y-4 mb-8 md:gap-y-8 md:mb-32 items-center max-w-6xl mx-auto w-full">
           <motion.h3
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="md:col-span-1 text-5xl md:text-7xl font-bold"
+            className="md:col-span-1 text-3xl md:text-7xl font-bold"
             style={{}}
           >
             Space & Creation
@@ -578,7 +578,7 @@ return (
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
-            className="md:col-span-2 text-base opacity-80 leading-relaxed"
+            className="md:col-span-2 text-sm md:text-base opacity-80 leading-relaxed"
             style={{}}
           >
             建築、不動産、そして日々の暮らしの中での創造的な試み。機能と美が融合した心地よい空間、その価値を捉え、未来の可能性を創造すること。手を動かし、思考を形にすることの喜びを探求します。
@@ -591,7 +591,7 @@ return (
       {/* Culture and Exploration */}
       <motion.section
         ref={cultureRef}
-        className="relative flex flex-col justify-center px-8 py-48 bg-white text-[#bb5555]"
+        className="relative flex flex-col justify-center px-8 py-16 md:py-48 bg-white text-[#bb5555]"
         style={{
           backgroundImage: 'url("/images/asanoha.svg")',
           backgroundSize: '140px 80px',
@@ -601,13 +601,13 @@ return (
       >
         <div className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-white to-transparent" />
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white to-transparent" />
-        <div className="grid md:grid-cols-3 gap-x-12 gap-y-8 mb-32 items-center max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-x-12 gap-y-4 mb-8 md:gap-y-8 md:mb-32 items-center max-w-6xl mx-auto">
           <motion.h3
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="md:col-span-1 text-5xl md:text-7xl font-bold"
+            className="md:col-span-1 text-3xl md:text-7xl font-bold"
             style={{}}
           >
             Arts & Culture
@@ -617,13 +617,13 @@ return (
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
-            className="md:col-span-2 text-base opacity-80 leading-relaxed"
+            className="md:col-span-2 text-sm md:text-base opacity-80 leading-relaxed"
             style={{}}
           >
             光と影で切り取る写真、土地の味を噛みしめる食文化、そして未知の風景を求める旅。伝統的な盆栽や書道から、自己を発見する冒険まで。世界の多様な文化に触れ、その本質を探求します。
           </motion.p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-x-16 gap-y-32 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-x-8 md:gap-x-16 gap-y-16 md:gap-y-32 max-w-6xl mx-auto">
           {interests.cultureAndExploration.map((interest, index) => (
             <Link
               href={getCultureLink(interest.title)}
@@ -636,7 +636,7 @@ return (
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <div className="relative h-80 mb-6 overflow-hidden rounded-lg shadow-lg">
+                <div className="relative h-64 md:h-80 mb-6 overflow-hidden rounded-lg shadow-lg">
                   <Image
                     src={interest.imageUrl}
                     alt={interest.title}
@@ -645,10 +645,10 @@ return (
                     sizes="(max-width:768px)100vw,(max-width:1024px)50vw,33vw"
                   />
                 </div>
-                <h4 className="text-xl font-semibold mb-2">
+                <h4 className="text-lg md:text-xl font-semibold mb-2">
                   {interest.title}
                 </h4>
-                <p className="text-base opacity-80 leading-relaxed">
+                <p className="text-sm md:text-base opacity-80 leading-relaxed">
                   {interest.description}
                 </p>
               </motion.div>
@@ -657,7 +657,7 @@ return (
         </div>
       </motion.section>
       {/* Digital */}
-      <section ref={digitalRef} className="relative w-full flex flex-col items-center overflow-hidden text-[#008877] pt-48 px-8 min-h-[200vh]"
+      <section ref={digitalRef} className="relative w-full flex flex-col items-center overflow-hidden text-[#008877] pt-24 md:pt-48 px-8 min-h-[200vh]"
         style={{ backgroundColor: '#0a0a0a', backgroundImage: 'radial-gradient(#00887780 1px, #0a0a0a 1px)', backgroundSize: '40px 40px' }}>
         <div className="grid md:grid-cols-3 gap-x-12 gap-y-8 mb-32 items-center max-w-6xl w-full">
             <motion.h3
