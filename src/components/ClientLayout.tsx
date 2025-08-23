@@ -20,30 +20,25 @@ interface ClientLayoutProps {
 export default function ClientLayout({ children }: ClientLayoutProps) {
   const pathname = usePathname();
   const [isLoading, setIsLoading] = useState(true);
-  const isWorkDetailPage = pathname.startsWith('/works/') && pathname !== '/works';
   const prevPathRef = useRef(pathname);
-
-  const prevPath = prevPathRef.current;
-  const isPrevWorksList = prevPath === '/works';
-  const isPrevWorkDetail = prevPath.startsWith('/works/') && prevPath !== '/works';
-  const isCurrentWorksList = pathname === '/works';
-  const isCurrentWorkDetail = pathname.startsWith('/works/') && pathname !== '/works';
-
-  let slideDirection: 'forward' | 'back' | 'none' = 'none';
-  if (isPrevWorksList && isCurrentWorkDetail) {
-    slideDirection = 'forward';
-  } else if (isPrevWorkDetail && isCurrentWorksList) {
-    slideDirection = 'back';
-  }
+  const [direction, setDirection] = useState(0);
+  const isWorkDetailPage = pathname.startsWith('/works/') && pathname !== '/works';
 
   useEffect(() => {
+    const prev = prevPathRef.current;
+    if (prev === '/works' && pathname.startsWith('/works/') && pathname !== '/works') {
+      setDirection(1);
+    } else if (prev.startsWith('/works/') && prev !== '/works' && pathname === '/works') {
+      setDirection(-1);
+    } else {
+      setDirection(0);
+    }
     prevPathRef.current = pathname;
   }, [pathname]);
 
   // 色の状態管理を ClientLayout に移動
   const [bgColor, setBgColor] = useState('bg-white');
   const [textColor, setTextColor] = useState('text-[#008877]');
-
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -53,49 +48,42 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
     return () => clearTimeout(timer);
   }, [pathname]); // Add pathname to dependency array
 
+  const variants = {
+    initial: (dir: number) =>
+      dir === 0 ? { opacity: 0, y: 20 } : { opacity: 0, x: dir > 0 ? '100%' : '-100%' },
+    animate: { opacity: 1, x: 0, y: 0 },
+    exit: (dir: number) =>
+      dir === 0 ? { opacity: 0, y: -20 } : { opacity: 0, x: dir > 0 ? '-100%' : '100%' },
+  };
 
   return (
-    <div className={`transition-colors duration-500 ${bgColor}`}> {/* body から div に変更 */}
+    <div className={`transition-colors duration-500 ${bgColor}`}>
       <LoadingScreen isLoading={isLoading} />
-      <ScrollbarWidthProvider> {/* Wrap with ScrollbarWidthProvider */}
+      <ScrollbarWidthProvider>
         <CursorProvider>
           <CustomCursor />
-          {/* Header に textColor を渡す */}
           <Header textColor={textColor} />
-          <div className="relative min-h-screen">
-            <AnimatePresence initial={false}>
-              <motion.main
-                key={pathname}
-                initial={
-                  slideDirection !== 'none'
-                    ? { opacity: 0, x: slideDirection === 'forward' ? '100%' : '-100%' }
-                    : { opacity: 0, y: 20 }
-                }
-                animate={
-                  slideDirection !== 'none'
-                    ? { opacity: 1, x: 0 }
-                    : { opacity: 1, y: 0 }
-                }
-                exit={
-                  slideDirection !== 'none'
-                    ? { opacity: 0, x: slideDirection === 'forward' ? '-100%' : '100%' }
-                    : { opacity: 0, y: -20 }
-                }
-                transition={{ duration: 0.3, ease: 'easeInOut' }}
-                className={`absolute inset-0 w-full ${textColor}`}
-              >
-                {children}
-              </motion.main>
-            </AnimatePresence>
-          </div>
-          
+          <AnimatePresence mode="wait" initial={false} custom={direction}>
+            <motion.main
+              key={pathname}
+              custom={direction}
+              variants={variants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              transition={{ duration: 0.3, ease: 'easeInOut' }}
+              className={textColor}
+            >
+              {children}
+            </motion.main>
+          </AnimatePresence>
           {!isWorkDetailPage && (
             <ShadowAnimation>
               <Footer />
             </ShadowAnimation>
           )}
         </CursorProvider>
-      </ScrollbarWidthProvider> {/* Close ScrollbarWidthProvider */}
+      </ScrollbarWidthProvider>
     </div>
   );
 }
