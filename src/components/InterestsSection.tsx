@@ -560,15 +560,15 @@ return (
       {/* Space & Creation */}
       <section
         ref={spaceRef}
-        className="relative z-10 py-48 px-8 text-black"
+        className="relative z-10 py-24 md:py-48 px-8 text-black"
       >
-        <div className="grid md:grid-cols-3 gap-x-12 gap-y-8 mb-32 items-center max-w-6xl mx-auto w-full">
+        <div className="grid md:grid-cols-3 gap-x-12 gap-y-6 mb-16 md:gap-y-8 md:mb-32 items-center max-w-6xl mx-auto w-full">
           <motion.h3
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="md:col-span-1 text-5xl md:text-7xl font-bold"
+            className="md:col-span-1 text-4xl md:text-7xl font-bold"
             style={{}}
           >
             Space & Creation
@@ -591,7 +591,7 @@ return (
       {/* Culture and Exploration */}
       <motion.section
         ref={cultureRef}
-        className="relative flex flex-col justify-center px-8 py-48 bg-white text-[#bb5555]"
+        className="relative flex flex-col justify-center px-8 py-24 md:py-48 bg-white text-[#bb5555]"
         style={{
           backgroundImage: 'url("/images/asanoha.svg")',
           backgroundSize: '140px 80px',
@@ -601,13 +601,13 @@ return (
       >
         <div className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-white to-transparent" />
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white to-transparent" />
-        <div className="grid md:grid-cols-3 gap-x-12 gap-y-8 mb-32 items-center max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-x-12 gap-y-6 mb-16 md:gap-y-8 md:mb-32 items-center max-w-6xl mx-auto">
           <motion.h3
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="md:col-span-1 text-5xl md:text-7xl font-bold"
+            className="md:col-span-1 text-4xl md:text-7xl font-bold"
             style={{}}
           >
             Arts & Culture
