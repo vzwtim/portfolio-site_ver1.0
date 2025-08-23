@@ -11,7 +11,9 @@
       "/images/film_color_2.jpg"
     ],
     "bgColor": "#e9d5ff",
-    "tags": ["data-analysis"]
+    "tags": [
+      "data-analysis"
+    ]
   },
   {
     "id": "project-beta",
@@ -25,7 +27,9 @@
       "/images/film_color_4.jpg"
     ],
     "bgColor": "#fde68a",
-    "tags": ["design-programming"]
+    "tags": [
+      "design-programming"
+    ]
   },
   {
     "id": "project-gamma",
@@ -39,7 +43,9 @@
       "/images/film_color_6.jpg"
     ],
     "bgColor": "#bae6fd",
-    "tags": ["artificial-intelligence"]
+    "tags": [
+      "artificial-intelligence"
+    ]
   },
   {
     "id": "project-delta",
@@ -53,7 +59,9 @@
       "/images/film_color_8.jpg"
     ],
     "bgColor": "#bbf7d0",
-    "tags": ["data-analysis"]
+    "tags": [
+      "data-analysis"
+    ]
   },
   {
     "id": "project-epsilon",
@@ -67,7 +75,9 @@
       "/images/film_color_10.jpg"
     ],
     "bgColor": "#fecaca",
-    "tags": ["design-programming"]
+    "tags": [
+      "design-programming"
+    ]
   },
   {
     "id": "project-zeta",
@@ -81,6 +91,107 @@
       "/images/film_color_12.jpg"
     ],
     "bgColor": "#fbcfe8",
-    "tags": ["artificial-intelligence", "architecture"]
+    "tags": [
+      "artificial-intelligence",
+      "architecture"
+    ]
+  },
+  {
+    "id": "project-eta",
+    "title": "Project Eta",
+    "description": "Capturing urban landscapes through analog film.",
+    "monochromeImage": "/images/film_bw_7.jpg",
+    "colorImage": "/images/film_color_13.jpg",
+    "images": [
+      "/images/film_color_13.jpg",
+      "/images/film_bw_7.jpg",
+      "/images/film_color_14.jpg"
+    ],
+    "bgColor": "#c7d2fe",
+    "tags": [
+      "photography"
+    ]
+  },
+  {
+    "id": "project-theta",
+    "title": "Project Theta",
+    "description": "Experimenting with light and shadow in built environments.",
+    "monochromeImage": "/images/film_bw_8.jpg",
+    "colorImage": "/images/film_color_15.jpg",
+    "images": [
+      "/images/film_color_15.jpg",
+      "/images/film_bw_8.jpg",
+      "/images/film_color_18.jpg"
+    ],
+    "bgColor": "#fef9c3",
+    "tags": [
+      "architecture"
+    ]
+  },
+  {
+    "id": "project-iota",
+    "title": "Project Iota",
+    "description": "Exploring seasonal changes through color palettes.",
+    "monochromeImage": "/images/film_bw_9.jpg",
+    "colorImage": "/images/film_color_19.jpg",
+    "images": [
+      "/images/film_color_19.jpg",
+      "/images/film_bw_9.jpg",
+      "/images/film_color_20.jpg"
+    ],
+    "bgColor": "#d9f99d",
+    "tags": [
+      "design-programming"
+    ]
+  },
+  {
+    "id": "project-kappa",
+    "title": "Project Kappa",
+    "description": "Documenting journeys across the United States.",
+    "monochromeImage": "/images/film_bw_10.jpg",
+    "colorImage": "/images/trip_usa_1.jpg",
+    "images": [
+      "/images/trip_usa_1.jpg",
+      "/images/film_bw_10.jpg",
+      "/images/trip_usa_2.jpg"
+    ],
+    "bgColor": "#a5f3fc",
+    "tags": [
+      "travel"
+    ]
+  },
+  {
+    "id": "project-lambda",
+    "title": "Project Lambda",
+    "description": "Memories from exploration around Japan.",
+    "monochromeImage": "/images/film_bw_11.jpg",
+    "colorImage": "/images/trip_japan_1.jpg",
+    "images": [
+      "/images/trip_japan_1.jpg",
+      "/images/film_bw_11.jpg",
+      "/images/trip_japan_10.jpg"
+    ],
+    "bgColor": "#fee2e2",
+    "tags": [
+      "travel",
+      "photography"
+    ]
+  },
+  {
+    "id": "project-mu",
+    "title": "Project Mu",
+    "description": "European architecture captured on film.",
+    "monochromeImage": "/images/film_bw_21.jpg",
+    "colorImage": "/images/trip_eu_1.jpg",
+    "images": [
+      "/images/trip_eu_1.jpg",
+      "/images/film_bw_21.jpg",
+      "/images/trip_eu_2.jpg"
+    ],
+    "bgColor": "#ddd6fe",
+    "tags": [
+      "architecture",
+      "travel"
+    ]
   }
 ]
