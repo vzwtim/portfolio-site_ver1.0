@@ -22,12 +22,28 @@ const WorksPage: React.FC<WorksPageProps> = ({ searchParams }) => {
     'living',
     'architecture',
   ];
+
+  const TAG_ORDER = [
+    'real-estate',
+    'architecture',
+    'living',
+    'crafting',
+    'photography',
+    'food',
+    'bonsai',
+    'calligraphy',
+    'travel',
+    'data-analysis',
+    'design-programming',
+    'artificial-intelligence',
+  ];
+
   const allTags = Array.from(
     new Set([
       ...worksData.flatMap((work) => work.tags || []),
       ...extraTags,
     ])
-  );
+  ).sort((a, b) => TAG_ORDER.indexOf(a) - TAG_ORDER.indexOf(b));
   return (
     <div className="min-h-screen bg-white text-gray-900 p-8">
       <h1 className="text-5xl font-extrabold mb-12 mt-24 text-center">
