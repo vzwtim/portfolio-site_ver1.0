@@ -14,8 +14,12 @@ const WorksPage: React.FC<WorksPageProps> = ({ searchParams }) => {
   const filteredWorks = tag
     ? worksData.filter((work) => work.tags?.includes(tag))
     : worksData;
+  const extraTags = ['food', 'bonsai', 'travel', 'calligraphy'];
   const allTags = Array.from(
-    new Set(worksData.flatMap((work) => work.tags || []))
+    new Set([
+      ...worksData.flatMap((work) => work.tags || []),
+      ...extraTags,
+    ])
   );
   return (
     <div className="min-h-screen bg-white text-gray-900 p-8">
