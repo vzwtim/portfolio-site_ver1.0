@@ -36,7 +36,7 @@ export default function WorkContent({ work, images }: WorkContentProps) {
       className={`relative flex h-screen w-screen overflow-x-auto overflow-y-hidden text-gray-900 transition-opacity duration-700 ease-out ${visible ? 'opacity-100' : 'opacity-0'}`}
       style={{ backgroundColor: work.bgColor }}
     >
-      <BackButton bgColor={work.bgColor} />
+      <BackButton />
       <div className="flex-shrink-0 h-full w-[40vw] flex items-center p-8">
         <div className="max-w-md text-left">
           <h1 className="text-4xl font-bold mb-6">{work.title}</h1>
