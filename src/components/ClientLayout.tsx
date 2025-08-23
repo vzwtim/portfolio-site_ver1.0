@@ -1,6 +1,5 @@
 'use client';
 
-import { AnimatePresence, motion } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import Header from "@/components/Header";
@@ -22,19 +21,11 @@ interface ClientLayoutProps {
 export default function ClientLayout({ children }: ClientLayoutProps) {
   const pathname = usePathname();
   const [isLoading, setIsLoading] = useState(true);
-  const isHomePage = pathname === '/';
   const isWorkDetailPage = pathname.startsWith('/works/') && pathname !== '/works';
-  const isWorksRelatedPage = pathname.startsWith('/works');
 
   // 色の状態管理を ClientLayout に移動
   const [bgColor, setBgColor] = useState('bg-white');
   const [textColor, setTextColor] = useState('text-[#008877]');
-
-  // page.tsx から色の変更を受け取るためのコールバック関数
-  const handleColorChange = (newBgColor: string, newTextColor: string) => {
-    setBgColor(newBgColor);
-    setTextColor(newTextColor);
-  };
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -52,30 +43,9 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
           <CustomCursor />
           {/* Header に textColor を渡す */}
           <Header textColor={textColor} />
-          <AnimatePresence mode="wait" initial={false}>
-            <motion.main
-              key={pathname}
-              initial={
-                isWorksRelatedPage
-                  ? { opacity: 0, x: 20 }
-                  : { opacity: 0, y: 20 }
-              }
-              animate={
-                isWorksRelatedPage
-                  ? { opacity: 1, x: 0 }
-                  : { opacity: 1, y: 0 }
-              }
-              exit={
-                isWorksRelatedPage
-                  ? { opacity: 0, x: -20 }
-                  : { opacity: 0, y: -20 }
-              }
-              transition={{ duration: 0.2, ease: 'easeInOut' }}
-              className={textColor} // textColor を main にも適用
-            >
-              {children}
-            </motion.main>
-          </AnimatePresence>
+          <main className={textColor}>
+            {children}
+          </main>
           
           {!isWorkDetailPage && (
             <ShadowAnimation>
