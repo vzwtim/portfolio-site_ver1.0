@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { motion, useInView, useScroll, useTransform, useSpring } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import { optimizedImage } from '@/lib/optimizedImage';
+import { FaInstagram } from 'react-icons/fa';
 
 const slugify = (text: string) =>
   text
@@ -628,13 +629,13 @@ return (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-x-16 gap-y-32 max-w-6xl mx-auto">
           {interests.cultureAndExploration.map((interest, index) => (
             <div key={interest.title} className="group cursor-pointer">
-              <Link href={getCultureLink(interest.title)} className="block">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                >
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <Link href={getCultureLink(interest.title)} className="block">
                   <div className="relative h-80 mb-6 overflow-hidden rounded-lg shadow-lg">
                     <Image
                       src={interest.imageUrl}
@@ -644,14 +645,31 @@ return (
                       sizes="(max-width:768px)100vw,(max-width:1024px)50vw,33vw"
                     />
                   </div>
-                  <h4 className="text-xl font-semibold mb-2">
-                    {interest.title}
-                  </h4>
+                </Link>
+                <div className="flex items-center mb-2 gap-2">
+                  <Link href={getCultureLink(interest.title)}>
+                    <h4 className="text-xl font-semibold">
+                      {interest.title}
+                    </h4>
+                  </Link>
+                  {interest.title === 'Food' && (
+                    <a
+                      href="https://www.instagram.com/bababachef/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Instagram"
+                      className="text-xl"
+                    >
+                      <FaInstagram />
+                    </a>
+                  )}
+                </div>
+                <Link href={getCultureLink(interest.title)} className="block">
                   <p className="text-base opacity-80 leading-relaxed">
                     {interest.description}
                   </p>
-                </motion.div>
-              </Link>
+                </Link>
+              </motion.div>
               {cultureWorkTitles.includes(interest.title) && (
                 <Link
                   href={getWorksLink(interest.title)}
