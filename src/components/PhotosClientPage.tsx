@@ -1,10 +1,10 @@
 'use client';
 
 import { useState, useRef, useEffect, useCallback } from 'react';
-import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useScrollbarWidth } from '@/context/ScrollbarWidthContext';
 import { optimizedImage } from '@/lib/optimizedImage';
+import FadeInImage from './FadeInImage';
 
 interface Photo {
   src: string;
@@ -173,14 +173,13 @@ export default function PhotosClientPage() {
               className="relative aspect-square overflow-hidden cursor-pointer"
               onClick={() => openModal(index)}
             >
-              <Image
+              <FadeInImage
                 src={photo.src}
                 alt={photo.alt}
                 width={300}
                 height={300}
                 quality={50}
-                priority={index < 8}
-                                className="object-cover w-full h-full filter grayscale transition-all duration-300 hover:grayscale-0"
+                className="object-cover w-full h-full filter grayscale transition-all duration-300 hover:grayscale-0"
               />
             </div>
           ))}
@@ -219,7 +218,7 @@ export default function PhotosClientPage() {
                     }}
                   >
                     <div className="relative w-auto h-[80vh] rounded-lg overflow-hidden flex items-center justify-center">
-                      <Image
+                      <FadeInImage
                         src={photo.src}
                         alt={photo.alt}
                         width={1600}

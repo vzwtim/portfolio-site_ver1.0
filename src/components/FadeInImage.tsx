@@ -16,7 +16,7 @@ export default function FadeInImage({ className, src, alt, ...rest }: ImageProps
       src={src}
       alt={alt}
       className={`${className ?? ""} transition-opacity duration-700 ease-out ${loaded ? "opacity-100" : "opacity-0"}`}
-      onLoadingComplete={() => setLoaded(true)}
+      onLoad={() => setLoaded(true)}
     />
   );
 }
