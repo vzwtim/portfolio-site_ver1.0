@@ -33,21 +33,32 @@ export default function WorkContent({ work, images }: WorkContentProps) {
   return (
     <main
       ref={scrollRef}
-      className={`relative flex h-screen w-screen overflow-x-auto overflow-y-hidden text-gray-900 transition-opacity duration-700 ease-out ${visible ? 'opacity-100' : 'opacity-0'}`}
+      className="relative h-screen w-screen overflow-x-auto overflow-y-hidden text-gray-900"
       style={{ backgroundColor: work.bgColor }}
     >
-      <BackButton />
-      <div className="flex-shrink-0 h-full w-[40vw] flex items-center p-8">
-        <div className="max-w-md text-left">
-          <h1 className="text-4xl font-bold mb-6">{work.title}</h1>
-          <p className="text-lg leading-relaxed">{work.description}</p>
+      <div
+        className={`flex h-full w-full transition-opacity duration-700 ease-out ${
+          visible ? 'opacity-100' : 'opacity-0'
+        }`}
+      >
+        <BackButton />
+        <div className="flex-shrink-0 h-full w-[40vw] flex items-center p-8">
+          <div className="max-w-md text-left">
+            <h1 className="text-4xl font-bold mb-6">{work.title}</h1>
+            <p className="text-lg leading-relaxed">{work.description}</p>
+          </div>
         </div>
+        {images.map((src, idx) => (
+          <div key={idx} className="relative flex-shrink-0 h-full w-[60vw]">
+            <FadeInImage
+              src={src}
+              alt={idx === 0 ? work.title : ''}
+              fill
+              className="object-cover"
+            />
+          </div>
+        ))}
       </div>
-      {images.map((src, idx) => (
-        <div key={idx} className="relative flex-shrink-0 h-full w-[60vw]">
-          <FadeInImage src={src} alt={idx === 0 ? work.title : ''} fill className="object-cover" />
-        </div>
-      ))}
     </main>
   );
 }
