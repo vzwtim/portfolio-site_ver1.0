@@ -57,7 +57,7 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
               key={pathname}
               initial={
                 isWorksRelatedPage
-                  ? { opacity: 0, x: '100%' }
+                  ? { opacity: 0, x: 20 }
                   : { opacity: 0, y: 20 }
               }
               animate={
@@ -67,10 +67,10 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
               }
               exit={
                 isWorksRelatedPage
-                  ? { opacity: 0, x: '-100%' }
+                  ? { opacity: 0, x: -20 }
                   : { opacity: 0, y: -20 }
               }
-              transition={{ duration: 0.3, ease: 'easeInOut' }}
+              transition={{ duration: 0.2, ease: 'easeInOut' }}
               className={textColor} // textColor を main にも適用
             >
               {children}
