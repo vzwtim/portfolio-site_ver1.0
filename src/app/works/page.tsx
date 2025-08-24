@@ -81,9 +81,7 @@ const WorksPage: React.FC<WorksPageProps> = ({ searchParams }) => {
             id={work.id}
             title={work.title}
             
-            image={optimizedImage(
-              work.images?.[0] || work.colorImage || work.monochromeImage
-            )}
+            image={optimizedImage(work.images?.[0])}
             tags={work.tags}
             bgColor={work.bgColor}
           />

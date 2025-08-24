@@ -1,15 +1,15 @@
 [
   {
     "id": "odo-campsite",
-    "title": "小戸キャンプ場設計案",
+    "title": "ため池のあるキャンプ場＠小戸",
     "description": "フィールドワークで見つけた池や谷、既存の小屋を活かし、水をテーマにしたキャンプ場の設計提案。",
-    "monochromeImage": "/images/mv_odo.png",
-    "colorImage": "/images/mv_odo.png",
     "images": [
       "/images/mv_odo.png",
-      "/images/image_odo_1.jpg",
-      "/images/image_odo_3.jpg",
-      "/images/image_odo_4.jpg"
+      "/images/drawing_odo_2.png",
+      "/images/drawing_odo_3.jpg",
+      "/images/drawing_odo_1.png",
+      "/images/map_odo.png",
+      "/images/image_odo_20.jpg"
     ],
     "bgColor": "#e0f7fa",
     "tags": [
@@ -19,17 +19,19 @@
   },
   {
     "id": "odo-renovation",
-    "title": "小戸の小屋改修",
+    "title": "小屋改修実践PJ＠小戸",
     "description": "老朽化した小戸の小屋を患者のように扱い、丁寧な修復と再利用で新しい命を吹き込む改修プロジェクト。",
-    "monochromeImage": "/images/mv_odo.png",
-    "colorImage": "/images/mv_odo.png",
     "images": [
-      "/images/mv_odo.png",
+      "/images/image_odo_4.jpg",
       "/images/image_odo_10.jpg",
       "/images/image_odo_11.jpg",
-      "/images/image_odo_12.jpg",
+      "/images/image_odo.HEIC",
+      "/images/image_odo_3.jpg",
       "/images/image_odo_13.jpg",
-      "/images/image_odo_20.jpg"
+      "/images/image_odo_1.jpg",
+      "/images/image_odo_2.jpg",
+      "/images/image_odo_7.jpg",
+      "/images/image_odo_9.jpg"
     ],
     "bgColor": "#ffe0b2",
     "tags": [
@@ -39,10 +41,8 @@
   },
   {
     "id": "ogawamachi-water",
-    "title": "小川町の水のネットワーク",
+    "title": "水でつながる小川町",
     "description": "ワークショップとフィールドワークにより、水が小川町の産業と地域の暮らしをどのようにつないでいるかを明らかにした。",
-    "monochromeImage": "/images/mv_ogawamachi_1.png",
-    "colorImage": "/images/mv_ogawamachi_1.png",
     "images": [
       "/images/mv_ogawamachi_1.png",
       "/images/image_ogawamachi_1.png",
@@ -56,26 +56,36 @@
     ]
   },
   {
+    "id": "ogawamachi-water-2",
+    "title": "人と水のかかわり＠小川町",
+    "description": "フィールドワークで、昔から人が水と如何にして関わってきたかを分析した。",
+    "images": [
+      "/images/mv_ogawamachi_2.png"
+    ],
+    "bgColor": "#d1e7dd",
+    "tags": [
+      "architecture",
+      "workshop"
+    ]
+  },
+  {
     "id": "aris-library",
-    "title": "アリス図書館",
-    "description": "書物の層が地層となり、シールドトンネルで掘り進む地下アーカイブが広がる図書館の設計。",
-    "monochromeImage": "/images/mv_aris.png",
-    "colorImage": "/images/mv_aris.png",
+    "title": "遺跡図書館＠赤坂",
+    "description": "赤坂にある東京都立中央図書館。書物の層が地層となり、シールドトンネルで掘り進む地下アーカイブが広がる図書館の設計。",
     "images": [
       "/images/mv_aris.png",
+      "/images/figure_aris.JPG",
       "/images/drawing_aris.jpg"
     ],
-    "bgColor": "#f8d7da",
+    "bgColor": "#a9a9a9",
     "tags": [
       "architecture"
     ]
   },
   {
     "id": "plantbuilding-concept",
-    "title": "プラントビルディング構想",
+    "title": "近未来ビル構想スケッチ",
     "description": "二重スキンの外皮やエコ技術、ドローン物流を備えた次世代の単体建築を近未来的に描いた構想スケッチ。",
-    "monochromeImage": "/images/drawing_plantbuilding.png",
-    "colorImage": "/images/drawing_plantbuilding.png",
     "images": [
       "/images/drawing_plantbuilding.png"
     ],
@@ -87,19 +97,19 @@
   },
   {
     "id": "ginza-kk-park",
-    "title": "銀座KK線パーク",
+    "title": "都産都消＠銀座",
     "description": "銀座のKK高架道路を土木、都市農業、アクアポニックス、防災施設を融合させた市民公園へと転換する提案。",
-    "monochromeImage": "/images/mv_ginza.png",
-    "colorImage": "/images/mv_ginza.png",
+    "link": "https://www.example.com/ginza-kk-park",
     "images": [
       "/images/mv_ginza.png",
+      "/images/map_ginza.png",
+      "/images/pb_ginza_1.jpg",
+      "/images/pb_ginza_2.jpg",
       "/images/image_ginza_1.png",
       "/images/image_ginza_2.png",
-      "/images/image_ginza_3.png",
-      "/images/image_ginza_4.png",
-      "/images/map_ginza.png"
+      "/images/image_ginza_3.png"
     ],
-    "bgColor": "#fff3cd",
+    "bgColor": "#c8e6c9",
     "tags": [
       "architecture",
       "urbanism"
@@ -107,14 +117,13 @@
   },
   {
     "id": "nishiogi-crane",
-    "title": "西荻クレーン計画",
+    "title": "クレーンのある街＠西荻窪",
     "description": "住民主導による西荻窪の代替再開発。クレーンが密集した木造街区を解消し、散水消防塔としても機能する。",
-    "monochromeImage": "/images/image_nishiogi.png",
-    "colorImage": "/images/image_nishiogi.png",
     "images": [
-      "/images/image_nishiogi.png",
       "/images/pb_nishiogi_1.png",
-      "/images/pb_nishiogi_2.png"
+      "/images/pb_nishiogi_1.gif",
+      "/images/pb_nishiogi_2.png",
+      "/images/image_nishiogi.png"
     ],
     "bgColor": "#e2e3e5",
     "tags": [
@@ -124,14 +133,13 @@
   },
   {
     "id": "pavilion-mayfes",
-    "title": "五月祭パビリオン",
+    "title": "UT architecture pavilion",
     "description": "東京大学五月祭で建設した、コンクリートと布を用いたパビリオン。パンデミック下のパーティションを再解釈し、日常に活気を与える。",
-    "monochromeImage": "/images/mv_pavilion.jpg",
-    "colorImage": "/images/mv_pavilion.jpg",
     "images": [
-      "/images/mv_pavilion.jpg",
-      "/images/image_pavilion.JPG",
-      "/images/web_pavillion.PNG"
+      "/images/mv_pavilion.heic",
+      "/images/image_pavilion_2.jpg",
+      "/images/web_pavillion.PNG",
+      "/images/image_pavilion_1.jpg"
     ],
     "bgColor": "#d1c4e9",
     "tags": [
@@ -141,33 +149,40 @@
   },
   {
     "id": "sanriku-coast",
-    "title": "三陸海岸",
-    "description": "三陸のリアス式海岸と人々と土地が守り合う関係を捉えた写真プロジェクト。",
-    "monochromeImage": "/images/mv_sanriku.jpg",
-    "colorImage": "/images/mv_sanriku.jpg",
+    "title": "歌津を守るものたち",
+    "description": "南三陸においてフォト・エスノグラフィーを行い、歌津地方における守る・守られる関係を表現した。",
+    "link": "https://iedp.site/portfolio/%e6%ad%8c%e6%b4%a5%e3%82%92%e5%ae%88%e3%82%8b%e3%82%82%e3%81%ae%e3%81%9f%e3%81%a1/",
     "images": [
+      "/images/image_sanriku_7.png",
       "/images/mv_sanriku.jpg",
-      "/images/image_sanriku_1.png",
       "/images/image_sanriku_2.png",
       "/images/image_sanriku_3.png",
+      "/images/image_sanriku_6.png",
+      "/images/image_sanriku_13.png",
       "/images/image_sanriku_4.png",
-      "/images/image_sanriku_5.png"
+      "/images/image_sanriku_9.png",
+      "/images/image_sanriku_10.png",
+      "/images/image_sanriku_11.png",
+      "/images/image_sanriku_12.png"
     ],
-    "bgColor": "#c8e6c9",
+    "bgColor": "#e0f7fa",
     "tags": [
       "photography",
-      "travel"
+      "research",
+      "nature"
     ]
   },
   {
     "id": "bachelor-thesis",
-    "title": "学士論文",
-    "description": "荒川区の不良住宅の変遷をGISと歴史資料で追跡し、スラムクリアランス以降の改善を探った研究。",
-    "monochromeImage": "/images/map_bachelor_1.png",
-    "colorImage": "/images/map_bachelor_1.png",
+    "title": "不良住宅の変遷＠荒川区",
+    "description": "荒川区の不良住宅の変遷をGISと歴史資料で分析し、スラムクリアランス以降の現在までの影響を探った研究。",
     "images": [
       "/images/map_bachelor_1.png",
-      "/images/map_bachelor_2.png"
+      "/images/figure_bachelor_1.png",
+      "/images/map_bachelor_2.png",
+      "/images/map_bachelor_3.png",
+      "/images/map_bachelor_4.png",
+      "/images/map_bachelor_5.png"
     ],
     "bgColor": "#fce4ec",
     "tags": [
@@ -176,19 +191,45 @@
     ]
   },
   {
-    "id": "master-thesis",
-    "title": "修士論文",
-    "description": "発展途上国向けのスラム検出地図手法を先進国に適用し、動的均衡の中の生活の痕跡とリズムを観察した研究。",
-    "monochromeImage": "/images/figure_master_1.png",
-    "colorImage": "/images/figure_master_1.png",
+    "id": "kosuge-house",
+    "title": "狭間の住処＠小菅",
+    "description": "最も都心に近い刑務所のある小菅。刑務所と社会との狭間に建つ、刑余者のための住居の設計。",
     "images": [
-      "/images/figure_master_1.png",
-      "/images/figure_master_2.png",
+      "/images/mv_kosuge.jpg",
+      "/images/pb_kosuge_1.jpg",
+      "/images/pb_kosuge_2.jpg",
+      "/images/pb_kosuge_3.png",
+      "/images/pb_kosuge_4.png",
+      "/images/pb_kosuge_5.png"
+    ],
+    "bgColor": "#778899",
+    "tags": [
+      "data-analysis",
+      "research"
+    ]
+  },
+  {
+    "id": "master-thesis",
+    "title": "都市動態論－マッピング",
+    "description": "発展途上国向けのスラム検出地図手法を先進国に適用し、動的均衡の中の生活の痕跡とリズムを観察した研究。",
+    "images": [
       "/images/figure_master.webp",
       "/images/map_master_1.png",
-      "/images/map_master_2.png"
+      "/images/map_master_2.png",
+      "/images/map_master_3.png",
+      "/images/map_master_4.png",
+      "/images/map_master_5.png",
+      "/images/map_master_6.png",
+      "/images/map_master_7.png",
+      "/images/map_master_8.png",
+      "/images/map_master_9.png",
+      "/images/map_master_10.png",
+      "/images/map_master_11.png",
+      "/images/figure_master.png",
+      "/images/figure_master_1.png",
+      "/images/figure_master_2.png"
     ],
-    "bgColor": "#bbdefb",
+    "bgColor": "#808080",
     "tags": [
       "data-analysis",
       "research"
@@ -197,9 +238,7 @@
   {
     "id": "gomoku-rice",
     "title": "五目ごはん",
-    "description": "日常の料理で味と食感を探求した自家製の五目ごはん。",
-    "monochromeImage": "/images/mv_gomoku_1.jpg",
-    "colorImage": "/images/mv_gomoku_1.jpg",
+    "description": "日常の料理で味と食感を探求した自家製の五目ごはん。おいしい。",
     "images": [
       "/images/mv_gomoku_1.jpg",
       "/images/mv_gomoku_2.jpg",
@@ -214,13 +253,11 @@
   },
   {
     "id": "kagurazaka-cinema",
-    "title": "神楽坂シネマ",
+    "title": "シネマ神楽坂",
     "description": "折り重なる境界がギャラリーのような空間の連なりを生む神楽坂の映画館の設計。",
-    "monochromeImage": "/images/mv_kagurazaka_1.png",
-    "colorImage": "/images/mv_kagurazaka_1.png",
     "images": [
-      "/images/mv_kagurazaka_1.png",
       "/images/mv_kagurazaka_2.png",
+      "/images/mv_kagurazaka_1.png",
       "/images/mv_kagurazaka_3.png"
     ],
     "bgColor": "#e0e0e0",
@@ -232,8 +269,6 @@
     "id": "tama-housing",
     "title": "多摩の可変住宅",
     "description": "回転する壁と窓付きの扉で時間とともに間取りが変化する多摩の低層住宅計画。",
-    "monochromeImage": "/images/mv_tama.png",
-    "colorImage": "/images/mv_tama.png",
     "images": [
       "/images/mv_tama.png"
     ],
@@ -247,8 +282,6 @@
     "id": "tea-souvenir",
     "title": "京都土産の茶",
     "description": "伝統的な淹れ方の技と香りを味わう京都のお土産茶。",
-    "monochromeImage": "/images/mv_tea_2.jpg",
-    "colorImage": "/images/mv_tea_2.jpg",
     "images": [
       "/images/mv_tea_2.jpg",
       "/images/trip_kyoto.JPG"
@@ -260,13 +293,11 @@
   },
   {
     "id": "membrane-toilet",
-    "title": "膜構造トイレ",
+    "title": "cocoon toilet",
     "description": "開放性と流れるような形を強調した軽量な膜構造トイレのコンセプト。",
-    "monochromeImage": "/images/plan_toilet_1.png",
-    "colorImage": "/images/plan_toilet_1.png",
     "images": [
-      "/images/plan_toilet_1.png",
-      "/images/plan_toilet_2.png"
+      "/images/plan_toilet_2.svg",
+      "/images/plan_toilet_1.svg"
     ],
     "bgColor": "#f0fff0",
     "tags": [

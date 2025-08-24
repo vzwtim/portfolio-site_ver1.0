@@ -20,7 +20,7 @@
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
-  font-family: 'Noto Sans JP', 'Shippori Mincho', sans-serif; /* Apply Noto Sans JP and Shippori Mincho to body */
+  font-family:  'Shippori Mincho','Noto Sans JP', sans-serif; /* Apply Noto Sans JP and Shippori Mincho to body */
 }
 
 h1, h2, h3, h4, h5, h6 {

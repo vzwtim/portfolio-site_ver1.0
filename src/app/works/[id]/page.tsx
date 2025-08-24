@@ -31,10 +31,7 @@ export default function WorkPage({ params }: PageProps) {
     notFound();
   }
 
-  const images =
-    work.images && work.images.length > 0
-      ? work.images
-      : [work.colorImage, work.monochromeImage].filter(Boolean);
+  const images = work.images || [];
 
   return <WorkContent work={work} images={images} />;
 }
