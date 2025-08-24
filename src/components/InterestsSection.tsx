@@ -345,7 +345,7 @@ export default function InterestsSection() {
               href={getWorksLink(interest.title)}
               className="inline-block mt-4 text-sm underline"
             >
-              works →
+              works? →
             </Link>
           </div>
         </motion.div>
@@ -678,7 +678,7 @@ return (
                   href={getWorksLink(interest.title)}
                   className="inline-block mt-4 text-sm underline"
                 >
-                  works →
+                  works? →
                 </Link>
               )}
             </div>
