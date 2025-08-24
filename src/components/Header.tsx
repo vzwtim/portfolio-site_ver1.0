@@ -73,7 +73,7 @@ export default function Header({ textColor }: HeaderProps) {
                   onMouseEnter={textEnter}
                   onMouseLeave={textLeave}
                 >
-                  works
+                  works?
                 </span>
               </Link>
             </li>

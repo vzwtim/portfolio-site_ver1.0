@@ -47,7 +47,7 @@ const WorksPage: React.FC<WorksPageProps> = ({ searchParams }) => {
   return (
     <div className="min-h-screen bg-white text-gray-900 p-8">
       <h1 className="text-5xl font-extrabold mb-12 mt-24 text-center">
-        Works
+        works?
       </h1>
       <div className="flex justify-center flex-wrap gap-2 mb-12 text-sm">
         <Link
