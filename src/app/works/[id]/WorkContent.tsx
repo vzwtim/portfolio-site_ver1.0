@@ -49,16 +49,29 @@ export default function WorkContent({ work, images }: WorkContentProps) {
           </div>
         </div>
         {images.map((src, idx) => (
-          <div key={idx} className="relative flex-shrink-0 h-full w-[60vw]">
-            <FadeInImage
-              src={src}
-              alt={idx === 0 ? work.title : ''}
-              fill
-              className="object-cover"
-            />
-          </div>
+          <ResponsiveImage key={idx} src={src} alt={idx === 0 ? work.title : ''} />
         ))}
       </div>
     </main>
+  );
+}
+
+function ResponsiveImage({ src, alt }: { src: string; alt: string }) {
+  const [ratio, setRatio] = useState(1);
+  return (
+    <div
+      className="relative flex-shrink-0 h-full px-4"
+      style={{ aspectRatio: ratio }}
+    >
+      <FadeInImage
+        src={src}
+        alt={alt}
+        fill
+        className="object-contain"
+        onLoadingComplete={(img) => {
+          setRatio(img.naturalWidth / img.naturalHeight);
+        }}
+      />
+    </div>
   );
 }
