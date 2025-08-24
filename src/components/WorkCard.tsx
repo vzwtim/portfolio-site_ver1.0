@@ -21,6 +21,10 @@ const WorkCard: React.FC<WorkCardProps> = ({
 }) => {
   const router = useRouter();
 
+  const isJapanese = /[\u3000-\u303F\u3040-\u30FF\u4E00-\u9FFF]/.test(
+    title
+  );
+
   const handleClick = (
     e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
   ) => {
@@ -62,7 +66,14 @@ const WorkCard: React.FC<WorkCardProps> = ({
         </div>
       </Link>
       <div className="mt-4">
-        <h2 className="text-2xl font-bold mb-2 text-gray-900">{title}</h2>
+        <h2
+          className="text-2xl font-bold mb-2 text-gray-900"
+          style={
+            isJapanese ? { fontFamily: '"Shippori Mincho", serif' } : undefined
+          }
+        >
+          {title}
+        </h2>
         {tags.length > 0 && (
           <div className="mt-2 flex flex-wrap gap-2">
             {tags.map((tag) => (

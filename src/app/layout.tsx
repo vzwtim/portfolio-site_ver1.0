@@ -20,7 +20,7 @@ export default function RootLayout({
 }): React.JSX.Element {
   return (
     <html lang="ja">
-      <body className="font-serif">
+      <body>
         <ClientLayout>
           {children}
         </ClientLayout>

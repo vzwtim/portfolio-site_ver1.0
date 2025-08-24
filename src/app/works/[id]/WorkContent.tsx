@@ -44,8 +44,18 @@ export default function WorkContent({ work, images }: WorkContentProps) {
         <BackButton />
         <div className="flex-shrink-0 h-full w-[40vw] flex items-center p-8">
           <div className="max-w-md text-left">
-            <h1 className="text-4xl font-bold mb-6">{work.title}</h1>
-            <p className="text-lg leading-relaxed">{work.description}</p>
+            <h1
+              className="text-4xl font-bold mb-6"
+              style={{ fontFamily: '"Shippori Mincho", serif' }}
+            >
+              {work.title}
+            </h1>
+            <p
+              className="text-lg leading-relaxed"
+              style={{ fontFamily: '"Shippori Mincho", serif' }}
+            >
+              {work.description}
+            </p>
           </div>
         </div>
         {images.map((src, idx) => (
