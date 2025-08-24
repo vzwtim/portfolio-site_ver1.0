@@ -43,7 +43,7 @@ const WorkCard: React.FC<WorkCardProps> = ({
     });
     setTimeout(() => {
       router.push(`/works/${id}`);
-      setTimeout(() => overlay.remove(), 100);
+      setTimeout(() => overlay.remove(), 700);
     }, 600);
   };
 
