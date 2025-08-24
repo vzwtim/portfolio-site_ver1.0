@@ -20,7 +20,7 @@ export default function WorkDetail() {
       >
         <BackButton />
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl font-bold mb-8">Project A</h1>
+          <h1 className="text-4xl font-bold mb-8">プロジェクトA</h1>
           <div className="bg-gray-200 h-96 w-full mb-8"></div> {/* Placeholder for image */}
           <div className="prose max-w-none">
             <h2 className="text-2xl font-bold">目的と概要</h2>
