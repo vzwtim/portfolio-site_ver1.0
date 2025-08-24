@@ -1,197 +1,233 @@
 [
   {
-    "id": "project-alpha",
-    "title": "Project Alpha",
-    "description": "This is a description for Project Alpha. It showcases innovative design and engineering principles.",
-    "monochromeImage": "/images/film_bw_1.jpg",
-    "colorImage": "/images/film_color_1.jpg",
+    "id": "odo-campsite",
+    "title": "Odo Campsite Design",
+    "description": "Design proposal for a water-themed campsite that leverages ponds, valleys, and existing huts discovered during fieldwork.",
+    "monochromeImage": "/images/mv_odo.png",
+    "colorImage": "/images/mv_odo.png",
     "images": [
-      "/images/film_color_1.jpg",
-      "/images/film_bw_1.jpg",
-      "/images/film_color_2.jpg"
+      "/images/mv_odo.png",
+      "/images/image_odo_1.jpg",
+      "/images/image_odo_3.jpg",
+      "/images/image_odo_4.jpg"
     ],
-    "bgColor": "#e9d5ff",
-    "tags": [
-      "data-analysis"
-    ]
+    "bgColor": "#e0f7fa",
+    "tags": ["architecture", "landscape"]
   },
   {
-    "id": "project-beta",
-    "title": "Project Beta",
-    "description": "A deep dive into sustainable architecture and urban planning.",
-    "monochromeImage": "/images/film_bw_1.jpg",
-    "colorImage": "/images/film_color_1.jpg",
+    "id": "odo-renovation",
+    "title": "Odo Hut Renovation",
+    "description": "Renovation project treating an old hut in Odo like a patient, giving it new life through careful repair and reuse.",
+    "monochromeImage": "/images/mv_odo.png",
+    "colorImage": "/images/mv_odo.png",
     "images": [
-      "/images/film_color_3.jpg",
-      "/images/film_bw_2.jpg",
-      "/images/film_color_4.jpg"
+      "/images/mv_odo.png",
+      "/images/image_odo_10.jpg",
+      "/images/image_odo_11.jpg",
+      "/images/image_odo_12.jpg",
+      "/images/image_odo_13.jpg",
+      "/images/image_odo_20.jpg"
     ],
-    "bgColor": "#fde68a",
-    "tags": [
-      "design-programming"
-    ]
+    "bgColor": "#ffe0b2",
+    "tags": ["architecture", "renovation"]
   },
   {
-    "id": "project-gamma",
-    "title": "Project Gamma",
-    "description": "Exploring the intersection of traditional craftsmanship and modern technology.",
-    "monochromeImage": "/images/film_bw_1.jpg",
-    "colorImage": "/images/film_color_1.jpg",
+    "id": "ogawamachi-water",
+    "title": "Ogawamachi Water Network",
+    "description": "Workshops and fieldwork revealing how water links industries and community life in Ogawamachi.",
+    "monochromeImage": "/images/mv_ogawamachi_1.png",
+    "colorImage": "/images/mv_ogawamachi_1.png",
     "images": [
-      "/images/film_color_5.jpg",
-      "/images/film_bw_3.jpg",
-      "/images/film_color_6.jpg"
+      "/images/mv_ogawamachi_1.png",
+      "/images/image_ogawamachi_1.png",
+      "/images/image_ogawamachi_2.jpg",
+      "/images/image_ogawamachi_3.jpg"
     ],
-    "bgColor": "#bae6fd",
-    "tags": [
-      "artificial-intelligence"
-    ]
+    "bgColor": "#d1e7dd",
+    "tags": ["architecture", "workshop"]
   },
   {
-    "id": "project-delta",
-    "title": "Project Delta",
-    "description": "A study on material science and its application in structural design.",
-    "monochromeImage": "/images/film_bw_1.jpg",
-    "colorImage": "/images/film_color_1.jpg",
+    "id": "aris-library",
+    "title": "Aris Library",
+    "description": "Library design where layers of books form geological strata, an expanding underground archive carved by shield tunneling.",
+    "monochromeImage": "/images/mv_aris.png",
+    "colorImage": "/images/mv_aris.png",
     "images": [
-      "/images/film_color_7.jpg",
-      "/images/film_bw_4.jpg",
-      "/images/film_color_8.jpg"
+      "/images/mv_aris.png",
+      "/images/drawing_aris.jpg"
     ],
-    "bgColor": "#bbf7d0",
-    "tags": [
-      "data-analysis"
-    ]
+    "bgColor": "#f8d7da",
+    "tags": ["architecture"]
   },
   {
-    "id": "project-epsilon",
-    "title": "Project Epsilon",
-    "description": "Innovative solutions for compact living spaces in urban environments.",
-    "monochromeImage": "/images/film_bw_1.jpg",
-    "colorImage": "/images/film_color_1.jpg",
+    "id": "plantbuilding-concept",
+    "title": "Plantbuilding Concept",
+    "description": "Speculative sketch for a next-generation single building featuring a double-skin envelope, eco technology and drone logistics in a near-future vision.",
+    "monochromeImage": "/images/drawing_plantbuilding.png",
+    "colorImage": "/images/drawing_plantbuilding.png",
     "images": [
-      "/images/film_color_9.jpg",
-      "/images/film_bw_5.jpg",
-      "/images/film_color_10.jpg"
+      "/images/drawing_plantbuilding.png"
     ],
-    "bgColor": "#fecaca",
-    "tags": [
-      "design-programming"
-    ]
+    "bgColor": "#e6e6fa",
+    "tags": ["architecture", "eco"]
   },
   {
-    "id": "project-zeta",
-    "title": "Project Zeta",
-    "description": "A conceptual project focusing on future city infrastructure.",
-    "monochromeImage": "/images/film_bw_1.jpg",
-    "colorImage": "/images/film_color_1.jpg",
+    "id": "ginza-kk-park",
+    "title": "Ginza KK Line Park",
+    "description": "Proposal transforming the KK elevated road in Ginza into a civic park that fuses civil engineering, urban farming, aquaponics and disaster facilities.",
+    "monochromeImage": "/images/mv_ginza.png",
+    "colorImage": "/images/mv_ginza.png",
     "images": [
-      "/images/film_color_11.jpg",
-      "/images/film_bw_6.jpg",
-      "/images/film_color_12.jpg"
+      "/images/mv_ginza.png",
+      "/images/image_ginza_1.png",
+      "/images/image_ginza_2.png",
+      "/images/image_ginza_3.png",
+      "/images/image_ginza_4.png",
+      "/images/map_ginza.png"
     ],
-    "bgColor": "#fbcfe8",
-    "tags": [
-      "artificial-intelligence",
-      "architecture"
-    ]
+    "bgColor": "#fff3cd",
+    "tags": ["architecture", "urbanism"]
   },
   {
-    "id": "project-eta",
-    "title": "Project Eta",
-    "description": "Capturing urban landscapes through analog film.",
-    "monochromeImage": "/images/film_bw_7.jpg",
-    "colorImage": "/images/film_color_13.jpg",
+    "id": "nishiogi-crane",
+    "title": "Nishiogi Crane Plan",
+    "description": "Alternative redevelopment for Nishi-Ogikubo led by residents; cranes resolve dense wooden fabric while doubling as sprinkler firefighting towers.",
+    "monochromeImage": "/images/image_nishiogi.png",
+    "colorImage": "/images/image_nishiogi.png",
     "images": [
-      "/images/film_color_13.jpg",
-      "/images/film_bw_7.jpg",
-      "/images/film_color_14.jpg"
+      "/images/image_nishiogi.png",
+      "/images/pb_nishiogi_1.png",
+      "/images/pb_nishiogi_2.png"
     ],
-    "bgColor": "#c7d2fe",
-    "tags": [
-      "photography"
-    ]
+    "bgColor": "#e2e3e5",
+    "tags": ["architecture", "urbanism"]
   },
   {
-    "id": "project-theta",
-    "title": "Project Theta",
-    "description": "Experimenting with light and shadow in built environments.",
-    "monochromeImage": "/images/film_bw_8.jpg",
-    "colorImage": "/images/film_color_15.jpg",
+    "id": "pavilion-mayfes",
+    "title": "May Festival Pavilion",
+    "description": "Built pavilion for the University of Tokyo May Festival using concrete and fabric, reimagining pandemic partitions to enliven everyday life.",
+    "monochromeImage": "/images/mv_pavilion.jpg",
+    "colorImage": "/images/mv_pavilion.jpg",
     "images": [
-      "/images/film_color_15.jpg",
-      "/images/film_bw_8.jpg",
-      "/images/film_color_18.jpg"
+      "/images/mv_pavilion.jpg",
+      "/images/image_pavilion.JPG",
+      "/images/web_pavillion.PNG"
     ],
-    "bgColor": "#fef9c3",
-    "tags": [
-      "architecture"
-    ]
+    "bgColor": "#d1c4e9",
+    "tags": ["architecture", "construction"]
   },
   {
-    "id": "project-iota",
-    "title": "Project Iota",
-    "description": "Exploring seasonal changes through color palettes.",
-    "monochromeImage": "/images/film_bw_9.jpg",
-    "colorImage": "/images/film_color_19.jpg",
+    "id": "sanriku-coast",
+    "title": "Sanriku Coast",
+    "description": "Photo project capturing the rias coastline of Sanriku and the protective relationship between people and landscape.",
+    "monochromeImage": "/images/mv_sanriku.jpg",
+    "colorImage": "/images/mv_sanriku.jpg",
     "images": [
-      "/images/film_color_19.jpg",
-      "/images/film_bw_9.jpg",
-      "/images/film_color_20.jpg"
+      "/images/mv_sanriku.jpg",
+      "/images/image_sanriku_1.png",
+      "/images/image_sanriku_2.png",
+      "/images/image_sanriku_3.png",
+      "/images/image_sanriku_4.png",
+      "/images/image_sanriku_5.png"
     ],
-    "bgColor": "#d9f99d",
-    "tags": [
-      "design-programming"
-    ]
+    "bgColor": "#c8e6c9",
+    "tags": ["photography", "travel"]
   },
   {
-    "id": "project-kappa",
-    "title": "Project Kappa",
-    "description": "Documenting journeys across the United States.",
-    "monochromeImage": "/images/film_bw_10.jpg",
-    "colorImage": "/images/trip_usa_1.jpg",
+    "id": "bachelor-thesis",
+    "title": "Bachelor Thesis",
+    "description": "Study on the evolution of substandard housing in Arakawa Ward using GIS and historical documents to trace improvements since slum clearance.",
+    "monochromeImage": "/images/map_bachelor_1.png",
+    "colorImage": "/images/map_bachelor_1.png",
     "images": [
-      "/images/trip_usa_1.jpg",
-      "/images/film_bw_10.jpg",
-      "/images/trip_usa_2.jpg"
+      "/images/map_bachelor_1.png",
+      "/images/map_bachelor_2.png"
     ],
-    "bgColor": "#a5f3fc",
-    "tags": [
-      "travel"
-    ]
+    "bgColor": "#fce4ec",
+    "tags": ["data-analysis", "research"]
   },
   {
-    "id": "project-lambda",
-    "title": "Project Lambda",
-    "description": "Memories from exploration around Japan.",
-    "monochromeImage": "/images/film_bw_11.jpg",
-    "colorImage": "/images/trip_japan_1.jpg",
+    "id": "master-thesis",
+    "title": "Master Thesis",
+    "description": "Research adapting slum-detection mapping methods for developed countries, observing traces and rhythms of life in dynamic equilibrium.",
+    "monochromeImage": "/images/figure_master_1.png",
+    "colorImage": "/images/figure_master_1.png",
     "images": [
-      "/images/trip_japan_1.jpg",
-      "/images/film_bw_11.jpg",
-      "/images/trip_japan_10.jpg"
+      "/images/figure_master_1.png",
+      "/images/figure_master_2.png",
+      "/images/figure_master.webp",
+      "/images/map_master_1.png",
+      "/images/map_master_2.png"
     ],
-    "bgColor": "#fee2e2",
-    "tags": [
-      "travel",
-      "photography"
-    ]
+    "bgColor": "#bbdefb",
+    "tags": ["data-analysis", "research"]
   },
   {
-    "id": "project-mu",
-    "title": "Project Mu",
-    "description": "European architecture captured on film.",
-    "monochromeImage": "/images/film_bw_21.jpg",
-    "colorImage": "/images/trip_eu_1.jpg",
+    "id": "gomoku-rice",
+    "title": "Gomoku Rice",
+    "description": "Homemade five-ingredient rice exploring flavors and textures in everyday cooking.",
+    "monochromeImage": "/images/mv_gomoku_1.jpg",
+    "colorImage": "/images/mv_gomoku_1.jpg",
     "images": [
-      "/images/trip_eu_1.jpg",
-      "/images/film_bw_21.jpg",
-      "/images/trip_eu_2.jpg"
+      "/images/mv_gomoku_1.jpg",
+      "/images/mv_gomoku_2.jpg",
+      "/images/mv_gomoku_3.jpg",
+      "/images/food_me_tomato.jpg",
+      "/images/food_drink_.jpg"
     ],
-    "bgColor": "#ddd6fe",
-    "tags": [
-      "architecture",
-      "travel"
-    ]
+    "bgColor": "#ffe082",
+    "tags": ["food"]
+  },
+  {
+    "id": "kagurazaka-cinema",
+    "title": "Kagurazaka Cinema",
+    "description": "Cinema design in Kagurazaka where folded boundaries create a sequence of gallery-like spaces.",
+    "monochromeImage": "/images/mv_kagurazaka_1.png",
+    "colorImage": "/images/mv_kagurazaka_1.png",
+    "images": [
+      "/images/mv_kagurazaka_1.png",
+      "/images/mv_kagurazaka_2.png",
+      "/images/mv_kagurazaka_3.png"
+    ],
+    "bgColor": "#e0e0e0",
+    "tags": ["architecture"]
+  },
+  {
+    "id": "tama-housing",
+    "title": "Tama Flexible Housing",
+    "description": "Low-rise housing scheme in Tama where rotating walls and windowed doors let layouts evolve with time.",
+    "monochromeImage": "/images/mv_tama.png",
+    "colorImage": "/images/mv_tama.png",
+    "images": [
+      "/images/mv_tama.png"
+    ],
+    "bgColor": "#c5cae9",
+    "tags": ["architecture", "living"]
+  },
+  {
+    "id": "tea-souvenir",
+    "title": "Tea Souvenir",
+    "description": "Kyoto souvenir tea celebrating the craft and aroma of traditional brews.",
+    "monochromeImage": "/images/mv_tea_2.jpg",
+    "colorImage": "/images/mv_tea_2.jpg",
+    "images": [
+      "/images/mv_tea_2.jpg",
+      "/images/trip_kyoto.JPG"
+    ],
+    "bgColor": "#dcedc8",
+    "tags": ["food"]
+  },
+  {
+    "id": "membrane-toilet",
+    "title": "Membrane Toilet",
+    "description": "Concept for a light membrane-structured toilet emphasizing openness and fluid form.",
+    "monochromeImage": "/images/plan_toilet_1.png",
+    "colorImage": "/images/plan_toilet_1.png",
+    "images": [
+      "/images/plan_toilet_1.png",
+      "/images/plan_toilet_2.png"
+    ],
+    "bgColor": "#f0fff0",
+    "tags": ["architecture"]
   }
 ]
