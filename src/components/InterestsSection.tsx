@@ -27,17 +27,17 @@ const interests = {
     {
       title: 'Architecture',
       description: '機能と美が融合した、心地よい空間を追求する。',
-      imageUrl: optimizedImage('/images/drawing_aris.jpg'),
+      imageUrl: optimizedImage('/images/trip_eu_3.jpg'),
     },
     {
       title: 'Living',
       description: '日々の営みを豊かにする、ささやかな工夫と発見。',
-      imageUrl: optimizedImage('/images/kurashi.jpg'),
+      imageUrl: optimizedImage('/images/mv_tea_2.jpg'),
     },
     {
       title: 'Crafting',
       description: '手を動かし、思考を形にする創造の喜び。',
-      imageUrl: optimizedImage('/images/me_mad.jpg'),
+      imageUrl: optimizedImage('/images/image_pavilion_2.jpg'),
     },
   ],
   cultureAndExploration: [
@@ -52,7 +52,7 @@ const interests = {
       imageUrl: optimizedImage('/images/food_me_tomato.jpg'),
     },
     {
-      title: 'Bonsai',
+      title: 'Nature',
       description: '小さな鉢の中に、大自然の縮図を育む。',
       imageUrl: optimizedImage('/images/bird.JPG'),
     },
@@ -76,7 +76,7 @@ const interests = {
     {
       title: 'Design × Programming',
       description: '美しさと使いやすさを追求し、情報を最適に届ける。',
-      imageUrl: optimizedImage('/images/web_pavillion.PNG'),
+      imageUrl: optimizedImage('/images/map_gis_18.png'),
     },
     {
       title: 'Artificial Intelligence',
@@ -86,7 +86,7 @@ const interests = {
   ],
 };
 
-const cultureWorkTitles = ['Food', 'Bonsai', 'Calligraphy', 'Travel'];
+const cultureWorkTitles = ['Food', 'Nature', 'Calligraphy', 'Travel'];
 
 type ThemeKey = 'spaceAndCreation' | 'cultureAndExploration' | 'digital';
 
@@ -704,7 +704,7 @@ return (
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
                 viewport={{ once: true }}
-                className="md:col-span-2 text-base text-gray-300 opacity-80 leading-relaxed"
+                className="md:col-span-2 text-base text-white opacity-80 leading-relaxed"
                 style={{}}
             >
                 パソコンを触れば世界が広がる。<br />

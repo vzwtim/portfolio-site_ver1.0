@@ -19,17 +19,39 @@ if (files.length === 0) {
   process.exit(0);
 }
 
+const blurMapPath = path.join(OUT_DIR, 'blur-map.json');
 const blurMap = {};
+try {
+  const existingBlurMap = await fs.readFile(blurMapPath, 'utf-8');
+  Object.assign(blurMap, JSON.parse(existingBlurMap));
+} catch (e) {
+  if (e.code !== 'ENOENT') throw e;
+}
+
+let processedCount = 0;
 
 for (const inPath of files) {
-  const rel = path.relative(INPUT_DIR, inPath);               // ex) trip/trip_eu_1.jpg
-  const relDir = path.dirname(rel);                            // ex) trip
-  const baseName = path.basename(rel).replace(/\.(jpg|jpeg|png)$/i, ''); // ex) trip_eu_1
+  const rel = path.relative(INPUT_DIR, inPath);
+  const relDir = path.dirname(rel);
+  const baseName = path.basename(rel).replace(/\.(jpg|jpeg|png)$/i, '');
 
   const outThumbDir   = path.join(OUT_DIR, 'thumbs', relDir);
   const outDisplayDir = path.join(OUT_DIR, 'display', relDir);
   await fs.mkdir(outThumbDir, { recursive: true });
   await fs.mkdir(outDisplayDir, { recursive: true });
+
+  let fileProcessed = false;
+  const inStat = await fs.stat(inPath);
+
+  const needsProcessing = async (outPath) => {
+    try {
+      const outStat = await fs.stat(outPath);
+      return inStat.mtimeMs > outStat.mtimeMs;
+    } catch (e) {
+      if (e.code === 'ENOENT') return true;
+      throw e;
+    }
+  };
 
   // --- thumbs ---
   for (const w of THUMB_WIDTHS) {
@@ -39,31 +61,45 @@ for (const inPath of files) {
       fit: CROP_SQUARE_THUMBS ? 'cover' : 'inside',
       withoutEnlargement: true,
     };
-    await sharp(inPath).resize(resizeOpts)
-      .avif({ quality: 50, effort: 4, chromaSubsampling: '4:4:4' })
-      .toFile(path.join(outThumbDir, `${baseName}-${w}.avif`));
-    await sharp(inPath).resize(resizeOpts)
-      .webp({ quality: 70 })
-      .toFile(path.join(outThumbDir, `${baseName}-${w}.webp`));
+    const avifPath = path.join(outThumbDir, `${baseName}-${w}.avif`);
+    if (await needsProcessing(avifPath)) {
+      await sharp(inPath).resize(resizeOpts).avif({ quality: 50, effort: 4, chromaSubsampling: '4:4:4' }).toFile(avifPath);
+      fileProcessed = true;
+    }
+    const webpPath = path.join(outThumbDir, `${baseName}-${w}.webp`);
+    if (await needsProcessing(webpPath)) {
+      await sharp(inPath).resize(resizeOpts).webp({ quality: 70 }).toFile(webpPath);
+      fileProcessed = true;
+    }
   }
 
   // --- display ---
   for (const w of DISPLAY_WIDTHS) {
     const resizeOpts = { width: w, fit: 'inside', withoutEnlargement: true };
-    await sharp(inPath).resize(resizeOpts)
-      .avif({ quality: 55, effort: 5 })
-      .toFile(path.join(outDisplayDir, `${baseName}-${w}.avif`));
-    await sharp(inPath).resize(resizeOpts)
-      .webp({ quality: 75 })
-      .toFile(path.join(outDisplayDir, `${baseName}-${w}.webp`));
+    const avifPath = path.join(outDisplayDir, `${baseName}-${w}.avif`);
+    if (await needsProcessing(avifPath)) {
+      await sharp(inPath).resize(resizeOpts).avif({ quality: 55, effort: 5 }).toFile(avifPath);
+      fileProcessed = true;
+    }
+    const webpPath = path.join(outDisplayDir, `${baseName}-${w}.webp`);
+    if (await needsProcessing(webpPath)) {
+      await sharp(inPath).resize(resizeOpts).webp({ quality: 75 }).toFile(webpPath);
+      fileProcessed = true;
+    }
   }
 
   // --- blur placeholder ---
-  const blurBuf = await sharp(inPath).resize({ width: 24, fit: 'inside' }).webp({ quality: 50 }).toBuffer();
-  blurMap[`/images/${rel.replace(/\\/g, '/')}`] = `data:image/webp;base64,${blurBuf.toString('base64')}`;
+  const blurKey = `/images/${rel.replace(/\\/g, '/')}`;
+  if (!blurMap[blurKey] || fileProcessed) {
+    const blurBuf = await sharp(inPath).resize({ width: 24, fit: 'inside' }).webp({ quality: 50 }).toBuffer();
+    blurMap[blurKey] = `data:image/webp;base64,${blurBuf.toString('base64')}`;
+  }
 
-  console.log('→', rel);
+  if (fileProcessed) {
+    console.log('→', rel);
+    processedCount++;
+  }
 }
 
-await fs.writeFile(path.join(OUT_DIR, 'blur-map.json'), JSON.stringify(blurMap, null, 2));
-console.log('done:', files.length, 'files processed');
+await fs.writeFile(blurMapPath, JSON.stringify(blurMap, null, 2));
+console.log('done:', processedCount, 'new files processed.', files.length, 'total files checked.');
