@@ -19,7 +19,7 @@ export default function WorkDetail() {
         }`}
       >
         <BackButton />
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-auto" style={{ fontFamily: '"Shippori Mincho", serif' }}>
           <h1 className="text-4xl font-bold mb-8">プロジェクトA</h1>
           <div className="bg-gray-200 h-96 w-full mb-8"></div> {/* Placeholder for image */}
           <div className="prose max-w-none">
