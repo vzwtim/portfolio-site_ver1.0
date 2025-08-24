@@ -12,10 +12,17 @@ const CROP_SQUARE_THUMBS = false;      // サムネを正方形トリミング�
 
 await fs.mkdir(OUT_DIR, { recursive: true });
 
-const files = await fg(`${INPUT_DIR}/**/*.{jpg,jpeg,png}`, { caseSensitiveMatch: false });
+const files = await fg(`${INPUT_DIR}/**/*.{jpg,jpeg,png,webp}`, { caseSensitiveMatch: false });
 
-if (files.length === 0) {
-  console.log('No input images found in', INPUT_DIR);
+// Add a definitive filter to ensure only allowed extensions are processed
+const allowedExtensions = ['.jpg', '.jpeg', '.png', '.webp'];
+const filteredFiles = files.filter(file => {
+  const ext = path.extname(file).toLowerCase();
+  return allowedExtensions.includes(ext);
+});
+
+if (filteredFiles.length === 0) {
+  console.log('No processable input images found in', INPUT_DIR);
   process.exit(0);
 }
 
@@ -30,10 +37,10 @@ try {
 
 let processedCount = 0;
 
-for (const inPath of files) {
+for (const inPath of filteredFiles) {
   const rel = path.relative(INPUT_DIR, inPath);
   const relDir = path.dirname(rel);
-  const baseName = path.basename(rel).replace(/\.(jpg|jpeg|png)$/i, '');
+  const baseName = path.basename(rel).replace(/\.(jpg|jpeg|png|webp)$/i, '');
 
   const outThumbDir   = path.join(OUT_DIR, 'thumbs', relDir);
   const outDisplayDir = path.join(OUT_DIR, 'display', relDir);
@@ -102,4 +109,4 @@ for (const inPath of files) {
 }
 
 await fs.writeFile(blurMapPath, JSON.stringify(blurMap, null, 2));
-console.log('done:', processedCount, 'new files processed.', files.length, 'total files checked.');
+console.log('done:', processedCount, 'new files processed.', filteredFiles.length, 'total files checked.');

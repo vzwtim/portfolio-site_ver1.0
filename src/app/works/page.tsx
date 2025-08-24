@@ -9,7 +9,7 @@ interface WorksPageProps {
   searchParams: { tag?: string };
 }
 
-const WorksPage: React.FC<WorksPageProps> = ({ searchParams }) => {
+export default async function WorksPage({ searchParams }: WorksPageProps) {
   const tag = searchParams?.tag;
   const filteredWorks = tag
     ? worksData.filter((work) => work.tags?.includes(tag))
@@ -89,6 +89,4 @@ const WorksPage: React.FC<WorksPageProps> = ({ searchParams }) => {
       </div>
     </div>
   );
-};
-
-export default WorksPage;
+}

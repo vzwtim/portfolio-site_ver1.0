@@ -1,150 +1,58 @@
 [
   {
-    "id": "odo-campsite",
-    "title": "ため池のあるキャンプ場＠小戸",
-    "description": "フィールドワークで見つけた池や谷、既存の小屋を活かし、水をテーマにしたキャンプ場の設計提案。",
+    "id": "tea-souvenir",
+    "title": "京都土産の茶",
+    "description": "伝統的な淹れ方の技と香りを味わう京都のお土産茶。",
     "images": [
-      "/images/mv_odo.png",
-      "/images/drawing_odo_2.png",
-      "/images/drawing_odo_3.jpg",
-      "/images/drawing_odo_1.png",
-      "/images/map_odo.png",
-      "/images/image_odo_20.jpg"
+      "/images/mv_tea_2.jpg",
+      "/images/trip_kyoto.JPG"
     ],
-    "bgColor": "#e0f7fa",
+    "bgColor": "#dcedc8",
     "tags": [
-      "architecture",
-      "landscape"
+      "food"
     ]
   },
   {
-    "id": "odo-renovation",
-    "title": "小屋改修実践PJ＠小戸",
-    "description": "老朽化した小戸の小屋を患者のように扱い、丁寧な修復と再利用で新しい命を吹き込む改修プロジェクト。",
+    "id": "gomoku-rice",
+    "title": "五目ごはん",
+    "description": "日常の料理で味と食感を探求した自家製の五目ごはん。おいしい。",
     "images": [
-      "/images/image_odo_4.jpg",
-      "/images/image_odo_10.jpg",
-      "/images/image_odo_11.jpg",
-      "/images/image_odo.HEIC",
-      "/images/image_odo_3.jpg",
-      "/images/image_odo_13.jpg",
-      "/images/image_odo_1.jpg",
-      "/images/image_odo_2.jpg",
-      "/images/image_odo_7.jpg",
-      "/images/image_odo_9.jpg"
+      "/images/mv_gomoku_1.jpg",
+      "/images/mv_gomoku_2.jpg",
+      "/.images/mv_gomoku_3.jpg",
+      "/images/food_me_tomato.jpg",
+      "/images/food_drink_.jpg"
     ],
-    "bgColor": "#ffe0b2",
+    "bgColor": "#ffe082",
     "tags": [
-      "architecture",
-      "renovation"
+      "food"
     ]
   },
   {
-    "id": "ogawamachi-water",
-    "title": "水でつながる小川町",
-    "description": "ワークショップとフィールドワークにより、水が小川町の産業と地域の暮らしをどのようにつないでいるかを明らかにした。",
+    "id": "master-thesis",
+    "title": "都市動態論－マッピング",
+    "description": "発展途上国向けのスラム検出地図手法を先進国に適用し、動的均衡の中の生活の痕跡とリズムを観察した研究。",
     "images": [
-      "/images/mv_ogawamachi_1.png",
-      "/images/image_ogawamachi_1.png",
-      "/images/image_ogawamachi_2.jpg",
-      "/images/image_ogawamachi_3.jpg"
+      "/images/figure_master.webp",
+      "/images/map_master_1.png",
+      "/images/map_master_2.png",
+      "/images/map_master_3.png",
+      "/images/map_master_4.png",
+      "/images/map_master_5.png",
+      "/images/map_master_6.png",
+      "/images/map_master_7.png",
+      "/images/map_master_8.png",
+      "/images/map_master_9.png",
+      "/images/map_master_10.png",
+      "/images/map_master_11.png",
+      "/images/figure_master_3.png",
+      "/images/figure_master_1.png",
+      "/images/figure_master_2.png"
     ],
-    "bgColor": "#d1e7dd",
+    "bgColor": "#808080",
     "tags": [
-      "architecture",
-      "workshop"
-    ]
-  },
-  {
-    "id": "ogawamachi-water-2",
-    "title": "人と水のかかわり＠小川町",
-    "description": "フィールドワークで、昔から人が水と如何にして関わってきたかを分析した。",
-    "images": [
-      "/images/mv_ogawamachi_2.png"
-    ],
-    "bgColor": "#d1e7dd",
-    "tags": [
-      "architecture",
-      "workshop"
-    ]
-  },
-  {
-    "id": "aris-library",
-    "title": "遺跡図書館＠赤坂",
-    "description": "赤坂にある東京都立中央図書館。書物の層が地層となり、シールドトンネルで掘り進む地下アーカイブが広がる図書館の設計。",
-    "images": [
-      "/images/mv_aris.png",
-      "/images/figure_aris.JPG",
-      "/images/drawing_aris.jpg"
-    ],
-    "bgColor": "#a9a9a9",
-    "tags": [
-      "architecture"
-    ]
-  },
-  {
-    "id": "plantbuilding-concept",
-    "title": "近未来ビル構想スケッチ",
-    "description": "二重スキンの外皮やエコ技術、ドローン物流を備えた次世代の単体建築を近未来的に描いた構想スケッチ。",
-    "images": [
-      "/images/drawing_plantbuilding.png"
-    ],
-    "bgColor": "#e6e6fa",
-    "tags": [
-      "architecture",
-      "eco"
-    ]
-  },
-  {
-    "id": "ginza-kk-park",
-    "title": "都産都消＠銀座",
-    "description": "銀座のKK高架道路を土木、都市農業、アクアポニックス、防災施設を融合させた市民公園へと転換する提案。",
-    "link": "https://www.example.com/ginza-kk-park",
-    "images": [
-      "/images/mv_ginza.png",
-      "/images/map_ginza.png",
-      "/images/pb_ginza_1.jpg",
-      "/images/pb_ginza_2.jpg",
-      "/images/image_ginza_1.png",
-      "/images/image_ginza_2.png",
-      "/images/image_ginza_3.png"
-    ],
-    "bgColor": "#c8e6c9",
-    "tags": [
-      "architecture",
-      "urbanism"
-    ]
-  },
-  {
-    "id": "nishiogi-crane",
-    "title": "クレーンのある街＠西荻窪",
-    "description": "住民主導による西荻窪の代替再開発。クレーンが密集した木造街区を解消し、散水消防塔としても機能する。",
-    "images": [
-      "/images/pb_nishiogi_1.png",
-      "/images/pb_nishiogi_1.gif",
-      "/images/pb_nishiogi_2.png",
-      "/images/image_nishiogi.png"
-    ],
-    "bgColor": "#e2e3e5",
-    "tags": [
-      "architecture",
-      "urbanism"
-    ]
-  },
-  {
-    "id": "pavilion-mayfes",
-    "title": "UT architecture pavilion",
-    "description": "東京大学五月祭で建設した、コンクリートと布を用いたパビリオン。パンデミック下のパーティションを再解釈し、日常に活気を与える。",
-    "images": [
-      "/images/mv_pavilion.heic",
-      "/images/image_pavilion_2.jpg",
-      "/images/web_pavillion.PNG",
-      "/images/image_pavilion_1.jpg"
-    ],
-    "bgColor": "#d1c4e9",
-    "tags": [
-      "architecture",
-      "construction"
+      "data-analysis",
+      "research"
     ]
   },
   {
@@ -173,21 +81,85 @@
     ]
   },
   {
-    "id": "bachelor-thesis",
-    "title": "不良住宅の変遷＠荒川区",
-    "description": "荒川区の不良住宅の変遷をGISと歴史資料で分析し、スラムクリアランス以降の現在までの影響を探った研究。",
+    "id": "odo-renovation",
+    "title": "小屋改修実践PJ＠小戸",
+    "description": "老朽化した小戸の小屋を患者のように扱い、丁寧な修復と再利用で新しい命を吹き込む改修プロジェクト。",
     "images": [
-      "/images/map_bachelor_1.png",
-      "/images/figure_bachelor_1.png",
-      "/images/map_bachelor_2.png",
-      "/images/map_bachelor_3.png",
-      "/images/map_bachelor_4.png",
-      "/images/map_bachelor_5.png"
+      "/images/image_odo_4.jpg",
+      "/images/image_odo_10.jpg",
+      "/images/image_odo_11.jpg",
+      "/images/image_odo_15.jpg",
+      "/images/image_odo_3.jpg",
+      "/images/image_odo_13.jpg",
+      "/images/image_odo_1.jpg",
+      "/images/image_odo_2.jpg",
+      "/images/image_odo_7.jpg",
+      "/images/image_odo_9.jpg"
     ],
-    "bgColor": "#fce4ec",
+    "bgColor": "#ffe0b2",
     "tags": [
-      "data-analysis",
-      "research"
+      "architecture",
+      "renovation"
+    ]
+  },
+  {
+    "id": "odo-campsite",
+    "title": "ため池のあるキャンプ場＠小戸",
+    "description": "フィールドワークで見つけた池や谷、既存の小屋を活かし、水をテーマにしたキャンプ場の設計提案。",
+    "images": [
+      "/images/mv_odo.png",
+      "/images/drawing_odo_2.png",
+      "/images/drawing_odo_3.jpg",
+      "/images/drawing_odo_1.png",
+      "/images/map_odo.png",
+      "/images/image_odo_20.jpg"
+    ],
+    "bgColor": "#e0f7fa",
+    "tags": [
+      "architecture",
+      "landscape"
+    ]
+  },
+  {
+    "id": "ogawamachi-water-2",
+    "title": "人と水のかかわり＠小川町",
+    "description": "フィールドワークで、昔から人が水と如何にして関わってきたかを分析した。",
+    "images": [
+      "/images/mv_ogawamachi_2.png"
+    ],
+    "bgColor": "#d1e7dd",
+    "tags": [
+      "architecture",
+      "workshop"
+    ]
+  },
+  {
+    "id": "ogawamachi-water",
+    "title": "水でつながる小川町",
+    "description": "ワークショップとフィールドワークにより、水が小川町の産業と地域の暮らしをどのようにつないでいるかを明らかにした。",
+    "images": [
+      "/images/mv_ogawamachi_1.png",
+      "/images/image_ogawamachi_1.png",
+      "/images/image_ogawamachi_2.jpg",
+      "/images/image_ogawamachi_3.jpg"
+    ],
+    "bgColor": "#d1e7dd",
+    "tags": [
+      "architecture",
+      "workshop"
+    ]
+  },
+  {
+    "id": "plantbuilding-concept",
+    "title": "近未来ビル構想スケッチ",
+    "description": "二重スキンの外皮やエコ技術、ドローン物流を備えた次世代の単体建築を近未来的に描いた構想スケッチ。",
+    "images": [
+      "/images/drawing_plantbuilding.png"
+    ],
+    "bgColor": "#e6e6fa",
+    "tags": [
+      "architecture",
+      "eco"
     ]
   },
   {
@@ -209,46 +181,100 @@
     ]
   },
   {
-    "id": "master-thesis",
-    "title": "都市動態論－マッピング",
-    "description": "発展途上国向けのスラム検出地図手法を先進国に適用し、動的均衡の中の生活の痕跡とリズムを観察した研究。",
+    "id": "bachelor-thesis",
+    "title": "不良住宅の変遷＠荒川区",
+    "description": "荒川区の不良住宅の変遷をGISと歴史資料で分析し、スラムクリアランス以降の現在までの影響を探った研究。",
     "images": [
-      "/images/figure_master.webp",
-      "/images/map_master_1.png",
-      "/images/map_master_2.png",
-      "/images/map_master_3.png",
-      "/images/map_master_4.png",
-      "/images/map_master_5.png",
-      "/images/map_master_6.png",
-      "/images/map_master_7.png",
-      "/images/map_master_8.png",
-      "/images/map_master_9.png",
-      "/images/map_master_10.png",
-      "/images/map_master_11.png",
-      "/images/figure_master.png",
-      "/images/figure_master_1.png",
-      "/images/figure_master_2.png"
+      "/images/map_bachelor_ 1.png",
+      "/images/figure_bachelor_1.png",
+      "/images/map_bachelor_ 2.png",
+      "/images/map_bachelor_3.png",
+      "/images/map_bachelor_4.png",
+      "/images/map_bachelor_5.png"
     ],
-    "bgColor": "#808080",
+    "bgColor": "#fce4ec",
     "tags": [
       "data-analysis",
       "research"
     ]
   },
   {
-    "id": "gomoku-rice",
-    "title": "五目ごはん",
-    "description": "日常の料理で味と食感を探求した自家製の五目ごはん。おいしい。",
+    "id": "ginza-kk-park",
+    "title": "都産都消＠銀座",
+    "description": "銀座のKK高架道路を土木、都市農業、アクアポニックス、防災施設を融合させた市民公園へと転換する提案。",
+    "link": "https://www.example.com/ginza-kk-park",
     "images": [
-      "/images/mv_gomoku_1.jpg",
-      "/images/mv_gomoku_2.jpg",
-      "/images/mv_gomoku_3.jpg",
-      "/images/food_me_tomato.jpg",
-      "/images/food_drink_.jpg"
+      "/images/mv_ginza.png",
+      "/images/map_ginza.png",
+      "/images/pb_ginza_1.jpg",
+      "/images/pb_ginza_2.jpg",
+      "/images/image_ginza_1.png",
+      "/images/image_ginza_2.png",
+      "/images/image_ginza_3.png"
     ],
-    "bgColor": "#ffe082",
+    "bgColor": "#c8e6c9",
     "tags": [
-      "food"
+      "architecture",
+      "urbanism"
+    ]
+  },
+  {
+    "id": "nishiogi-crane",
+    "title": "クレーンのある街＠西荻窪",
+    "description": "住民主導による西荻窪の代替再開発。クレーンが密集した木造街区を解消し、散水消防塔としても機能する。",
+    "images": [
+      "/images/pb_nishiogi_1.png",
+      "/images/pb_nishiogi_3.gif",
+      "/images/pb_nishiogi_2.png",
+      "/images/image_nishiogi.png"
+    ],
+    "bgColor": "#e2e3e5",
+    "tags": [
+      "architecture",
+      "urbanism"
+    ]
+  },
+  {
+    "id": "aris-library",
+    "title": "遺跡図書館＠赤坂",
+    "description": "赤坂にある東京都立中央図書館。書物の層が地層となり、シールドトンネルで掘り進む地下アーカイブが広がる図書館の設計。",
+    "images": [
+      "/images/mv_aris.png",
+      "/images/figure_aris.JPG",
+      "/images/drawing_aris.jpg"
+    ],
+    "bgColor": "#a9a9a9",
+    "tags": [
+      "architecture"
+    ]
+  },
+  {
+    "id": "pavilion-mayfes",
+    "title": "UT architecture pavilion",
+    "description": "東京大学五月祭で建設した、コンクリートと布を用いたパビリオン。パンデミック下のパーティションを再解釈し、日常に活気を与える。",
+    "images": [
+      "/images/mv_pavilion_1.jpg",
+      "/images/image_pavilion_2.jpg",
+      "/images/web_pavillion.PNG",
+      "/images/image_pavilion_1.jpg"
+    ],
+    "bgColor": "#d1c4e9",
+    "tags": [
+      "architecture",
+      "construction"
+    ]
+  },
+  {
+    "id": "membrane-toilet",
+    "title": "cocoon toilet",
+    "description": "開放性と流れるような形を強調した軽量な膜構造トイレのコンセプト。",
+    "images": [
+      "/images/plan_toilet_2.svg",
+      "/images/plan_toilet_1.svg"
+    ],
+    "bgColor": "#f0fff0",
+    "tags": [
+      "architecture"
     ]
   },
   {
@@ -276,32 +302,6 @@
     "tags": [
       "architecture",
       "living"
-    ]
-  },
-  {
-    "id": "tea-souvenir",
-    "title": "京都土産の茶",
-    "description": "伝統的な淹れ方の技と香りを味わう京都のお土産茶。",
-    "images": [
-      "/images/mv_tea_2.jpg",
-      "/images/trip_kyoto.JPG"
-    ],
-    "bgColor": "#dcedc8",
-    "tags": [
-      "food"
-    ]
-  },
-  {
-    "id": "membrane-toilet",
-    "title": "cocoon toilet",
-    "description": "開放性と流れるような形を強調した軽量な膜構造トイレのコンセプト。",
-    "images": [
-      "/images/plan_toilet_2.svg",
-      "/images/plan_toilet_1.svg"
-    ],
-    "bgColor": "#f0fff0",
-    "tags": [
-      "architecture"
     ]
   }
 ]

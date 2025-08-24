@@ -7,13 +7,19 @@ import type { Work } from './WorkContent';
 
 type PageProps = { params: { id: string } };
 
+// Helper function to get work data asynchronously
+async function getWork(id: string): Promise<Work | undefined> {
+  return (works as Work[]).find((w) => w.id === id);
+}
+
 export function generateStaticParams() {
   return (works as Work[]).map((work) => ({ id: work.id }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const id = decodeURIComponent(params.id);
-  const work = (works as Work[]).find((w) => w.id === id);
+  const work = await getWork(id);
+
   if (!work) {
     return { title: 'Work not found' };
   }
@@ -23,9 +29,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-export default function WorkPage({ params }: PageProps) {
+export default async function WorkPage({ params }: PageProps) {
   const id = decodeURIComponent(params.id);
-  const work = (works as Work[]).find((w) => w.id === id);
+  const work = await getWork(id);
 
   if (!work) {
     notFound();
