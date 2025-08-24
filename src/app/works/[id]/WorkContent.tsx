@@ -59,19 +59,21 @@ export default function WorkContent({ work, images }: WorkContentProps) {
 function ResponsiveImage({ src, alt }: { src: string; alt: string }) {
   const [ratio, setRatio] = useState(1);
   return (
-    <div
-      className="relative flex-shrink-0 h-full px-4"
-      style={{ aspectRatio: ratio }}
-    >
-      <FadeInImage
-        src={src}
-        alt={alt}
-        fill
-        className="object-contain"
-        onLoadingComplete={(img) => {
-          setRatio(img.naturalWidth / img.naturalHeight);
-        }}
-      />
+    <div className="flex-shrink-0 h-full flex items-center justify-center px-4">
+      <div
+        className="relative h-[80%] p-4 bg-white/20 rounded-lg backdrop-blur-sm shadow-lg overflow-hidden"
+        style={{ aspectRatio: ratio }}
+      >
+        <FadeInImage
+          src={src}
+          alt={alt}
+          fill
+          className="object-contain"
+          onLoadingComplete={(img) => {
+            setRatio(img.naturalWidth / img.naturalHeight);
+          }}
+        />
+      </div>
     </div>
   );
 }
