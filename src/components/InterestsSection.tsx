@@ -317,38 +317,33 @@ export default function InterestsSection() {
   const renderAlternatingCards = (items: typeof interests.spaceAndCreation) => (
     <div className="flex flex-col gap-24">
       {items.map((interest, index) => (
-        <motion.div
-          key={interest.title}
-          className={`flex flex-col md:flex-row items-center gap-8 ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <div className="relative w-full md:w-1/2 h-64 overflow-hidden">
-            <Image
-              src={interest.imageUrl}
-              alt={interest.title}
-              fill
-              className="object-cover"
-              sizes="(max-width:768px)100vw,(max-width:1024px)50vw,50vw"
-            />
-          </div>
-          <div className="md:w-1/2">
-            <h4 className="text-2xl font-semibold mb-4">
-              {interest.title}
-            </h4>
-            <p className="opacity-80 leading-relaxed">
-              {interest.description}
-            </p>
-            <Link
-              href={getWorksLink(interest.title)}
-              className="inline-block mt-4 text-sm underline"
-            >
-              works? →
-            </Link>
-          </div>
-        </motion.div>
+        <Link href={getWorksLink(interest.title)} key={interest.title}>
+          <motion.div
+            className={`group flex flex-col md:flex-row items-center gap-8 ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="relative w-full md:w-1/2 h-64 overflow-hidden">
+              <Image
+                src={interest.imageUrl}
+                alt={interest.title}
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-110"
+                sizes="(max-width:768px)100vw,(max-width:1024px)50vw,50vw"
+              />
+            </div>
+            <div className="md:w-1/2">
+              <h4 className="text-2xl font-semibold mb-4">
+                {interest.title}
+              </h4>
+              <p className="opacity-80 leading-relaxed">
+                {interest.description}
+              </p>
+            </div>
+          </motion.div>
+        </Link>
       ))}
     </div>
   );
@@ -356,58 +351,16 @@ export default function InterestsSection() {
   const renderGridCards = (items: typeof interests.spaceAndCreation) => (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
       {items.map((interest) => (
-        <motion.div
-          key={interest.title}
-          className="group cursor-pointer"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          whileHover={{ scale: 1.05 }}
-        >
-          <div className="relative h-64 mb-4 overflow-hidden">
-            <Image
-              src={interest.imageUrl}
-              alt={interest.title}
-              fill
-              className="object-cover transition-transform duration-500 group-hover:scale-110"
-              sizes="(max-width:768px)100vw,(max-width:1024px)50vw,25vw"
-            />
-          </div>
-          <h4 className="text-lg font-semibold mb-2">
-            {interest.title}
-          </h4>
-          <p className="text-sm opacity-80 leading-relaxed">
-            {interest.description}
-          </p>
-        </motion.div>
-      ))}
-    </div>
-  );
-
-  const renderScatteredCards = (items: typeof interests.spaceAndCreation) => (
-    <div className="grid grid-cols-2 md:grid-cols-3 gap-10 md:gap-16 justify-items-center">
-      {items.map((interest, index) => {
-        const offsets = ['md:mt-0', 'md:mt-16', 'md:-mt-8', 'md:mt-24', 'md:-mt-4'];
-        const yAnimation = index % 2 === 0 ? [0, 20, 0] : [0, -20, 0]; // Odd index (0, 2, ...) moves down, Even index (1, 3, ...) moves up
-        return (
+        <Link href={getWorksLink(interest.title)} key={interest.title}>
           <motion.div
-            key={interest.title}
-            className={`w-64 md:w-56 group cursor-pointer ${offsets[index] ?? ''}`}
-            initial={{ opacity: 0 }} // Initial opacity for fade-in
-            whileInView={{ opacity: 1 }} // Fade in when in view
-            animate={{ y: yAnimation }} // Apply the repeating animation
-            viewport={{ once: true }} // Only animate once when entering viewport
-            transition={{
-              duration: 2, // Duration of one cycle
-              repeat: Infinity,
-              repeatType: "loop",
-              ease: "easeInOut",
-              delay: index * 0.1 // Stagger animation
-            }}
+            className="group cursor-pointer"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
             whileHover={{ scale: 1.05 }}
           >
-            <div className="relative w-full aspect-square mb-4 overflow-hidden rounded-full shadow-lg transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-2xl">
+            <div className="relative h-64 mb-4 overflow-hidden">
               <Image
                 src={interest.imageUrl}
                 alt={interest.title}
@@ -423,6 +376,50 @@ export default function InterestsSection() {
               {interest.description}
             </p>
           </motion.div>
+        </Link>
+      ))}
+    </div>
+  );
+
+  const renderScatteredCards = (items: typeof interests.spaceAndCreation) => (
+    <div className="grid grid-cols-2 md:grid-cols-3 gap-10 md:gap-16 justify-items-center">
+      {items.map((interest, index) => {
+        const offsets = ['md:mt-0', 'md:mt-16', 'md:-mt-8', 'md:mt-24', 'md:-mt-4'];
+        const yAnimation = index % 2 === 0 ? [0, 20, 0] : [0, -20, 0]; // Odd index (0, 2, ...) moves down, Even index (1, 3, ...) moves up
+        return (
+          <Link href={getWorksLink(interest.title)} key={interest.title}>
+            <motion.div
+              className={`w-64 md:w-56 group cursor-pointer ${offsets[index] ?? ''}`}
+              initial={{ opacity: 0 }} // Initial opacity for fade-in
+              whileInView={{ opacity: 1 }} // Fade in when in view
+              animate={{ y: yAnimation }} // Apply the repeating animation
+              viewport={{ once: true }} // Only animate once when entering viewport
+              transition={{
+                duration: 2, // Duration of one cycle
+                repeat: Infinity,
+                repeatType: "loop",
+                ease: "easeInOut",
+                delay: index * 0.1 // Stagger animation
+              }}
+              whileHover={{ scale: 1.05 }}
+            >
+              <div className="relative w-full aspect-square mb-4 overflow-hidden rounded-full shadow-lg transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-2xl">
+                <Image
+                  src={interest.imageUrl}
+                  alt={interest.title}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  sizes="(max-width:768px)100vw,(max-width:1024px)50vw,25vw"
+                />
+              </div>
+              <h4 className="text-lg font-semibold mb-2">
+                {interest.title}
+              </h4>
+              <p className="text-sm opacity-80 leading-relaxed">
+                {interest.description}
+              </p>
+            </motion.div>
+          </Link>
         );
       })}
     </div>
@@ -631,57 +628,43 @@ return (
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-x-16 gap-y-32 max-w-6xl mx-auto">
           {interests.cultureAndExploration.map((interest, index) => (
-            <div key={interest.title} className="group cursor-pointer">
+            <Link href={cultureWorkTitles.includes(interest.title) ? getWorksLink(interest.title) : getCultureLink(interest.title)} key={interest.title} className="group cursor-pointer">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <Link href={getCultureLink(interest.title)} className="block">
-                  <div className="relative h-80 mb-6 overflow-hidden rounded-lg shadow-lg">
-                    <Image
-                      src={interest.imageUrl}
-                      alt={interest.title}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-110"
-                      sizes="(max-width:768px)100vw,(max-width:1024px)50vw,33vw"
-                    />
-                  </div>
-                </Link>
+                <div className="relative h-80 mb-6 overflow-hidden rounded-lg shadow-lg">
+                  <Image
+                    src={interest.imageUrl}
+                    alt={interest.title}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    sizes="(max-width:768px)100vw,(max-width:1024px)50vw,33vw"
+                  />
+                </div>
                 <div className="flex items-center mb-2 gap-2">
-                  <Link href={getCultureLink(interest.title)}>
-                    <h4 className="text-xl font-semibold">
-                      {interest.title}
-                    </h4>
-                  </Link>
+                  <h4 className="text-xl font-semibold">
+                    {interest.title}
+                  </h4>
                   {interest.title === 'Food' && (
-                    <a
-                      href="https://www.instagram.com/bababachef/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label="Instagram"
-                      className="text-xl"
+                    <div
+                      className="text-xl cursor-pointer"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        window.open('https://www.instagram.com/bababachef/', '_blank');
+                      }}
                     >
                       <FaInstagram />
-                    </a>
+                    </div>
                   )}
                 </div>
-                <Link href={getCultureLink(interest.title)} className="block">
-                  <p className="text-base opacity-80 leading-relaxed">
-                    {interest.description}
-                  </p>
-                </Link>
+                <p className="text-base opacity-80 leading-relaxed">
+                  {interest.description}
+                </p>
               </motion.div>
-              {cultureWorkTitles.includes(interest.title) && (
-                <Link
-                  href={getWorksLink(interest.title)}
-                  className="inline-block mt-4 text-sm underline"
-                >
-                  works? →
-                </Link>
-              )}
-            </div>
+            </Link>
           ))}
         </div>
       </motion.section>

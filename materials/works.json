@@ -1,15 +1,28 @@
 [
   {
-    "id": "tea-souvenir",
-    "title": "京都土産の茶",
-    "description": "伝統的な淹れ方の技と香りを味わう京都のお土産茶。",
+    "id": "realestate-map2",
+    "title": "通り名マップ",
+    "description": "不動産開発初心者向けに、東京都の通り名を地図上で視覚化したインタラクティブマップ。",
     "images": [
-      "/images/mv_tea_2.jpg",
-      "/images/trip_kyoto.JPG"
+      "/images/map_realestate_2.jpg"
     ],
     "bgColor": "#dcedc8",
     "tags": [
-      "food"
+      "data-analysis",
+      "real-estate"
+    ]
+  },
+  {
+    "id": "realestate-map1",
+    "title": "一種単価マップ",
+    "description": "不動産開発初心者向けに、東京都の一種単価を地図上で視覚化したインタラクティブマップ。",
+    "images": [
+      "/images/map_realestate_1.png"
+    ],
+    "bgColor": "#dcedc8",
+    "tags": [
+      "data-analysis",
+      "real-estate"
     ]
   },
   {
@@ -25,9 +38,24 @@
     ],
     "bgColor": "#ffe082",
     "tags": [
-      "food"
+      "food",
+      "living"
     ]
   },
+  {
+    "id": "mokumoku-pj",
+    "title": "樹木葬事業立案",
+    "description": "自然と共生する新しいお墓の形、樹木葬の事業立案。市場調査、競合分析、ターゲティング、マーケティング戦略、収支計画を含むビジネスプラン。",
+    "images": [
+      "/images/logo_mokumoku_2.jpg",
+      "/images/drawing_mokumoku_1.jpg"
+    ],
+    "bgColor": "#dcedc8",
+    "tags": [
+      "nature",
+      "real-estate"
+    ]
+  },  
   {
     "id": "master-thesis",
     "title": "都市動態論－マッピング",
@@ -52,12 +80,13 @@
     "bgColor": "#808080",
     "tags": [
       "data-analysis",
+      "urbanism",
       "research"
     ]
   },
   {
     "id": "sanriku-coast",
-    "title": "歌津を守るものたち",
+    "title": "エスノグラフィ＠南三陸",
     "description": "南三陸においてフォト・エスノグラフィーを行い、歌津地方における守る・守られる関係を表現した。",
     "link": "https://iedp.site/portfolio/%e6%ad%8c%e6%b4%a5%e3%82%92%e5%ae%88%e3%82%8b%e3%82%82%e3%81%ae%e3%81%9f%e3%81%a1/",
     "images": [
@@ -99,13 +128,15 @@
     "bgColor": "#ffe0b2",
     "tags": [
       "architecture",
-      "renovation"
+      "crafting",
+      "nature"
     ]
   },
   {
     "id": "odo-campsite",
     "title": "ため池のあるキャンプ場＠小戸",
-    "description": "フィールドワークで見つけた池や谷、既存の小屋を活かし、水をテーマにしたキャンプ場の設計提案。",
+    "description": "フィールドワークで見つけた池や谷、既存の小屋を活かし、水をテーマにしたキャンプ場の設計提案。谷戸地形ならではの源流、田んぼ、ため池などの水を中心とした自然資源を生かした分散型のキャンプ場",
+     "link": "https://iedp.site/portfolio/%e8%87%aa%e7%84%b6%e8%b3%87%e6%ba%90%e3%82%92%e4%bb%8b%e3%81%97%e3%81%a6%e7%b4%a1%e3%81%8c%e3%82%8c%e3%82%8b%e8%b0%b7%e6%88%b8%e3%81%ae%e9%a2%a8%e6%99%af-%e6%b0%b4/",
     "images": [
       "/images/mv_odo.png",
       "/images/drawing_odo_2.png",
@@ -117,6 +148,7 @@
     "bgColor": "#e0f7fa",
     "tags": [
       "architecture",
+      "nature",
       "landscape"
     ]
   },
@@ -124,19 +156,21 @@
     "id": "ogawamachi-water-2",
     "title": "人と水のかかわり＠小川町",
     "description": "フィールドワークで、昔から人が水と如何にして関わってきたかを分析した。",
+    "link":"https://iedp.site/portfolio/%e5%b0%8f%e5%b7%9d%e7%94%ba%e3%81%ae%e5%b7%9d%e3%81%ab%e8%a6%8b%e3%82%8b%e3%80%81%e4%ba%ba%e3%81%a8%e6%b0%b4%e3%81%ae%e3%81%8b%e3%81%8b%e3%82%8f%e3%82%8a/",
     "images": [
       "/images/mv_ogawamachi_2.png"
     ],
     "bgColor": "#d1e7dd",
     "tags": [
-      "architecture",
-      "workshop"
+      "nature",
+      "research"
     ]
   },
   {
     "id": "ogawamachi-water",
     "title": "水でつながる小川町",
     "description": "ワークショップとフィールドワークにより、水が小川町の産業と地域の暮らしをどのようにつないでいるかを明らかにした。",
+    "link":"https://iedp.site/portfolio/%e5%b0%8f%e5%b7%9d%e7%94%ba%e3%81%ae%e6%9a%ae%e3%82%89%e3%81%97%e3%81%ae%e4%b8%ad%e3%82%92%e6%b5%81%e3%82%8c%e3%82%8b%e6%b0%b4-water-flowing-through-the-life-in-ogawa-town/",
     "images": [
       "/images/mv_ogawamachi_1.png",
       "/images/image_ogawamachi_1.png",
@@ -145,7 +179,7 @@
     ],
     "bgColor": "#d1e7dd",
     "tags": [
-      "architecture",
+      "nature",
       "workshop"
     ]
   },
@@ -159,7 +193,8 @@
     "bgColor": "#e6e6fa",
     "tags": [
       "architecture",
-      "eco"
+      "real-estate",
+      "nature"
     ]
   },
   {
@@ -176,8 +211,7 @@
     ],
     "bgColor": "#778899",
     "tags": [
-      "data-analysis",
-      "research"
+      "architecture"
     ]
   },
   {
@@ -195,6 +229,7 @@
     "bgColor": "#fce4ec",
     "tags": [
       "data-analysis",
+      "urbanism",
       "research"
     ]
   },
@@ -215,7 +250,8 @@
     "bgColor": "#c8e6c9",
     "tags": [
       "architecture",
-      "urbanism"
+      "urbanism",
+      "nature"
     ]
   },
   {
@@ -252,6 +288,7 @@
     "id": "pavilion-mayfes",
     "title": "UT architecture pavilion",
     "description": "東京大学五月祭で建設した、コンクリートと布を用いたパビリオン。パンデミック下のパーティションを再解釈し、日常に活気を与える。",
+    "link":"https://utarchipavilion202.wixsite.com/website",
     "images": [
       "/images/mv_pavilion_1.jpg",
       "/images/image_pavilion_2.jpg",
@@ -261,7 +298,7 @@
     "bgColor": "#d1c4e9",
     "tags": [
       "architecture",
-      "construction"
+      "crafting"
     ]
   },
   {
@@ -300,8 +337,7 @@
     ],
     "bgColor": "#c5cae9",
     "tags": [
-      "architecture",
-      "living"
+      "architecture"
     ]
   }
 ]
