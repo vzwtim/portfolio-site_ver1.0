@@ -29,28 +29,28 @@ describe('PhotosClientPage modal behavior', () => {
     render(<PhotosClientPage />);
 
     // Open modal by clicking first photo
-    fireEvent.click(screen.getByAltText('Europe Trip 1'));
+    fireEvent.click(screen.getAllByRole('img')[0]);
 
     // Modal shows first photo and body overflow hidden
-    expect(screen.getByText('Europe Trip 1')).toBeInTheDocument();
+    expect(screen.getByText('ヨーロッパの街並み。')).toBeInTheDocument();
     expect(document.body.style.overflow).toBe('hidden');
 
     // Go to next photo
     fireEvent.keyDown(window, { key: 'ArrowRight' });
-    expect(screen.getByText('Europe Trip 2')).toBeInTheDocument();
+    expect(screen.getByText('アルハンブラ宮殿。')).toBeInTheDocument();
 
     // Go back to previous photo
     fireEvent.keyDown(window, { key: 'ArrowLeft' });
-    expect(screen.getByText('Europe Trip 1')).toBeInTheDocument();
+    expect(screen.getByText('ヨーロッパの街並み。')).toBeInTheDocument();
 
     // Close modal with Escape
     fireEvent.keyDown(window, { key: 'Escape' });
-    expect(screen.queryByText('Europe Trip 1')).not.toBeInTheDocument();
+    expect(screen.queryByText('ヨーロッパの街並み。')).not.toBeInTheDocument();
     expect(document.body.style.overflow).toBe('unset');
     expect(document.body.style.paddingRight).toBe('0px');
 
     // Ensure key listeners removed by pressing ArrowRight again
     fireEvent.keyDown(window, { key: 'ArrowRight' });
-    expect(screen.queryByText('Europe Trip 2')).not.toBeInTheDocument();
+    expect(screen.queryByText('アルハンブラ宮殿。')).not.toBeInTheDocument();
   });
 });
