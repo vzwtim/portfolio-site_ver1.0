@@ -201,9 +201,15 @@ const TypingCodeBackground: React.FC<TypingCodeBackgroundProps> = ({ snippets, p
   }, [isAnimating, snippets]);
 
   return (
-    <div className="absolute overflow-hidden pointer-events-none z-20 opacity-100 flex flex-col p-2 rounded-lg" style={position}>
+    <div
+      className="absolute overflow-hidden pointer-events-none z-0 opacity-100 flex flex-col p-2 rounded-lg"
+      style={position}
+    >
       {snippets.map((_, i) => (
-        <pre key={i} className="text-white font-mono text-sm md:text-base whitespace-pre-wrap">
+        <pre
+          key={i}
+          className="text-[#888888] font-mono text-sm md:text-base whitespace-pre-wrap"
+        >
           {displayed[i] || ''}
         </pre>
       ))}
@@ -671,7 +677,7 @@ return (
       {/* Digital */}
       <section ref={digitalRef} className="relative w-full flex flex-col items-center overflow-hidden text-[#008877] pt-48 px-8 min-h-[200vh]"
         style={{ backgroundColor: '#0a0a0a', backgroundImage: 'radial-gradient(#00887780 1px, #0a0a0a 1px)', backgroundSize: '40px 40px' }}>
-        <div className="grid md:grid-cols-3 gap-x-12 gap-y-8 mb-32 items-center max-w-6xl w-full">
+        <div className="relative z-20 grid md:grid-cols-3 gap-x-12 gap-y-8 mb-32 items-center max-w-6xl w-full">
             <motion.h3
               initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
