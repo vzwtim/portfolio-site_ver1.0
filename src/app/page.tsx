@@ -36,7 +36,7 @@ export default function Home() {
         
         <motion.div
           style={{ y: yText, opacity: opacityText }}
-          className="relative z-10 text-center px-4 md:px-20 max-w-6xl mx-auto pt-16 md:pt-0"
+          className="relative z-10 text-center px-4 md:px-20 pt-16 md:pt-0 max-w-6xl mx-auto"
         >
           {/* Main Catchphrase - Simple and Clean */}
           <div className="flex justify-center items-center">
@@ -51,7 +51,7 @@ export default function Home() {
 
       {/* About Section with Japanese Aesthetic */}
       <section className="py-20 px-4 md:px-20 bg-gray-50 text-[#232024]">
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="text-center max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

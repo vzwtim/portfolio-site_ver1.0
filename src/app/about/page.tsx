@@ -19,7 +19,7 @@ export default function About() {
 
   return (
     <main className="bg-[#ffffff] text-[#232024] pt-24 md:pt-28 px-4 md:px-20 min-h-screen">
-      <div className="max-w-6xl mx-auto">
+      <div className="w-full">
         {/* Profile */}
         <section className="flex flex-col items-center mb-24">
           <div className="w-full max-w-xs md:max-w-sm lg:max-w-md relative mx-auto">

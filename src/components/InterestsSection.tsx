@@ -231,8 +231,10 @@ export default function InterestsSection() {
   const cultureInView = useInView(cultureRef, { amount: 0.6 });
   const digitalInView = useInView(digitalRef, { amount: 0.6 });
 
-  const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start end', 'end start'] });
-  const pathLength = useTransform(scrollYProgress, [0, 0.85], [0, 1]);
+  // Slow the draw: start later and finish nearer the end of the section
+  const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start 85%', 'end 5%'] });
+  const pathLengthRaw = useTransform(scrollYProgress, [0, 0.6], [0, 1]);
+  const pathLength = useSpring(pathLengthRaw, { stiffness: 800, damping: 120, mass: 0.9 });
 
 
   const [imagePools, setImagePools] = useState<Record<string, string[]>>({
@@ -331,7 +333,7 @@ export default function InterestsSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <div className="relative w-full md:w-1/2 h-64 overflow-hidden">
+            <div className="relative w-full md:w-1/2 aspect-[4/3] overflow-hidden">
               <Image
                 src={interest.imageUrl}
                 alt={interest.title}
@@ -341,10 +343,10 @@ export default function InterestsSection() {
               />
             </div>
             <div className="md:w-1/2">
-              <h4 className="text-2xl font-semibold mb-4">
+              <h4 className="font-semibold mb-4 text-[clamp(1.25rem,1rem+0.8vw,1.75rem)]">
                 {interest.title}
               </h4>
-              <p className="opacity-80 leading-relaxed">
+              <p className="opacity-80 leading-relaxed text-[clamp(0.95rem,0.85rem+0.35vw,1.1rem)]">
                 {interest.description}
               </p>
             </div>
@@ -366,7 +368,7 @@ export default function InterestsSection() {
             transition={{ duration: 0.6 }}
             whileHover={{ scale: 1.05 }}
           >
-            <div className="relative h-64 mb-4 overflow-hidden">
+            <div className="relative aspect-[4/3] mb-4 overflow-hidden">
               <Image
                 src={interest.imageUrl}
                 alt={interest.title}
@@ -375,10 +377,10 @@ export default function InterestsSection() {
                 sizes="(max-width:768px)100vw,(max-width:1024px)50vw,25vw"
               />
             </div>
-            <h4 className="text-lg font-semibold mb-2">
+            <h4 className="font-semibold mb-2 text-[clamp(1rem,0.9rem+0.5vw,1.25rem)]">
               {interest.title}
             </h4>
-            <p className="text-sm opacity-80 leading-relaxed">
+            <p className="opacity-80 leading-relaxed text-[clamp(0.9rem,0.8rem+0.25vw,1rem)]">
               {interest.description}
             </p>
           </motion.div>
@@ -469,7 +471,7 @@ export default function InterestsSection() {
         {animatedSnippets.map((config, index) => (
           <TypingCodeBackground key={index} snippets={config.snippets} position={config.position} />
         ))}
-        <div className="relative z-10 grid grid-cols-[repeat(12,1fr)] grid-rows-[repeat(15,1fr)] w-full max-w-6xl mx-auto h-[80vh] md:h-[90vh] gap-4">
+        <div className="relative z-10 grid grid-cols-[repeat(12,1fr)] grid-rows-[repeat(15,1fr)] w-full max-w-8xl mx-auto h-[80vh] md:h-[90vh] gap-4">
           {layout.map((block) =>
             block.interest ? (
               <Link
@@ -537,31 +539,37 @@ export default function InterestsSection() {
 return (
     <div
       ref={containerRef}
-      className={`relative overflow-hidden transition-colors duration-700 ease-out ${current.className}`}
+      className={`relative overflow-hidden transition-colors duration-1000 ease-out ${current.className}`}
       style={current.style}
     >
       <motion.svg
         className="absolute inset-0 w-full h-full pointer-events-none"
-        viewBox="0 0 1000 3000"
+        viewBox="0 0 1000 4000"
         preserveAspectRatio="none"
       >
         <motion.path
-          d="M800 0 C100 400 400 800 1000 1200 S800 200 500 2000 100 100"
+          d="M344 4C559 408 1057 458 1008 451S-296 1400 1494 1970 500 3300 1000 3800"
           fill="none"
           stroke="#008877"
-          strokeWidth="70"
+          strokeWidth="50"
           strokeLinecap="round"
           vectorEffect="non-scaling-stroke"
-          style={{ pathLength }}
+          pathLength={1}
+          style={{ pathLength, pathOffset: 0 }}
         />
         <motion.path
-          d="M1000 0 C0 400 1000 800 1000 800 1000 800 1000 800 0 1200 S800 200 500 2000"
+          d="M 1000 0
+             C 3 327 1000 800 1000 800
+             C 1000 800 407 1169 1000 1607
+             S 1450 2000 600 2500
+             S 200 3200 900 3700"
           fill="none"
           stroke="#bb5555"
-          strokeWidth="70"
+          strokeWidth="50"
           strokeLinecap="round"
           vectorEffect="non-scaling-stroke"
-          style={{ pathLength }}
+          pathLength={1}
+          style={{ pathLength, pathOffset: 0 }}
         />
       </motion.svg>
 
@@ -570,14 +578,13 @@ return (
         ref={spaceRef}
         className="relative z-10 py-24 md:py-48 px-4 md:px-20 text-black"
       >
-        <div className="grid md:grid-cols-3 gap-x-12 gap-y-6 mb-16 md:gap-y-8 md:mb-32 items-center max-w-6xl mx-auto w-full">
+        <div className="grid md:grid-cols-3 gap-x-12 gap-y-6 mb-16 md:gap-y-8 md:mb-32 items-center w-full max-w-6xl mx-auto">
           <motion.h3
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="md:col-span-1 text-4xl md:text-7xl font-bold"
-            style={{}}
+            className="md:col-span-1 font-bold leading-[1.1] text-[clamp(2rem,5vw,4.5rem)]"
           >
             Space & Creation
           </motion.h3>
@@ -586,14 +593,13 @@ return (
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
-            className="md:col-span-2 text-base opacity-80 leading-relaxed"
-            style={{}}
+            className="md:col-span-2 opacity-80 leading-relaxed text-[clamp(0.95rem,0.8rem+0.35vw,1.05rem)]"
           >
             建築や不動産、そして日々の暮らしに潜む創造的な試み。<br />
             機能と美が溶け合う場所も、ちょっとした生活の工夫も、全部どう楽しむかという創造の一部。
           </motion.p>
         </div>
-        <div className="max-w-6xl mx-auto">
+        <div className="w-full max-w-7xl mx-auto">
           {renderAlternatingCards(interests.spaceAndCreation)}
         </div>
       </section>
@@ -610,14 +616,13 @@ return (
       >
         <div className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-white to-transparent" />
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white to-transparent" />
-        <div className="grid md:grid-cols-3 gap-x-12 gap-y-6 mb-16 md:gap-y-8 md:mb-32 items-center max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-x-12 gap-y-6 mb-16 md:gap-y-8 md:mb-32 items-center w-full max-w-7xl mx-auto">
           <motion.h3
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="md:col-span-1 text-4xl md:text-7xl font-bold"
-            style={{}}
+            className="md:col-span-1 font-bold leading-[1.1] text-[clamp(2rem,5vw,4.5rem)]"
           >
             Arts & Culture
           </motion.h3>
@@ -626,77 +631,74 @@ return (
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
-            className="md:col-span-2 text-sm opacity-80 leading-relaxed"
-            style={{}}
+            className="md:col-span-2 opacity-80 leading-relaxed text-[clamp(0.95rem,0.8rem+0.35vw,1.05rem)]"
           >
             人類が暇を持て余した結果の産物。<br />
             絵を描いたり、歌ったり、踊ったり。<br />
             意味があることもあれば、まったくないこともある。けど、それがいい。
           </motion.p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-x-16 gap-y-32 max-w-6xl mx-auto">
-          {interests.cultureAndExploration.map((interest, index) => (
-            <Link href={cultureWorkTitles.includes(interest.title) ? getWorksLink(interest.title) : getCultureLink(interest.title)} key={interest.title} className="group cursor-pointer">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <div className="relative h-80 mb-6 overflow-hidden rounded-lg shadow-lg">
-                  <Image
-                    src={interest.imageUrl}
-                    alt={interest.title}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-110"
-                    sizes="(max-width:768px)100vw,(max-width:1024px)50vw,33vw"
-                  />
-                </div>
-                <div className="flex items-center mb-2 gap-2">
-                  <h4 className="text-xl font-semibold">
-                    {interest.title}
-                  </h4>
-                  {interest.title === 'Food' && (
-                    <div
-                      className="text-xl cursor-pointer"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        window.open('https://www.instagram.com/bababachef/', '_blank');
-                      }}
-                    >
-                      <FaInstagram />
-                    </div>
-                  )}
-                </div>
-                <p className="text-base opacity-80 leading-relaxed">
-                  {interest.description}
-                </p>
-              </motion.div>
-            </Link>
-          ))}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-x-16 gap-y-32 w-full max-w-7xl mx-auto">
+            {interests.cultureAndExploration.map((interest, index) => (
+              <Link href={cultureWorkTitles.includes(interest.title) ? getWorksLink(interest.title) : getCultureLink(interest.title)} key={interest.title} className="group cursor-pointer">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                  <div className="relative aspect-[1/1] mb-6 overflow-hidden rounded-lg shadow-lg">
+                    <Image
+                      src={interest.imageUrl}
+                      alt={interest.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      sizes="(max-width:768px)100vw,(max-width:1024px)50vw,33vw"
+                    />
+                  </div>
+                  <div className="flex items-center mb-2 gap-2">
+                    <h4 className="text-xl font-semibold">
+                      {interest.title}
+                    </h4>
+                    {interest.title === 'Food' && (
+                      <div
+                        className="text-xl cursor-pointer"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          window.open('https://www.instagram.com/bababachef/', '_blank');
+                        }}
+                      >
+                        <FaInstagram />
+                      </div>
+                    )}
+                  </div>
+                  <p className="opacity-80 leading-relaxed text-[clamp(0.95rem,0.85rem+0.3vw,1.1rem)]">
+                    {interest.description}
+                  </p>
+                </motion.div>
+              </Link>
+            ))}
         </div>
       </motion.section>
       {/* Digital */}
       <section ref={digitalRef} className="relative w-full flex flex-col items-center overflow-hidden text-[#008877] pt-48 px-4 md:px-20 min-h-[200vh]"
         style={{ backgroundColor: '#0a0a0a', backgroundImage: 'radial-gradient(#00887780 1px, #0a0a0a 1px)', backgroundSize: '40px 40px' }}>
-        <div className="relative z-60 grid md:grid-cols-3 gap-x-12 gap-y-8 mb-32 items-center max-w-6xl w-full">
+        <div className="relative z-60 grid md:grid-cols-3 gap-x-12 gap-y-8 mb-32 items-center w-full max-w-7xl mx-auto">
             <motion.h3
               initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              className="md:col-span-1 text-5xl md:text-7xl font-bold text-[#008877]"
-              style={{}}
+            className="md:col-span-1 font-bold leading-[1.1] text-[#008877] text-[clamp(2.25rem,5.3vw,4.5rem)]"
             >
-              Digital & Technology
+              Digital & Tech
             </motion.h3>
             <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
                 viewport={{ once: true }}
-                className="md:col-span-2 text-sm opacity-80 leading-relaxed"
-                style={{}}
+                className="md:col-span-2 opacity-80 leading-relaxed text-[clamp(0.95rem,0.8rem+0.35vw,1.05rem)]"
             >
                 パソコンを触れば世界が広がる。<br />
                 クリックひとつでデザインが変わり、数字をいじれば未来が見える。<br />
@@ -704,7 +706,7 @@ return (
                 テクノロジーは「やってみたい」をすぐ形にする、最高の遊び道具だ。
             </motion.p>
         </div>
-        <div className="flex-1 max-w-6xl w-full">
+        <div className="flex-1 w-full max-w-7xl mx-auto">
           {renderDigitalGrid(interests.digital)}
         </div>
         <div className="absolute bottom-0 left-0 w-full h-96 bg-gradient-to-t from-white to-transparent z-20" />
