@@ -22,7 +22,15 @@ interface WorkContentProps {
 }
 
 export default function WorkContent({ work, images }: WorkContentProps) {
-  const scrollRef = useHorizontalScroll<HTMLDivElement>();
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+
+  const scrollRef = useHorizontalScroll<HTMLDivElement>(!isMobile);
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -33,15 +41,15 @@ export default function WorkContent({ work, images }: WorkContentProps) {
   return (
     <main
       ref={scrollRef}
-      className="relative h-screen w-screen overflow-x-auto overflow-y-hidden text-gray-900"
+      className="relative w-screen min-h-screen overflow-y-auto overflow-x-hidden text-gray-900 pt-28 pb-16 md:pt-36 md:pb-0 md:h-[calc(100vh-9rem)] md:overflow-x-auto md:overflow-y-hidden"
       style={{ backgroundColor: work.bgColor }}
     >
       <div
-        className={`flex h-full w-full transition-opacity duration-700 ease-out ${
+        className={`flex w-full transition-opacity duration-700 ease-out ${
           visible ? 'opacity-100' : 'opacity-0'
-        }`}
+        } flex-col gap-8 md:flex-row md:gap-0 md:h-full`}
       >
-        <div className="flex-shrink-0 h-full w-[40vw] flex items-center p-8">
+        <div className="flex-shrink-0 w-full md:w-[40vw] md:h-full flex items-center p-8">
           <div className="max-w-md text-left">
             <h1
               className="text-4xl font-bold mb-6"
@@ -84,9 +92,9 @@ function ResponsiveImage({ src, alt }: { src: string; alt: string }) {
 
   if (isGif) {
     return (
-      <div className="flex-shrink-0 h-full flex items-center justify-center px-4">
+      <div className="flex-shrink-0 flex items-center justify-center px-4 w-full md:w-auto md:h-full">
         <div
-          className="relative h-[80%] p-4 bg-white/20 rounded-lg backdrop-blur-sm shadow-lg overflow-hidden"
+          className="relative w-full md:h-[80%] p-4 bg-white/20 rounded-lg backdrop-blur-sm shadow-lg overflow-hidden"
           style={{ aspectRatio: ratio }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -105,9 +113,9 @@ function ResponsiveImage({ src, alt }: { src: string; alt: string }) {
   }
 
   return (
-    <div className="flex-shrink-0 h-full flex items-center justify-center px-4">
+    <div className="flex-shrink-0 flex items-center justify-center px-4 w-full md:w-auto md:h-full">
       <div
-        className="relative h-[80%] p-4 bg-white/20 rounded-lg backdrop-blur-sm shadow-lg overflow-hidden"
+        className="relative w-full md:h-[80%] p-4 bg-white/20 rounded-lg backdrop-blur-sm shadow-lg overflow-hidden"
         style={{ aspectRatio: ratio }}
       >
         <FadeInImage

@@ -3,10 +3,12 @@
 
 import { useRef, useEffect } from 'react';
 
-export default function useHorizontalScroll<T extends HTMLElement>() {
+export default function useHorizontalScroll<T extends HTMLElement>(enabled = true) {
   const containerRef = useRef<T>(null);
 
   useEffect(() => {
+    if (!enabled) return;
+
     const el = containerRef.current;
     if (!el) return;
 
@@ -38,7 +40,7 @@ export default function useHorizontalScroll<T extends HTMLElement>() {
       el.removeEventListener('wheel', onWheel);
       if (rafId !== null) cancelAnimationFrame(rafId);
     };
-  }, []);
+  }, [enabled]);
 
   return containerRef;
 }
