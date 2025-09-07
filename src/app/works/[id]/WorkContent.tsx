@@ -41,13 +41,13 @@ export default function WorkContent({ work, images }: WorkContentProps) {
   return (
     <main
       ref={scrollRef}
-      className="relative w-screen min-h-screen overflow-y-auto overflow-x-hidden text-gray-900 md:h-screen md:overflow-x-auto md:overflow-y-hidden"
+      className="relative w-screen min-h-screen overflow-y-auto overflow-x-hidden text-gray-900 pt-28 pb-16 md:pt-36 md:pb-0 md:h-[calc(100vh-9rem)] md:overflow-x-auto md:overflow-y-hidden"
       style={{ backgroundColor: work.bgColor }}
     >
       <div
         className={`flex w-full transition-opacity duration-700 ease-out ${
           visible ? 'opacity-100' : 'opacity-0'
-        } flex-col md:flex-row md:h-full`}
+        } flex-col gap-8 md:flex-row md:gap-0 md:h-full`}
       >
         <div className="flex-shrink-0 w-full md:w-[40vw] md:h-full flex items-center p-8">
           <div className="max-w-md text-left">
