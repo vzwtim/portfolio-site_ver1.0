@@ -86,7 +86,7 @@ function ResponsiveImage({ src, alt }: { src: string; alt: string }) {
     return (
       <div className="flex-shrink-0 h-full flex items-center justify-center px-4">
         <div
-          className="relative h-[80%] p-4 bg-white/20 rounded-lg backdrop-blur-sm shadow-lg overflow-hidden"
+          className="relative h-[80%] p-4 bg-white/20 rounded-lg backdrop-blur-sm shadow-lg"
           style={{ aspectRatio: ratio }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -107,7 +107,7 @@ function ResponsiveImage({ src, alt }: { src: string; alt: string }) {
   return (
     <div className="flex-shrink-0 h-full flex items-center justify-center px-4">
       <div
-        className="relative h-[80%] p-4 bg-white/20 rounded-lg backdrop-blur-sm shadow-lg overflow-hidden"
+        className="relative h-[80%] p-4 bg-white/20 rounded-lg backdrop-blur-sm shadow-lg"
         style={{ aspectRatio: ratio }}
       >
         <FadeInImage
