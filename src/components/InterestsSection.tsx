@@ -545,6 +545,7 @@ return (
           stroke="#008877"
           strokeWidth="56"
           strokeLinecap="round"
+          vectorEffect="non-scaling-stroke"
           style={{ pathLength }}
         />
         <motion.path
@@ -553,6 +554,7 @@ return (
           stroke="#bb5555"
           strokeWidth="56"
           strokeLinecap="round"
+          vectorEffect="non-scaling-stroke"
           style={{ pathLength }}
         />
       </motion.svg>
