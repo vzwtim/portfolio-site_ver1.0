@@ -226,7 +226,8 @@ export default function InterestsSection() {
   const digitalInView = useInView(digitalRef, { amount: 0.6 });
 
   const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start end', 'end start'] });
-  const pathLength = useTransform(scrollYProgress, [0, 0.85], [0, 1]);
+  const rawPathProgress = useTransform(scrollYProgress, [0, 0.85], [0, 1]);
+  const pathProgress = useSpring(rawPathProgress, { stiffness: 100, damping: 20 });
 
 
   const [imagePools, setImagePools] = useState<Record<string, string[]>>({
@@ -546,7 +547,8 @@ return (
           strokeWidth="56"
           strokeLinecap="round"
           vectorEffect="non-scaling-stroke"
-          style={{ pathLength }}
+          pathLength={1}
+          style={{ pathLength: pathProgress }}
         />
         <motion.path
           d="M1000 0 C0 400 1000 800 1000 800 1000 800 1000 800 0 1200 S800 200 500 2000"
@@ -555,7 +557,8 @@ return (
           strokeWidth="56"
           strokeLinecap="round"
           vectorEffect="non-scaling-stroke"
-          style={{ pathLength }}
+          pathLength={1}
+          style={{ pathLength: pathProgress }}
         />
       </motion.svg>
 
