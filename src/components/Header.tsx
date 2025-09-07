@@ -18,7 +18,7 @@ export default function Header({ textColor }: HeaderProps) {
 
   return (
     <header
-      className={`fixed top-0 left-0 z-50 w-full py-6 px-8 md:py-8 md:px-12 transition-colors duration-300 bg-transparent ${textColor}`}
+      className={`fixed top-0 left-0 z-50 w-full py-4 px-6 md:py-8 md:px-12 transition-colors duration-300 bg-transparent ${textColor}`}
     >
       <div className="flex justify-between items-center max-w-7xl mx-auto relative z-50">
         {/* Left side - Logo */}
@@ -39,7 +39,7 @@ export default function Header({ textColor }: HeaderProps) {
         </Link>
 
         {/* Right side - Navigation */}
-        <nav className="pr-8 hidden md:block">
+        <nav className="pr-4 hidden md:block">
           <ul className="flex flex-row items-center space-x-6 md:space-x-8">
             <li>
               <Link href="/about">
@@ -110,7 +110,7 @@ export default function Header({ textColor }: HeaderProps) {
         }`}
       >
         <nav className="flex-1 flex flex-col justify-center items-center px-8">
-          <ul className="flex flex-col items-center space-y-8">
+          <ul className="flex flex-col items-center space-y-6">
             <li>
               <Link href="/about">
                 <span
