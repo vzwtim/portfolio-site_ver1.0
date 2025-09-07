@@ -41,8 +41,8 @@ export default function WorkContent({ work, images }: WorkContentProps) {
           visible ? 'opacity-100' : 'opacity-0'
         }`}
       >
-        <div className="flex-shrink-0 h-full w-[40vw] flex items-center p-8">
-          <div className="max-w-md text-left">
+        <div className="flex-shrink-0 h-full w-full md:w-[40vw] flex items-center p-4 md:p-8">
+          <div className="max-w-md text-left mx-auto md:mx-0">
             <h1
               className="text-4xl font-bold mb-6"
               style={{ fontFamily: '"Shippori Mincho", serif' }}
@@ -84,9 +84,9 @@ function ResponsiveImage({ src, alt }: { src: string; alt: string }) {
 
   if (isGif) {
     return (
-      <div className="flex-shrink-0 h-full flex items-center justify-center px-4">
+      <div className="flex-shrink-0 w-screen md:w-auto h-[80vh] md:h-full flex items-center justify-center px-4">
         <div
-          className="relative h-[80%] p-4 bg-white/20 rounded-lg backdrop-blur-sm shadow-lg"
+          className="relative w-full h-full md:h-[80%] md:w-auto p-4 bg-white/20 rounded-lg backdrop-blur-sm shadow-lg"
           style={{ aspectRatio: ratio }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -105,9 +105,9 @@ function ResponsiveImage({ src, alt }: { src: string; alt: string }) {
   }
 
   return (
-    <div className="flex-shrink-0 h-full flex items-center justify-center px-4">
+    <div className="flex-shrink-0 w-screen md:w-auto h-[80vh] md:h-full flex items-center justify-center px-4">
       <div
-        className="relative h-[80%] p-4 bg-white/20 rounded-lg backdrop-blur-sm shadow-lg"
+        className="relative w-full h-full md:h-[80%] md:w-auto p-4 bg-white/20 rounded-lg backdrop-blur-sm shadow-lg"
         style={{ aspectRatio: ratio }}
       >
         <FadeInImage
