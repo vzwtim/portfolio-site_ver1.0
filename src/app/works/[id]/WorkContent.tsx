@@ -41,7 +41,7 @@ export default function WorkContent({ work, images }: WorkContentProps) {
   return (
     <main
       ref={scrollRef}
-      className="relative w-screen min-h-screen overflow-y-auto overflow-x-hidden text-gray-900 pt-28 pb-16 md:pt-36 md:pb-0 md:h-[calc(100vh-9rem)] md:overflow-x-auto md:overflow-y-hidden"
+      className="relative w-screen min-h-screen overflow-y-auto overflow-x-hidden text-gray-900 pt-28 pb-16 md:pt-16 md:pb-0 md:h-[calc(100vh-9rem)] md:overflow-x-auto md:overflow-y-hidden"
       style={{ backgroundColor: work.bgColor }}
     >
       <div
@@ -49,21 +49,21 @@ export default function WorkContent({ work, images }: WorkContentProps) {
           visible ? 'opacity-100' : 'opacity-0'
         } flex-col gap-8 md:flex-row md:gap-0 md:h-full`}
       >
-        <div className="flex-shrink-0 w-full md:w-[40vw] md:h-full flex items-center p-8">
-          <div className="max-w-md text-left">
+        <div className="flex-shrink-0 w-full md:w-[800px] md:h-full flex items-center p-8 ">
+          <div className="text-left md:pl-12">
             <h1
-              className="text-4xl font-bold mb-6"
+              className="text-4xl font-bold mb-12"
               style={{ fontFamily: '"Shippori Mincho", serif' }}
             >
               {work.title}
             </h1>
             <p
-              className="text-lg leading-relaxed"
+              className="text-sm leading-relaxed md:pr-12"
               style={{ fontFamily: '"Shippori Mincho", serif' }}
             >
               {work.description}
             </p>
-            <div className="mt-8 flex items-center gap-4">
+            <div className="mt-12 flex items-center gap-4">
               <BackButton />
               {work.link && (
                 <Link

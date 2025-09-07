@@ -18,11 +18,11 @@ export default function Header({ textColor }: HeaderProps) {
 
   return (
     <header
-      className={`fixed top-0 left-0 z-50 w-full py-6 px-8 md:py-8 md:px-12 transition-colors duration-300 bg-transparent ${textColor}`}
+      className={`fixed top-0 left-0 z-50 w-full py-4 md:py-8 transition-colors duration-300 bg-transparent ${textColor}`}
     >
-      <div className="flex justify-between items-center max-w-7xl mx-auto relative z-50">
+      <div className="w-full grid grid-cols-2 items-center relative z-50">
         {/* Left side - Logo */}
-        <Link href="/">
+        <Link href="/" className="pl-8 md:pl-20 justify-self-start">
           <div
             className="cursor-pointer"
             onMouseEnter={textEnter}
@@ -39,7 +39,7 @@ export default function Header({ textColor }: HeaderProps) {
         </Link>
 
         {/* Right side - Navigation */}
-        <nav className="pr-8 hidden md:block">
+        <nav className="hidden md:block pr-12 md:pr-20 justify-self-end">
           <ul className="flex flex-row items-center space-x-6 md:space-x-8">
             <li>
               <Link href="/about">
@@ -96,7 +96,7 @@ export default function Header({ textColor }: HeaderProps) {
       {/* Mobile menu button */}
       <button
         type="button"
-        className="md:hidden text-2xl p-2 absolute top-6 right-8 md:top-8 md:right-12 z-50"
+        className="md:hidden text-2xl p-2 absolute top-6 right-6 md:top-8 md:right-20 z-50"
         onClick={toggleMenu}
         aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
       >
@@ -109,7 +109,7 @@ export default function Header({ textColor }: HeaderProps) {
           isMenuOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0 pointer-events-none'
         }`}
       >
-        <nav className="flex-1 flex flex-col justify-center items-center px-8">
+        <nav className="flex-1 flex flex-col justify-center items-center px-6">
           <ul className="flex flex-col items-center space-y-8">
             <li>
               <Link href="/about">

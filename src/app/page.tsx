@@ -36,22 +36,21 @@ export default function Home() {
         
         <motion.div
           style={{ y: yText, opacity: opacityText }}
-          className="relative z-10 text-center px-8 max-w-6xl mx-auto pt-16 md:pt-0"
+          className="relative z-10 text-center px-4 md:px-20 max-w-6xl mx-auto pt-16 md:pt-0"
         >
           {/* Main Catchphrase - Simple and Clean */}
           <div className="flex justify-center items-center">
             <h1
-              className="text-white text-4xl sm:text-5xl md:text-6xl font-light tracking-normal md:tracking-wider whitespace-nowrap"
+              className="text-white text-4xl sm:text-5xl md:text-6xl font-light tracking-normal md:tracking-wider whitespace-nowrap pl-10"
               style={{ fontFamily: '"Shippori Mincho", serif' }}
-            >
-              ぼくは、五目飯。
+            > ぼくは、五目飯。
             </h1>
           </div>
         </motion.div>
       </section>
 
       {/* About Section with Japanese Aesthetic */}
-      <section className="py-20 px-8 bg-gray-50 text-[#232024]">
+      <section className="py-20 px-4 md:px-20 bg-gray-50 text-[#232024]">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -64,7 +63,8 @@ export default function Home() {
             </h2>
             <div className="w-24 h-px bg-[#232024] mx-auto mb-8"></div>
             <p className="text-lg leading-relaxed max-w-3xl mx-auto" style={{ fontFamily: '"Shippori Mincho", serif' }}>
-              しいたけはダシ担当。にんじんは見た目担当。たけのこは食感担当。鶏肉はガッツリ担当。油揚げは裏方担当。
+              しいたけはダシ担当。にんじんは見た目担当。たけのこは食感担当。<br />
+              鶏肉はガッツリ担当。油揚げは裏方担当。<br />
               …そう、これが俺たち五目飯。<br />
               誰が主役？って聞かれても、そんなの決めなくていいのさ。<br />
               だからさ、地味とか寄せ集めとか言わないで、今日も食べてくれよ。<br />

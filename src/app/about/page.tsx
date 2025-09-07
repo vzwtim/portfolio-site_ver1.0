@@ -18,7 +18,7 @@ export default function About() {
   const [stage, setStage] = useState<StageKey>("highschool");
 
   return (
-    <main className="bg-[#ffffff] text-[#232024] pt-24 md:pt-28 px-8 md:px-16 lg:px-32 min-h-screen">
+    <main className="bg-[#ffffff] text-[#232024] pt-24 md:pt-28 px-4 md:px-20 min-h-screen">
       <div className="max-w-6xl mx-auto">
         {/* Profile */}
         <section className="flex flex-col items-center mb-24">

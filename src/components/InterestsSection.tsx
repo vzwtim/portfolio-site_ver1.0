@@ -202,7 +202,7 @@ const TypingCodeBackground: React.FC<TypingCodeBackgroundProps> = ({ snippets, p
 
   return (
     <div
-      className="absolute overflow-hidden pointer-events-none z-0 opacity-100 flex flex-col p-2 rounded-lg"
+      className="absolute z-10 flex flex-col p-2 rounded-lg overflow-hidden pointer-events-none opacity-40"
       style={position}
     >
       {snippets.map((_, i) => (
@@ -549,16 +549,18 @@ return (
           d="M800 0 C100 400 400 800 1000 1200 S800 200 500 2000 100 100"
           fill="none"
           stroke="#008877"
-          strokeWidth="56"
+          strokeWidth="70"
           strokeLinecap="round"
+          vectorEffect="non-scaling-stroke"
           style={{ pathLength }}
         />
         <motion.path
           d="M1000 0 C0 400 1000 800 1000 800 1000 800 1000 800 0 1200 S800 200 500 2000"
           fill="none"
           stroke="#bb5555"
-          strokeWidth="56"
+          strokeWidth="70"
           strokeLinecap="round"
+          vectorEffect="non-scaling-stroke"
           style={{ pathLength }}
         />
       </motion.svg>
@@ -566,7 +568,7 @@ return (
       {/* Space & Creation */}
       <section
         ref={spaceRef}
-        className="relative z-10 py-24 md:py-48 px-8 text-black"
+        className="relative z-10 py-24 md:py-48 px-4 md:px-20 text-black"
       >
         <div className="grid md:grid-cols-3 gap-x-12 gap-y-6 mb-16 md:gap-y-8 md:mb-32 items-center max-w-6xl mx-auto w-full">
           <motion.h3
@@ -598,7 +600,7 @@ return (
       {/* Culture and Exploration */}
       <motion.section
         ref={cultureRef}
-        className="relative flex flex-col justify-center px-8 py-24 md:py-48 bg-white text-[#bb5555]"
+        className="relative flex flex-col justify-center px-4 md:px-20 py-24 md:py-48 bg-white text-[#bb5555]"
         style={{
           backgroundImage: 'url("/images/asanoha.svg")',
           backgroundSize: '140px 80px',
@@ -624,7 +626,7 @@ return (
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
-            className="md:col-span-2 text-base opacity-80 leading-relaxed"
+            className="md:col-span-2 text-sm opacity-80 leading-relaxed"
             style={{}}
           >
             人類が暇を持て余した結果の産物。<br />
@@ -675,9 +677,9 @@ return (
         </div>
       </motion.section>
       {/* Digital */}
-      <section ref={digitalRef} className="relative w-full flex flex-col items-center overflow-hidden text-[#008877] pt-48 px-8 min-h-[200vh]"
+      <section ref={digitalRef} className="relative w-full flex flex-col items-center overflow-hidden text-[#008877] pt-48 px-4 md:px-20 min-h-[200vh]"
         style={{ backgroundColor: '#0a0a0a', backgroundImage: 'radial-gradient(#00887780 1px, #0a0a0a 1px)', backgroundSize: '40px 40px' }}>
-        <div className="relative z-20 grid md:grid-cols-3 gap-x-12 gap-y-8 mb-32 items-center max-w-6xl w-full">
+        <div className="relative z-60 grid md:grid-cols-3 gap-x-12 gap-y-8 mb-32 items-center max-w-6xl w-full">
             <motion.h3
               initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -693,7 +695,7 @@ return (
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
                 viewport={{ once: true }}
-                className="md:col-span-2 text-base text-white opacity-80 leading-relaxed"
+                className="md:col-span-2 text-sm opacity-80 leading-relaxed"
                 style={{}}
             >
                 パソコンを触れば世界が広がる。<br />
