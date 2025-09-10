@@ -146,7 +146,7 @@ export default function Header({ textColor }: HeaderProps) {
                   onMouseLeave={textLeave}
                   onClick={toggleMenu}
                 >
-                  works
+                  works?
                 </span>
               </Link>
             </li>
