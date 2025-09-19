@@ -15,7 +15,8 @@ const slugify = (text: string) =>
 const getCultureLink = (title: string) =>
   title === 'Photography' ? '/photos' : `/special/${slugify(title)}`;
 const getWorksLink = (title: string) => `/works?tag=${slugify(title)}`;
-const getDigitalLink = (title: string) => `/works?tag=${slugify(title)}`;
+const getDigitalLink = (title: string) =>
+  title === 'App Links' ? '/apps' : `/works?tag=${slugify(title)}`;
 
 const interests = {
   spaceAndCreation: [
@@ -81,6 +82,11 @@ const interests = {
     {
       title: 'Artificial Intelligence',
       description: '正直、作業はこいつ任せだぜ、相棒。',
+      imageUrl: optimizedImage('/images/ai_girl_1.png'),
+    },
+    {
+      title: 'App Links',
+      description: '制作したアプリのリンクと画像をまとめたページです。',
       imageUrl: optimizedImage('/images/ai_girl_1.png'),
     },
   ],
@@ -441,6 +447,8 @@ export default function InterestsSection() {
       { key: 'item-0', className: 'col-start-2 col-span-4 row-start-2 row-span-5', interest: items[0] },
       { key: 'item-1', className: 'col-start-7 col-span-5 row-start-6 row-span-4', interest: items[1] },
       { key: 'item-2', className: 'col-start-4 col-span-5 row-start-12 row-span-4', interest: items[2] },
+      { key: 'item-3', className: 'col-start-10 col-span-3 row-start-1 row-span-3', interest: items[3] },
+      { key: 'item-3', className: 'col-start-10 col-span-3 row-start-1 row-span-3', interest: items[3] },
 
       // プレースホルダー（サイズ・位置をバラバラにして余白を埋める）
       { key: 'ph1', className: 'relative overflow-hidden col-start-1 col-span-1 row-start-1 row-span-3' },
@@ -482,7 +490,7 @@ export default function InterestsSection() {
           {layout.map((block) =>
             block.interest ? (
               <Link
-                href={getWorksLink(block.interest.title)}
+                href={getDigitalLink(block.interest.title)}
                 key={block.key}
                 className={`group cursor-pointer ${block.className}`}
                 onMouseEnter={() => setHoveredImages(getRandomImages(block.interest!.title, placeholders))}
