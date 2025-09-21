@@ -477,7 +477,7 @@ export default function InterestsSection() {
       { key: 'ph12', className: 'relative overflow-hidden col-start-4 col-span-1 row-start-9 row-span-3' },
       { key: 'ph13', className: 'relative overflow-hidden col-start-1 col-span-1 row-start-4 row-span-4' },
       { key: 'ph14', className: 'relative overflow-hidden col-start-6 col-span-2 row-start-1 row-span-2' },
-      { key: 'ph15', className: 'relative overflow-hidden col-start-8 col-span-2 row-start-1 row-span-2' },
+      { key: 'ph15', className: 'relative overflow-hidden col-start-8 col-span-3 row-start-1 row-span-2' },
       { key: 'ph16', className: 'relative overflow-hidden col-start-12 col-span-1 row-start-9 row-span-2' },
       { key: 'ph17', className: 'relative overflow-hidden col-start-9 col-span-3 row-start-3 row-span-1' },
       { key: 'ph18', className: 'relative overflow-hidden col-start-1 col-span-3 row-start-12 row-span-2' },
@@ -518,7 +518,7 @@ export default function InterestsSection() {
                       src={block.interest.imageUrl}
                       alt={block.interest.title}
                       fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      className={`${block.interest.title === 'App Links' ? 'object-contain' : 'object-cover'} transition-transform duration-500 group-hover:scale-110`}
                       sizes="(max-width:768px)100vw,(max-width:1024px)50vw,33vw"
                     />
                   </div>
