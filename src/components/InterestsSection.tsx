@@ -86,27 +86,16 @@ const interests = {
     },
     {
       title: 'App Links',
-      description: '制作したアプリのリンクと画像をまとめたページです。',
-      imageUrl: optimizedImage('/images/ai_girl_1.png'),
+      imageUrl: optimizedImage('/images/QR_applink.png'),
     },
   ],
 };
 
 const cultureWorkTitles = ['Food', 'Nature', 'Calligraphy', 'Travel'];
 
-type ThemeKey = 'spaceAndCreation' | 'cultureAndExploration' | 'digital';
 
-const themes: Record<ThemeKey, { className: string; style?: React.CSSProperties }> = {
-  spaceAndCreation: {
-    className: 'bg-white text-gray-900',
-  },
-  cultureAndExploration: {
-    className: 'bg-white text-[#bb5555]',
-  },
-  digital: {
-    className: 'text-[#008877]',
-  },
-};
+
+
 
 // Code snippets pool
 const allCodeSnippets = [
@@ -223,8 +212,10 @@ const TypingCodeBackground: React.FC<TypingCodeBackgroundProps> = ({ snippets, p
   );
 };
 
+import { useTheme } from '@/context/ThemeContext';
+
 export default function InterestsSection() {
-  const [theme, setTheme] = useState<ThemeKey>('spaceAndCreation');
+  const { setBgColor, setTextColor } = useTheme();
   const [hoveredImages, setHoveredImages] = useState<string[]>([]);
   const [animatedSnippets, setAnimatedSnippets] = useState<{ snippets: string[]; position: React.CSSProperties }[]>([]);
   
@@ -233,6 +224,7 @@ export default function InterestsSection() {
   const cultureRef = useRef(null);
   const digitalRef = useRef(null);
 
+  const containerInView = useInView(containerRef, { amount: 0.1 });
   const spaceInView = useInView(spaceRef, { amount: 0.6 });
   const cultureInView = useInView(cultureRef, { amount: 0.6 });
   const digitalInView = useInView(digitalRef, { amount: 0.6 });
@@ -319,14 +311,35 @@ export default function InterestsSection() {
   }, []); // Empty dependency array to run only once on mount
 
   useEffect(() => {
-    if (spaceInView) setTheme('spaceAndCreation');
-    else if (cultureInView) setTheme('cultureAndExploration');
-    else if (digitalInView) {
-      setTheme('digital');
+    if (!containerInView) {
+      setBgColor('bg-white');
+      setTextColor('text-[#008877]');
+      return;
     }
-  }, [spaceInView, cultureInView, digitalInView]);
 
-  const current = themes[theme];
+    if (digitalInView) {
+      setBgColor('bg-[#0a0a0a]');
+      setTextColor('text-[#008877]');
+    } else if (cultureInView && !digitalInView) {
+      setBgColor('bg-white');
+      setTextColor('text-[#bb5555]');
+    } else if (spaceInView) {
+      setBgColor('bg-white');
+      setTextColor('text-gray-900');
+    } else {
+      setBgColor('bg-white');
+      setTextColor('text-[#008877]');
+    }
+  }, [containerInView, spaceInView, cultureInView, digitalInView, setBgColor, setTextColor]);
+
+  useEffect(() => {
+    return () => {
+      setBgColor('bg-white');
+      setTextColor('text-[#008877]');
+    };
+  }, [setBgColor, setTextColor]);
+
+  
 
   const renderAlternatingCards = (items: typeof interests.spaceAndCreation) => (
     <div className="flex flex-col gap-24">
@@ -447,8 +460,7 @@ export default function InterestsSection() {
       { key: 'item-0', className: 'col-start-2 col-span-4 row-start-2 row-span-5', interest: items[0] },
       { key: 'item-1', className: 'col-start-7 col-span-5 row-start-6 row-span-4', interest: items[1] },
       { key: 'item-2', className: 'col-start-4 col-span-5 row-start-12 row-span-4', interest: items[2] },
-      { key: 'item-3', className: 'col-start-10 col-span-3 row-start-1 row-span-3', interest: items[3] },
-      { key: 'item-3', className: 'col-start-10 col-span-3 row-start-1 row-span-3', interest: items[3] },
+      { key: 'item-3', className: 'col-start-11 col-span-2 row-start-1 row-span-2', interest: items[3] },
 
       // プレースホルダー（サイズ・位置をバラバラにして余白を埋める）
       { key: 'ph1', className: 'relative overflow-hidden col-start-1 col-span-1 row-start-1 row-span-3' },
@@ -465,14 +477,12 @@ export default function InterestsSection() {
       { key: 'ph12', className: 'relative overflow-hidden col-start-4 col-span-1 row-start-9 row-span-3' },
       { key: 'ph13', className: 'relative overflow-hidden col-start-1 col-span-1 row-start-4 row-span-4' },
       { key: 'ph14', className: 'relative overflow-hidden col-start-6 col-span-2 row-start-1 row-span-2' },
-      { key: 'ph15', className: 'relative overflow-hidden col-start-8 col-span-1 row-start-1 row-span-2' },
+      { key: 'ph15', className: 'relative overflow-hidden col-start-8 col-span-2 row-start-1 row-span-2' },
       { key: 'ph16', className: 'relative overflow-hidden col-start-12 col-span-1 row-start-9 row-span-2' },
-      { key: 'ph17', className: 'relative overflow-hidden col-start-9 col-span-3 row-start-2 row-span-2' },
+      { key: 'ph17', className: 'relative overflow-hidden col-start-9 col-span-3 row-start-3 row-span-1' },
       { key: 'ph18', className: 'relative overflow-hidden col-start-1 col-span-3 row-start-12 row-span-2' },
       { key: 'ph19', className: 'relative overflow-hidden col-start-6 col-span-1 row-start-6 row-span-4' },
       { key: 'ph20', className: 'relative overflow-hidden col-start-4 col-span-2 row-start-1 row-span-1' },
-      { key: 'ph21', className: 'relative overflow-hidden col-start-9 col-span-4 row-start-1 row-span-1' },
-      { key: 'ph22', className: 'relative overflow-hidden col-start-12 col-span-1 row-start-2 row-span-1' },
       { key: 'ph23', className: 'relative overflow-hidden col-start-9 col-span-1 row-start-4 row-span-2' },
       { key: 'ph24', className: 'relative overflow-hidden col-start-1 col-span-1 row-start-8 row-span-1' },
       { key: 'ph25', className: 'relative overflow-hidden col-start-5 col-span-1 row-start-9 row-span-1' },
@@ -554,8 +564,7 @@ export default function InterestsSection() {
 return (
     <div
       ref={containerRef}
-      className={`relative overflow-hidden transition-colors duration-1000 ease-out ${current.className}`}
-      style={current.style}
+      className={`relative overflow-hidden transition-colors duration-1000 ease-out`}
     >
       <motion.svg
         className="absolute inset-0 w-full h-full pointer-events-none"
@@ -588,10 +597,16 @@ return (
         />
       </motion.svg>
 
+      <div className="pt-16 pb-16 md:pt-24 md:pb-24 text-center relative z-10">
+        <h2 className="font-bold leading-tight text-gray-900 text-[clamp(3rem,8vw,6rem)]">
+          My Interests
+        </h2>
+      </div>
+
       {/* Space & Creation */}
       <section
         ref={spaceRef}
-        className="relative z-10 py-24 md:py-48 px-4 md:px-20 text-black"
+        className="relative z-10 pb-24 md:pb-48 px-4 md:px-20 text-black"
       >
         <div className="grid md:grid-cols-3 gap-x-12 gap-y-6 mb-16 md:gap-y-8 md:mb-32 items-center w-full max-w-6xl mx-auto">
           <motion.h3

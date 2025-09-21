@@ -8,6 +8,8 @@ import dynamic from 'next/dynamic';
 import { CursorProvider } from '@/context/CursorContext';
 import { ScrollbarWidthProvider } from '@/context/ScrollbarWidthContext';
 
+import { useTheme } from '@/context/ThemeContext';
+
 const CustomCursor = dynamic(() => import("@/components/CustomCursor"), { ssr: false });
 // Render the loading screen on the server to avoid a flash of the underlying page
 // before the doors animation appears on first load
@@ -22,10 +24,9 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
   const pathname = usePathname();
   const [isLoading, setIsLoading] = useState(true);
   const isWorkDetailPage = pathname.startsWith('/works/') && pathname !== '/works';
+  const isAppsPage = pathname === '/apps';
 
-  // 色の状態管理を ClientLayout に移動
-  const [bgColor, setBgColor] = useState('bg-white');
-  const [textColor, setTextColor] = useState('text-[#008877]');
+  const { bgColor, textColor } = useTheme();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -41,13 +42,12 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
       <ScrollbarWidthProvider> {/* Wrap with ScrollbarWidthProvider */}
         <CursorProvider>
           <CustomCursor />
-          {/* Header に textColor を渡す */}
-          <Header textColor={textColor} />
+          {!isAppsPage && <Header textColor={textColor} />}
           <main className={textColor}>
             {children}
           </main>
           
-          {!isWorkDetailPage && (
+          {!isWorkDetailPage && !isAppsPage && (
             <ShadowAnimation>
               <Footer />
             </ShadowAnimation>
