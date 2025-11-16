@@ -55,7 +55,7 @@
       "nature",
       "real-estate"
     ]
-  },  
+  },
   {
     "id": "master-thesis",
     "title": "都市動態論",
@@ -136,7 +136,7 @@
     "id": "odo-campsite",
     "title": "ため池のあるキャンプ場",
     "description": "フィールドワークで見つけた池や谷、既存の小屋を活かし、水をテーマにしたキャンプ場の設計提案。谷戸地形ならではの源流、田んぼ、ため池などの水を中心とした自然資源を生かした分散型のキャンプ場",
-     "link": "https://iedp.site/portfolio/%e8%87%aa%e7%84%b6%e8%b3%87%e6%ba%90%e3%82%92%e4%bb%8b%e3%81%97%e3%81%a6%e7%b4%a1%e3%81%8c%e3%82%8c%e3%82%8b%e8%b0%b7%e6%88%b8%e3%81%ae%e9%a2%a8%e6%99%af-%e6%b0%b4/",
+    "link": "https://iedp.site/portfolio/%e8%87%aa%e7%84%b6%e8%b3%87%e6%ba%90%e3%82%92%e4%bb%8b%e3%81%97%e3%81%a6%e7%b4%a1%e3%81%8c%e3%82%8c%e3%82%8b%e8%b0%b7%e6%88%b8%e3%81%ae%e9%a2%a8%e6%99%af-%e6%b0%b4/",
     "images": [
       "/images/mv_odo.png",
       "/images/drawing_odo_2.png",
@@ -156,7 +156,7 @@
     "id": "ogawamachi-water-2",
     "title": "小川町の人と水のかかわり",
     "description": "フィールドワークで、昔から人が水と如何にして関わってきたかを分析した。",
-    "link":"https://iedp.site/portfolio/%e5%b0%8f%e5%b7%9d%e7%94%ba%e3%81%ae%e5%b7%9d%e3%81%ab%e8%a6%8b%e3%82%8b%e3%80%81%e4%ba%ba%e3%81%a8%e6%b0%b4%e3%81%ae%e3%81%8b%e3%81%8b%e3%82%8f%e3%82%8a/",
+    "link": "https://iedp.site/portfolio/%e5%b0%8f%e5%b7%9d%e7%94%ba%e3%81%ae%e5%b7%9d%e3%81%ab%e8%a6%8b%e3%82%8b%e3%80%81%e4%ba%ba%e3%81%a8%e6%b0%b4%e3%81%ae%e3%81%8b%e3%81%8b%e3%82%8f%e3%82%8a/",
     "images": [
       "/images/mv_ogawamachi_2.png"
     ],
@@ -170,7 +170,7 @@
     "id": "ogawamachi-water",
     "title": "水でつながる小川町",
     "description": "ワークショップとフィールドワークにより、水が小川町の産業と地域の暮らしをどのようにつないでいるかを明らかにした。",
-    "link":"https://iedp.site/portfolio/%e5%b0%8f%e5%b7%9d%e7%94%ba%e3%81%ae%e6%9a%ae%e3%82%89%e3%81%97%e3%81%ae%e4%b8%ad%e3%82%92%e6%b5%81%e3%82%8c%e3%82%8b%e6%b0%b4-water-flowing-through-the-life-in-ogawa-town/",
+    "link": "https://iedp.site/portfolio/%e5%b0%8f%e5%b7%9d%e7%94%ba%e3%81%ae%e6%9a%ae%e3%82%89%e3%81%97%e3%81%ae%e4%b8%ad%e3%82%92%e6%b5%81%e3%82%8c%e3%82%8b%e6%b0%b4-water-flowing-through-the-life-in-ogawa-town/",
     "images": [
       "/images/mv_ogawamachi_1.png",
       "/images/image_ogawamachi_1.png",
@@ -288,7 +288,7 @@
     "id": "pavilion-mayfes",
     "title": "UT architecture pavilion",
     "description": "東京大学五月祭で建設した、コンクリートと布を用いたパビリオン。パンデミック下のパーティションを再解釈し、日常に活気を与える。",
-    "link":"https://utarchipavilion202.wixsite.com/website",
+    "link": "https://utarchipavilion202.wixsite.com/website",
     "images": [
       "/images/mv_pavilion_1.jpg",
       "/images/image_pavilion_2.jpg",
@@ -338,6 +338,75 @@
     "bgColor": "#c5cae9",
     "tags": [
       "architecture"
+    ]
+  },
+  {
+    "id": "swift-revise",
+    "title": "Swift Revise",
+    "description": "不動産関連の基礎知識をテンポよく復習できるシンプルな一問一答アプリです。",
+    "images": [
+      "/images/appview_quiz.png"
+    ],
+    "bgColor": "#FAFAFA",
+    "tags": [
+      "design-programming",
+      "real-estate"
+    ],
+    "link": "https://swift-revise.vercel.app/"
+  },
+  {
+    "id": "drunk-scheduler",
+    "title": "Drunk Scheduler",
+    "description": "参加者の予定を1画面で把握し、飲み会の日程を素早く決められるWebスケジューラーです。",
+    "images": [
+      "/images/appview_drunk.png"
+    ],
+    "bgColor": "#FFECCE",
+    "tags": [
+      "design-programming",
+      "living"
+    ],
+    "link": "https://drunk-scheduler.onrender.com/"
+  },
+  {
+    "id": "multi-ai-chat",
+    "title": "Multi AI Chat",
+    "description": "複数のAIキャラクターと同時に対話し、アイデアをブレインストーミングできるマルチチャットツールです。",
+    "images": [
+      "/images/appview_chat.png"
+    ],
+    "bgColor": "#212121",
+    "tags": [
+      "design-programming",
+      "artificial-intelligence"
+    ],
+    "link": "https://ai-simulation-one.vercel.app/"
+  },
+  {
+    "id": "prop-proposals",
+    "title": "Prop Proposals",
+    "description": "物件データを地図と連動させながら不動産企画を素早くプロトタイピングするための実験的アプリです。",
+    "images": [
+      "/images/webview_prop.png"
+    ],
+    "bgColor": "#1F2A37",
+    "tags": [
+      "real-estate",
+      "design-programming"
+    ],
+    "link": "https://prop-proposals.vercel.app/"
+  },
+  {
+    "id": "shuffle-lunch",
+    "title": "Shuffle Lunch Matching",
+    "description": "社内メンバーをランダムにマッチングしてランチ交流を促すための社内限定マッチングアプリです。",
+    "images": [
+      "/images/webview_shuffle.png"
+    ],
+    "bgColor": "#0F9D65",
+    "tags": [
+      "design-programming",
+      "living"
     ]
   }
 ]

@@ -2,7 +2,6 @@
 
 import { motion, AnimatePresence, Variants } from 'framer-motion';
 import React from 'react';
-import Image from 'next/image';
 
 interface LoadingScreenProps {
   isLoading: boolean;
@@ -14,9 +13,71 @@ const panelVariants: Variants = {
   },
   exit: (direction: 'left' | 'right') => ({
     x: direction === 'left' ? '-100%' : '100%',
-    transition: { duration: 0.8, ease: "easeInOut" },
+    transition: { duration: 0.8, ease: 'easeInOut' },
   }),
 };
+
+interface FloatingShapeProps {
+  size: number;
+  top: string;
+  left?: string;
+  right?: string;
+  color: string;
+  delay?: number;
+  blur?: number;
+}
+
+const FloatingShape: React.FC<FloatingShapeProps> = ({
+  size,
+  top,
+  left,
+  right,
+  color,
+  delay = 0,
+  blur = 0,
+}) => (
+  <motion.span
+    className="absolute rounded-[35%] mix-blend-screen"
+    style={{
+      width: size,
+      height: size,
+      top,
+      left,
+      right,
+      background: color,
+      filter: blur ? `blur(${blur}px)` : undefined,
+    }}
+    animate={{
+      y: ['-4%', '4%', '-4%'],
+      scale: [1, 1.08, 1],
+      rotate: [0, 1.5, 0],
+    }}
+    transition={{
+      duration: 6,
+      repeat: Infinity,
+      ease: 'easeInOut',
+      delay,
+    }}
+  />
+);
+
+const leftShapes: FloatingShapeProps[] = [
+  { size: 220, top: '8%', left: '4%', color: 'rgba(255,255,255,0.10)', blur: 35 },
+  { size: 150, top: '32%', left: '20%', color: 'linear-gradient(160deg, #a8ff78, #78ffd6)', delay: 0.2 },
+  { size: 90, top: '62%', left: '48%', color: 'linear-gradient(120deg, rgba(255,255,255,0.4), transparent)', delay: 0.35 },
+  { size: 110, top: '52%', left: '8%', color: '#4FFFB033', delay: 0.5 },
+  { size: 70, top: '18%', left: '56%', color: '#C9FFD5aa', delay: 0.1 },
+  { size: 180, top: '72%', left: '22%', color: 'rgba(255,255,255,0.08)', blur: 30, delay: 0.65 },
+];
+
+const rightShapes: FloatingShapeProps[] = [
+  { size: 210, top: '10%', right: '6%', color: 'rgba(255,255,255,0.10)', blur: 35 },
+  { size: 140, top: '38%', right: '18%', color: 'linear-gradient(160deg, #ffe29a, #ffa99f)', delay: 0.15 },
+  { size: 95, top: '64%', right: '44%', color: 'linear-gradient(120deg, rgba(255,255,255,0.4), transparent)', delay: 0.3 },
+  { size: 120, top: '52%', right: '6%', color: '#FFB1DC55', delay: 0.5 },
+  { size: 80, top: '20%', right: '50%', color: '#FFD7BAaa', delay: 0.05 },
+  { size: 160, top: '74%', right: '26%', color: 'rgba(255,255,255,0.08)', blur: 28, delay: 0.7 },
+];
 
 const LoadingScreen: React.FC<LoadingScreenProps> = ({ isLoading }) => {
   return (
@@ -24,85 +85,60 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ isLoading }) => {
       {isLoading && (
         <div className="pointer-events-none fixed inset-0 z-[999] flex">
           <motion.div
-            className="absolute top-0 left-0 w-1/2 h-full bg-[#008877] flex items-center justify-center overflow-hidden"
+            className="absolute top-0 left-0 w-1/2 h-full bg-gradient-to-br from-[#00332F] via-[#00695C] to-[#00B894] flex items-center justify-center overflow-hidden"
             initial="initial"
             exit="exit"
             variants={panelVariants}
             custom="left"
           >
-            {/* Left panel - White Sakura (no overlap, filled gaps) */}
-            <Image src="/images/sakura_white.svg" alt="Sakura" width={35} height={35} className="absolute bottom-[8%] left-[10%]" />
-            <Image src="/images/sakura_white.svg" alt="Sakura" width={28} height={28} className="absolute bottom-[20%] left-[38%]" />
-            <Image src="/images/sakura_white.svg" alt="Sakura" width={55} height={55} className="absolute bottom-[15%] left-[65%]" />
-            <Image src="/images/sakura_white.svg" alt="Sakura" width={40} height={40} className="absolute bottom-[30%] left-[85%]" />
-            <Image src="/images/sakura_white.svg" alt="Sakura" width={30} height={30} className="absolute bottom-[45%] left-[25%]" />
-            <Image src="/images/sakura_white.svg" alt="Sakura" width={45} height={45} className="absolute bottom-[35%] left-[50%]" />
-            <Image src="/images/sakura_white.svg" alt="Sakura" width={25} height={25} className="absolute bottom-[50%] left-[75%]" />
-            <Image src="/images/sakura_white.svg" alt="Sakura" width={60} height={60} className="absolute bottom-[25%] left-[5%]" />
-            <Image src="/images/sakura_white.svg" alt="Sakura" width={50} height={50} className="absolute bottom-[40%] left-[90%]" />
-            <Image src="/images/sakura_white.svg" alt="Sakura" width={20} height={20} className="absolute bottom-[3%] left-[70%]" />
-            <Image src="/images/sakura_white.svg" alt="Sakura" width={42} height={42} className="absolute bottom-[10%] left-[48%]" />
-            <Image src="/images/sakura_white.svg" alt="Sakura" width={70} height={70} className="absolute bottom-[30%] left-[15%]" />
-            
-            <Image src="/images/sakura_white.svg" alt="Sakura" width={65} height={65} className="absolute bottom-[40%] left-[80%]" />
-            <Image src="/images/sakura_white.svg" alt="Sakura" width={30} height={30} className="absolute bottom-[55%] left-[60%]" />
-            <Image src="/images/sakura_white.svg" alt="Sakura" width={48} height={48} className="absolute bottom-[20%] left-[95%]" />
-            <Image src="/images/sakura_white.svg" alt="Sakura" width={38} height={38} className="absolute bottom-[48%] left-[30%]" />
-            <Image src="/images/sakura_white.svg" alt="Sakura" width={52} height={52} className="absolute bottom-[38%] left-[70%]" />
-            <Image src="/images/sakura_white.svg" alt="Sakura" width={32} height={32} className="absolute bottom-[52%] left-[5%]" />
-            <Image src="/images/sakura_white.svg" alt="Sakura" width={58} height={58} className="absolute bottom-[28%] left-[20%]" />
-            <Image src="/images/sakura_white.svg" alt="Sakura" width={40} height={40} className="absolute bottom-[42%] left-[60%]" />
-            {/* Adjusted to prevent overlaps and fill gaps */}
-            <Image src="/images/sakura_white.svg" alt="Sakura" width={22} height={22} className="absolute bottom-[5%] left-[30%]" />
-            <Image src="/images/sakura_white.svg" alt="Sakura" width={18} height={18} className="absolute bottom-[10%] left-[55%]" />
-            <Image src="/images/sakura_white.svg" alt="Sakura" width={20} height={20} className="absolute bottom-[30%] left-[70%]" />
-            <Image src="/images/sakura_white.svg" alt="Sakura" width={15} height={15} className="absolute bottom-[40%] left-[40%]" />
-            <Image src="/images/sakura_white.svg" alt="Sakura" width={25} height={25} className="absolute bottom-[55%] left-[85%]" />
-            <Image src="/images/sakura_white.svg" alt="Sakura" width={30} height={30} className="absolute bottom-[12%] left-[90%]" />
-            <Image src="/images/sakura_white.svg" alt="Sakura" width={20} height={20} className="absolute bottom-[25%] left-[5%]" />
-            <Image src="/images/sakura_white.svg" alt="Sakura" width={15} height={15} className="absolute bottom-[48%] left-[15%]" />
-            <Image src="/images/sakura_white.svg" alt="Sakura" width={22} height={22} className="absolute bottom-[3%] left-[45%]" />
-            <Image src="/images/sakura_white.svg" alt="Sakura" width={18} height={18} className="absolute bottom-[28%] left-[95%]" />
+            <motion.div
+              className="absolute inset-0 opacity-30"
+              style={{ backgroundImage: 'linear-gradient(135deg, rgba(255,255,255,0.35) 0%, transparent 60%)' }}
+              animate={{ backgroundPosition: ['0% 0%', '120% 120%', '0% 0%'] }}
+              transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
+            />
+            <motion.div
+              className="absolute -left-1/4 top-1/4 h-1/2 w-1/2 bg-gradient-to-r from-white/20 to-transparent blur-3xl"
+              animate={{ x: ['0%', '40%', '-10%'], opacity: [0.4, 0.75, 0.4] }}
+              transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+            />
+            {leftShapes.map((shape) => (
+              <FloatingShape key={`${shape.top}-${shape.left ?? shape.right}`} {...shape} />
+            ))}
+            <div className="relative z-10 text-white text-center px-4">
+              <p className="text-[0.6rem] sm:text-xs tracking-[0.45em] uppercase mb-2 opacity-80">portfolio</p>
+              <p className="text-xl sm:text-2xl md:text-3xl font-semibold tracking-[0.35em] sm:tracking-[0.5em] whitespace-nowrap">
+                YUDAI BABA
+              </p>
+            </div>
           </motion.div>
           <motion.div
-            className="absolute top-0 right-0 w-1/2 h-full bg-[#bb5555] flex items-center justify-center overflow-hidden"
+            className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-bl from-[#4A0E2C] via-[#A43958] to-[#FF5F6D] flex items-center justify-center overflow-hidden"
             initial="initial"
             exit="exit"
             variants={panelVariants}
             custom="right"
           >
-            {/* Right panel - White Sakura (no overlap, filled gaps) */}
-            <Image src="/images/sakura_white.svg" alt="Sakura" width={30} height={30} className="absolute bottom-[12%] right-[18%]" />
-            <Image src="/images/sakura_white.svg" alt="Sakura" width={25} height={25} className="absolute bottom-[25%] right-[45%]" />
-            <Image src="/images/sakura_white.svg" alt="Sakura" width={50} height={50} className="absolute bottom-[18%] right-[70%]" />
-            <Image src="/images/sakura_white.svg" alt="Sakura" width={35} height={35} className="absolute bottom-[32%] right-[80%]" />
-            <Image src="/images/sakura_white.svg" alt="Sakura" width={28} height={28} className="absolute bottom-[40%] right-[20%]" />
-            <Image src="/images/sakura_white.svg" alt="Sakura" width={40} height={40} className="absolute bottom-[38%] right-[55%]" />
-            <Image src="/images/sakura_white.svg" alt="Sakura" width={20} height={20} className="absolute bottom-[52%] right-[78%]" />
-            <Image src="/images/sakura_white.svg" alt="Sakura" width={65} height={65} className="absolute bottom-[28%] right-[10%]" />
-            <Image src="/images/sakura_white.svg" alt="Sakura" width={45} height={45} className="absolute bottom-[45%] right-[95%]" />
-            <Image src="/images/sakura_white.svg" alt="Sakura" width={15} height={15} className="absolute bottom-[5%] right-[65%]" />
-            <Image src="/images/sakura_white.svg" alt="Sakura" width={38} height={38} className="absolute bottom-[15%] right-[30%]" />
-            <Image src="/images/sakura_white.svg" alt="Sakura" width={75} height={75} className="absolute bottom-[35%] right-[5%]" />
-            <Image src="/images/sakura_white.svg" alt="Sakura" width={60} height={60} className="absolute bottom-[35%] right-[75%]" />
-            <Image src="/images/sakura_white.svg" alt="Sakura" width={25} height={25} className="absolute bottom-[50%] right-[50%]" />
-            <Image src="/images/sakura_white.svg" alt="Sakura" width={50} height={50} className="absolute bottom-[22%] right-[90%]" />
-            <Image src="/images/sakura_white.svg" alt="Sakura" width={42} height={42} className="absolute bottom-[46%] right-[25%]" />
-            <Image src="/images/sakura_white.svg" alt="Sakura" width={55} height={55} className="absolute bottom-[36%] right-[68%]" />
-            <Image src="/images/sakura_white.svg" alt="Sakura" width={30} height={30} className="absolute bottom-[54%] right-[12%]" />
-            <Image src="/images/sakura_white.svg" alt="Sakura" width={62} height={62} className="absolute bottom-[26%] right-[35%]" />
-            <Image src="/images/sakura_white.svg" alt="Sakura" width={45} height={45} className="absolute bottom-[40%] right-[60%]" />
-            {/* Adjusted to prevent overlaps and fill gaps */}
-            <Image src="/images/sakura_white.svg" alt="Sakura" width={22} height={22} className="absolute bottom-[5%] right-[30%]" />
-            <Image src="/images/sakura_white.svg" alt="Sakura" width={18} height={18} className="absolute bottom-[10%] right-[55%]" />
-            <Image src="/images/sakura_white.svg" alt="Sakura" width={20} height={20} className="absolute bottom-[30%] right-[70%]" />
-            <Image src="/images/sakura_white.svg" alt="Sakura" width={15} height={15} className="absolute bottom-[40%] right-[40%]" />
-            <Image src="/images/sakura_white.svg" alt="Sakura" width={25} height={25} className="absolute bottom-[55%] right-[85%]" />
-            <Image src="/images/sakura_white.svg" alt="Sakura" width={30} height={30} className="absolute bottom-[12%] right-[90%]" />
-            <Image src="/images/sakura_white.svg" alt="Sakura" width={20} height={20} className="absolute bottom-[25%] right-[5%]" />
-            <Image src="/images/sakura_white.svg" alt="Sakura" width={15} height={15} className="absolute bottom-[48%] right-[15%]" />
-            <Image src="/images/sakura_white.svg" alt="Sakura" width={22} height={22} className="absolute bottom-[3%] right-[45%]" />
-            <Image src="/images/sakura_white.svg" alt="Sakura" width={18} height={18} className="absolute bottom-[28%] right-[95%]" />
+            <motion.div
+              className="absolute inset-0 opacity-25"
+              style={{ backgroundImage: 'linear-gradient(225deg, rgba(255,255,255,0.45) 0%, transparent 60%)' }}
+              animate={{ backgroundPosition: ['100% 0%', '-20% 120%', '100% 0%'] }}
+              transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
+            />
+            <motion.div
+              className="absolute -right-1/4 top-1/3 h-1/3 w-1/2 bg-gradient-to-l from-white/30 to-transparent blur-3xl"
+              animate={{ x: ['0%', '-40%', '10%'], opacity: [0.35, 0.7, 0.35] }}
+              transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+            />
+            {rightShapes.map((shape) => (
+              <FloatingShape key={`${shape.top}-${shape.left ?? shape.right}`} {...shape} />
+            ))}
+            <div className="relative z-10 text-white text-center px-4">
+              <p className="text-[0.6rem] sm:text-xs tracking-[0.45em] uppercase mb-2 opacity-80">creative</p>
+              <p className="text-xl sm:text-2xl md:text-3xl font-semibold tracking-[0.35em] sm:tracking-[0.5em] whitespace-nowrap">
+                INTERACTIVE CRAFT
+              </p>
+            </div>
           </motion.div>
         </div>
       )}
