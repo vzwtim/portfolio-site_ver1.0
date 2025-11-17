@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, AnimatePresence, Variants } from 'framer-motion';
+import { motion, AnimatePresence, Variants, useReducedMotion } from 'framer-motion';
 import React from 'react';
 
 interface LoadingScreenProps {
@@ -24,7 +24,7 @@ interface FloatingShapeProps {
   right?: string;
   color: string;
   delay?: number;
-  blur?: number;
+  prefersReducedMotion?: boolean;
 }
 
 const FloatingShape: React.FC<FloatingShapeProps> = ({
@@ -34,10 +34,10 @@ const FloatingShape: React.FC<FloatingShapeProps> = ({
   right,
   color,
   delay = 0,
-  blur = 0,
+  prefersReducedMotion = false,
 }) => (
   <motion.span
-    className="absolute rounded-[35%] mix-blend-screen"
+    className="absolute rounded-[35%]"
     style={{
       width: size,
       height: size,
@@ -45,41 +45,52 @@ const FloatingShape: React.FC<FloatingShapeProps> = ({
       left,
       right,
       background: color,
-      filter: blur ? `blur(${blur}px)` : undefined,
+      willChange: 'transform',
     }}
-    animate={{
-      y: ['-4%', '4%', '-4%'],
-      scale: [1, 1.08, 1],
-      rotate: [0, 1.5, 0],
-    }}
-    transition={{
-      duration: 6,
-      repeat: Infinity,
-      ease: 'easeInOut',
-      delay,
-    }}
+    animate={
+      prefersReducedMotion
+        ? { y: 0, scale: 1, rotate: 0 }
+        : {
+            y: ['-1.5%', '2%', '-1.5%'],
+            scale: [1, 1.03, 1],
+            rotate: [0, 0.8, 0],
+          }
+    }
+    transition={
+      prefersReducedMotion
+        ? { duration: 0 }
+        : {
+            duration: 12,
+            repeat: Infinity,
+            repeatType: 'mirror',
+            ease: 'easeInOut',
+            delay,
+          }
+    }
   />
 );
 
 const leftShapes: FloatingShapeProps[] = [
-  { size: 220, top: '8%', left: '4%', color: 'rgba(255,255,255,0.10)', blur: 35 },
-  { size: 150, top: '32%', left: '20%', color: 'linear-gradient(160deg, #a8ff78, #78ffd6)', delay: 0.2 },
-  { size: 90, top: '62%', left: '48%', color: 'linear-gradient(120deg, rgba(255,255,255,0.4), transparent)', delay: 0.35 },
-  { size: 110, top: '52%', left: '8%', color: '#4FFFB033', delay: 0.5 },
-  { size: 70, top: '18%', left: '56%', color: '#C9FFD5aa', delay: 0.1 },
-  { size: 180, top: '72%', left: '22%', color: 'rgba(255,255,255,0.08)', blur: 30, delay: 0.65 },
+  { size: 160, top: '10%', left: '12%', color: 'rgba(255,255,255,0.14)', delay: 0 },
+  { size: 120, top: '30%', left: '6%', color: '#81E6D955', delay: 0.12 },
+  { size: 95, top: '48%', left: '26%', color: '#4FFFB033', delay: 0.24 },
+  { size: 70, top: '62%', left: '12%', color: 'rgba(255,255,255,0.10)', delay: 0.08 },
+  { size: 90, top: '72%', left: '44%', color: '#5CF6FF44', delay: 0.3 },
+  { size: 60, top: '20%', left: '40%', color: '#C9FFD566', delay: 0.18 },
 ];
 
 const rightShapes: FloatingShapeProps[] = [
-  { size: 210, top: '10%', right: '6%', color: 'rgba(255,255,255,0.10)', blur: 35 },
-  { size: 140, top: '38%', right: '18%', color: 'linear-gradient(160deg, #ffe29a, #ffa99f)', delay: 0.15 },
-  { size: 95, top: '64%', right: '44%', color: 'linear-gradient(120deg, rgba(255,255,255,0.4), transparent)', delay: 0.3 },
-  { size: 120, top: '52%', right: '6%', color: '#FFB1DC55', delay: 0.5 },
-  { size: 80, top: '20%', right: '50%', color: '#FFD7BAaa', delay: 0.05 },
-  { size: 160, top: '74%', right: '26%', color: 'rgba(255,255,255,0.08)', blur: 28, delay: 0.7 },
+  { size: 150, top: '12%', right: '12%', color: 'rgba(255,255,255,0.14)', delay: 0 },
+  { size: 120, top: '34%', right: '8%', color: '#FFB1DC55', delay: 0.14 },
+  { size: 95, top: '52%', right: '24%', color: '#FF9AA255', delay: 0.26 },
+  { size: 70, top: '64%', right: '12%', color: 'rgba(255,255,255,0.10)', delay: 0.1 },
+  { size: 90, top: '74%', right: '40%', color: '#FFD7BA55', delay: 0.32 },
+  { size: 60, top: '22%', right: '38%', color: '#FFE29A55', delay: 0.2 },
 ];
 
 const LoadingScreen: React.FC<LoadingScreenProps> = ({ isLoading }) => {
+  const prefersReducedMotion = useReducedMotion();
+
   return (
     <AnimatePresence>
       {isLoading && (
@@ -91,19 +102,12 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ isLoading }) => {
             variants={panelVariants}
             custom="left"
           >
-            <motion.div
-              className="absolute inset-0 opacity-30"
-              style={{ backgroundImage: 'linear-gradient(135deg, rgba(255,255,255,0.35) 0%, transparent 60%)' }}
-              animate={{ backgroundPosition: ['0% 0%', '120% 120%', '0% 0%'] }}
-              transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
-            />
-            <motion.div
-              className="absolute -left-1/4 top-1/4 h-1/2 w-1/2 bg-gradient-to-r from-white/20 to-transparent blur-3xl"
-              animate={{ x: ['0%', '40%', '-10%'], opacity: [0.4, 0.75, 0.4] }}
-              transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+            <div
+              className="absolute inset-0 opacity-20"
+              style={{ backgroundImage: 'linear-gradient(135deg, rgba(255,255,255,0.3) 0%, transparent 55%)' }}
             />
             {leftShapes.map((shape) => (
-              <FloatingShape key={`${shape.top}-${shape.left ?? shape.right}`} {...shape} />
+              <FloatingShape key={`${shape.top}-${shape.left ?? shape.right}`} {...shape} prefersReducedMotion={prefersReducedMotion} />
             ))}
             <div className="relative z-10 text-white text-center px-4">
               <p className="text-[0.6rem] sm:text-xs tracking-[0.45em] uppercase mb-2 opacity-80">portfolio</p>
@@ -119,19 +123,12 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ isLoading }) => {
             variants={panelVariants}
             custom="right"
           >
-            <motion.div
-              className="absolute inset-0 opacity-25"
-              style={{ backgroundImage: 'linear-gradient(225deg, rgba(255,255,255,0.45) 0%, transparent 60%)' }}
-              animate={{ backgroundPosition: ['100% 0%', '-20% 120%', '100% 0%'] }}
-              transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
-            />
-            <motion.div
-              className="absolute -right-1/4 top-1/3 h-1/3 w-1/2 bg-gradient-to-l from-white/30 to-transparent blur-3xl"
-              animate={{ x: ['0%', '-40%', '10%'], opacity: [0.35, 0.7, 0.35] }}
-              transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+            <div
+              className="absolute inset-0 opacity-20"
+              style={{ backgroundImage: 'linear-gradient(225deg, rgba(255,255,255,0.32) 0%, transparent 55%)' }}
             />
             {rightShapes.map((shape) => (
-              <FloatingShape key={`${shape.top}-${shape.left ?? shape.right}`} {...shape} />
+              <FloatingShape key={`${shape.top}-${shape.left ?? shape.right}`} {...shape} prefersReducedMotion={prefersReducedMotion} />
             ))}
             <div className="relative z-10 text-white text-center px-4">
               <p className="text-[0.6rem] sm:text-xs tracking-[0.45em] uppercase mb-2 opacity-80">creative</p>
