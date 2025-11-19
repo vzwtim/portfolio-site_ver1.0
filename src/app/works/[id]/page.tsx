@@ -1,7 +1,7 @@
 // src/app/works/[id]/page.tsx
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
-import works from '../../../../materials/works.json';
+import works from '../../../data/works.json';
 import WorkContent from './WorkContent';
 import type { Work } from './WorkContent';
 
@@ -41,4 +41,3 @@ export default async function WorkPage({ params }: PageProps) {
 
   return <WorkContent work={work} images={images} />;
 }
-

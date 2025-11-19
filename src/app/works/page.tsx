@@ -2,7 +2,7 @@
 import React from 'react';
 import Link from 'next/link';
 import WorkCard from '@/components/WorkCard';
-import worksData from '../../../materials/works.json';
+import worksData from '../../data/works.json';
 import { optimizedImage } from '@/lib/optimizedImage';
 
 interface WorksPageProps {
