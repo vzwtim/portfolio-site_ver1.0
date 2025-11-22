@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, AnimatePresence, Variants, useReducedMotion } from 'framer-motion';
+import { motion, AnimatePresence, Variants } from 'framer-motion';
 import React from 'react';
 
 interface LoadingScreenProps {
@@ -23,8 +23,6 @@ interface FloatingShapeProps {
   left?: string;
   right?: string;
   color: string;
-  delay?: number;
-  prefersReducedMotion?: boolean;
 }
 
 const FloatingShape: React.FC<FloatingShapeProps> = ({
@@ -33,10 +31,8 @@ const FloatingShape: React.FC<FloatingShapeProps> = ({
   left,
   right,
   color,
-  delay = 0,
-  prefersReducedMotion = false,
 }) => (
-  <motion.span
+  <span
     className="absolute rounded-[35%]"
     style={{
       width: size,
@@ -45,52 +41,29 @@ const FloatingShape: React.FC<FloatingShapeProps> = ({
       left,
       right,
       background: color,
-      willChange: 'transform',
     }}
-    animate={
-      prefersReducedMotion
-        ? { y: 0, scale: 1, rotate: 0 }
-        : {
-            y: ['-1.5%', '2%', '-1.5%'],
-            scale: [1, 1.03, 1],
-            rotate: [0, 0.8, 0],
-          }
-    }
-    transition={
-      prefersReducedMotion
-        ? { duration: 0 }
-        : {
-            duration: 12,
-            repeat: Infinity,
-            repeatType: 'mirror',
-            ease: 'easeInOut',
-            delay,
-          }
-    }
   />
 );
 
 const leftShapes: FloatingShapeProps[] = [
-  { size: 160, top: '10%', left: '12%', color: 'rgba(255,255,255,0.14)', delay: 0 },
-  { size: 120, top: '30%', left: '6%', color: '#81E6D955', delay: 0.12 },
-  { size: 95, top: '48%', left: '26%', color: '#4FFFB033', delay: 0.24 },
-  { size: 70, top: '62%', left: '12%', color: 'rgba(255,255,255,0.10)', delay: 0.08 },
-  { size: 90, top: '72%', left: '44%', color: '#5CF6FF44', delay: 0.3 },
-  { size: 60, top: '20%', left: '40%', color: '#C9FFD566', delay: 0.18 },
+  { size: 160, top: '10%', left: '12%', color: 'rgba(255,255,255,0.14)' },
+  { size: 120, top: '30%', left: '6%', color: '#81E6D955' },
+  { size: 95, top: '48%', left: '26%', color: '#4FFFB033' },
+  { size: 70, top: '62%', left: '12%', color: 'rgba(255,255,255,0.10)' },
+  { size: 90, top: '72%', left: '44%', color: '#5CF6FF44' },
+  { size: 60, top: '20%', left: '40%', color: '#C9FFD566' },
 ];
 
 const rightShapes: FloatingShapeProps[] = [
-  { size: 150, top: '12%', right: '12%', color: 'rgba(255,255,255,0.14)', delay: 0 },
-  { size: 120, top: '34%', right: '8%', color: '#FFB1DC55', delay: 0.14 },
-  { size: 95, top: '52%', right: '24%', color: '#FF9AA255', delay: 0.26 },
-  { size: 70, top: '64%', right: '12%', color: 'rgba(255,255,255,0.10)', delay: 0.1 },
-  { size: 90, top: '74%', right: '40%', color: '#FFD7BA55', delay: 0.32 },
-  { size: 60, top: '22%', right: '38%', color: '#FFE29A55', delay: 0.2 },
+  { size: 150, top: '12%', right: '12%', color: 'rgba(255,255,255,0.14)' },
+  { size: 120, top: '34%', right: '8%', color: '#FFB1DC55' },
+  { size: 95, top: '52%', right: '24%', color: '#FF9AA255' },
+  { size: 70, top: '64%', right: '12%', color: 'rgba(255,255,255,0.10)' },
+  { size: 90, top: '74%', right: '40%', color: '#FFD7BA55' },
+  { size: 60, top: '22%', right: '38%', color: '#FFE29A55' },
 ];
 
 const LoadingScreen: React.FC<LoadingScreenProps> = ({ isLoading }) => {
-  const prefersReducedMotion = useReducedMotion();
-
   return (
     <AnimatePresence>
       {isLoading && (
@@ -107,7 +80,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ isLoading }) => {
               style={{ backgroundImage: 'linear-gradient(135deg, rgba(255,255,255,0.3) 0%, transparent 55%)' }}
             />
             {leftShapes.map((shape) => (
-              <FloatingShape key={`${shape.top}-${shape.left ?? shape.right}`} {...shape} prefersReducedMotion={prefersReducedMotion} />
+              <FloatingShape key={`${shape.top}-${shape.left ?? shape.right}`} {...shape} />
             ))}
             <div className="relative z-10 text-white text-center px-4">
               <p className="text-[0.6rem] sm:text-xs tracking-[0.45em] uppercase mb-2 opacity-80">portfolio</p>
@@ -128,7 +101,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ isLoading }) => {
               style={{ backgroundImage: 'linear-gradient(225deg, rgba(255,255,255,0.32) 0%, transparent 55%)' }}
             />
             {rightShapes.map((shape) => (
-              <FloatingShape key={`${shape.top}-${shape.left ?? shape.right}`} {...shape} prefersReducedMotion={prefersReducedMotion} />
+              <FloatingShape key={`${shape.top}-${shape.left ?? shape.right}`} {...shape} />
             ))}
             <div className="relative z-10 text-white text-center px-4">
               <p className="text-[0.6rem] sm:text-xs tracking-[0.45em] uppercase mb-2 opacity-80">creative</p>
