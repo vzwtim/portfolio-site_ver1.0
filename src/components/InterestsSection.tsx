@@ -359,6 +359,7 @@ export default function InterestsSection() {
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-110"
                 sizes="(max-width:768px)100vw,(max-width:1024px)50vw,50vw"
+                quality={90}
               />
             </div>
             <div className="md:w-1/2">
@@ -394,6 +395,7 @@ export default function InterestsSection() {
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-110"
                 sizes="(max-width:768px)100vw,(max-width:1024px)50vw,25vw"
+                quality={90}
               />
             </div>
             <h4 className="font-semibold mb-2 text-[clamp(1rem,0.9rem+0.5vw,1.25rem)]">
@@ -437,6 +439,7 @@ export default function InterestsSection() {
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
                   sizes="(max-width:768px)100vw,(max-width:1024px)50vw,25vw"
+                  quality={90}
                 />
               </div>
               <h4 className="text-lg font-semibold mb-2">
@@ -520,6 +523,7 @@ export default function InterestsSection() {
                       fill
                       className={`${block.interest.title === 'App Links' ? 'object-contain' : 'object-cover'} transition-transform duration-500 group-hover:scale-110`}
                       sizes="(max-width:768px)100vw,(max-width:1024px)50vw,33vw"
+                      quality={90}
                     />
                   </div>
                   <h4
@@ -549,6 +553,7 @@ export default function InterestsSection() {
                         fill
                         className="object-cover opacity-20 rounded-md"
                         sizes="16vw"
+                        quality={90}
                       />
                     )}
                   </div>
@@ -684,6 +689,7 @@ return (
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-110"
                       sizes="(max-width:768px)100vw,(max-width:1024px)50vw,33vw"
+                      quality={90}
                     />
                   </div>
                   <div className="flex items-center mb-2 gap-2">

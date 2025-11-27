@@ -138,3 +138,10 @@ body {
   line-height: 1.8; /* 行間を広げる */
 }
 
+@media (max-width: 640px) {
+  body {
+    font-size: 0.9rem; /* スマホ閲覧時はさらに小さめに */
+    line-height: 1.7;
+  }
+}
+

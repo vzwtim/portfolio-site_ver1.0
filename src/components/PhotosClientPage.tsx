@@ -197,7 +197,7 @@ export default function PhotosClientPage() {
   return (
     <main className="bg-[#ffffff] text-[#232024] py-20 px-4 md:px-8 lg:px-16 min-h-screen">
       <div className="max-w-full mx-auto">
-        <h1 className="text-5xl font-extrabold mb-12 mt-24 text-center">
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-12 mt-24 text-center">
           Gallary
         </h1>
         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 2xl:grid-cols-8 gap-px">
@@ -212,7 +212,7 @@ export default function PhotosClientPage() {
                 alt={photo.alt}
                 width={300}
                 height={300}
-                quality={50}
+                quality={70}
                 className="object-cover w-full h-full filter grayscale transition-all duration-300 hover:grayscale-0"
               />
             </div>
@@ -261,11 +261,11 @@ export default function PhotosClientPage() {
                           alt={photo.alt}
                           width={1600}
                           height={1200}
-                          quality={75}
+                          quality={90}
                           className="object-contain w-auto h-full"
                         />
                         <div className="absolute bottom-0 left-0 p-4" style={{ color: textColor }}>
-                          <h2 className="text-xl font-normal" style={{ fontFamily: '"Shippori Mincho", serif' }}>{photo.alt}</h2>
+                          <h2 className="text-lg sm:text-xl font-normal" style={{ fontFamily: '"Shippori Mincho", serif' }}>{photo.alt}</h2>
                         </div>
                       </div>
                     </div>
