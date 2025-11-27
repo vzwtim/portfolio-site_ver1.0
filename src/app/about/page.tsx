@@ -29,15 +29,16 @@ export default function About() {
               width={500}
               height={500}
               className="object-contain"
+              quality={90}
               priority
             />
           </div>
           <div className="text-center">
-            <p className="text-lg leading-relaxed mb-4">
+            <p className="text-base sm:text-lg leading-relaxed mb-4">
               大学で建築・社会・環境を学び、現在は不動産デベロッパーとして、用地取得・開発・アセットマネジメント業務に従事。
               経営企画・DXのPJにも参画し、ビルやマンションの取得開発に携わっています。
             </p>
-            <p className="text-lg leading-relaxed">
+            <p className="text-base sm:text-lg leading-relaxed">
               東京を練り歩き、建築を新しく建てることを考えながら、旧耐震の和室でちゃぶ台を前にお茶を淹れて暮らしています。
               今年は不動産証券化の資格、来年は一級建築士取得予定。密かに一人デベロッパーを目指しています。
             </p>
@@ -46,19 +47,19 @@ export default function About() {
 
         {/* 経歴・学歴（静的） */}
         <section className="mb-24">
-          <h2 className="text-3xl font-medium mb-8 text-center">経歴・学歴</h2>
+          <h2 className="text-2xl sm:text-3xl font-medium mb-8 text-center">経歴・学歴</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="border border-gray-200/80 p-6 rounded-sm bg-white/50">
-              <h3 className="text-xl font-bold mb-2">学歴</h3>
-              <ul className="list-disc list-inside text-base leading-loose">
+              <h3 className="text-lg sm:text-xl font-bold mb-2">学歴</h3>
+              <ul className="list-disc list-inside text-sm sm:text-base leading-loose">
                 <li>仙台第二高等学校 卒業</li>
                 <li>東京大学工学部建築学科 卒業</li>
                 <li>東京大学大学院 新領域創成科学研究科 社会文化環境学専攻 修了</li>
               </ul>
             </div>
             <div className="border border-gray-200/80 p-6 rounded-sm bg白/50">
-              <h3 className="text-xl font-bold mb-2">職歴</h3>
-              <ul className="list-disc list-inside text-base leading-loose">
+              <h3 className="text-lg sm:text-xl font-bold mb-2">職歴</h3>
+              <ul className="list-disc list-inside text-sm sm:text-base leading-loose">
                 <li>〇〇株式会社 アセット戦略部 (2024年 - 2025年)</li>
                 <li>〇〇株式会社 建築設計部 (20XX年 - 20YY年)</li>
                 <li>△△スタートアップ ソフトウェアエンジニア (20YY年 - 現在)</li>
@@ -69,7 +70,7 @@ export default function About() {
 
         {/* スキル（ボタン切替） */}
         <section className="mb-24">
-          <h2 className="text-3xl font-medium mb-8 text-center">スキル</h2>
+          <h2 className="text-2xl sm:text-3xl font-medium mb-8 text-center">スキル</h2>
 
           <div className="flex justify-center gap-2 mb-6">
             {STAGES.map(({ key, label }) => (

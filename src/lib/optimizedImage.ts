@@ -6,7 +6,7 @@ export type OptimizedOptions = {
 
 export function optimizedImage(
   src: string,
-  { type = 'display', width = 1200, format = 'webp' }: OptimizedOptions = {}
+  { type = 'display', width = 1600, format = 'webp' }: OptimizedOptions = {}
 ): string {
   if (src.toLowerCase().endsWith('.svg')) {
     return src;
