@@ -339,6 +339,11 @@ export default function InterestsSection() {
     };
   }, [setBgColor, setTextColor]);
 
+  type Interest =
+    | (typeof interests.spaceAndCreation)[number]
+    | (typeof interests.cultureAndExploration)[number]
+    | (typeof interests.digital)[number];
+
   
 
   const renderAlternatingCards = (items: typeof interests.spaceAndCreation) => (
@@ -566,11 +571,145 @@ export default function InterestsSection() {
     );
   };
 
-return (
-    <div
-      ref={containerRef}
-      className={`relative overflow-hidden transition-colors duration-1000 ease-out`}
-    >
+  const renderMobileLayout = () => {
+    const sectionConfigs = [
+      {
+        key: 'space',
+        label: 'Space & Creation',
+        gradient: 'from-[#041a16] via-[#0e5c4f] to-[#041a16]',
+        accent: 'bg-[#25c5a3]',
+        bg: 'bg-white',
+        text: '#008877',
+        desc: '#008877',
+        border: '#008877',
+        glow: 'from-[#0c332d] via-[#0f7a64] to-[#12b899]',
+        heading: '#b8ffee',
+        body: '#dffdf4',
+        items: interests.spaceAndCreation,
+        link: (title: string) => getWorksLink(title),
+      },
+      {
+        key: 'culture',
+        label: 'Arts & Culture',
+        gradient: 'from-[#2a0b0b] via-[#a73232] to-[#2a0b0b]',
+        accent: 'bg-[#ff6a6a]',
+        bg: 'bg-white',
+        text: '#bb5555',
+        desc: 'rgba(187,85,85,0.75)',
+        border: '#bb5555',
+        glow: 'from-[#5f1510] via-[#b43b37] to-[#ff7c73]',
+        heading: '#ffe9e6',
+        body: '#ffd3cd',
+        items: interests.cultureAndExploration,
+        link: (title: string) =>
+          cultureWorkTitles.includes(title) ? getWorksLink(title) : getCultureLink(title),
+      },
+      {
+        key: 'digital',
+        label: 'Digital & Tech',
+        gradient: 'from-[#030b0a] via-[#0f2520] to-[#030b0a]',
+        accent: 'bg-[#21cda8]',
+        bg: 'bg-[#0a0a0a]',
+        text: '#008877',
+        desc: 'rgba(255,255,255,0.7)',
+        border: '#008877',
+        glow: 'from-[#0a342b] via-[#0c7a65] to-[#17e5bd]',
+        heading: '#c2ffed',
+        body: '#e8fff8',
+        items: interests.digital,
+        link: (title: string) => getDigitalLink(title),
+      },
+    ];
+
+    const mobileCard = (interest: Interest, href: string, palette: typeof sectionConfigs[number]) => (
+      <Link href={href} key={`${palette.key}-${interest.title}`} className="block space-y-3">
+        <motion.div
+          whileHover={{ y: -3 }}
+          whileTap={{ scale: 0.99 }}
+          className="relative block w-full aspect-[16/9] overflow-hidden rounded-sm"
+        >
+          <Image
+            src={interest.imageUrl}
+            alt={interest.title}
+            fill
+            className="object-cover rounded-sm"
+            sizes="100vw"
+            quality={90}
+          />
+        </motion.div>
+        <div className="flex items-center justify-between pt-3">
+          <div className="flex flex-col gap-1">
+            <span
+              className="text-2xl font-semibold leading-tight"
+              style={{ color: palette.text }}
+            >
+              {interest.title}
+            </span>
+          </div>
+          {interest.title === 'Food' && (
+            <button
+              type="button"
+              className="text-xl"
+              style={{ color: palette.text }}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                window.open('https://www.instagram.com/bababachef/', '_blank');
+              }}
+            >
+              <FaInstagram />
+            </button>
+          )}
+        </div>
+        {interest.description && (
+          <p
+            className="text-[10px] leading-snug line-clamp-1"
+            style={{ color: palette.desc }}
+          >
+            {interest.description}
+          </p>
+        )}
+        <div
+          className="border-b mt-3"
+          style={{ borderColor: `${palette.border}33` }}
+        />
+      </Link>
+    );
+
+    return (
+      <div className="md:hidden pb-16">
+        <div className="px-6 pt-16 pb-12 text-left space-y-1 bg-white text-gray-900">
+          <h2 className="text-4xl font-semibold leading-tight">Interests</h2>
+          <p className="text-sm text-gray-600">Things I care about right now.</p>
+        </div>
+
+        <div className="space-y-0">
+          {sectionConfigs.map((section) => (
+            <section
+              key={section.key}
+              className={`space-y-6 px-6 py-10 ${section.bg}`}
+              style={{ color: section.text }}
+            >
+              <div className="text-3xl font-semibold leading-tight" style={{ color: section.text }}>
+                {section.label}
+              </div>
+              <div className="space-y-10">
+                {section.items.map((interest) => mobileCard(interest, section.link(interest.title), section))}
+              </div>
+            </section>
+          ))}
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <>
+      {renderMobileLayout()}
+      <div
+        ref={containerRef}
+        className={`relative overflow-hidden transition-colors duration-1000 ease-out hidden md:block`}
+      >
       <motion.svg
         className="absolute inset-0 w-full h-full pointer-events-none"
         viewBox="0 0 1000 4000"
@@ -747,7 +886,8 @@ return (
         </div>
         <div className="absolute bottom-0 left-0 w-full h-96 bg-gradient-to-t from-white to-transparent z-20" />
       </section>
-    </div>
+      </div>
+    </>
   );
 }
 
