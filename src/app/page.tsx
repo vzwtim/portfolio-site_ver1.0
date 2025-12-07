@@ -27,7 +27,7 @@ export default function Home() {
             src="/images/mv_gomoku_1.jpg"
             alt="Gomoku Rice"
             fill
-            className="object-cover"
+            className="md:object-cover object-contain"
             priority
             sizes="100vw"
           />
@@ -58,17 +58,14 @@ export default function Home() {
             transition={{ duration: 0.8 }}
             className="mb-12"
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6" style={{ fontFamily: '"Shippori Mincho", serif' }}>
-              五目飯が最強な理由
-            </h2>
             <div className="w-24 h-px bg-[#232024] mx-auto mb-8"></div>
             <p className="text-base sm:text-lg leading-relaxed max-w-3xl mx-auto" style={{ fontFamily: '"Shippori Mincho", serif' }}>
-              しいたけはダシ担当。にんじんは見た目担当。たけのこは食感担当。<br />
-              鶏肉はガッツリ担当。油揚げは裏方担当。<br />
-              …そう、これが俺たち五目飯。<br />
-              誰が主役？って聞かれても、そんなの決めなくていいのさ。<br />
-              だからさ、地味とか寄せ集めとか言わないで、今日も食べてくれよ。<br />
-              五目どころか、満足は無限大だぞ？</p>
+              ひとつに絞れない。<br />
+              空間も、仕組みも、体験も。<br />
+              いろんなことに手を出しちゃう。<br />
+              気づくとアレンジも加えてる。<br />
+              でも最後は、ちゃんとおいしくなる。<br />
+              それが僕のつくり方。</p>
           </motion.div>
         </div>
       </section>
