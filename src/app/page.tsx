@@ -51,7 +51,7 @@ export default function Home() {
         
         <motion.div
           style={{ y: yText, opacity: opacityText }}
-          className="relative z-10 px-4 md:px-20 pt-0 md:pt-0 max-w-6xl mx-auto flex justify-center items-start text-center pl-8"
+          className="relative z-10 px-4 md:px-20 pt-0 md:pt-0 max-w-6xl mx-auto flex justify-center items-center text-center"
         >
           {/* Main Catchphrase - Simple and Clean */}
           <h1

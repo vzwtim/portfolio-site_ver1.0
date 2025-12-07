@@ -883,16 +883,20 @@ export default function InterestsSection() {
           }}
         >
           <div className="grid grid-cols-12 auto-rows-[minmax(40px,auto)] gap-3">
-            {collagePieces.map((piece) => {
+            {collagePieces.map((piece, index) => {
               if (piece.kind === 'text') {
                 return (
-                  <div
+                  <motion.div
                     key={piece.id}
                     style={{
                       gridColumn: `${piece.col} / span ${piece.colSpan ?? 12}`,
                       gridRow: `${piece.row} / span ${piece.rowSpan ?? 2}`,
                     }}
                     className="flex items-center relative z-20"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.35 }}
+                    transition={{ duration: 0.6, delay: index * 0.02 }}
                   >
                     <p
                     className={`text-[13px] leading-7 ${
@@ -900,14 +904,14 @@ export default function InterestsSection() {
                         ? 'text-gray-900'
                         : piece.id.includes('culture')
                           ? 'text-[#bb5555]'
-                          : piece.id.includes('digital')
-                            ? 'text-[#008877]'
-                            : 'text-gray-900'
+                        : piece.id.includes('digital')
+                          ? 'text-[#008877]'
+                          : 'text-gray-900'
                     } ${piece.align === 'right' ? 'text-right w-full' : ''}`}
                     >
                       {piece.text}
                     </p>
-                  </div>
+                  </motion.div>
                 );
               } else if (piece.kind === 'title') {
                 const alignClass =
@@ -998,19 +1002,23 @@ export default function InterestsSection() {
                 );
 
               return (
-                <div
+                <motion.div
                   key={piece.id}
                   style={{
                     gridColumn: `${piece.col} / span ${piece.colSpan ?? 10}`,
                     gridRow: `${piece.row} / span ${piece.rowSpan ?? 5}`,
                   }}
                   className="relative"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.35 }}
+                  transition={{ duration: 0.6, delay: 0.05 * (index % 5) }}
                 >
                   <div className={`space-y-3 ${fullBleedClass}`}>
                     {ImageWrapper}
                     {/* description hidden on mobile collage */}
                   </div>
-                </div>
+                </motion.div>
               );
             })}
           </div>
@@ -1022,9 +1030,13 @@ export default function InterestsSection() {
   return (
     <>
       {renderMobileLayout()}
-      <div
+      <motion.div
         ref={containerRef}
         className={`relative overflow-hidden transition-colors duration-1000 ease-out hidden md:block`}
+        initial={{ opacity: 0, y: 80, scale: 0.97 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.9, ease: 'easeOut' }}
       >
       <motion.svg
         className="absolute inset-0 w-full h-full pointer-events-none"
@@ -1204,7 +1216,7 @@ export default function InterestsSection() {
         </div>
         <div className="absolute bottom-0 left-0 w-full h-96 bg-gradient-to-t from-white to-transparent z-20" />
       </section>
-      </div>
+      </motion.div>
     </>
   );
 }
