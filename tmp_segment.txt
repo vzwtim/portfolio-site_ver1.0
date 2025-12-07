@@ -1,0 +1,38 @@
+      {lightboxIndex !== null && (
+        <div
+          className="fixed inset-0 z-[999] bg-black/80 backdrop-blur-sm flex flex-col items-center justify-center p-4 md:p-8"
+          onClick={closeLightbox}
+        >
+          <div className="relative w-full h-full flex items-center justify-center">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={images[lightboxIndex]}
+              alt="work detail"
+              className="object-contain max-w-[90vw] max-h-[90vh]"
+            />
+            {images.length > 1 && (
+              <>
+                <button
+                  className="absolute top-1/2 -translate-y-1/2 left-4 md:left-6 z-[1001] bg-black/30 text-white p-3 rounded-full hover:bg-black/50 transition-colors"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setLightboxIndex((idx) => (idx === null ? idx : (idx - 1 + images.length) % images.length));
+                  }}
+                  aria-label="Prev image"
+                >
+                  ‹
+                </button>
+                <button
+                  className="absolute top-1/2 -translate-y-1/2 right-4 md:right-6 z-[1001] bg-black/30 text-white p-3 rounded-full hover:bg-black/50 transition-colors"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setLightboxIndex((idx) => (idx === null ? idx : (idx + 1) % images.length));
+                  }}
+                  aria-label="Next image"
+                >
+                  ›
+                </button>
+              </>
+            )}
+          </div>
+        </div>
