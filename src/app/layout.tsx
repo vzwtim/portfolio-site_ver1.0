@@ -23,7 +23,7 @@ export default function RootLayout({
 }): React.JSX.Element {
   return (
     <html lang="ja">
-      <body>
+      <body suppressHydrationWarning>
         <ThemeProvider>
           <ClientLayout>
             {children}

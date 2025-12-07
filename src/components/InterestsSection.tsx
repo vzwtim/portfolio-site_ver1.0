@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import Image from 'next/image';
 import Link from 'next/link';
@@ -49,7 +49,7 @@ const interests = {
     },
     {
       title: 'Food',
-      description: '文化、歴史、そして人との繋がりを味わう。',
+      description: '風土と歴史、そして人との繋がりを味わう。',
       imageUrl: optimizedImage('/images/food_me_tomato.jpg'),
     },
     {
@@ -75,7 +75,7 @@ const interests = {
       imageUrl: '/images/figure_master.webp',
     },
     {
-      title: 'Design × Programming',
+      title: 'Design & Programming',
       description: '美しさと使いやすさを追求し、情報を最適に届ける。',
       imageUrl: optimizedImage('/images/map_gis_18.png'),
     },
@@ -160,7 +160,7 @@ const TypingCodeBackground: React.FC<TypingCodeBackgroundProps> = ({ snippets, p
       const timer = setTimeout(() => {
         setDisplayed([]);
         setIsAnimating(true);
-      }, 7000 + Math.random() * 3000); // 7-10秒のランダムな待機時間
+      }, 7000 + Math.random() * 3000); // 7-10遘偵・繝ｩ繝ｳ繝繝縺ｪ蠕・ｩ滓凾髢・
       return () => clearTimeout(timer);
     }
 
@@ -190,7 +190,7 @@ const TypingCodeBackground: React.FC<TypingCodeBackgroundProps> = ({ snippets, p
         charIndex = 0;
         lineIndex++;
       }
-    }, 60); // タイピング速度
+    }, 60); // 繧ｿ繧､繝斐Φ繧ｰ騾溷ｺｦ
 
     return () => clearInterval(timer);
   }, [isAnimating, snippets]);
@@ -237,7 +237,7 @@ export default function InterestsSection() {
 
   const [imagePools, setImagePools] = useState<Record<string, string[]>>({
     'Data Analysis': [],
-    'Design × Programming': [],
+    'Design & Programming': [],
     'Artificial Intelligence': [],
   });
 
@@ -258,7 +258,7 @@ export default function InterestsSection() {
       ]);
       setImagePools({
         'Data Analysis': mapImgs,
-        'Design × Programming': [...drawingImgs, ...webImgs, ...designImgs],
+        'Design & Programming': [...drawingImgs, ...webImgs, ...designImgs],
         'Artificial Intelligence': aiImgs,
       });
     };
@@ -461,16 +461,16 @@ export default function InterestsSection() {
   );
 
   const renderDigitalGrid = (items: typeof interests.digital) => {
-    // いい感じに散らばしたレイアウト
-    // メインカードを大きめに配置し、余白を埋めるように様々なサイズ・位置のプレースホルダーを追加
+    // ラフに散らしたグリッド構成
+    // メインカードを大きめに配置し、余白を埋めるプレースホルダーを追加
     const layout: { key: string; className: string; interest?: typeof items[number] }[] = [
-      // メインカード（大きめ・斜め配置）
+      // 繝｡繧､繝ｳ繧ｫ繝ｼ繝会ｼ亥､ｧ縺阪ａ繝ｻ譁懊ａ驟咲ｽｮ・・
       { key: 'item-0', className: 'col-start-2 col-span-4 row-start-2 row-span-5', interest: items[0] },
       { key: 'item-1', className: 'col-start-7 col-span-5 row-start-6 row-span-4', interest: items[1] },
       { key: 'item-2', className: 'col-start-4 col-span-5 row-start-12 row-span-4', interest: items[2] },
       { key: 'item-3', className: 'col-start-11 col-span-2 row-start-1 row-span-2', interest: items[3] },
 
-      // プレースホルダー（サイズ・位置をバラバラにして余白を埋める）
+      // 繝励Ξ繝ｼ繧ｹ繝帙Ν繝繝ｼ・医し繧､繧ｺ繝ｻ菴咲ｽｮ繧偵ヰ繝ｩ繝舌Λ縺ｫ縺励※菴咏區繧貞沂繧√ｋ・・
       { key: 'ph1', className: 'relative overflow-hidden col-start-1 col-span-1 row-start-1 row-span-3' },
       { key: 'ph2', className: 'relative overflow-hidden col-start-6 col-span-3 row-start-3 row-span-3' },
       { key: 'ph3', className: 'relative overflow-hidden col-start-12 col-span-1 row-start-3 row-span-1' },
@@ -572,132 +572,448 @@ export default function InterestsSection() {
   };
 
   const renderMobileLayout = () => {
-    const sectionConfigs = [
-      {
-        key: 'space',
-        label: 'Space & Creation',
-        gradient: 'from-[#041a16] via-[#0e5c4f] to-[#041a16]',
-        accent: 'bg-[#25c5a3]',
-        bg: 'bg-white',
-        text: '#008877',
-        desc: '#008877',
-        border: '#008877',
-        glow: 'from-[#0c332d] via-[#0f7a64] to-[#12b899]',
-        heading: '#b8ffee',
-        body: '#dffdf4',
-        items: interests.spaceAndCreation,
-        link: (title: string) => getWorksLink(title),
-      },
-      {
-        key: 'culture',
-        label: 'Arts & Culture',
-        gradient: 'from-[#2a0b0b] via-[#a73232] to-[#2a0b0b]',
-        accent: 'bg-[#ff6a6a]',
-        bg: 'bg-white',
-        text: '#bb5555',
-        desc: 'rgba(187,85,85,0.75)',
-        border: '#bb5555',
-        glow: 'from-[#5f1510] via-[#b43b37] to-[#ff7c73]',
-        heading: '#ffe9e6',
-        body: '#ffd3cd',
-        items: interests.cultureAndExploration,
-        link: (title: string) =>
-          cultureWorkTitles.includes(title) ? getWorksLink(title) : getCultureLink(title),
-      },
-      {
-        key: 'digital',
-        label: 'Digital & Tech',
-        gradient: 'from-[#030b0a] via-[#0f2520] to-[#030b0a]',
-        accent: 'bg-[#21cda8]',
-        bg: 'bg-[#0a0a0a]',
-        text: '#008877',
-        desc: 'rgba(255,255,255,0.7)',
-        border: '#008877',
-        glow: 'from-[#0a342b] via-[#0c7a65] to-[#17e5bd]',
-        heading: '#c2ffed',
-        body: '#e8fff8',
-        items: interests.digital,
-        link: (title: string) => getDigitalLink(title),
-      },
-    ];
+    const linkFor = (interest: Interest) => {
+      if (interests.digital.some((item) => item.title === interest.title)) {
+        return getDigitalLink(interest.title);
+      }
+      if (interests.cultureAndExploration.some((item) => item.title === interest.title)) {
+        return cultureWorkTitles.includes(interest.title)
+          ? getWorksLink(interest.title)
+          : getCultureLink(interest.title);
+      }
+      return getWorksLink(interest.title);
+    };
 
-    const mobileCard = (interest: Interest, href: string, palette: typeof sectionConfigs[number]) => (
-      <Link href={href} key={`${palette.key}-${interest.title}`} className="block space-y-3">
-        <motion.div
-          whileHover={{ y: -3 }}
-          whileTap={{ scale: 0.99 }}
-          className="relative block w-full aspect-[16/9] overflow-hidden rounded-sm"
-        >
-          <Image
-            src={interest.imageUrl}
-            alt={interest.title}
-            fill
-            className="object-cover rounded-sm"
-            sizes="100vw"
-            quality={90}
-          />
-        </motion.div>
-        <div className="flex items-center justify-between pt-3">
-          <div className="flex flex-col gap-1">
-            <span
-              className="text-2xl font-semibold leading-tight"
-              style={{ color: palette.text }}
-            >
-              {interest.title}
-            </span>
-          </div>
-          {interest.title === 'Food' && (
-            <button
-              type="button"
-              className="text-xl"
-              style={{ color: palette.text }}
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                window.open('https://www.instagram.com/bababachef/', '_blank');
-              }}
-            >
-              <FaInstagram />
-            </button>
-          )}
-        </div>
-        {interest.description && (
-          <p
-            className="text-[10px] leading-snug line-clamp-1"
-            style={{ color: palette.desc }}
-          >
-            {interest.description}
-          </p>
-        )}
-        <div
-          className="border-b mt-3"
-          style={{ borderColor: `${palette.border}33` }}
-        />
-      </Link>
-    );
+    type MobilePiece =
+      | {
+          kind: 'text';
+          id: string;
+          text: string;
+          align?: 'left' | 'right';
+          row: number;
+          rowSpan?: number;
+          col: number;
+          colSpan?: number;
+        }
+      | {
+          kind: 'title';
+          id: string;
+          text: string;
+          align?: 'left' | 'right' | 'center';
+          row: number;
+          rowSpan?: number;
+          col: number;
+          colSpan?: number;
+        }
+      | {
+          kind: 'image';
+          id: string;
+          interest: Interest;
+          row: number;
+          rowSpan?: number;
+          col: number;
+          colSpan?: number;
+          aspect?: string;
+          label?: string;
+          labelSide?: 'left' | 'right';
+          tilt?: string;
+          fit?: 'contain' | 'cover';
+          fullBleed?: boolean;
+        };
+
+    const collagePieces: MobilePiece[] = [
+    // Space & Creation
+    {
+      kind: 'title',
+      id: 'title-space',
+      text: 'SPACE & CREATION',
+      row: 2,
+      rowSpan: 12,
+      col: 11,
+      colSpan: 2,
+    },
+    {
+      kind: 'image',
+      id: 'space-main',
+      interest: interests.spaceAndCreation[0],
+      row: 2,
+      rowSpan: 8,
+      col: 1,
+      colSpan: 12,
+      aspect: '4 / 3',
+      label: '街',
+      labelSide: 'left',
+      fullBleed: true,
+    },
+    {
+      kind: 'image',
+      id: 'space-architecture',
+      interest: interests.spaceAndCreation[1],
+      row: 8,
+      rowSpan: 6,
+      col: 2,
+      colSpan: 6,
+      aspect: '3 / 4',
+      label: '建築',
+      labelSide: 'right',
+    },
+    {
+      kind: 'image',
+      id: 'space-craft',
+      interest: interests.spaceAndCreation[3],
+      row: 8,
+      rowSpan: 6,
+      col: 7,
+      colSpan: 4,
+      aspect: '4 / 5',
+      label: '施工',
+      labelSide: 'left',
+    },
+    {
+      kind: 'image',
+      id: 'space-living',
+      interest: interests.spaceAndCreation[2],
+      row: 11,
+      rowSpan: 6,
+      col: 2,
+      colSpan: 10,
+      aspect: '4 / 3',
+      label: '暮らし',
+      labelSide: 'right',
+    },
+    {
+      kind: 'text',
+      id: 'space-summary',
+      text: '建築や不動産、そして日々の暮らしに潜む創造的な試み。機能と美が溶け合う場所も、ちいさな生活の工夫も、すべてが創造の一部',
+      align: 'left',
+      row: 6,
+      rowSpan: 2,
+      col: 2,
+      colSpan: 8,
+    },
+    // Culture & Exploration
+    {
+      kind: 'title',
+      id: 'title-culture',
+      text: 'ARTS & CULTURE',
+      row: 18,
+      rowSpan: 12,
+      col: 1,
+      colSpan: 2,
+      align: 'left',
+    },
+    {
+      kind: 'image',
+      id: 'culture-photo',
+      interest: interests.cultureAndExploration[0],
+      row: 18,
+      rowSpan: 8,
+      col: 1,
+      colSpan: 12,
+      aspect: '4 / 5',
+      label: '写真',
+      labelSide: 'left',
+      fullBleed: true,
+    },
+    {
+      kind: 'image',
+      id: 'culture-food',
+      interest: interests.cultureAndExploration[1],
+      row: 25,
+      rowSpan: 5,
+      col: 2,
+      colSpan: 5,
+      aspect: '1 / 1',
+      label: '食',
+      labelSide: 'right',
+    },
+    {
+      kind: 'image',
+      id: 'culture-nature',
+      interest: interests.cultureAndExploration[2],
+      row: 26,
+      rowSpan: 6,
+      col: 6,
+      colSpan: 6,
+      aspect: '3 / 4',
+      label: '自然',
+      labelSide: 'left',
+    },
+    {
+      kind: 'image',
+      id: 'culture-calligraphy',
+      interest: interests.cultureAndExploration[3],
+      row: 29,
+      rowSpan: 5,
+      col: 2,
+      colSpan: 5,
+      aspect: '3 / 4',
+      label: '書',
+      labelSide: 'right',
+    },
+    {
+      kind: 'image',
+      id: 'culture-travel',
+      interest: interests.cultureAndExploration[4],
+      row: 33,
+      rowSpan: 8,
+      col: 2,
+      colSpan: 11,
+      aspect: '10 / 13',
+      label: '旅',
+      labelSide: 'left',
+    },
+    {
+      kind: 'text',
+      id: 'culture-summary',
+      text: '人類が余暇を持て余した結果の産物。意味があることもあれば、まったくないことも。それでも心が動くから面白い。',
+      align: 'right',
+      row: 30,
+      rowSpan: 6,
+      col: 7,
+      colSpan: 6,
+    },
+    // Digital
+    {
+      kind: 'title',
+      id: 'title-digital',
+      text: 'DIGITAL & TECH',
+      row: 41,
+      rowSpan: 14,
+      col: 11,
+      colSpan: 2,
+    },
+    {
+      kind: 'image',
+      id: 'digital-design',
+      interest: interests.digital[1],
+      row: 42,
+      rowSpan: 4,
+      col: 1,
+      colSpan: 12,
+      aspect: '2 / 1',
+      label: '設計',
+      labelSide: 'left',
+      fit: 'cover',
+      fullBleed: true,
+    },
+    {
+      kind: 'image',
+      id: 'digital-data',
+      interest: interests.digital[0],
+      row: 47,
+      rowSpan: 7,
+      col: 2,
+      colSpan: 8,
+      aspect: '1 / 1',
+      label: '分析',
+      labelSide: 'left',
+      fullBleed: true,
+    },
+    {
+      kind: 'image',
+      id: 'digital-ai',
+      interest: interests.digital[2],
+      row: 54,
+      rowSpan: 6,
+      col: 8,
+      colSpan: 4,
+      aspect: '1 / 1',
+      label: 'AI',
+      labelSide: 'right',
+    },
+    {
+      kind: 'text',
+      id: 'digital-summary',
+      text: 'パソコンを触れば世界が広がる。クリックひとつでデザインが変わり、数字を眺めれば未来が見える。ちょっとコードを書けば画面が動く、その瞬間がもう感動。テクノロジーは「やってみたい」をすぐ形にする、最高の遊び道具。',
+      align: 'left',
+      row: 55,
+      rowSpan: 8,
+      col: 2,
+      colSpan: 10,
+    },
+  ];
 
     return (
-      <div className="md:hidden pb-16">
-        <div className="px-6 pt-16 pb-12 text-left space-y-1 bg-white text-gray-900">
-          <h2 className="text-4xl font-semibold leading-tight">Interests</h2>
-          <p className="text-sm text-gray-600">Things I care about right now.</p>
+      <div className="md:hidden pb-16 text-[#1f1f1f] relative overflow-hidden transition-colors duration-700 bg-white z-0">
+        {/* sectional backgrounds matching full-bleed images */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          {/* culture band */}
+          <div
+            className="absolute inset-x-0 top-[42%] h-[36%] z-0"
+            style={{
+              backgroundColor: '#ffffff',
+              backgroundImage: 'url("/images/asanoha.svg")',
+              backgroundSize: '140px 80px',
+              backgroundRepeat: 'repeat',
+            }}
+          />
+          {/* digital band */}
+          <div
+            className="absolute inset-x-0 top-[75%] h-[40%] z-0"
+            style={{
+              backgroundColor: '#0a0a0a',
+              backgroundImage: 'radial-gradient(#00887760 1px, #0a0a0a 1px)',
+              backgroundSize: '40px 40px',
+              backgroundRepeat: 'repeat',
+              backgroundPosition: 'center 8px',
+            }}
+          />
+          {/* separators */}
+          <div className="pointer-events-none absolute inset-x-0 top-[40%] h-14 bg-gradient-to-b from-white via-white to-white/0 z-10" />
+          {/* soften digital band entry and exit */}
+          <div className="pointer-events-none absolute inset-x-0 top-[75%] h-24 bg-gradient-to-b from-white/0 via-[#0a0a0a]/15 to-[#0a0a0a]/65 z-10" />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-36 bg-gradient-to-b from-[#0a0a0a]/55 via-[#0a0a0a]/25 to-white z-10" />
         </div>
+        <div className="px-6 pt-14 pb-8 space-y-3 text-sm leading-7 tracking-wide relative z-10">
+          <h2
+            className="text-[9vw] sm:text-6xl font-extrabold uppercase tracking-[0.35em] sm:tracking-[0.5em] text-gray-900 leading-[1] break-words mx-auto"
+            style={{
+              fontFamily: "'Montserrat', sans-serif",
+              WebkitTextStroke: '1px rgba(0,0,0,0.35)',
+            }}
+          >
+            My Interests
+          </h2>
+        </div>
+        <div
+          className="relative px-5"
+          style={{
+            gridAutoRows: 'minmax(40px, auto)',
+          }}
+        >
+          <div className="grid grid-cols-12 auto-rows-[minmax(40px,auto)] gap-3">
+            {collagePieces.map((piece) => {
+              if (piece.kind === 'text') {
+                return (
+                  <div
+                    key={piece.id}
+                    style={{
+                      gridColumn: `${piece.col} / span ${piece.colSpan ?? 12}`,
+                      gridRow: `${piece.row} / span ${piece.rowSpan ?? 2}`,
+                    }}
+                    className="flex items-center relative z-20"
+                  >
+                    <p
+                    className={`text-[13px] leading-7 ${
+                      piece.id.includes('space')
+                        ? 'text-gray-900'
+                        : piece.id.includes('culture')
+                          ? 'text-[#bb5555]'
+                          : piece.id.includes('digital')
+                            ? 'text-[#008877]'
+                            : 'text-gray-900'
+                    } ${piece.align === 'right' ? 'text-right w-full' : ''}`}
+                    >
+                      {piece.text}
+                    </p>
+                  </div>
+                );
+              } else if (piece.kind === 'title') {
+                const alignClass =
+                  piece.align === 'left'
+                    ? 'items-start'
+                    : piece.align === 'right'
+                      ? 'items-end'
+                      : 'items-center';
+                const titleColorClass = piece.id.includes('space')
+                  ? 'text-gray-900'
+                  : piece.id.includes('culture')
+                    ? 'text-[#bb5555]'
+                    : 'text-[#008877]';
+                return (
+                  <div
+                    key={piece.id}
+                    style={{
+                      gridColumn: `${piece.col} / span ${piece.colSpan ?? 12}`,
+                      gridRow: `${piece.row} / span ${piece.rowSpan ?? 4}`,
+                    }}
+                    className="pointer-events-none relative z-30"
+                  >
+                    <div className={`h-full w-full flex ${alignClass} justify-center`}>
+                      <motion.span
+                        initial={{ opacity: 0, y: 10, scale: 0.98 }}
+                        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.9, ease: 'easeOut' }}
+                        className={`text-6xl md:text-7xl font-extrabold tracking-[0.35em] uppercase drop-shadow-sm ${titleColorClass}`}
+                        style={{
+                          writingMode: 'vertical-rl',
+                          fontFamily: "'Montserrat', sans-serif",
+                          WebkitTextStroke: '1px rgba(0,0,0,0.35)',
+                          mixBlendMode: 'difference',
+                        }}
+                      >
+                        {piece.text}
+                      </motion.span>
+                    </div>
+                  </div>
+                );
+              }
 
-        <div className="space-y-0">
-          {sectionConfigs.map((section) => (
-            <section
-              key={section.key}
-              className={`space-y-6 px-6 py-10 ${section.bg}`}
-              style={{ color: section.text }}
-            >
-              <div className="text-3xl font-semibold leading-tight" style={{ color: section.text }}>
-                {section.label}
-              </div>
-              <div className="space-y-10">
-                {section.items.map((interest) => mobileCard(interest, section.link(interest.title), section))}
-              </div>
-            </section>
-          ))}
+              const href = linkFor(piece.interest);
+              const aspectRatio = piece.aspect || '3 / 4';
+              const fitClass = piece.fit === 'cover' ? 'object-cover' : 'object-contain';
+              const tilt = piece.tilt ? piece.tilt : '';
+              const fullBleedClass = piece.fullBleed ? '-mx-5 w-[calc(100%+2.5rem)]' : '';
+              const ImageBody = (
+                <motion.div
+                  whileHover={{ y: -2 }}
+                  whileTap={{ scale: 0.99 }}
+                  className={`relative overflow-hidden ${tilt}`}
+                  style={{ aspectRatio }}
+                >
+                  <div className="absolute inset-0">
+                    <Image
+                      src={piece.interest.imageUrl}
+                      alt={piece.interest.title}
+                      fill
+                      className={fitClass}
+                      sizes="100vw"
+                      quality={90}
+                    />
+                  </div>
+                  {piece.interest.title === 'Food' && (
+                    <button
+                      type="button"
+                      className="absolute bottom-2 right-2 text-white/90 drop-shadow"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        window.open('https://www.instagram.com/bababachef/', '_blank');
+                      }}
+                      aria-label="Open Instagram"
+                    >
+                      <FaInstagram />
+                    </button>
+                  )}
+                </motion.div>
+              );
+
+              const ImageWrapper =
+                piece.interest.title === 'Artificial Intelligence' ? (
+                  ImageBody
+                ) : (
+                  <Link href={href}>{ImageBody}</Link>
+                );
+
+              return (
+                <div
+                  key={piece.id}
+                  style={{
+                    gridColumn: `${piece.col} / span ${piece.colSpan ?? 10}`,
+                    gridRow: `${piece.row} / span ${piece.rowSpan ?? 5}`,
+                  }}
+                  className="relative"
+                >
+                  <div className={`space-y-3 ${fullBleedClass}`}>
+                    {ImageWrapper}
+                    {/* description hidden on mobile collage */}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     );
@@ -742,7 +1058,9 @@ export default function InterestsSection() {
       </motion.svg>
 
       <div className="pt-16 pb-16 md:pt-24 md:pb-24 text-center relative z-10">
-        <h2 className="font-bold leading-tight text-gray-900 text-[clamp(3rem,8vw,6rem)]">
+        <h2
+          className="font-bold leading-tight text-gray-900 text-[clamp(3rem,8vw,6rem)]"
+        >
           My Interests
         </h2>
       </div>
@@ -769,8 +1087,8 @@ export default function InterestsSection() {
             viewport={{ once: true }}
             className="md:col-span-2 opacity-80 leading-relaxed text-[clamp(0.95rem,0.8rem+0.35vw,1.05rem)]"
           >
-            建築や不動産、そして日々の暮らしに潜む創造的な試み。<br />
-            機能と美が溶け合う場所も、ちょっとした生活の工夫も、全部どう楽しむかという創造の一部。
+                        建築や不動産、そして日々の暮らしに潜む創造的な試み。<br />
+            機能と美が溶け合う場所も、ちいさな生活の工夫も、すべてが創造の一部。
           </motion.p>
         </div>
         <div className="w-full max-w-7xl mx-auto">
@@ -807,9 +1125,9 @@ export default function InterestsSection() {
             viewport={{ once: true }}
             className="md:col-span-2 opacity-80 leading-relaxed text-[clamp(0.95rem,0.8rem+0.35vw,1.05rem)]"
           >
-            人類が暇を持て余した結果の産物。<br />
+                        人類が余暇を持て余した結果の産物。<br />
             絵を描いたり、歌ったり、踊ったり。<br />
-            意味があることもあれば、まったくないこともある。けど、それがいい。
+            意味があることもあれば、まったくないことも。それでも心が動くから面白い。
           </motion.p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-x-16 gap-y-32 w-full max-w-7xl mx-auto">
@@ -875,10 +1193,10 @@ export default function InterestsSection() {
                 viewport={{ once: true }}
                 className="md:col-span-2 opacity-80 leading-relaxed text-[clamp(0.95rem,0.8rem+0.35vw,1.05rem)]"
             >
-                パソコンを触れば世界が広がる。<br />
-                クリックひとつでデザインが変わり、数字をいじれば未来が見える。<br />
+                                パソコンを触れば世界が広がる。<br />
+                クリックひとつでデザインが変わり、数字を眺めれば未来が見える。<br />
                 ちょっとコードを書けば画面が動く、その瞬間がもう感動。<br />
-                テクノロジーは「やってみたい」をすぐ形にする、最高の遊び道具だ。
+                テクノロジーは「やってみたい」をすぐ形にする、最高の遊び道具。
             </motion.p>
         </div>
         <div className="flex-1 w-full max-w-7xl mx-auto">
@@ -890,6 +1208,11 @@ export default function InterestsSection() {
     </>
   );
 }
+
+
+
+
+
 
 
 

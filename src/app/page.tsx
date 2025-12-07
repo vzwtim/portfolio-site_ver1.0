@@ -2,12 +2,19 @@
 
 import FadeInImage from "@/components/FadeInImage";
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { useEffect } from 'react';
 import dynamic from 'next/dynamic';
 
 const InterestsSection = dynamic(() => import("../components/InterestsSection"), { ssr: false });
 
 export default function Home() {
   const { scrollYProgress } = useScroll();
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      window.scrollTo({ top: 0, behavior: 'auto' });
+    }
+  }, []);
 
   // Parallax for hero section background
   const yBg = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
@@ -24,28 +31,35 @@ export default function Home() {
           className="absolute inset-0 z-0"
         >
           <FadeInImage
+            src="/images/mv_gomoku_1_mobile.jpg"
+            alt="Gomoku Rice"
+            fill
+            className="block md:hidden object-cover"
+            loading="eager"
+            sizes="100vw"
+          />
+          <FadeInImage
             src="/images/mv_gomoku_1.jpg"
             alt="Gomoku Rice"
             fill
-            className="md:object-cover object-contain"
-            priority
+            className="hidden md:block object-cover"
+            loading="eager"
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-black/40" />
+          <div className="absolute inset-0 bg-black/20 md:bg-black/40" />
         </motion.div>
         
         <motion.div
           style={{ y: yText, opacity: opacityText }}
-          className="relative z-10 text-center px-4 md:px-20 pt-16 md:pt-0 max-w-6xl mx-auto"
+          className="relative z-10 px-4 md:px-20 pt-0 md:pt-0 max-w-6xl mx-auto flex justify-center items-start text-center pl-8"
         >
           {/* Main Catchphrase - Simple and Clean */}
-          <div className="flex justify-center items-center">
-            <h1
-              className="text-white text-3xl sm:text-5xl md:text-6xl font-light tracking-normal md:tracking-wider whitespace-nowrap pl-10"
-              style={{ fontFamily: '"Shippori Mincho", serif' }}
-            > ぼくは、五目飯。
-            </h1>
-          </div>
+          <h1
+            className="text-white text-3xl sm:text-5xl md:text-6xl font-light tracking-normal md:tracking-wider whitespace-pre-line text-center"
+            style={{ fontFamily: '"Shippori Mincho", serif' }}
+          >
+            ぼくは、五目飯。
+          </h1>
         </motion.div>
       </section>
 

@@ -15,11 +15,14 @@ const ShadowAnimation: React.FC<{ children?: React.ReactNode }> = ({ children })
 
   return (
     <div className="relative w-full overflow-hidden mb-[-1px]">
+      {/* 上端のラインを隠すためのホワイトカバー */}
+      <div className="pointer-events-none absolute inset-x-0 -top-1 h-4 bg-white z-20" />
       {/* 背景画像 */}
       <motion.img
         src="/images/back.svg"
         alt="Panoramic Silhouette Landscape"
-        style={{ width: '100%', height: 'auto' }}
+        className="block"
+        style={{ width: '100%', height: 'auto', marginTop: '-8px' }}
       />
 
       {/* 桜の花びら */}
