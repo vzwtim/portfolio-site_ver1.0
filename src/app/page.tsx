@@ -3,9 +3,7 @@
 import FadeInImage from "@/components/FadeInImage";
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useEffect } from 'react';
-import dynamic from 'next/dynamic';
-
-const InterestsSection = dynamic(() => import("../components/InterestsSection"), { ssr: false });
+import InterestsSection from "../components/InterestsSection";
 
 export default function Home() {
   const { scrollYProgress } = useScroll();
