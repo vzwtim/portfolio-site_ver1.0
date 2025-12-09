@@ -21,7 +21,7 @@ interface ClientLayoutProps {
 }
 
 export default function ClientLayout({ children }: ClientLayoutProps) {
-  const pathname = usePathname();
+  const pathname = usePathname() ?? '';
   const [isLoading, setIsLoading] = useState(true);
   const isWorkDetailPage = pathname.startsWith('/works/') && pathname !== '/works';
   const isAppsPage = pathname === '/apps';
