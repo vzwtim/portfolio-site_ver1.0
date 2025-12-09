@@ -1032,11 +1032,10 @@ export default function InterestsSection() {
       {renderMobileLayout()}
       <motion.div
         ref={containerRef}
-        className={`relative overflow-hidden transition-colors duration-1000 ease-out hidden md:block`}
-        initial={{ opacity: 0, y: 80, scale: 0.97 }}
-        whileInView={{ opacity: 1, y: 0, scale: 1 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.9, ease: 'easeOut' }}
+        className="relative overflow-hidden transition-colors duration-1000 ease-out hidden md:block"
+        initial={{ opacity: 0, y: 40, scale: 0.98 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.8, ease: 'easeOut' }}
       >
       <motion.svg
         className="absolute inset-0 w-full h-full pointer-events-none"
