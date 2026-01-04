@@ -46,8 +46,8 @@ export default function Home() {
 
       // Animate overlay opacity
       timeline.fromTo(overlayRef.current, 
-        { opacity: 0 }, 
-        { opacity: 0.6, ease: 'power1.inOut' }, 
+        { opacity: 0.2 }, 
+        { opacity: 0.8, ease: 'power1.inOut' }, 
         0
       );
 
@@ -56,22 +56,22 @@ export default function Home() {
                 yPercent: -50,
                 opacity: 0,
                 ease: "power2.in",
-                duration: 0.25
-              }, 0.25);
+                duration: 0.2
+              }, 0.05);
           
               timeline.fromTo(aboutTextRef.current, 
-                { yPercent: 50, opacity: 0 },
-                { yPercent: 0, opacity: 1, ease: "power2.out", duration: 0.25 },
-                0.25
+                { yPercent: 200, opacity: 0 },
+                { yPercent: 0, opacity: 1, ease: "power2.out", duration: 0.15 },
+                0.15
               );
           
               // Phase 4: aboutText leaves
               timeline.to(aboutTextRef.current, {
-                yPercent: -50,
-                opacity: 0,
+                yPercent: -600,
+                opacity: 0.5,
                 ease: "power2.in",
                 duration: 0.25
-              }, 0.75);    }, 100); // 100ms delay to wait for dynamic components
+              }, 0.25);    }, 100); // 100ms delay to wait for dynamic components
 
     // Cleanup
     return () => {
@@ -125,7 +125,7 @@ export default function Home() {
             {/* About Text - Initially hidden */}
             <div ref={aboutTextRef} className="opacity-0">
               <div className="w-24 h-px bg-white/50 mx-auto mb-8"></div>
-              <p className="text-white text-base sm:text-lg leading-relaxed max-w-3xl mx-auto" style={{ fontFamily: '"Shippori Mincho", serif' }}>
+              <p className="text-white text-base md:text-lg leading-relaxed max-w-3xl mx-auto" style={{ fontFamily: '"Shippori Mincho", serif' }}>
                 ひとつに絞れない。<br />
                 空間も、仕組みも、体験も。<br />
                 いろんなことに手を出しちゃう。<br />
