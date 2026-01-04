@@ -8,10 +8,10 @@ import SkillsChart from "@/components/SkillsChart";
 import { skillsByStage, type StageKey } from "@/data/skills";
 
 const journeyData = [
-  { year: "1999 – 2018", event_jp: "仙台で育つ", event_en: "Birthplace", details_jp: "熊鹿がたまに出るような団地の山際でのんびり成長する。", details_en: "Raised in Sendai, Japan, in an area where housing complexes, residential neighborhoods, and nature coexist.", image: "/images/film_color_10.jpg" },
-  { year: "2015 – 2018", event_jp: "仙台第二高等学校", event_en: "High School", details_jp: "中高ではテニス部に所属。休み時間はゲームするような少しオタク。", details_en: "Played tennis in high school, learning persistence and how to function within a team and organization.", image: "/images/film_color_11.jpg" },
-  { year: "2018 – 2022", event_jp: "東京大学 工学部 建築学科", event_en: "University", details_jp: "ものづくり、建築から不良住宅や住環境に関心が広がり、社会にインパクトを与えるアイデアを思考し続ける。", details_en: "Studied architecture at the University of Tokyo. Developed an interest in substandard housing and living environments, often exploring ideas aimed at creating social impact through architecture.", image: "/images/figure_bachelor_1.png" },
-  { year: "2022 – 2024", event_jp: "東京大学大学院 新領域創成科学研究科 社会文化環境学専攻", event_en: "Graduate School", details_jp: "社会・環境・人類学などへ関心を広げ、「まちはつくるものか、できてくるものか」を問い続ける。", details_en: "Completed a master’s program at the University of Tokyo. Expanded interests into society, environment, and anthropology, while questioning whether cities are designed or emergent.", image: "/images/figure_master_1.png" },
+  { year: "1999 – 2018", event_jp: "仙台で育つ", event_en: "Birthplace", details_jp: "熊鹿がたまに出るような団地の山際でのんびり成長する。", details_en: "Raised in Sendai, Japan, in an area where housing complexes, residential neighborhoods, and nature coexist.", image: "/images/me_mountain_1.jpg" },
+  { year: "2015 – 2018", event_jp: "仙台第二高等学校", event_en: "High School", details_jp: "中高ではテニス部に所属。休み時間はゲームするような少しオタク。", details_en: "Played tennis in high school, learning persistence and how to function within a team and organization.", image: "/images/me_tennis_1.jpg" },
+  { year: "2018 – 2022", event_jp: "東京大学 工学部 建築学科", event_en: "University", details_jp: "ものづくり、建築から不良住宅や住環境に関心が広がり、社会にインパクトを与えるアイデアを思考し続ける。", details_en: "Studied architecture at the University of Tokyo. Developed an interest in substandard housing and living environments, often exploring ideas aimed at creating social impact through architecture.", image: "/images/drawing_aris.jpg" },
+  { year: "2022 – 2024", event_jp: "東京大学大学院 新領域創成科学研究科 社会文化環境学専攻", event_en: "Graduate School", details_jp: "社会・環境・人類学などへ関心を広げ、「まちはつくるものか、できてくるものか」を問い続ける。", details_en: "Completed a master’s program at the University of Tokyo. Expanded interests into society, environment, and anthropology, while questioning whether cities are designed or emergent.", image: "/images/figure_master.webp" },
   { year: "2024 – Present", event_jp: "不動産デベロッパー", event_en: "Career", details_jp: "用地取得・企画開発、保有賃貸不動産のAM、SPCへのエクイティ出資に従事。\nまた、経営企画にて組織風土改善PJに参画、DX勉強会を立ち上げるなど、会社の仕組みや意思決定プロセスへの関心を深めている。", details_en: "Working as a real estate developer, engaged in land acquisition, residential development, and asset management. Also involved in investment projects, viewing real estate from a financial perspective.\nIn parallel, participating in corporate planning and DX initiatives, developing an interest in organizational structures and decision-making processes.", image: "/images/building_osaka.jpg" },
   { year: "Future", event_jp: "一人デベロッパー", event_en: "Independent Development", details_jp: "小さな規模でも、構想から実装までを担う一人デベロッパーとしての可能性。", details_en: "Exploring the possibility of independent real estate development, handling projects from concept to execution on a small scale.", isFuture: true },
   { year: "Future", event_jp: "経営・戦略コンサルティング", event_en: "Strategy & Consulting", details_jp: "組織の「仕組み」の変革・構築について、経営企画・事業設計の立場から関わる道。", details_en: "Contributing through corporate strategy and business design, viewing real estate and architecture as systems rather than isolated projects.", isFuture: true },
@@ -67,7 +67,7 @@ export default function About() {
 
   return (
     <>
-      <div className="fixed top-0 left-0 w-full h-screen -z-10">
+      <div className="fixed top-0 left-0 w-full h-screen -z-5">
         <div className="absolute top-0 left-0 w-full h-full bg-black"></div>
         <Image
           src="/images/building_osaka.jpg"
@@ -94,9 +94,9 @@ export default function About() {
               </div>
               <div className="max-w-3xl mx-auto">
                 <p className="text-base md:text-lg leading-relaxed text-gray-100 mb-4 whitespace-pre-line">
-                  {`建築と社会のあいだで考え続けた末、いまは不動産デベロッパーとして、都市に関与しています。
+                  {`建築・社会学を専攻し、いまは不動産開発をしています。
                   東京を歩き、建築を考えながら、旧耐震の和室でちゃぶ台を前に暮らしています。
-                  今のうちに一度は、こうした住まい方をしておきたかった。`}
+                  `}
                 </p>
                 <p className="text-sm md:text-base leading-relaxed text-gray-400 whitespace-pre-line">
                   {`After studying architecture and society, I am now involved in cities as a real estate developer.
@@ -157,9 +157,6 @@ export default function About() {
               <div className="max-w-2xl mx-auto">
                 <p className="text-base md:text-lg leading-relaxed text-gray-800 mb-2">
                   いずれか一つに決めるのではなく、考え続けながら関わり方を更新していきたい。
-                </p>
-                <p className="text-sm md:text-base leading-relaxed text-gray-500">
-                  Rather than committing to a single path, I aim to keep refining how I engage with cities over time.
                 </p>
               </div>
             </section>

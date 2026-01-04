@@ -56,13 +56,13 @@ export default function Home() {
                 yPercent: -50,
                 opacity: 0,
                 ease: "power2.in",
-                duration: 0.2
-              }, 0.05);
+                duration: 0.1
+              }, 0);
           
               timeline.fromTo(aboutTextRef.current, 
                 { yPercent: 200, opacity: 0 },
-                { yPercent: 0, opacity: 1, ease: "power2.out", duration: 0.15 },
-                0.15
+                { yPercent: 0, opacity: 1, ease: "power2.out", duration: 0.1 },
+                0.05
               );
           
               // Phase 4: aboutText leaves
@@ -70,8 +70,8 @@ export default function Home() {
                 yPercent: -600,
                 opacity: 0.5,
                 ease: "power2.in",
-                duration: 0.25
-              }, 0.25);    }, 100); // 100ms delay to wait for dynamic components
+                duration: 0.1
+              }, 0.2);    }, 100); // 100ms delay to wait for dynamic components
 
     // Cleanup
     return () => {
