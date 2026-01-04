@@ -66,94 +66,107 @@ export default function About() {
   const [stage, setStage] = useState<StageKey>("current");
 
   return (
-    <main className="bg-white text-gray-800 pt-24 md:pt-32 px-4 md:px-8 min-h-screen">
-      <div className="max-w-5xl mx-auto">
-
-        {/* Opening Section */}
-        <motion.section
-          className="text-center mb-24 md:mb-32"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <div className="w-full max-w-xs md:max-w-sm relative mx-auto mb-8">
-            <Image src="/images/babayudai_logo.svg" alt="YUDAI Logo" width={500} height={500} className="object-contain" quality={90} priority />
-          </div>
-          <div className="max-w-3xl mx-auto">
-            <p className="text-base md:text-lg leading-relaxed text-gray-800 mb-4 whitespace-pre-line">
-              {`建築と社会のあいだで考え続けた末、いまは不動産デベロッパーとして、都市に関与しています。
-              東京を歩き、建築を考えながら、旧耐震の和室でちゃぶ台を前に暮らしています。
-              今のうちに一度は、こうした住まい方をしておきたかった。`}
-            </p>
-            <p className="text-sm md:text-base leading-relaxed text-gray-500 whitespace-pre-line">
-              {`After studying architecture and society, I am now involved in cities as a real estate developer.
-              Living in an old Japanese-style room in Tokyo, sitting at a low table while walking the city and thinking about architecture. It is simply a way of living I wanted to experience while I still could.`}
-            </p>
-          </div>
-        </motion.section>
-
-        {/* Journey Section */}
-        <section className="mb-24 md:mb-32">
-          <motion.h2 className="font-display text-4xl md:text-5xl font-extrabold mb-16 text-center text-gray-900" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, amount: 0.5 }}>
-            Journey
-          </motion.h2>
-          <div className="relative">
-            {journeyData.map((item, index) => (
-              <TimelineItem key={index} item={item} isLast={index === journeyData.length - 1} />
-            ))}
-          </div>
-        </section>
-
-        {/* Skills Section */}
-        <section className="mb-24 md:mb-32">
-          <motion.h2 className="font-display text-4xl md:text-5xl font-extrabold mb-12 text-center text-gray-900" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, amount: 0.5 }}>
-            Skills
-          </motion.h2>
-          <div className="flex justify-center flex-wrap gap-3 mb-8">
-            {STAGES.map(({ key, label }) => (
-              <button
-                key={key}
-                onClick={() => setStage(key)}
-                className={`px-4 py-2 rounded-full text-sm font-medium border transition-all duration-300 ${
-                  stage === key
-                    ? "bg-[#bb5555] text-white border-[#bb5555] shadow-lg shadow-[#bb5555]/20"
-                    : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50 hover:border-gray-400"
-                }`}
-                aria-pressed={stage === key}
-              >
-                {label}
-              </button>
-            ))}
-          </div>
-          <motion.div
-            className="bg-gray-50/70 p-4 sm:p-6 md:p-8 rounded-xl border border-gray-200/80"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.5 }}
-            transition={{ duration: 0.6 }}
-          >
-            <SkillsChart stageData={skillsByStage[stage]} />
-          </motion.div>
-        </section>
-
-        {/* Closing Section */}
-        <motion.section
-          className="text-center mb-24 md:mb-32"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, amount: 0.5 }}
-        >
-          <div className="max-w-2xl mx-auto">
-            <p className="text-base md:text-lg leading-relaxed text-gray-800 mb-2">
-              いずれか一つに決めるのではなく、考え続けながら関わり方を更新していきたい。
-            </p>
-            <p className="text-sm md:text-base leading-relaxed text-gray-500">
-              Rather than committing to a single path, I aim to keep refining how I engage with cities over time.
-            </p>
-          </div>
-        </motion.section>
-
+    <>
+      <div className="fixed top-0 left-0 w-full h-screen -z-10">
+        <div className="absolute top-0 left-0 w-full h-full bg-black"></div>
+        <Image
+          src="/images/building_osaka.jpg"
+          alt="Background Image"
+          layout="fill"
+          objectFit="cover"
+          className="opacity-40"
+        />
       </div>
-    </main>
+
+      <main>
+        {/* Opening Section */}
+        <section
+          className="relative h-screen flex flex-col items-center justify-center text-center text-white"
+        >
+          <div className="relative z-10 px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <div className="w-full max-w-xs md:max-w-sm relative mx-auto mb-8">
+                <Image src="/images/babayudai_logo.svg" alt="YUDAI Logo" width={500} height={500} className="object-contain" quality={90} priority />
+              </div>
+              <div className="max-w-3xl mx-auto">
+                <p className="text-base md:text-lg leading-relaxed text-gray-100 mb-4 whitespace-pre-line">
+                  {`建築と社会のあいだで考え続けた末、いまは不動産デベロッパーとして、都市に関与しています。
+                  東京を歩き、建築を考えながら、旧耐震の和室でちゃぶ台を前に暮らしています。
+                  今のうちに一度は、こうした住まい方をしておきたかった。`}
+                </p>
+                <p className="text-sm md:text-base leading-relaxed text-gray-400 whitespace-pre-line">
+                  {`After studying architecture and society, I am now involved in cities as a real estate developer.
+                  Living in an old Japanese-style room in Tokyo, sitting at a low table while walking the city and thinking about architecture. It is simply a way of living I wanted to experience while I still could.`}
+                </p>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Other sections on white background */}
+        <div className="relative bg-white text-gray-800">
+          <div className="max-w-5xl mx-auto pt-24 md:pt-32 px-4 md:px-8">
+            
+            <section className="mb-24 md:mb-32">
+              <motion.h2 className="font-display text-4xl md:text-5xl font-extrabold mb-16 text-center text-gray-900" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, amount: 0.5 }}>
+                Journey
+              </motion.h2>
+              <div className="relative">
+                {journeyData.map((item, index) => (
+                  <TimelineItem key={index} item={item} isLast={index === journeyData.length - 1} />
+                ))}
+              </div>
+            </section>
+
+            <section className="mb-24 md:mb-32">
+              <motion.h2 className="font-display text-4xl md:text-5xl font-extrabold mb-12 text-center text-gray-900" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, amount: 0.5 }}>
+                Skills
+              </motion.h2>
+              <div className="flex justify-center flex-wrap gap-3 mb-8">
+                {STAGES.map(({ key, label }) => (
+                  <button
+                    key={key}
+                    onClick={() => setStage(key)}
+                    className={`px-4 py-2 rounded-full text-sm font-medium border transition-all duration-300 ${
+                      stage === key
+                        ? "bg-[#bb5555] text-white border-[#bb5555] shadow-lg shadow-[#bb5555]/20"
+                        : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50 hover:border-gray-400"
+                    }`}
+                    aria-pressed={stage === key}
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
+              <motion.div
+                className="bg-gray-50/70 p-4 sm:p-6 md:p-8 rounded-xl border border-gray-200/80"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.5 }}
+                transition={{ duration: 0.6 }}
+              >
+                <SkillsChart stageData={skillsByStage[stage]} />
+              </motion.div>
+            </section>
+
+            <section className="text-center mb-24 md:mb-32">
+              <div className="max-w-2xl mx-auto">
+                <p className="text-base md:text-lg leading-relaxed text-gray-800 mb-2">
+                  いずれか一つに決めるのではなく、考え続けながら関わり方を更新していきたい。
+                </p>
+                <p className="text-sm md:text-base leading-relaxed text-gray-500">
+                  Rather than committing to a single path, I aim to keep refining how I engage with cities over time.
+                </p>
+              </div>
+            </section>
+
+          </div>
+        </div>
+      </main>
+    </>
   );
 }

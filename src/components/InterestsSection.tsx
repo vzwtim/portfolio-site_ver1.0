@@ -318,7 +318,7 @@ export default function InterestsSection() {
     }
 
     if (digitalInView) {
-      setBgColor('bg-[#0a0a0a]');
+      setBgColor('bg-white');
       setTextColor('text-[#008877]');
     } else if (cultureInView && !digitalInView) {
       setBgColor('bg-white');
@@ -1031,6 +1031,7 @@ export default function InterestsSection() {
     <>
       {renderMobileLayout()}
       <motion.div
+        id="interests-section-container"
         ref={containerRef}
         className="relative overflow-hidden transition-colors duration-1000 ease-out hidden md:block"
         initial={{ opacity: 0, y: 40, scale: 0.98 }}
@@ -1078,6 +1079,7 @@ export default function InterestsSection() {
 
       {/* Space & Creation */}
       <section
+        id="space-and-creation-section"
         ref={spaceRef}
         className="relative z-10 pb-24 md:pb-48 px-4 md:px-20 text-black"
       >
