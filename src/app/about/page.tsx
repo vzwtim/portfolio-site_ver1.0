@@ -6,17 +6,18 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import SkillsChart from "@/components/SkillsChart";
 import { skillsByStage, type StageKey } from "@/data/skills";
+import BackgroundImageSlideshow from '@/components/BackgroundImageSlideshow';
 
 const journeyData = [
-  { year: "1999 – 2018", event_jp: "仙台で育つ", event_en: "Birthplace", details_jp: "熊鹿がたまに出るような団地の山際でのんびり成長する。", details_en: "Raised in Sendai, Japan, in an area where housing complexes, residential neighborhoods, and nature coexist.", image: "/images/me_mountain_1.jpg" },
-  { year: "2015 – 2018", event_jp: "仙台第二高等学校", event_en: "High School", details_jp: "中高ではテニス部に所属。休み時間はゲームするような少しオタク。", details_en: "Played tennis in high school, learning persistence and how to function within a team and organization.", image: "/images/me_tennis_1.jpg" },
-  { year: "2018 – 2022", event_jp: "東京大学 工学部 建築学科", event_en: "University", details_jp: "ものづくり、建築から不良住宅や住環境に関心が広がり、社会にインパクトを与えるアイデアを思考し続ける。", details_en: "Studied architecture at the University of Tokyo. Developed an interest in substandard housing and living environments, often exploring ideas aimed at creating social impact through architecture.", image: "/images/drawing_aris.jpg" },
-  { year: "2022 – 2024", event_jp: "東京大学大学院 新領域創成科学研究科 社会文化環境学専攻", event_en: "Graduate School", details_jp: "社会・環境・人類学などへ関心を広げ、「まちはつくるものか、できてくるものか」を問い続ける。", details_en: "Completed a master’s program at the University of Tokyo. Expanded interests into society, environment, and anthropology, while questioning whether cities are designed or emergent.", image: "/images/figure_master.webp" },
-  { year: "2024 – Present", event_jp: "不動産デベロッパー", event_en: "Career", details_jp: "用地取得・企画開発、保有賃貸不動産のAM、SPCへのエクイティ出資に従事。\nまた、経営企画にて組織風土改善PJに参画、DX勉強会を立ち上げるなど、会社の仕組みや意思決定プロセスへの関心を深めている。", details_en: "Working as a real estate developer, engaged in land acquisition, residential development, and asset management. Also involved in investment projects, viewing real estate from a financial perspective.\nIn parallel, participating in corporate planning and DX initiatives, developing an interest in organizational structures and decision-making processes.", image: "/images/building_osaka.jpg" },
-  { year: "Future", event_jp: "一人デベロッパー", event_en: "Independent Development", details_jp: "小さな規模でも、構想から実装までを担う一人デベロッパーとしての可能性。", details_en: "Exploring the possibility of independent real estate development, handling projects from concept to execution on a small scale.", isFuture: true },
-  { year: "Future", event_jp: "経営・戦略コンサルティング", event_en: "Strategy & Consulting", details_jp: "組織の「仕組み」の変革・構築について、経営企画・事業設計の立場から関わる道。", details_en: "Contributing through corporate strategy and business design, viewing real estate and architecture as systems rather than isolated projects.", isFuture: true },
-  { year: "Future", event_jp: "ホテル開発", event_en: "Hotel Development", details_jp: "建築のこだわりや土地の歴史を、体験としてどう立ち上げられるかを考えている。", details_en: "Deepening involvement in hospitality and hotel development, building on current experience in this field.", isFuture: true },
-  { year: "Future", event_jp: "投資・金融", event_en: "Investment & Finance", details_jp: "エクイティ出資や個人投資を通じて学び・関心を深めている金融分野。「つくる側」とは異なる視点から不動産に関与する選択肢。", details_en: "Exploring real estate and finance from the investment side, engaging with the built environment from a perspective different from development.", isFuture: true },
+  { year: "1999 – 2018", event_jp: "仙台で育つ", event_en: "Birthplace", details_jp: "熊鹿がたまに出るような団地の山際でのんびり成長する。", details_en: "I grew up leisurely on the edge of a mountain in a housing complex where bears and deer sometimes appeared.", image: "/images/me_mountain_1.jpg" },
+  { year: "2015 – 2018", event_jp: "仙台第二高等学校", event_en: "High School", details_jp: "中高ではテニス部に所属。休み時間はゲームするような少しオタク。", details_en: "I was in the tennis club in middle and high school. During breaks, I was a bit of a geek who played games.", image: "/images/me_tennis_1.jpg" },
+  { year: "2018 – 2022", event_jp: "東京大学 工学部 建築学科", event_en: "University", details_jp: "ものづくり、建築から不良住宅や住環境に関心が広がり、社会にインパクトを与えるアイデアを思考し続ける。", details_en: "My interest expanded from craftsmanship and architecture to substandard housing and living environments, and I continue to think about ideas that have a social impact.", image: "/images/drawing_aris.jpg" },
+  { year: "2022 – 2024", event_jp: "東京大学大学院 新領域創成科学研究科 社会文化環境学専攻", event_en: "Graduate School", details_jp: "社会・環境・人類学などへ関心を広げ、「まちはつくるものか、できてくるものか」を問い続ける。", details_en: "I expanded my interests to sociology, the environment, and anthropology, and continue to ask, 'Are cities made, or do they just happen?'", image: "/images/figure_master.webp" },
+  { year: "2024 – Present", event_jp: "不動産デベロッパー", event_en: "Career", details_jp: "用地取得・企画開発、保有賃貸不動産のAM、SPCへのエクイティ出資に従事。\nまた、経営企画にて組織風土改善PJに参画、DX勉強会を立ち上げるなど、会社の仕組みや意思決定プロセスへの関心を深めている。", details_en: "Engaged in land acquisition, project planning, asset management of rental properties, and equity investment in special purpose companies.\nAlso, I am deepening my interest in company structures and decision-making processes by participating in a corporate culture reform project and launching a DX study group in the corporate planning department.", image: "/images/building_osaka.jpg" },
+  { year: "Future", event_jp: "一人デベロッパー", event_en: "Independent Development", details_jp: "小さな規模でも、構想から実装までを担う一人デベロッパーとしての可能性。", details_en: "The potential of being a solo developer who handles everything from conception to implementation, even on a small scale.", isFuture: true },
+  { year: "Future", event_jp: "経営・戦略コンサルティング", event_en: "Strategy & Consulting", details_jp: "組織の「仕組み」の変革・構築について、経営企画・事業設計の立場から関わる道。", details_en: "A path to be involved in the transformation and construction of organizational 'systems' from the standpoint of corporate planning and business design.", isFuture: true },
+  { year: "Future", event_jp: "ホテル開発", event_en: "Hotel Development", details_jp: "建築のこだわりや土地の歴史を、体験としてどう立ち上げられるかを考えている。", details_en: "I am thinking about how to launch architectural commitment and the history of the land as an experience.", isFuture: true },
+  { year: "Future", event_jp: "投資・金融", event_en: "Investment & Finance", details_jp: "エクイティ出資や個人投資を通じて学び・関心を深めている金融分野。「つくる側」とは異なる視点から不動産に関与する選択肢。", details_en: "The financial sector, where I am deepening my learning and interest through equity investments and personal investment. An option to get involved with real estate from a different perspective than the 'creator side'.", isFuture: true },
 ];
 
 const STAGES: { key: StageKey; label: string }[] = [
@@ -67,16 +68,7 @@ export default function About() {
 
   return (
     <>
-      <div className="fixed top-0 left-0 w-full h-screen -z-5">
-        <div className="absolute top-0 left-0 w-full h-full bg-black"></div>
-        <Image
-          src="/images/building_osaka.jpg"
-          alt="Background Image"
-          layout="fill"
-          objectFit="cover"
-          className="opacity-40"
-        />
-      </div>
+      <BackgroundImageSlideshow />
 
       <main>
         {/* Opening Section */}
@@ -99,8 +91,8 @@ export default function About() {
                   `}
                 </p>
                 <p className="text-sm md:text-base leading-relaxed text-gray-400 whitespace-pre-line">
-                  {`After studying architecture and society, I am now involved in cities as a real estate developer.
-                  Living in an old Japanese-style room in Tokyo, sitting at a low table while walking the city and thinking about architecture. It is simply a way of living I wanted to experience while I still could.`}
+                  {`I majored in architecture and sociology, and now I work in real estate development.
+                  I live in a pre-earthquake-code Japanese-style room in Tokyo, in front of a low dining table, while walking around the city and thinking about architecture.`}
                 </p>
               </div>
             </motion.div>
@@ -109,7 +101,7 @@ export default function About() {
 
         {/* Other sections on white background */}
         <div className="relative bg-white text-gray-800">
-          <div className="max-w-5xl mx-auto pt-24 md:pt-32 px-4 md:px-8">
+          <div className="max-w-5xl mx-auto pt-24 md:pt-32 pb-24 md:pb-32 px-4 md:px-8">
             
             <section className="mb-24 md:mb-32">
               <motion.h2 className="font-display text-4xl md:text-5xl font-extrabold mb-16 text-center text-gray-900" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, amount: 0.5 }}>
@@ -153,11 +145,8 @@ export default function About() {
               </motion.div>
             </section>
 
-            <section className="text-center mb-24 md:mb-32">
+            <section className="text-center">
               <div className="max-w-2xl mx-auto">
-                <p className="text-base md:text-lg leading-relaxed text-gray-800 mb-2">
-                  いずれか一つに決めるのではなく、考え続けながら関わり方を更新していきたい。
-                </p>
               </div>
             </section>
 

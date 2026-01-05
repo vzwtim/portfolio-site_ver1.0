@@ -17,7 +17,7 @@ const ShadowAnimation: React.FC<{ children?: React.ReactNode }> = ({ children })
       <motion.img
         src="/images/back.svg"
         alt="Panoramic Silhouette Landscape"
-        className="block"
+        className="block bg-white"
         style={{ width: '100%', height: 'auto', marginTop: '-8px' }}
       />
 
