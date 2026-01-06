@@ -49,7 +49,7 @@ export default async function WorksPage({ searchParams }: WorksPageProps) {
       <h1 className="text-5xl font-extrabold mb-12 mt-24 text-center">
         works?
       </h1>
-      <div className="flex justify-center flex-wrap gap-2 mb-12 text-sm">
+      <div className="flex justify-center flex-wrap gap-2 mb-12 text-sm" style={{ display: 'none' }}>
         <Link
           href="/works"
           className={`px-2 py-1 rounded border transition-colors ${
