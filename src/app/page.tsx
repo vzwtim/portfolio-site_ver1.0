@@ -1,11 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
-import { hotelProject } from "@/data/featuredProjects";
+import EditorialBackdrop from "@/components/EditorialBackdrop";
+import { featuredProjects, hotelProject } from "@/data/featuredProjects";
 import styles from "./refresh.module.css";
 
 export default function Home() {
   return (
     <main className={styles.page}>
+      <EditorialBackdrop />
       <section className={styles.masthead} aria-labelledby="home-title">
         <div className={styles.mastCopy}>
           <p className={styles.eyebrow}>Yudai Baba / Portfolio</p>
@@ -27,7 +29,7 @@ export default function Home() {
 
       <section className={styles.section} aria-labelledby="selected-title">
         <header className={styles.sectionHead}>
-          <h2 id="selected-title" className={styles.sectionTitle}>Selected project</h2>
+          <h2 id="selected-title" className={styles.sectionTitle}>Selected projects</h2>
           <p className={styles.meta}>Work / Decision / Delivery</p>
         </header>
         <article className={styles.caseGrid}>
@@ -44,6 +46,23 @@ export default function Home() {
             <div className={styles.fact}><dt>PROGRESS / RESULT</dt><dd>{hotelProject.resultOrProgress}</dd></div>
           </dl>
         </article>
+        <div className={styles.projectPair}>
+          {featuredProjects.slice(1).map((project) => (
+            <article className={styles.projectCard} key={project.slug}>
+              {project.image && (
+                <div className={styles.cardImage}>
+                  <Image src={project.image} alt="" fill sizes="(max-width: 760px) 100vw, 46vw" />
+                </div>
+              )}
+              <div className={styles.cardCopy}>
+                <p className={styles.meta}><span className={styles.redIndex}>{project.index}</span> / {project.domain}</p>
+                <h3>{project.title}</h3>
+                <p>{project.synopsis}</p>
+                <Link className={styles.textLink} href={project.href ?? `/works/${project.slug}`}>事例を見る&nbsp; →</Link>
+              </div>
+            </article>
+          ))}
+        </div>
       </section>
 
       <section className={`${styles.section} ${styles.noteStrip}`} aria-labelledby="field-title">

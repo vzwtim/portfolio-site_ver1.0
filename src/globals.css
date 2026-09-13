@@ -23,6 +23,12 @@ html {
   font-family:  'Shippori Mincho','Noto Sans JP', sans-serif; /* Apply Noto Sans JP and Shippori Mincho to body */
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Montserrat', sans-serif; /* Apply Montserrat to headings */
 }
