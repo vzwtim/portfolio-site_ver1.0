@@ -10,11 +10,6 @@
   position: relative;
 }
 
-.backdrop { --page-progress: 0; --pointer-x: 75vw; --pointer-y: 30vh; inset: 0; pointer-events: none; position: fixed; z-index: 0; }
-.asanohaField { animation: fieldDrift 24s ease-in-out infinite alternate; background: url("/images/asanoha.svg") repeat; height: 28rem; left: -8rem; mask-image: linear-gradient(90deg, #000, transparent); opacity: .23; position: absolute; top: 32vh; transform: rotate(-8deg); width: 40rem; }
-.pointerHalo { background: radial-gradient(circle 14rem at var(--pointer-x) var(--pointer-y), rgba(0,136,119,.075), transparent 72%); inset: 0; position: absolute; transition: background-position 300ms ease-out; }
-.progressRail { background: var(--red); height: calc(var(--page-progress) * 100vh); position: absolute; right: 0; top: 0; width: 3px; }
-
 .masthead {
   display: grid;
   grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1.25fr);
@@ -24,7 +19,10 @@
   align-items: center;
   position: relative;
   z-index: 1;
+  overflow: hidden;
 }
+.masthead::before { animation: patternDrift 22s linear infinite; background: url("/images/asanoha.svg") repeat; background-size: 140px 80px; content: ""; inset: 0 62% 0 -8%; mask-image: linear-gradient(90deg,#000,transparent); opacity: .42; pointer-events: none; position: absolute; }
+.scanBeam { animation: heroScan 8s cubic-bezier(.65,0,.35,1) infinite; background: linear-gradient(90deg,transparent,#008877 20%,#008877 65%,transparent); height: 1px; left: 0; opacity: .5; pointer-events: none; position: absolute; top: 0; width: 45%; }
 
 .mastCopy { max-width: 38rem; }
 .eyebrow, .meta {
@@ -81,27 +79,65 @@
 .noteStrip .eyebrow { color: #67c4b5; }
 .noteTitle { font-family: "Shippori Mincho", "Yu Mincho", serif; font-size: clamp(2rem, 5vw, 5rem); font-weight: 400; line-height: 1.25; margin: 0; }
 .noteCopy { align-self: end; line-height: 2; max-width: 35rem; }
-.projectPair { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.25rem, 4vw, 4rem); margin-top: clamp(5rem, 10vw, 10rem); }
-.projectCard { background: rgba(255,255,255,.94); border-top: 1px solid var(--ink); }
-.cardImage { aspect-ratio: 4 / 3; overflow: hidden; position: relative; }
-.cardImage img { object-fit: cover; transition: transform 700ms cubic-bezier(.22,1,.36,1); }
-.projectCard:hover .cardImage img { transform: scale(1.025); }
-.cardCopy { padding: 1.5rem 0 0; }
-.cardCopy h3 { font-family: "Shippori Mincho", "Yu Mincho", serif; font-size: clamp(1.7rem, 3vw, 3.2rem); font-weight: 400; line-height: 1.35; margin: 1rem 0; }
-.cardCopy p:not(.meta) { line-height: 1.9; max-width: 36rem; }
-.redIndex { color: var(--red); font-size: 1.15rem; }
+
+.topic { min-height: 100svh; overflow: hidden; padding: clamp(6rem,12vw,11rem) clamp(1.25rem,6vw,6rem); position: relative; scroll-margin-top: 4rem; }
+.topic::before, .topic::after { content: ""; pointer-events: none; position: absolute; }
+.topicHeader, .topicProjects, .videoPending, .videoFrame { margin-inline: auto; max-width: 1320px; position: relative; z-index: 2; }
+.topicHeader { display: grid; grid-template-columns: minmax(7rem,.35fr) 1fr; margin-bottom: clamp(4rem,8vw,8rem); }
+.topicNumber { color: var(--red); font: clamp(5rem,12vw,12rem)/.75 Georgia,serif; margin: 0; }
+.topicHeader h2 { font-family: "Shippori Mincho","Yu Mincho",serif; font-size: clamp(3rem,7vw,7rem); font-weight: 400; line-height: 1.1; margin: .6rem 0 1.5rem; }
+.topicLead { font-size: clamp(1rem,1.5vw,1.25rem); line-height: 2; max-width: 42rem; }
+.topicProjects { display: grid; grid-template-columns: 1.3fr 1fr; gap: clamp(1.5rem,4vw,4rem); }
+.topicProject { align-self: end; background: rgba(255,255,255,.94); border-top: 1px solid currentColor; }
+.topicProjectLead { grid-row: span 2; align-self: start; }
+.topicImage { aspect-ratio: 16/10; overflow: hidden; position: relative; }
+.topicImage img { object-fit: cover; transition: transform 700ms cubic-bezier(.22,1,.36,1); }
+.topicProjectCopy { padding: 1.5rem; }
+.topicProjectCopy h3 { font-family: "Shippori Mincho","Yu Mincho",serif; font-size: clamp(1.6rem,3vw,3rem); font-weight: 400; line-height: 1.35; margin: 1rem 0; }
+.topicProjectCopy > p:not(.meta) { line-height: 1.9; }
+.topicLink { color: inherit; display: inline-flex; font-weight: 700; min-height: 44px; align-items: center; text-decoration-color: var(--green); text-underline-offset: .5rem; }
+.topicLink:focus-visible { outline: 3px solid var(--red); outline-offset: 3px; }
+.topicScan { background: #fff; }
+.topicScan::before { animation: scanVertical 11s linear infinite; background: linear-gradient(180deg,transparent 0,#008877 48%,#008877 52%,transparent 100%); height: 28rem; left: 0; opacity: .42; top: -28rem; width: 2px; }
+.topicScan::after { animation: scanHorizontal 15s linear infinite -4s; background: linear-gradient(90deg,transparent,#bb5555,transparent); height: 2px; left: -45vw; opacity: .46; top: 32%; width: 45vw; }
+.topicAsanoha { background: #fff; }
+.topicAsanoha::before { animation: patternDrift 20s linear infinite; background: url("/images/asanoha.svg") repeat; background-size: 140px 80px; inset: -80px; opacity: .88; }
+.topicAsanoha::after { background: linear-gradient(90deg,rgba(255,255,255,.5),rgba(255,255,255,.86) 35%,rgba(255,255,255,.72)); inset: 0; }
+.topicDigital { background: #0a0a0a; color: #fff; }
+.topicDigital::before { animation: dotDrift 18s linear infinite; background-image: radial-gradient(rgba(0,136,119,.62) 1px,transparent 1.5px); background-size: 40px 40px; inset: -40px; }
+.topicDigital::after { animation: digitalScan 9s ease-in-out infinite; background: linear-gradient(90deg,transparent,rgba(0,136,119,.22),transparent); height: 28%; left: 0; right: 0; top: -28%; }
+.topicDigital .topicProject { background: rgba(10,10,10,.84); }
+.topicDigital .topicProjectCopy { border-inline-start: 1px solid var(--green); }
+.topicDigital .topicNumber { color: #40b9a7; }
+.movingRule { animation: ruleTravel 10s linear infinite; background: linear-gradient(90deg,transparent,var(--red),var(--green),transparent); bottom: 0; height: 3px; left: -35%; position: absolute; width: 35%; z-index: 3; }
+.videoPending { align-items: center; background: #0a0a0a; color: #fff; display: grid; gap: 2rem; grid-template-columns: auto 1fr; margin-top: clamp(4rem,8vw,8rem); min-height: 15rem; padding: clamp(1.5rem,4vw,4rem); }
+.videoPending h3 { font-family: "Shippori Mincho","Yu Mincho",serif; font-size: clamp(1.8rem,4vw,4rem); font-weight: 400; margin: .6rem 0; }
+.playMark { align-items: center; border: 1px solid var(--green); border-radius: 50%; color: var(--green); display: flex; height: 5rem; justify-content: center; width: 5rem; }
+.videoFrame { aspect-ratio: 16/9; margin-top: clamp(4rem,8vw,8rem); }
+.videoFrame iframe { border: 0; height: 100%; width: 100%; }
 
 @keyframes revealPlate { from { clip-path: inset(0 0 100% 0); transform: scale(1.025); } to { clip-path: inset(0); transform: scale(1); } }
-@keyframes fieldDrift { from { transform: rotate(-8deg) translate3d(-2rem, -1rem, 0); } to { transform: rotate(-8deg) translate3d(3rem, 1rem, 0); } }
+@keyframes patternDrift { to { transform: translate3d(70px,40px,0); } }
+@keyframes heroScan { 0%,15% { transform: translate3d(-110%,0,0); } 70%,100% { transform: translate3d(360%,0,0); } }
+@keyframes scanVertical { to { transform: translate3d(82vw,calc(100svh + 56rem),0) rotate(24deg); } }
+@keyframes scanHorizontal { to { transform: translate3d(190vw,30vh,0) rotate(-7deg); } }
+@keyframes dotDrift { to { transform: translate3d(40px,40px,0); } }
+@keyframes digitalScan { 45%,100% { transform: translate3d(0,470%,0); } }
+@keyframes ruleTravel { to { transform: translate3d(390%,0,0); } }
 @media (max-width: 760px) {
-  .masthead, .caseGrid, .noteStrip, .projectPair { grid-template-columns: 1fr; }
+  .masthead, .caseGrid, .noteStrip, .topicHeader, .topicProjects, .videoPending { grid-template-columns: 1fr; }
   .masthead { align-content: start; padding-top: 7.5rem; }
   .heroPlate { min-height: 58svh; }
   .sectionHead { align-items: flex-start; flex-direction: column; gap: .5rem; }
-  .asanohaField { height: 18rem; left: -14rem; opacity: .17; top: 45vh; }
-  .pointerHalo { display: none; }
+  .masthead::before { inset: 0 20% 50% -30%; opacity: .28; }
+  .topic { padding-block: 6rem; }
+  .topicNumber { font-size: 5rem; }
+  .topicAsanoha::before { background-size: 105px 60px; opacity: .68; }
+  .topicDigital::before { background-size: 32px 32px; }
+  .videoPending { min-height: 22rem; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .heroImage, .asanohaField { animation: none; }
+  .heroImage, .masthead::before, .scanBeam, .topic::before, .topic::after, .movingRule { animation: none; }
   .page *, .page *::before, .page *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
 }
+@media (hover:hover) and (pointer:fine) { .topicProject:hover .topicImage img { transform: scale(1.025); } }
