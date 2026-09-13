@@ -51,7 +51,7 @@ const CustomCursor = () => {
 
   return (
     <motion.div
-      className="w-8 h-8 rounded-full fixed top-0 left-0 pointer-events-none z-50"
+      className="custom-cursor w-8 h-8 rounded-full fixed top-0 left-0 pointer-events-none z-[998]"
       variants={variants}
       animate={cursorVariant}
       transition={{ type: "spring", stiffness: 500, damping: 30 }}

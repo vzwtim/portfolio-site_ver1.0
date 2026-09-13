@@ -1,5 +1,3 @@
-import PhotosClientPage from '@/components/PhotosClientPage';
-
-export default function PhotosPage() {
-  return <PhotosClientPage />;
-}
+import Image from 'next/image';
+const notes=[{title:'旧街道自転車旅',sub:'ROUTE / BODY / HISTORY',image:'/images/trip_tokaido_2.jpg',text:'移動の途中に残る道の形、宿場の距離感、地形の変化を身体で読む。YouTubeで継続発信するフィールドワーク。'},{title:'都市を層として見る',sub:'CITY / MAPPING',image:'/images/map_master_10.png',text:'GIS、歴史資料、観察を重ね、現在の風景の背後にある時間と暮らしのリズムを探る。'},{title:'地域の声と風景',sub:'REGION / DIALOGUE',image:'/images/image_sanriku_14.png',text:'写真を記録ではなく、土地と人の関係を考え、対話を始めるための媒体として扱う。'}];
+export default function FieldNotes(){return <main className="page-shell"><header className="page-intro"><h1><small>03 / PERSPECTIVE</small>Field<br/>Notes</h1><div><p>Gallery から Field Notes へ。旅や写真を成果物として飾るのではなく、仕事の判断を支える「観察の方法」として記録します。</p><p>地図では省略される起伏、数字には現れにくい人の声。現場に身を置き、複数の縮尺を往復するための個人的な実践です。</p></div></header><section className="notes-grid">{notes.map((n,i)=><article className="note-card" key={n.title}><Image src={n.image} alt={n.title} fill sizes="(max-width:760px) 90vw, 30vw"/><div><p className="eyebrow">0{i+1} — {n.sub}</p><h2>{n.title}</h2><p>{n.text}</p>{i===0&&<p className="eyebrow">VIDEO URL — 公開前にリンクを設定</p>}</div></article>)}</section></main>}
