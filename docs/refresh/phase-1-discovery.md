@@ -16,9 +16,10 @@ This document records decisions that are safe to keep in the public repository. 
 ### Keep and reinterpret
 
 1. **Keep 「ぼくは、五目飯。」, but make it an opening thesis rather than the whole explanation.** It is memorable, personal, and already supported by a strong original photograph. Its current follow-up describes variety but does not show how that variety creates value. The refresh should pair it immediately with a concrete editorial sentence and direct links to representative work.
-2. **Keep the green `#008877` and red `#bb5555`.** Use green as the navigational/editorial baseline and red only for annotations, active states, and moments of emphasis. Avoid equal-weight color blocks.
-3. **Keep original evidence.** Maps, drawings, field photographs, diagrams, and application screens have more authorship than stock imagery and can connect observation to execution.
-4. **Keep the breadth, change the hierarchy.** Architecture, research, property, organization, small tools, and travel should remain present, but representative cases need editorial scale while the remainder becomes an explorable archive.
+2. **Keep the green `#008877` and red `#bb5555` as accents, not fields.** White and black should account for most of every page, following the visual balance of the existing manuscript/site. Green may identify navigation and structure; red may mark an annotation, active state, or one point of emphasis. Large tinted backgrounds and equal-weight color blocks are out of scope.
+3. **Keep the original `babayudai_logo.svg` as the primary personal mark.** It should appear in the global header and/or opening composition without being redrawn, replaced by a text-only wordmark, or treated as a decorative watermark. Contrast and clear space may be adjusted by layout, but the logo artwork itself remains intact.
+4. **Keep original evidence.** Maps, drawings, field photographs, diagrams, and application screens have more authorship than stock imagery and can connect observation to execution.
+5. **Keep the breadth, change the hierarchy.** Architecture, research, property, organization, small tools, and travel should remain present, but representative cases need editorial scale while the remainder becomes an explorable archive.
 
 ### Improve
 
@@ -57,7 +58,7 @@ The comparison mock is in [`home-directions.svg`](./home-directions.svg). It is 
 
 ### A — Field Ledger / 観察台帳 (recommended)
 
-- **Color:** warm paper and charcoal form the field; `#008877` structures navigation and routes; `#bb5555` acts like an editor's pencil.
+- **Color:** white and black form the overwhelming majority of the page. `#008877` is reserved for index rules, navigation, and route notation; `#bb5555` acts like a sparingly used editor's pencil.
 - **Type:** expressive Japanese Mincho for propositions and case titles; restrained Gothic for metadata and controls; tabular numerals for dates and indexes.
 - **Composition:** an asymmetric editorial grid; one large photographic plate with marginal notes; featured work varies in scale; project facts sit in a stable rail.
 - **Images:** preserve documentary crops, captions, dates, source/type labels, maps, and drawings. Use contact-sheet sequences for field notes rather than decorative collages.
@@ -66,7 +67,7 @@ The comparison mock is in [`home-directions.svg`](./home-directions.svg). It is 
 
 ### B — Gomoku Broadside / 五目新聞
 
-- **Color:** white base, large solid green fields, sharper red stamps/rules, and high-contrast black type.
+- **Color:** white base and high-contrast black type, with narrow green bands/rules and occasional red stamps. This direction differs through typography and density—not through large colored surfaces.
 - **Type:** bold Gothic headlines with compact Mincho essays; oversized issue numbers and vertical Japanese labels.
 - **Composition:** poster-like opening, modular story strips, bold cropping, and playful changes of reading direction. The gomoku metaphor becomes a recurring “ingredient/index” system.
 - **Images:** tighter, energetic crops and serial frames; diagrams become full-bleed interludes; archive reads like newspaper classifieds.
@@ -88,13 +89,19 @@ All motion must preserve native scrolling, keyboard focus, browser back behavior
 
 Each publishable case should carry: `slug`, `title`, `deck`, `domain`, `status`, `periodLabel`, `roleSummary`, `resultOrProgress`, `featured`, `visibility`, `cover`, and flexible narrative sections. `visibility` must default to draft/non-public. Internal interview notes and source documents stay outside the public repository; only an explicitly approved, redacted summary is copied into public content.
 
-## First interview — five questions
+## Interview checkpoint (publication pending)
 
-1. **Which one or two activities best represent the work you want to be hired to do next, and why?** Please choose from property portfolio analysis, hotel income/expense review and acquisition, organizational-culture improvement, DX study sessions, culture-club planning/operations, government-collaboration competition support, or another activity.
-2. **For the top candidate, what did you personally own?** What did you decide or create yourself, what was collaborative, and what was owned by a manager, specialist, partner, or public body?
-3. **What problem or change triggered that activity, and what alternatives did you compare before acting?** For the culture project, please also explain why the measure changed from roundtables to 360-degree feedback/coaching, without assuming it was a pre-planned multi-year strategy.
-4. **What can be stated as an observed result or current progress—and what did not work or remains unresolved?** Qualitative reactions and continuation decisions are welcome; no numerical result is required.
-5. **For that candidate, what may be public?** Please identify usable dates/period wording, organization/project names, numbers, images/documents/links, whether anonymization is needed, and whether it is completed, ongoing, or planned. Also clarify how 360-degree feedback differs from any personnel evaluation process and which future involvement of HR is only planned.
+The interview has identified two representative tracks: (1) real-estate underwriting/acquisition/disposition/portfolio analysis and (2) organization-culture improvement plus internal DX activity. The owner has also clarified that their contribution included both individual delivery and leadership with support from managers or corporate-planning members. These statements are **working interview facts, not yet public case copy**.
+
+The response also contains commercially and organizationally sensitive details. Exact budgets, locations, completion schedules, internal assessments, governance observations, and the distinction between a feedback intervention and the formal appraisal system must remain outside public frontend data until each item receives explicit approval. Public copy must preserve the stated division of responsibility and must not turn an ongoing HR collaboration into a completed result.
+
+## Next interview — representative case 1 only
+
+1. **What was the investment opportunity and the initial problem you had to solve?** Please describe the asset type and business challenge at a level safe for an internal draft; exact location/name is not needed yet.
+2. **How did the new underwriting differ from the company's previous model?** Which operating assumptions or revenue/cost items changed after discussions with the hotel operator, and which parts did you personally design?
+3. **What alternatives did you compare, and what was the decisive judgment?** For example, operator candidates, schemes, acquisition/no-acquisition, or conditions revised before the president briefing.
+4. **What happened after acquisition, and where do disposition and portfolio analysis enter this story?** Please distinguish this project's verified results from separate transactions or broader annual responsibilities.
+5. **For an anonymized public case, which categories may be used now?** Please classify role, decision process, transaction type, stakeholders, location/time range, numerical scale, documents, and outcome as public, anonymized, or non-public. The detailed checklist stays in the private interview notes rather than this repository.
 
 ## Independent next steps while answers are pending
 
@@ -103,4 +110,3 @@ Each publishable case should carry: `slug`, `title`, `deck`, `domain`, `status`,
 - Prototype the selected direction on Home and one verified existing case after direction approval.
 - Preserve existing URLs and establish redirects only after the final route map is approved.
 - Browser-test desktop, mobile, keyboard, back navigation, touch-equivalent controls, and `prefers-reduced-motion`; record actual performance conditions rather than claiming an unmeasured score.
-
