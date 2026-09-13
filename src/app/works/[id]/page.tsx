@@ -1,43 +1,4 @@
-// src/app/works/[id]/page.tsx
-import { notFound } from 'next/navigation';
-import type { Metadata } from 'next';
-import works from '../../../data/works.json';
-import WorkContent from './WorkContent';
-import type { Work } from './WorkContent';
-
-type PageProps = { params: { id: string } };
-
-// Helper function to get work data asynchronously
-async function getWork(id: string): Promise<Work | undefined> {
-  return (works as Work[]).find((w) => w.id === id);
-}
-
-export function generateStaticParams() {
-  return (works as Work[]).map((work) => ({ id: work.id }));
-}
-
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const id = decodeURIComponent(params.id);
-  const work = await getWork(id);
-
-  if (!work) {
-    return { title: 'Work not found' };
-  }
-  return {
-    title: work.title,
-    description: work.description,
-  };
-}
-
-export default async function WorkPage({ params }: PageProps) {
-  const id = decodeURIComponent(params.id);
-  const work = await getWork(id);
-
-  if (!work) {
-    notFound();
-  }
-
-  const images = work.images || [];
-
-  return <WorkContent work={work} images={images} />;
-}
+import {notFound} from 'next/navigation'; import Image from 'next/image'; import Link from 'next/link'; import type {Metadata} from 'next'; import {caseStudies} from '@/data/cases';
+export function generateStaticParams(){return caseStudies.map(({id})=>({id}))}
+export async function generateMetadata({params}:{params:Promise<{id:string}>}):Promise<Metadata>{const {id}=await params;const c=caseStudies.find(x=>x.id===id);return c?{title:`${c.title} | YUDAI BABA`,description:c.lead}:{}}
+export default async function CasePage({params}:{params:Promise<{id:string}>}){const {id}=await params;const c=caseStudies.find(x=>x.id===id);if(!c)notFound();return <main><section className="case-hero"><Image src={c.image} alt="" fill priority sizes="100vw"/><div><p className="eyebrow">CASE {c.number} — {c.category}</p><h1>{c.title}</h1></div></section><article className="case-body section-pad"><p className="case-lead">{c.lead}</p><div className="case-sections"><section className="case-block"><h2>CONTEXT</h2><div><p>{c.context}</p></div></section><section className="case-block"><h2>CHALLENGE</h2><div><p>{c.challenge}</p></div></section><section className="case-block"><h2>MY ROLE</h2><div><p>{c.role}</p></div></section><section className="case-block"><h2>APPROACH</h2><div><ol>{c.approach.map((x,i)=><li key={x}><b>0{i+1}</b> — {x}</li>)}</ol></div></section><section className="case-block"><h2>OUTCOME / LEARNING</h2><div><p>{c.outcome}</p></div></section><section className="case-block"><h2>SKILLS / TOOLS</h2><div className="tags">{c.skills.map(x=><span key={x}>{x}</span>)}</div></section></div><p className="confidential">CONFIDENTIALITY NOTE — 実案件に関する取引先名、物件名、金額および非公開の社内情報は掲載していません。面談時も開示可能な範囲でお話しします。</p><p style={{marginTop:60}}><Link className="text-link" href="/works">← ALL CASE STUDIES</Link></p></article></main>}
