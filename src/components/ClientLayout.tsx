@@ -1,3 +1,3 @@
 'use client';
-import Header from '@/components/Header'; import Footer from '@/components/Footer';
-export default function ClientLayout({children}:{children:React.ReactNode}){return <><Header/><main>{children}</main><Footer/></>}
+import {useEffect,useState} from 'react'; import {usePathname} from 'next/navigation'; import Header from '@/components/Header'; import Footer from '@/components/Footer'; import CustomCursor from '@/components/CustomCursor'; import LoadingScreen from '@/components/LoadingScreen'; import MotionSystem from '@/components/MotionSystem'; import {CursorProvider} from '@/context/CursorContext';
+export default function ClientLayout({children}:{children:React.ReactNode}){const pathname=usePathname();const [loading,setLoading]=useState(true);useEffect(()=>{setLoading(true);const timer=setTimeout(()=>setLoading(false),900);return()=>clearTimeout(timer)},[pathname]);return <CursorProvider><LoadingScreen isLoading={loading}/><CustomCursor/><MotionSystem/><Header/><main>{children}</main><Footer/></CursorProvider>}

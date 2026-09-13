@@ -39,7 +39,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ isLoading }) => {
     <AnimatePresence>
       {isLoading && (
         <motion.div
-          className="pointer-events-none fixed inset-0 z-[999] flex items-center justify-center overflow-hidden bg-[#471A16]"
+          className="loading-screen pointer-events-none fixed inset-0 z-[999] flex items-center justify-center overflow-hidden bg-[#471A16]"
           variants={containerVariants}
           initial="initial"
           exit="exit"
@@ -51,7 +51,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ isLoading }) => {
             animate="animate"
             exit="exit"
           >
-            <div className="relative w-[340px] sm:w-[480px] md:w-[820px] aspect-[14/5] drop-shadow-[0_18px_46px_rgba(0,0,0,0.48)]">
+            <div className="loading-logo relative w-[260px] sm:w-[380px] md:w-[560px] aspect-[14/5] drop-shadow-[0_18px_46px_rgba(0,0,0,0.48)]">
               <Image
                 src="/images/babayudai_logo.svg"
                 alt="babayudai logo"
