@@ -72,11 +72,8 @@ export default function Home() {
         <section id={topic.id} className={`${styles.topic} ${topic.className}`} key={topic.id} aria-labelledby={`${topic.id}-title`}>
           <div className={styles.backgroundIndex} aria-hidden="true">{topic.number}</div>
           <div className={styles.orbitField} aria-hidden="true"><i /><i /><i /></div>
-          <div className={styles.topicTicker} aria-hidden="true">
-            <span>{topic.ticker}　{topic.ticker}　</span>
-            <span>{topic.ticker}　{topic.ticker}　</span>
-            <span>{topic.ticker}　{topic.ticker}　</span>
-          </div>
+          <div className={styles.signalLegend} aria-hidden="true">{topic.ticker}</div>
+          {topic.id === "real-estate" && <div className={styles.scanTracks} aria-hidden="true"><i /><i /><i /></div>}
           <header className={styles.topicHeader}>
             <div><p className={styles.meta}>{topic.label}</p><h2 id={`${topic.id}-title`}>{topic.title}</h2><p className={styles.topicLead}>{topic.lead}</p></div>
           </header>
