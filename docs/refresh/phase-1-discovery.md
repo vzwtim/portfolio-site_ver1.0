@@ -56,9 +56,9 @@ This is intentionally provisional. It connects the observable evidence already i
 
 The comparison mock is in [`home-directions.svg`](./home-directions.svg). It is a compositional prototype, not approved production UI.
 
-### A — Field Ledger / 観察台帳 (recommended)
+### A — Field Ledger / 観察台帳 (selected)
 
-- **Color:** white and black form the overwhelming majority of the page. `#008877` is reserved for index rules, navigation, and route notation; `#bb5555` acts like a sparingly used editor's pencil.
+- **Color:** retain the current site's balance: white is the dominant field, black carries almost all typography, and `#008877` / `#bb5555` appear only as small accents for index rules, navigation, focus, and editorial notation.
 - **Type:** expressive Japanese Mincho for propositions and case titles; restrained Gothic for metadata and controls; tabular numerals for dates and indexes.
 - **Composition:** an asymmetric editorial grid; one large photographic plate with marginal notes; featured work varies in scale; project facts sit in a stable rail.
 - **Images:** preserve documentary crops, captions, dates, source/type labels, maps, and drawings. Use contact-sheet sequences for field notes rather than decorative collages.

@@ -1,0 +1,85 @@
+.page {
+  --ink: #111311;
+  --green: #008877;
+  --red: #bb5555;
+  background: #fff;
+  color: var(--ink);
+  min-height: 100vh;
+}
+
+.masthead {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1.25fr);
+  min-height: 100svh;
+  padding: clamp(7rem, 12vw, 10rem) clamp(1.25rem, 6vw, 6rem) 3rem;
+  gap: clamp(2rem, 6vw, 7rem);
+  align-items: center;
+}
+
+.mastCopy { max-width: 38rem; }
+.eyebrow, .meta {
+  font: 600 0.7rem/1.4 Arial, sans-serif;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.eyebrow { color: var(--green); margin-bottom: 2rem; }
+.title {
+  font-family: "Shippori Mincho", "Yu Mincho", serif;
+  font-size: clamp(3rem, 7vw, 7.5rem);
+  font-weight: 400;
+  letter-spacing: -0.055em;
+  line-height: 1.08;
+  margin: 0;
+}
+.thesis {
+  border-left: 1px solid var(--red);
+  font-family: "Shippori Mincho", "Yu Mincho", serif;
+  font-size: clamp(1rem, 1.5vw, 1.35rem);
+  line-height: 2;
+  margin: 2.5rem 0 2.25rem;
+  padding-left: 1.2rem;
+}
+.actions { display: flex; flex-wrap: wrap; gap: 0.8rem 1.5rem; }
+.primaryLink, .textLink {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  color: var(--ink);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+.primaryLink { border-bottom: 2px solid var(--green); }
+.textLink { border-bottom: 1px solid #b9b9b4; }
+.primaryLink:focus-visible, .textLink:focus-visible { outline: 3px solid var(--red); outline-offset: 4px; }
+.heroPlate { position: relative; min-height: min(68vw, 700px); overflow: hidden; background: #f2f2ef; }
+.heroImage { object-fit: cover; animation: revealPlate 900ms cubic-bezier(.22,1,.36,1) both; }
+.plateLabel { position: absolute; right: 0; bottom: 0; background: #fff; padding: 0.9rem 1.1rem; }
+
+.section { padding: clamp(5rem, 10vw, 9rem) clamp(1.25rem, 6vw, 6rem); }
+.sectionHead { display: flex; justify-content: space-between; align-items: baseline; gap: 2rem; border-top: 1px solid var(--ink); padding-top: 1rem; margin-bottom: 3rem; }
+.sectionTitle { font-family: "Shippori Mincho", "Yu Mincho", serif; font-weight: 400; font-size: clamp(2rem, 4vw, 4rem); margin: 0; }
+.caseGrid { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(270px, .65fr); gap: clamp(2rem, 7vw, 8rem); }
+.caseNumber { color: var(--red); font: 400 clamp(4rem, 9vw, 9rem)/.8 Georgia, serif; margin: 0 0 2rem; }
+.caseTitle { font-family: "Shippori Mincho", "Yu Mincho", serif; font-size: clamp(2rem, 4.2vw, 4.5rem); font-weight: 400; line-height: 1.25; margin: .75rem 0 1.5rem; }
+.body { font-size: 1rem; line-height: 2; max-width: 48rem; }
+.facts { border-top: 1px solid var(--ink); margin: 0; }
+.fact { border-bottom: 1px solid #d1d1cc; padding: 1rem 0; }
+.fact dt { color: #666; font-size: .72rem; letter-spacing: .12em; margin-bottom: .45rem; }
+.fact dd { margin: 0; line-height: 1.75; }
+.noteStrip { background: var(--ink); color: #fff; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+.noteStrip .eyebrow { color: #67c4b5; }
+.noteTitle { font-family: "Shippori Mincho", "Yu Mincho", serif; font-size: clamp(2rem, 5vw, 5rem); font-weight: 400; line-height: 1.25; margin: 0; }
+.noteCopy { align-self: end; line-height: 2; max-width: 35rem; }
+
+@keyframes revealPlate { from { clip-path: inset(0 0 100% 0); transform: scale(1.025); } to { clip-path: inset(0); transform: scale(1); } }
+@media (max-width: 760px) {
+  .masthead, .caseGrid, .noteStrip { grid-template-columns: 1fr; }
+  .masthead { align-content: start; padding-top: 7.5rem; }
+  .heroPlate { min-height: 58svh; }
+  .sectionHead { align-items: flex-start; flex-direction: column; gap: .5rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .heroImage { animation: none; }
+  .page *, .page *::before, .page *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+}
