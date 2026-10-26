@@ -42,6 +42,12 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
       <ScrollbarWidthProvider> {/* Wrap with ScrollbarWidthProvider */}
         <CursorProvider>
           <CustomCursor />
+          <aside aria-label="最新版サイトのご案内" className="pointer-events-none fixed inset-x-0 bottom-0 z-[60] flex justify-center px-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
+            <a href="https://portfolio-site-ver2.vercel.app/" className="pointer-events-auto flex min-h-11 max-w-full items-center gap-3 rounded-full border border-black/10 bg-white/95 px-5 py-3 text-sm text-[#173b33] shadow-lg backdrop-blur-md transition-colors hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#008877]">
+              <span className="text-xs text-[#58665f]">旧版サイト</span>
+              <span className="font-bold">最新版はこちら <span aria-hidden="true">↗</span></span>
+            </a>
+          </aside>
           {!isAppsPage && <Header textColor={textColor} />}
           <main className={textColor}>
             {children}
